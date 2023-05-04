@@ -1,0 +1,193 @@
+﻿@page
+@model Car_Store.Pages.AdminViewModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true">
+<div class="allpagecontent">
+    <div class="containerAdmin">
+        <div class="sidebar">
+            <div class="text">
+                <h1>Admin Name</h1>
+                <p>admin</p>
+                <p>
+                    system date&time<br />
+                    18/4/2023 21:47:22
+                </p>
+            </div>
+            <ul class="theList">
+                <li> <i class="fa-solid fa-bell"></i> Notifications</li>
+                <li> <i class="fa-solid fa-user"></i> Users</li>
+                <li> <i class="fa-sharp fa-solid fa-plus"></i> Pending Customers</li>
+                <li><i class="fa-sharp fa-solid fa-folder-plus"></i>Pending Posts</li>
+                <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i>Log Out</li>
+            </ul>
+        </div>
+        <div class="pageconcentmiddle">
+            <div class="cards">
+                <div class="carditem">
+                    <div class="cardcontent">
+                        <h1>Visitors <i class="fa-regular fa-user" style="color: #ffffff;"></i></h1>
+                        <h3>7 days <span>--</span> </h3>
+                        <h3>30 days <span>--</span> </h3>
+                        <h3>6 months <span>--</span> </h3>
+                    </div>
+                </div>
+                <div class="carditem">
+                    <div class="cardcontent">
+                        <h1>sales <i class="fa-sharp fa-solid fa-tag" style="color: #ffffff;"></i></i></h1>
+                        <h3>7 days <span>--</span> </h3>
+                        <h3>30 days <span>--</span> </h3>
+                        <h3>6 months <span>--</span> </h3>
+                    </div>
+                </div>
+                <div class="carditem">
+                    <div class="cardcontent">
+                        <h1>cars <i class="fa-sharp fa-solid fa-car-side" style="padding-right:10px; color: #ffffff"></i></h1>
+                        <h3>7 days <span>--</span> </h3>
+                        <h3>30 days <span>--</span> </h3>
+                        <h3>6 months <span>--</span> </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="customers">
+                <h1>Pending Customers</h1>
+                <div class="customerCard">
+                    <div class="image">
+                        <img class="customerImage" src="images/tarek.jpg" alt="">
+                    </div>
+                    <div class="customerCardContent">
+                        <div class="aboveItems">
+                            <span>Name</span>
+                            <span><i class="fa-sharp fa-solid fa-location-dot"></i>Location</span>
+                            <span><i class="fa-solid fa-phone"></i> 01100242417</span>
+                            <span><i class="fa-solid fa-envelope"></i> Email</span>
+                        </div>
+                        <div class="downItems">
+                            <p>
+                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
+                            </p>
+                            <div class="buttons">
+                                <div class="buttonItem">
+                                    <button style="background-color: #27AE60">Approve</button>
+                                </div>
+                                <div class="buttonItem">
+                                    <button style="background-color: #EB5757">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--second customer card-->
+                <div class="customerCard">
+                    <div class="image">
+                        <img class="customerImage" src="images/tarek.jpg" alt="">
+                    </div>
+                    <div class="customerCardContent">
+                        <div class="aboveItems">
+                            <span>Name</span>
+                            <span><i class="fa-sharp fa-solid fa-location-dot"></i>Location</span>
+                            <span><i class="fa-solid fa-phone"></i> 01100242417</span>
+                            <span><i class="fa-solid fa-envelope"></i> Email</span>
+                        </div>
+                        <div class="downItems">
+                            <p>
+                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
+                            </p>
+                            <div class="buttons">
+                                <div class="buttonItem">
+                                    <button style="background-color: #27AE60">Approve</button>
+                                </div>
+                                <div class="buttonItem">
+                                    <button style="background-color: #EB5757">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--third-->
+                <div class="customerCard">
+                    <div class="image">
+                        <img class="customerImage" src="images/tarek.jpg" alt="">
+                    </div>
+                    <div class="customerCardContent">
+                        <div class="aboveItems">
+                            <span>Name</span>
+                            <span><i class="fa-sharp fa-solid fa-location-dot"></i>Location</span>
+                            <span><i class="fa-solid fa-phone"></i> 01100242417</span>
+                            <span><i class="fa-solid fa-envelope"></i> Email</span>
+                        </div>
+                        <div class="downItems">
+                            <p>
+                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
+                            </p>
+                            <div class="buttons">
+                                <div class="buttonItem">
+                                    <button style="background-color: #27AE60">Approve</button>
+                                </div>
+                                <div class="buttonItem">
+                                    <button style="background-color: #EB5757">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--pending car posts-->
+            <div class="posts">
+                <h1>Pending Car Posts</h1>
+                <div class="customerCard">
+                    <div class="image">
+                        <img class="customerImage" src="images/image-car-3.jpeg" alt="">
+                    </div>
+                    <div class="customerCardContent">
+                        <div class="aboveItems">
+                            <span>Model</span>
+                            <span><i class="fa-regular fa-user" style="color: #000000"></i>Owner</span>
+                            <span><i class="fa-sharp fa-solid fa-tag" style="color: #000000"></i> price</span>
+                        </div>
+                        <div class="downItems">
+                            <p>
+                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
+                            </p>
+                            <div class="buttons">
+                                <div class="buttonItem">
+                                    <button style="background-color: #27AE60">Approve</button>
+                                </div>
+                                <div class="buttonItem">
+                                    <button style="background-color: #EB5757">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--second-->
+                <div class="customerCard">
+                    <div class="image">
+                        <img class="customerImage" src="images/image-car-3.jpeg" alt="">
+                    </div>
+                    <div class="customerCardContent">
+                        <div class="aboveItems">
+                            <span>Model</span>
+                            <span><i class="fa-regular fa-user" style="color: #000000"></i>Owner</span>
+                            <span><i class="fa-sharp fa-solid fa-tag" style="color: #000000"></i> price</span>
+                        </div>
+                        <div class="downItems">
+                            <p>
+                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
+                            </p>
+                            <div class="buttons">
+                                <div class="buttonItem">
+                                    <button style="background-color: #27AE60">Approve</button>
+                                </div>
+                                <div class="buttonItem">
+                                    <button style="background-color: #EB5757">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+﻿/*body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #EEEEEE;
+}*/
+
+/** {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}*/
+
+.containerCompare {
+    margin-top:30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom:30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Small */
+
+/* Medium */
+@media (min-width: 992px) {
+    .containerCompare {
+        width: 970px;
+    }
+}
+/* Large */
+@media (min-width: 1200px) {
+    .containerCompare {
+        width: 1170px;
+    }
+}
+/* End Global Rules */
+
+div .containerCompare {
+    display: flex;
+    gap: 70px;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 1350px) {
+    div .containerCompare {
+        flex-direction: column;
+    }
+}
+
+.compareItem {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+}
+
+.content {
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.content h4 {
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.15px;
+    color: #000000;
+    padding-left:20px;
+    margin-top:10px;
+    margin-bottom:-5px;
+}
+
+.content p {
+    padding-left: 30px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.content .bold {
+    border: 1px solid rgba(0, 0, 0, 0.75);
+}
+
+.content .light {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #1C61E7;
+    color: white;
+    border-radius: 20px;
+    width: 182px;
+    height: 38px;
+    border: none;
+    text-align: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor:pointer;
+}
+.BlueButton {
+    width:100%;
+    text-align:center;
+    margin-top:30px;
+}
+
+.carImage {
+    width: 469px;
+    height: 319px;
+    border-radius: 24px;
+}
+
+.rating {
+    padding-left:50px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.rating i {
+    font-size:25px;
+    color:gold;
+}
+
+.compareOurProducts {
+    align-self:flex-start;
+}
