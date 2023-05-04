@@ -1,89 +1,171 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Car_Store</title>
-        <link rel="stylesheet" href="~/css/all.min.css" />
-        <link rel="stylesheet" href="~/css/normalize.css" />
-        <link rel="stylesheet" href="~/css/master.css"  />
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TRMB cars</title>
+        <!-- My Style -->
+        <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true">
+        <!-- Nomralize Css -->
+        <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="~/css/all.min.css" asp-append-version="true">
+        <!-- My FarmeWork -->
+        <link rel="stylesheet" href="~/css/framework.css" asp-append-version="true">
+        <!-- Font Google -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+        
     </head>
     <body>
-        <div class="header">
-            <div class="nav-bar">
-                <div class="logo">
-                    <i class="fa-car-side"></i>
-                    <span>TRMP cars</span>
-                </div>
-                <form class="nav-search">
-                    <input type="search" placeholder="search" />
-                </form>
-                <div class="support">
-                    <i class="fa-solid fa-users"></i>
-                    <span>support</span>
-                    <p>01124656030</p>
-                </div>
-            </div>
-            <div class="sub-nav">
-                <div class="temp-1">
-                    <ul class="ul-1">
-                        <li>
-                            <i class="fa-solid fa-bars"></i>
-                            <span>Categories</span>
-                        </li>
-                        <li>
-                            <a href="#">promotions</a>
-                        </li>
-                        <li>
-                            <a href="#">Brancesh</a>
-                        </li>
-                        <li>
-                            <a href="#">our contacts</a>
-                        </li>
-                    </ul>
-                    <ul class="ul-2">
-                        <li>
-                            <a href="#">EN</a>
-                        </li>
-                        <li>
-                            <a href="#">USD</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-user" style="color:black"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-heart" style="color:white"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-heart" style="color:white"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa-solid fa-cart-shopping" style="color:white"></i ></a>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-
-        </div>    
-        
-        
-        
-        
-        
-        
-        
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
-
-        <footer class="border-top footer text-muted">
+        <header>
             <div class="container">
-                &copy; 2023 - Car_Store - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                <!-- Start Research -->
+                <div class="head bn-flex mt-5 mr-20">
+                    <h2 class="m-20 fw-bold fs-18">TRMB cars</h2>
+                    <div class="search">
+                        <i class="fa-regular fa-magnifying-glass p-absloute c-grey"></i>
+                        <input type="text" class="border rad-6 c-grey" placeholder="Search">
+                    </div>
+                    <div class="soical d-flex">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="support m-0 d-flex fl-column">
+                            <span class="fs-14 mb-10 cursor-pointer">Support</span>
+                            <span class="c-blue fs-14">+20 101 456 1603</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Research -->
+                <!-- Start Navbar -->
+                <nav class="w-full bn-flex">
+                    <div class="all-ctg ml-20 d-flex">
+                        <div class="details Trs-05 rad-20 bg-white p-relative mt-10 mb-10 ml-40">
+                            <div class="burgra bg-blue rad-half p-absolute">
+                                <span class="bg-white Trs-03"></span>
+                                <span class="bg-white Trs-03"></span>
+                                <span class="bg-white Trs-03"></span>
+                                <ul class="bg-ccc Trs-03 pt-10 pb-5 pl-10 pr-10 w-110 rad-10 mt-35">
+                                    <li class="pt-10 Trs-03 pb-10 border-b">
+                                        <a class="c-black" href="#services">services</a>
+                                    </li>
+                                    <li class="pt-10 Trs-03 pb-10 border-b">
+                                        <a class="c-black" href="#best-offer">best-offer</a>
+                                    </li>
+                                    <li class="pt-10 Trs-03 pb-10">
+                                        <a class="c-black" href="#footer">footer</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="c-black pl-10 m-10 ml-30 fs-14 fw-bold">All Categores</p>
+                        </div>
+                        <div class="center-flex c-black fw-bold fs-15">
+                            <a href="" class="pl-10 Trs-05 c-black pr-10">Promotions</a>
+                            <a href="" class="pl-10 Trs-05 c-black pr-10">Branches</a>
+                            <a href="" class="pl-10 Trs-05 c-black pr-10">Our Contacts</a>
+                        </div>
+                    </div>
+                    <div class="other center-flex mr-60">
+                        <span class="mr-10 fw-bold Trs-03 cursor-pointer">USA</span>
+                        <span class="mr-10 fw-bold Trs-03 cursor-pointer">USD</span>
+                        <div class="icons p-relative d-flex">
+                            <i class="fa-sharp mr-10 cursor-pointer p-5 fa-regular bg-white rad-half fa-circle-user"></i>
+                            <i class="fa-solid mr-10 p-5 fa-shuffle bg-white rad-half"></i>
+                            <i class="fa-solid mr-10 p-5 fa-heart bg-white rad-half"></i>
+                            <i class="fa-regular mr-10 fa-cart-shopping p-5 bg-blue rad-half"></i>
+                        </div>
+                    </div>
+                    <i class="fas fa-bars toggle-menu  fs-0 c-white mr-10 "></i>
+                </nav>
+                <div class="in-mobile ">
+                    <ul class="bg-ccc Trs-05 m-0 ml--20">
+                        <a class="c-black fw-bold Trs-03 pt-15 pb-15 d-block" href="#">
+                            <li class="active">Promotions</li>
+                        </a>
+                        <a class="c-black fw-bold Trs-03 d-block pt-15 pb-15" href="#">
+                            <li class="">Branches</li>
+                        </a>
+                        <a class="c-black fw-bold Trs-03 d-block pt-15 pb-15" href="#">
+                            <li class="">Our Contacts</li>
+                        </a>
+                    </ul>
+                </div>
             </div>
-        </footer>
+        </header>
+            <!-- End Navbar -->
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+            
+            <!-- Start Footer -->
+            <footer>
+                <div class="container">
+                    <div class="container bg-blue w-full">
+                    <div class="cols ba-flex mb-20 d-block">
+                        <div class="box-link mt-10">
+                            <h4 class="fs-18 c-white mb-10" style="width: 100%;">Service</h4>
+                            <div class="fl-column d-flex mt-15 ">
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Sell Car</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Buy Car</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block">Rent Car</span></a>
+                            </div>
+                        </div>
+                        <div class="box-link mt-10">
+                            <h4 class="fs-18 c-white mb-10" style="width: 80%;">Know more</h4>
+                            <div class="fl-column d-flex mt-15 ">
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Privacy Policy</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Terms of Services</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block">Contacts</span></a>
+                            </div>
+                        </div>
+                        <div class="box-link mt-10">
+                            <h4 class="fs-18 c-white mb-10" style="width: 80%;">Categories</h4>
+                            <div class="fl-column d-flex mt-15 ">
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Used</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">New Cars</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block">Accessories</span></a>
+                            </div>
+                        </div>
+                        <div class="box-link mt-10">
+                            <h4 class="fs-18 c-white mb-10" style="width: 90%;">Brands</h4>
+                            <div class="fl-column d-flex mt-15 ">
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Nissan</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Tesla</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block">Jeep</span></a>
+                            </div>
+                        </div>
+                        <div class="box-link mt-10">
+                            <h4 class="fs-16 c-white mb-10">Service Contacts</h4>
+                            <div class="fl-column d-flex mt-15 ">
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">6th October</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block pb-10">Ismailia</span></a>
+                                <a href="#"><span class="fs-16 c-white d-block">Zamalek</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line bn-flex ">
+                        <div class="social ml-15 mb-15 pl-20">
+                            <span class="c-white fs-17 pr-10">Follow Us</span>
+                            <a href="#"><i class="fa-brands c-white fa-whatsapp pr-5 fs-18"></i></a>
+                            <a href="#"><i class="fa-brands c-white fa-facebook-f pr-5 fs-18"></i></a>
+                            <a href="#"><i class="fa-brands c-white fa-youtube pr-5 fs-18"></i></a>
+                            <a href="#"><i class="fa-brands c-white fa-linkedin pr-5 fs-18"></i></a>
+                            <a href="#"><i class="fa-brands c-white fa-twitter pr-5 fs-18"></i></a>
+                            <a href="#"><i class="fa-brands c-white fa-instagram pr-5 fs-18"></i></a>
+                        </div>
+                        <div class="mobile-app mr-20 pr-20">
+                            <span class="c-white pr-15">Mobile App</span>
+                            <a href="#"><i class="fa-brands fa-apple c-white fs-18 pr-5 "></i></a>
+                            <a href="#"><i class="fa-brands fa-android c-white fs-18 "></i></a>
+                        </div>
+                    </div>
+                    <span class="center-flex c-white fs-14 ">Copyright Are reserved TRMB Cars &copy; 2023</span>
+                </div>
+                </div>
+            </footer>
+             <!-- End Footer -->
     </body>
 </html>
