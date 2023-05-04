@@ -289,9 +289,9 @@ nav i:last-child {
     display: none;
 }
 
-    .in-mobile a:hover {
-        padding-left: 15px;
-    }
+.in-mobile a:hover {
+    padding-left: 15px;
+}
 
 @media (max-width:767px) {
     .in-mobile i:last-child:hover {
