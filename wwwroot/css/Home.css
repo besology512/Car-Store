@@ -1,0 +1,194 @@
+﻿/* Start Landing */
+.landing .img-box img {
+    width: 550px;
+    height: 400px;
+    z-index: -1;
+    position: relative;
+}
+
+@media (min-width:1300px) {
+    .container .landing,
+    .container .services-details,
+    .container .event .big-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container .detials-B {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width:767px) {
+    .landing .img-box img {
+        width: 310px;
+        height: 235px
+    }
+}
+
+@media (max-width:991px) {
+    .landing {
+        flex-direction: column;
+    }
+
+        .landing .landing-p,
+        .landing .landing-p .button {
+            text-align: center;
+        }
+
+        .landing .img-box {
+            margin-right: 0;
+        }
+}
+
+.landing .img-box i {
+    translate: -4px 165px;
+    color: var(--blue-color);
+    cursor: pointer;
+}
+
+@media (max-width:767px) {
+    .landing {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .landing .img-box {
+            margin: 20px auto 30px auto;
+        }
+
+            .landing .img-box i {
+                translate: -4px 6rem;
+            }
+
+        .landing .landing-p > span {
+            font-size: 28px;
+            font-weight: bold;
+        }
+}
+
+.landing .center-flex span {
+    width: 20px;
+    height: 20px;
+    margin-left: -5px;
+}
+
+.landing .landing-p .button a:first-child:hover {
+    background-color: var(--blue-alt-color);
+}
+/* End Landing  */
+/* Start Servieces */
+.services .services-details {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    cursor: pointer;
+}
+
+.services .box:hover {
+    background-color: #0077ff6e;
+    translate: 0 -20px;
+    box-shadow: 0 10px 30px 5px #ccc;
+}
+
+    .services .box:hover .box-details span,
+    .services .box:hover .box-details p {
+        color: white;
+    }
+
+.services .services-details .box > i {
+    font-weight: 900;
+    translate: 6px 25px;
+    font-size: 27px;
+}
+
+@media (max-width:767px) {
+    .services .services-details {
+        grid-template-columns: minmax(300px, 1fr);
+        gap: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+/* End Servieces */
+/* Start Best Offer */
+.best-offer .detials-B .box img {
+    width: 280px;
+    height: 200px;
+}
+
+@media (max-width:767px) {
+    .best-offer .detials-B {
+        flex-direction: column;
+    }
+
+        .best-offer .detials-B .box {
+            min-width: 380px;
+        }
+
+            .best-offer .detials-B .box img {
+                margin-left: 35px;
+            }
+}
+
+.best-offer .detials-B .A-d:hover span {
+    background-color: var(--blue-color);
+    color: white;
+}
+/* End Best Offer */
+/* Start Event */
+.event .big-img img {
+    left: 6.2rem;
+}
+
+@media (min-width:1300px) {
+    .event .big-img img {
+        left: 0.6rem;
+    }
+}
+
+.event .fa-angle-left {
+    translate: 3rem 14rem;
+}
+
+.event .fa-angle-right {
+    translate: 3rem -15rem;
+    right: 9%;
+}
+
+.event span {
+    z-index: 111;
+    background-color: #164649;
+    right: 14.3rem;
+    top: 129rem;
+    height: 20px;
+    width: 111px;
+}
+/* End Event */
+/* Start Barnds logo */
+.logo .img-logo .box::before {
+    content: "";
+    translate: -11% -17%;
+    background-color: white;
+    width: 130px;
+    height: 121px;
+    border-radius: 15px;
+    position: absolute;
+    z-index: -111;
+}
+
+.logo .img-logo .jeep:before {
+    translate: -11% -39%;
+}
+
+.logo .img-logo .Jacuar::before {
+    translate: -11% -35%;
+}
+
+.logo .img-logo .fa-angle-left {
+    left: 12%;
+}
+
+.logo .img-logo .fa-angle-right {
+    right: 12%;
+}
+/* End Barnds logo */

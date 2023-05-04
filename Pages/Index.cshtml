@@ -4,7 +4,254 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link rel="stylesheet" href="~/css/Home.css" asp-append-version="true">
+<div class="container">
+    <!-- Start Lnading -->
+            <div class="landing bn-flex m-20">
+                <div class="img-box mr-60 p-relative txt-c-mobile">
+                    <i class=" fas fa-angle-left change-background fa-2x p-absolute"></i>
+                    <img class="rad-20 mr-10 ml-20" src="images/image-car-3.jpeg" alt="">
+                    <i class=" fas fa-angle-right change-background fa-2x p-absolute"></i>
+                    <div class="center-flex mt-10 ml-20-mobile">
+                        <span class="rad-half border mr-10 "></span>
+                        <span class="active bg-blue mr-10 rad-half "></span>
+                        <span class="rad-half border mr-10 "></span>
+                    </div>
+                </div>
+                <div class="landing-p ml-20 txt-c-mobile">
+                    <h2 class="c-blue fs-15">Label goes Here</h2>
+                    <span class="fs-50 d-block">Where comfort meets discomfort</span>
+                    <p class="L-H">Welcome to Burger Bliss, where we take your cravings to a
+                        whole new level! Our mouthwatering burgers are made from
+                        100% beef and are served on freshly baked buns.
+                    </p>
+                    <div class="button d-flex center-flex-mobile center-flex-table">
+                        <a href="#" class="p-15 bg-blue w-fit mr-20 rad-25 c-white mt-20">Order Now</a>
+                        <a href="#" class="p-15 border w-fit rad-25 c-blue mt-20">Explore</a>
+                    </div>
+                </div>
+            </div>
+    <!-- End Lnading -->
+    
+    
+    
+    <!-- Start Services -->
+            <div class="services mb-60 m-40" id="services">
+                <h2 class="Be-Head p-relative">Services</h2>
+                <div class="services-details d-grid gap-20 mt-25">
+                    <div class="box Bo-Sh Trs-08 rad-25 bg-white mt-25">
+                        <i class="fa-sharp fa-solid fa-car p-absolute"></i>
+                        <div class="box-details mt-30 ml-40 mr-75 mb-60">
+                            <span class="c-blue fw-bold">New Cars</span>
+                            <p class="L-H-2"> Here you can
+                                browse our vast collection of
+                                cars and order them to your
+                                doorsteps
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box Bo-Sh Trs-08 rad-25 bg-white mt-25">
+                        <i class="fa-solid fa-gear p-absolute"></i>
+                        <div class="box-details mt-30 ml-40 mr-75 mb-60">
+                            <span class="c-blue fw-bold">Find Service centers</span>
+                            <p class="L-H-2"> Here you can
+                                browse our vast collection of
+                                cars and order them to your
+                                doorsteps
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box Bo-Sh Trs-08 rad-25 bg-white mt-25">
+                        <i class="fa-solid fa-money-check-dollar p-absolute"></i>
+                        <div class="box-details mt-30 ml-40 mr-75 mb-60">
+                            <span class="c-blue fw-bold">Sell Your car</span>
+                            <p class="L-H-2"> Here you can
+                                browse our vast collection of
+                                cars and order them to your
+                                doorsteps
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box Bo-Sh Trs-08 rad-25 bg-white mt-25">
+                        <i class="fa-solid fa-truck-front p-absolute"></i>
+                        <div class="box-details mt-30 ml-40 mr-75 mb-60">
+                            <span class="c-blue fw-bold">Used Cars</span>
+                            <p class="L-H-2"> Here you can
+                                browse our vast collection of
+                                cars and order them to your
+                                doorsteps
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box Bo-Sh Trs-08 rad-25 bg-white mt-25">
+                        <i class="fa-sharp fa-solid fa-car p-absolute"></i>
+                        <div class="box-details mt-30 ml-40 mr-75 mb-60">
+                            <span class="c-blue fw-bold">Rent a Car</span>
+                            <p class="L-H-2"> Here you can
+                                browse our vast collection of
+                                cars and order them to your
+                                doorsteps
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box Bo-Sh Trs-08 rad-25 bg-white mt-25">
+                        <i class="fa-brands fa-searchengin p-absolute"></i>
+                        <div class="box-details mt-30 ml-40 mr-75 mb-60">
+                            <span class="c-blue fw-bold">Get Car Parts</span>
+                            <p class="L-H-2"> Here you can
+                                browse our vast collection of
+                                cars and order them to your
+                                doorsteps
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Services -->
+            <!-- Start Best Offer -->
+            <div class="best-offer" id="best-offer">
+                <h2 class="main-head p-relative mt-40 mb-50">Best Offer</h2>
+                <div class="detials-B center-flex w-fit ml-2 gap-20">
+                    <div class="box rad-10 bg-white Bo-Sh">
+                        <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+                        <h3 class="fs-14 pl-10">Mercedes G class</h3>
+                        <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                            <span class="pb-10">Four-wheel-drive</span>
+                            <span class="pb-10">Powerful V8</span>
+                            <span class="pb-10">Highest-quality leather</span>
+                        </div>
+                        <div class="stars m-10">
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                        </div>
+                        <div class="stock-d d-flex fl-column">
+                            <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                            <span class="fw-bold ml-25">In Stock</span>
+                            <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+                        </div>
+                        <div class="A-d mr-20 ml-20">
+                            <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
+                                Cart</span>
+                        </div>
+                    </div>
+                    <div class="box rad-10 bg-white">
+                        <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
+                        <h3 class="fs-14 pl-10">Mercedes G class</h3>
+                        <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                            <span class="pb-10">Four-wheel-drive</span>
+                            <span class="pb-10">Powerful V8</span>
+                            <span class="pb-10">Highest-quality leather</span>
+                        </div>
+                        <div class="stars m-10">
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                        </div>
+                        <div class="stock-d d-flex fl-column">
+                            <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                            <span class="fw-bold ml-25">In Stock</span>
+                            <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
+                        </div>
+                        <div class="A-d mr-20 ml-20">
+                            <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
+                                Cart</span>
+                        </div>
+                    </div>
+                    <div class="box rad-10 bg-white">
+                        <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
+                        <h3 class="fs-14 pl-10">Mercedes G class</h3>
+                        <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                            <span class="pb-10">Four-wheel-drive</span>
+                            <span class="pb-10">Powerful V8</span>
+                            <span class="pb-10">Highest-quality leather</span>
+                        </div>
+                        <div class="stars m-10">
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                        </div>
+                        <div class="stock-d d-flex fl-column">
+                            <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                            <span class="fw-bold ml-25">In Stock</span>
+                            <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
+                        </div>
+                        <div class="A-d mr-20 ml-20">
+                            <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
+                                Cart</span>
+                        </div>
+                    </div>
+                    <div class="box rad-10 bg-white Bo-Sh">
+                        <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+                        <h3 class="fs-14 pl-10">Mercedes G class</h3>
+                        <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                            <span class="pb-10">Four-wheel-drive</span>
+                            <span class="pb-10">Powerful V8</span>
+                            <span class="pb-10">Highest-quality leather</span>
+                        </div>
+                        <div class="stars m-10">
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                            <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                        </div>
+                        <div class="stock-d d-flex fl-column">
+                            <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                            <span class="fw-bold ml-25">In Stock</span>
+                            <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+                        </div>
+                        <div class="A-d mr-20 ml-20">
+                            <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
+                                Cart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-20 center-flex mb-20">
+                    <p class="fs-15 Bo-Sh-2 pt-10 pb-10 cursor-pointer pr-20 pl-20 bg-blue c-white rad-20">Explore More</p>
+                </div>
+            </div>
+            <!-- End Best Offer -->
+            <!-- Start Event -->
+            <div class="event">
+                <i class=" fas fa-angle-left c-blue change-background fa-2x p-absolute"></i>
+                <div class="big-img">
+                    <img class="p-relative" src="images/image-car-2.jpeg" alt="">
+                    <a href="#"><span class="p-10 rad-25 c-white p-absolute">Pre-order Now</span></a>
+                </div>
+                <i class=" fas fa-angle-right c-blue change-background fa-2x p-absolute"></i>
+            </div>
+            <!-- End Event -->
+            <!-- Start Brands logo -->
+            <div class="logo">
+                <div class="img-logo center-flex gap-20 mt-50">
+                    <i class=" fas fa-angle-left cursor-pointer c-blue change-background fa-2x p-absolute"></i>
+                    <div class="box ">
+                        <img class="pr-20" src="images/Tesla.png" alt="" width="100px">
+                    </div>
+                    <div class="box ">
+                        <img class="pr-20" src="images/Mitsubishi.png" alt="" width="100px">
+                    </div>
+                    <div class="box  ">
+                        <img class="pr-20 " src="images/bmw-logo.png" alt="" width="100px">
+                    </div>
+                    <div class="box jeep">
+                        <img class="pr-20" src="images/Jeep.png" alt="" width="100px">
+                    </div>
+                    <div class="box">
+                        <img class="pr-20" src="images/Alfa-Remeo.png" alt="" width="100px">
+                    </div>
+                    <div class="box Jacuar">
+                        <img class="" src="images/Jaguar logo.png" alt="" width="100px">
+                    </div>
+                    <i class=" fas fa-angle-right c-blue cursor-pointer change-background fa-2x p-absolute"></i>
+                </div>
+            </div>
+            <!-- End Brands logo -->
 </div>
