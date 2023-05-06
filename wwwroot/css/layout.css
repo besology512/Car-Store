@@ -180,10 +180,13 @@ nav .all-ctg .details:hover .burgra span:nth-child(3) {
     width: 20px;
 }
 
+
 nav .all-ctg .center-flex a:hover,
 nav .other span:hover {
     box-shadow: inset 1px -5px 16px 0px white;
     padding: 5px 10px;
+    border-radius: 20px;
+    margin-left:3px;
 }
 
 @media (max-width:767px) {
