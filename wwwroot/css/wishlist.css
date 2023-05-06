@@ -1,0 +1,214 @@
+/* Start Global Variabiles */
+:root {
+    --main-transition: 0.3s;
+    --main-padding: 15px;
+    --fa-style-family-classic: "Font Awesome 6 Free";
+    --blue-color: #0075ff;
+    --blue-alt-color: #0d69d5;
+}
+
+.Be-Head::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    left: 51%;
+    translate: -30% 365%;
+    border: 1px solid black;
+    z-index: 1;
+    background-color: #f0f0f0;
+}
+.Be-Head::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    background-color: black;
+    left: 49%;
+    height: 1px;
+    translate: -30% 28px;
+    z-index: -22;
+}
+.Be-Head::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 2px;
+    left: 50%;
+    translate: -70px 0;
+    bottom: -16px;
+    background-color: black;
+}
+.Be-Head::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    translate: -91px 0;
+    bottom: -22px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: #fafafa;
+}
+.main-head::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 2px;
+    left: 50%;
+    translate: -70px 0;
+    bottom: -16px;
+    background-color: black;
+}
+.main-head::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    translate: -91px 0;
+    bottom: -22px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: #fafafa;
+}
+
+/* End Global Variabiles */
+html {
+    scroll-behavior: smooth;
+}
+a {
+    text-decoration: none;
+}
+*:focus {
+    outline: none;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* defined classes */
+.page_margin 
+{
+    margin-left: 65px;
+    margin-right: 65px;
+    margin-bottom: 10px;
+
+}
+
+/* Start Current Page Section */
+.current_page
+{
+    margin-top: 23px;
+}
+.current_page .Home
+{
+    color: #777;
+}
+/* End Current Page Section */
+
+/* Start Wishlist Section */
+
+.wishlist
+{
+    display: flex;
+    height : 236px;
+    margin-top: 35px;
+    margin-bottom: 50px;
+}
+
+.wishlist .car-image {
+    height: 100%;
+    width: 35%;
+    margin-right: 15px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.wishlist .car-image img
+{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    object-fit:cover;
+}
+
+
+.wishlist .car-description
+{
+    height: 100%;
+    width : 65%;
+    margin-left: 15px;
+    position: relative;
+}
+
+.wishlist .car-description p
+{
+    font-weight: 600;
+}
+
+.wishlist .car-description span
+{
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.wishlist .car-description .price
+{
+    color: #1C61E7;
+    font-size: 20px;
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+.wishlist .car-description .car-icons
+{
+    margin-top: 23px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wishlist .car-description .remove-icon img
+{
+
+    transform: translate(0, 6px);
+}
+
+.wishlist .car-description .cart-icon img
+{
+    transform: translate(0, 6px);
+}
+
+.wishlist .car-description .comparison-icon img
+{
+    transform: translate(0, 8px);
+}
+
+.hr-wishlist
+{
+    width: 90%;
+}
+
+/* End Wishlist Section */
+
+
+/* Start Footer */
+footer .container .cols .box-link > h4 {
+    border-bottom: 1px solid white;
+}
+footer .container .line .social i,
+footer .container .line .mobile-app i {
+    opacity: 0.8;
+} 
+/* End Footer */
+
+

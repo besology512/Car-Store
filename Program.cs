@@ -1,7 +1,11 @@
+using Car_Store.models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<DB>();//
+builder.Services.AddSingleton<customer>();//
 
 var app = builder.Build();
 

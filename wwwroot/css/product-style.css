@@ -1,0 +1,203 @@
+/*global variables*/
+:root{
+    --maincolor: #0d6efd; 
+    --secondary-color:#6d6c6c;
+}
+
+/*end of global varibales*/
+
+/*start of global rules*/
+/** {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #f6f6f6;
+}*/
+.number{
+    color: var(--maincolor);
+}
+.sec{
+    color:var(--secondary-color)
+}
+.faded{
+    border: 1px solid var(--secondary-color);
+}
+.short-hr{
+    width: 200px;
+    margin-left: 0px;
+    display: none;
+}
+/*.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+  
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+*/
+/*end of global varibales*/
+
+
+
+
+/* start landing */
+
+.whole-page{
+    padding:0px 65px;
+}
+.landing .container .heading h3 {
+    margin-bottom: 5px;
+}
+.landing .container .heading i{
+    color: gold;
+}
+.landing .container .product{
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+@media (max-width: 768px) {
+    .landing .container .product {
+        flex-direction: column;
+    }
+}
+.landing .container .product .image{
+    flex-basis: 100%;
+}
+.landing .container .product img{
+    width: 100%;
+    border-radius: 10px;
+    height: 380px;
+    display: block;
+    object-fit: cover;
+}
+.landing .container .product .discription{
+    flex-basis: 100%;
+}
+.landing .container .product .discription h2{
+    margin-top: 0px;
+}
+.landing .container .product .discription p:nth-child(2){
+    color: black;
+    word-spacing: 2px;
+}
+.landing .container .product .discription .price-button{
+    display: flex;
+    justify-content: space-between;
+}
+.landing .container .price-button p{
+    margin-top: 0px;
+    font-size:20px;
+    
+}
+.landing .container .price-button button{
+    background-color:var(--maincolor);
+    width: 240px;
+    height: 30px;
+    border-radius: 6px;
+    color: white;
+    border:var(--maincolor);
+}
+/* end landing */
+
+/* start car */
+.car-description .container{
+    display: flex;
+    gap: 30px;
+}
+@media (max-width: 768px) {
+    .car-description .container {
+        flex-direction: column;
+    }
+}
+
+.car-description .container .left{
+    flex-basis: 50%;
+}
+.car-description .container .right{
+    flex-basis: 50%;
+}
+/* end car */
+
+/* start similar car */
+.similar-cars{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 30px;
+    padding: 215px 20px;
+}
+@media (max-width: 768px) {
+    .similar-cars {
+        flex-direction: column;
+    }
+}
+.similar-cars .crad{
+    padding: 10px;
+    flex-basis: 25%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 10px;
+    border-radius: 10px;
+    box-shadow: black;
+}
+
+.similar-cars .crad img{
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    height: auto;
+}
+.similar-cars .crad button{
+    width: 75%;
+    margin: 0px auto;
+    background-color: var(--maincolor);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.similar-cars .crad .caption{
+    margin-left: 10px;
+}
+
+.similar-cars .crad .caption p:not(:last-child){
+    color: var(--secondary-color);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/* end similar car */
+

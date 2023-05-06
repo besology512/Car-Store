@@ -1,0 +1,164 @@
+/*global variables*/
+
+
+/*end of global varibales*/
+
+/*start of global rules*/
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.containerSign {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+ 
+@media (min-width: 768px) {
+    .containerSign {
+        width: 750px;
+    }
+}
+ 
+@media (min-width: 992px) {
+    .containerSign {
+        width: 970px;
+    }
+}
+  
+@media (min-width: 1200px) {
+    .containerSign {
+        width: 1170px;
+    }
+}
+/*end of global varibales*/
+
+
+
+
+/*start body left*/
+.Body{
+    padding: 58px 0px 134px ;
+    background-color: #f6f6f6;
+}
+.Body .logo{
+    margin-bottom: 50px;
+}
+
+.Body .left form{
+    display: flex;
+    flex-direction: column;
+
+}
+.Body .left form input:not(:nth-child(17)){
+    /* flex-basis: auto; */
+    width: 358px;
+    max-width: 358px;
+    height: 48px;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 31px;
+    
+}
+
+.Body .left form label{
+    color: #2D3748;
+
+}
+
+.Body .containerSign:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    gap: 300px;
+}
+@media (max-width: 1200px) {
+    .Body .containerSign:nth-child(2) {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+/*end body left*/
+
+/*start body right*/
+.Body .right{
+    background-color: white;
+    border-radius: 10px;
+    max-width: 480px;
+    /* flex-basis: 480px; */
+    height: 800px;
+}
+.Body .right .caption{
+    padding: 26px 78px 0px;
+}
+
+.Body .right .caption i{
+    padding-left:140px;
+}
+.Body .right .caption p{
+    text-align: right;
+    margin-top: 5px;
+    color: #6d6c6c;
+}
+.Body .right .caption h1{
+    margin-bottom: 5px;
+    color: #6d6c6c;
+}
+.Body .right .right-content{
+    padding: 63px 57px 0px;
+}
+
+.Body .right .right-content p{
+    color: #6d6c6c;
+}
+
+.Body .right form input{
+    
+    width: 358px;
+    height: 48px;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 31px;
+    
+}
+.Body .right form label{
+    color: #2D3748;
+
+}
+
+.Body .right form .BTN{
+    width: 144px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #0d6efd;
+    border: #0d6efd;
+    margin-bottom: 20px;
+}
+.Body .right .buttons{
+    padding-top: 35px;
+}
+
+.Body .right .form1{
+    display: block;
+    width: 358px;
+    height: 48px;
+    margin-bottom: 45px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+}
+
+/*end body right*/
