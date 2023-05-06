@@ -62,8 +62,9 @@ div .containerAdmin {
 .carditem {
     background: #77A0F1;
     border-radius: 23px;
-    width: 277px;
-    height: 238px;
+    width:calc(100%/3);
+    height:auto;
+
 }
 
 .cardcontent {
