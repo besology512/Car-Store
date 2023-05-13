@@ -6,488 +6,564 @@
 
 <link rel="stylesheet" href="~/css/filter.css" asp-append-version="true">
 <!-- Info before filter and cars -->
-    <div class="pre-filter">
-<select name="cars" id="cars">
-    <option value="1">Default sorting</option>
-    <option value="2">Sort by popularity</option>
-    <option value="mercedes">sort by average rating</option>
-    <option value="audi">sort by latest</option>
-    <option value="audi">sort by price low to high</option>
-    <option value="audi">sort by price high to low</option>
-</select>
+<div class="pre-filter">
+    <select name="cars" id="cars">
+        <option value="1">Default sorting</option>
+        <option value="2">Sort by popularity</option>
+        <option value="mercedes">sort by average rating</option>
+        <option value="audi">sort by latest</option>
+        <option value="audi">sort by price low to high</option>
+        <option value="audi">sort by price high to low</option>
+
+    </select>
 </div>
 <!-- end  -->
-     <!-- Start Best Offer -->
-     <div style="margin-bottom:40px" class="main-container d-flex ">
-        <div class="filter">
-            <!-- Start Filter -->
-    <div class="wrapper">
-        <div class="wd-wpb">
-            <div class="widget widget sidebar-widget woocommerce widget_price_filter">  
-                <h5 class="widget-title">Filter by price</h5>
-                <form>
-                    <div class="price_slider_wrapper">
-                        <div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                            <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 50%;">
+<!-- Start Best Offer -->
+<div class="main-container d-flex ">
+    <div class="filter">
+        <!-- Start Filter -->
+        <div class="wrapper">
+            <div class="wd-wpb">
+                <div class="widget widget sidebar-widget woocommerce widget_price_filter">
+                    <h5 class="widget-title">Filter by price</h5>
+                    <form>
+                        <div class="price_slider_wrapper">
+                            <div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                <div class="slider-track"></div>
+                                <input type="range" min="100" max="10000" value="1000" id="slider-1" oninput="slideOne()">
+                                <input type="range" min="100" max="10000" value="5000" id="slider-2" oninput="slideTwo()">
                             </div>
-                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;">
-                            </span>
-                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 50%;">
-                            </span>
+                            <div class="price_slider_amount">
+                                <input type="text" id="min_price" name="min_price" data-min="490" placeholder="Min price" style="display: none;">
+                                <input type="text" id="max_price" name="max_price" data-max="13500" placeholder="Max price" style="display: none;">
+                                <button type="submit" class="filter-button">Filter</button>
+                                <div class="price_label">
+                                    Price: <span class="from" id="range1">$2,980</span> — <span class="to" id="range2">$12,650</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="price_slider_amount">
-                            <input type="text" id="min_price" name="min_price" value="2980" data-min="490" placeholder="Min price" style="display: none;">
-                            <input type="text" id="max_price" name="max_price" value="10240" data-max="13500" placeholder="Max price" style="display: none;">
-                    <button type="submit" class="filter-button">Filter</button>
-        <div class="price_label">
-            Price: <span class="from">$2,980</span> — <span class="to">$12,650</span>
-        </div>
-    </div>
-</div>
-</form>
-</div>
-<div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-    <h5 class="widget-title">Filter by brands</h5>
-    <div class="wd-scroll" style="display: none;">
-        <ul class="wd-swatches-filter wd-filter-list wd-labels-on wd-size-normal wd-layout-list >
-            <li class="wc-layered-nav-term wd-swatch-wrap">
-                <a rel="nofollow noopener" href=" class="layered-nav-link">
-                    <span class="wd-swatch wd-bg"><span class="wd-swatch-bg" style="">
-                    </span><span class="wd-swatch-text">LG</span></span><span class="wd-filter-lable layer-term-lable">LG</span>
-                </a>
-            </div>
-        </div>
-        <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-            <h5 class="widget-title">Filter by Color</h5>
-            <div class="wd-scroll" style="display: none;">
-                <ul class="wd-swatches-filter wd-filter-list wd-labels-on wd-size-normal wd-layout-list >
-                    <li class="wc-layered-nav-term wd-swatch-wrap">
-                        <a rel="nofollow noopener" href=" class="layered-nav-link">
-                            <span class="wd-swatch wd-bg"><span class="wd-swatch-bg" style="">
-                            </span><span class="wd-swatch-text">LG</span></span><span class="wd-filter-lable layer-term-lable">LG</span>
-                        </a>
+                    </form>
+                </div>
+                <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
+                    <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
+                    <div class="wd-scroll" style="display: none;">
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option1" onchange="changeTickbox(this)">
+                            <label for="option1"></label>
+                        </div>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option2" onchange="changeTickbox(this)">
+                            <label for="option2"></label>
+                        </div>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option3" onchange="changeTickbox(this)">
+                            <label for="option3"></label>
+                        </div>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option4" onchange="changeTickbox(this)">
+                            <label for="option4"></label>
+                        </div>
                     </div>
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-                    <h5 class="widget-title">Filter by Model</h5>
+                    <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
                     <div class="wd-scroll" style="display: none;">
-                        <ul class="wd-swatches-filter wd-filter-list wd-labels-on wd-size-normal wd-layout-list >
-                            <li class="wc-layered-nav-term wd-swatch-wrap">
-                                <a rel="nofollow noopener" href=" class="layered-nav-link">
-                                    <span class="wd-swatch wd-bg"><span class="wd-swatch-bg" style="">
-                                    </span><span class="wd-swatch-text">LG</span></span><span class="wd-filter-lable layer-term-lable">LG</span>
-                                </a>
-                            </div>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option5" onchange="changeTickbox(this)">
+                            <label for="option5"></label>
                         </div>
-
-</div>
-</div>
-
-    <!-- End Filter -->
-        </div>
-        <div class="d-flex cards detials-B w-fit ml-2 gap-20">
-            <!-- cars cards -->
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option6" onchange="changeTickbox(this)">
+                            <label for="option6"></label>
+                        </div>
+                    </div>
                 </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
+                <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
+                    <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
+                    <div class="wd-scroll" style="display: none;">
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option7" onchange="changeTickbox(this)">
+                            <label for="option7"></label>
+                        </div>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option8" onchange="changeTickbox(this)">
+                            <label for="option8"></label>
+                        </div>
+                        <div class="mini-option">
+                            <span>LG</span>
+                            <input type="checkbox" class="tickbox" id="option9" onchange="changeTickbox(this)">
+                            <label for="option9"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-                <h3 class="fs-14 pl-10">Mercedes G class</h3>
-                <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                    <span class="pb-10">Four-wheel-drive</span>
-                    <span class="pb-10">Powerful V8</span>
-                    <span class="pb-10">Highest-quality leather</span>
-                </div>
-                <div class="stars m-10">
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                    <i class="fa-solid fa-star c-orange-s fs-15"></i>
-                </div>
-                <div class="stock-d d-flex fl-column">
-                    <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                    <span class="fw-bold ml-25">In Stock</span>
-                    <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
-                </div>
-                <div class="A-d mr-20 ml-20">
-                    <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">Add To
-                        Cart</span>
-                </div>
-            </div>
-            <!-- end cars cards -->
         </div>
     </div>
-    <!-- End Best Offer -->
+    <!-- <div class="slider">
+        <div class="wrapper-slider">
+            <div class="values">
+                <span id="range1">
+                    0
+                </span>
+                <span> &dash; </span>
+                <span id="range2">
+                    100
+                </span>
+            </div>
+            <div class="container-slider">
+                <div class="slider-track"></div>
+                <input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
+                <input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
+            </div>
+        </div>
+
+
+    </div> -->
+    <!-- End Filter -->
+
+    <div class="d-flex cards detials-B w-fit ml-2 gap-20">
+        <!-- cars cards -->
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.499.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-5.jpg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.299.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <div class="box rad-10 bg-white Bo-Sh">
+            <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
+            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+            <div class="d-flex fl-column pl-10 mb-15 c-grey">
+                <span class="pb-10">Four-wheel-drive</span>
+                <span class="pb-10">Powerful V8</span>
+                <span class="pb-10">Highest-quality leather</span>
+            </div>
+            <div class="stars m-10">
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+                <i class="fa-solid fa-star c-orange-s fs-15"></i>
+            </div>
+            <div class="stock-d d-flex fl-column">
+                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
+                <span class="fw-bold ml-25">In Stock</span>
+                <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+            </div>
+            <div class="A-d mr-20 ml-20">
+                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                    Add To
+                    Cart
+                </span>
+            </div>
+        </div>
+        <!-- end cars cards -->
+    </div>
+</div>
+<script src="js/site.js"></script>
