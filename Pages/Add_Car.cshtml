@@ -1,0 +1,250 @@
+﻿@page
+@model Car_Store.Pages.Add_CarModel
+@{
+    string[] carBrands = new string[] {"Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW",
+                                   "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroen",
+                                   "Dodge", "Ferrari", "Fiat", "Ford", "GMC", "Honda", "Hyundai",
+                                   "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover",
+                                   "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda", "McLaren",
+                                   "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot",
+                                   "Porsche", "Ram", "Rolls-Royce", "Subaru", "Suzuki", "Tesla", "Toyota",
+                                   "Volkswagen", "Volvo"};
+    Dictionary<string, string[]> carModels = new Dictionary<string, string[]>();
+    carModels.Add("Acura", new string[] { "ILX", "MDX", "RDX", "TLX" });
+    carModels.Add("Alfa Romeo", new string[] { "Giulia", "Stelvio" });
+    carModels.Add("Aston Martin", new string[] { "DB11", "DBS Superleggera", "Vantage" });
+    carModels.Add("Audi", new string[] { "A3", "A4", "A5", "A6", "Q3", "Q5", "Q7", "TT" });
+    carModels.Add("Bentley", new string[] { "Bentayga", "Continental GT" });
+    carModels.Add("BMW", new string[] { "3 Series", "5 Series", "7 Series", "X3", "X5", "X7", "Z4" });
+    carModels.Add("Buick", new string[] { "Encore", "Envision", "LaCrosse", "Regal" });
+    carModels.Add("Cadillac", new string[] { "CT4", "CT5", "CT6", "Escalade", "XT4", "XT5", "XT6" });
+    carModels.Add("Chevrolet", new string[] { "Blazer", "Camaro", "Equinox", "Malibu", "Silverado", "Tahoe", "Traverse" });
+    carModels.Add("Chrysler", new string[] { "300", "Pacifica" });
+    carModels.Add("Dodge", new string[] { "Challenger", "Charger", "Durango" });
+    carModels.Add("Ferrari", new string[] { "488 GTB", "812 Superfast", "F8 Tributo", "Portofino", "SF90 Stradale" });
+    carModels.Add("Fiat", new string[] { "500", "500X" });
+    carModels.Add("Ford", new string[] { "Edge", "Escape", "Explorer", "F-150", "Mustang", "Ranger" });
+    carModels.Add("Genesis", new string[] { "G70", "G80", "G90" });
+    carModels.Add("GMC", new string[] { "Acadia", "Canyon", "Sierra", "Terrain" });
+    carModels.Add("Honda", new string[] { "Accord", "Civic", "CR-V", "Odyssey", "Pilot" });
+    carModels.Add("Hyundai", new string[] { "Elantra", "Kona", "Palisade", "Santa Fe", "Sonata", "Tucson", "Veloster" });
+    carModels.Add("Infiniti", new string[] { "Q50", "QX50", "QX60", "QX80" });
+    carModels.Add("Jaguar", new string[] { "F-PACE", "XE", "XF", "XJ" });
+    carModels.Add("Jeep", new string[] { "Cherokee", "Compass", "Grand Cherokee", "Wrangler" });
+    carModels.Add("Kia", new string[] { "Forte", "Optima", "Sorento", "Sportage", "Stinger" });
+    carModels.Add("Lamborghini", new string[] { "Aventador", "Huracan", "Urus" });
+    carModels.Add("Land Rover", new string[] { "Discovery", "Range Rover", "Range Rover Evoque", "Range Rover Sport" });
+    carModels.Add("Lexus", new string[] { "ES", "GX", "IS", "LS", "NX", "RX", "UX" });
+    carModels.Add("Lincoln", new string[] { "Aviator", "Corsair", "Nautilus", "Navigator" });
+    carModels.Add("Lotus", new string[] { "Evora", "Exige" });
+    carModels.Add("Maserati", new string[] { "Ghibli", "GranTurismo", "Levante", "Quattroporte" });
+    carModels.Add("Mazda", new string[] { "CX-3", "CX-30", "CX-5", "CX-9", "Mazda3", "Mazda6", "MX-5 Miata" });
+    carModels.Add("McLaren", new string[] { "570S", "720S", "GT" });
+    carModels.Add("Mercedes-Benz", new string[] { "C-Class", "E-Class", "G-Class", "GLC", "GLE", "S-Class" });
+    carModels.Add("Mini", new string[] { "Clubman", "Cooper", "Countryman" });
+    carModels.Add("Mitsubishi", new string[] { "Eclipse Cross", "Outlander", "Outlander Sport" });
+    carModels.Add("Nissan", new string[] { "Altima", "Kicks", "Maxima", "Murano", "Rogue", "Sentra" });
+    carModels.Add("Porsche", new string[] { "911", "Cayenne", "Macan", "Panamera" });
+    carModels.Add("Ram", new string[] { "1500", "2500", "3500" });
+    carModels.Add("Rolls-Royce", new string[] { "Dawn", "Ghost", "Phantom", "Wraith" });
+    carModels.Add("Subaru", new string[] { "Ascent", "Forester", "Impreza", "Legacy", "Outback" });
+    carModels.Add("Tesla", new string[] { "Model 3", "Model S", "Model X", "Model Y" });
+    carModels.Add("Toyota", new string[] { "4Runner", "Camry", "Corolla", "Highlander", "Rav4", "Sienna", "Tundra" });
+    carModels.Add("Volkswagen", new string[] { "Arteon", "Atlas", "Golf", "Jetta", "Passat", "Tiguan" });
+    carModels.Add("Volvo", new string[] { "S60", "S90", "V60", "V90", "XC40", "XC60", "XC90" });
+    string[] egyptCities = new string[] {
+    "Alexandria",
+    "Aswan",
+    "Asyut",
+    "Beheira",
+    "Beni Suef",
+    "Cairo",
+    "Dakahlia",
+    "Damietta",
+    "Faiyum",
+    "Gharbia",
+    "Giza",
+    "Ismailia",
+    "Kafr El Sheikh",
+    "Luxor",
+    "Matrouh",
+    "Minya",
+    "Monufia",
+    "New Valley",
+    "North Sinai",
+    "Port Said",
+    "Qalyubia",
+    "Qena",
+    "Red Sea",
+    "Sharqia",
+    "Sohag",
+    "South Sinai",
+    "Suez"
+};
+    string[] topCarColors = new string[] {
+    "Black",
+    "White",
+    "Gray",
+    "Silver",
+    "Blue",
+    "Red",
+    "Brown",
+    "Beige",
+    "Green",
+    "Gold",
+    "Yellow",
+    "Orange",
+    "Bronze",
+    "Copper",
+    "Maroon",
+    "Tan",
+    "Navy",
+    "Purple",
+    "Turquoise",
+    "Pink"
+};
+
+}
+
+
+
+<link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
+<div class="all-page-content">
+    
+    <form id="main-form">
+        <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
+        <div class="image-add">
+            <div class="img-card">
+                <input type="file" id="car-image" name="car-image">
+                <label for="car-image">
+                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
+                    chose image
+                </label>
+            </div>
+            
+            <div class="img-card">
+                <input type="file" id="car-image" name="car-image" accept="image/*">
+                <label for="car-image">
+                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
+                    chose image
+                </label>
+            </div>
+            
+            <div class="img-card">
+                <input type="file" id="car-image" name="car-image" accept="image/*">
+                <label for="car-image">
+                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
+                    chose image
+                </label>
+            </div>
+        </div>
+        @*end image add*@
+        @*start car info*@
+        <span class="sec-color"><i class="fa-solid fa-memo-circle-info"></i> Car Details</span>
+        <div class="car-details">
+            <div class="car-title">
+                <label for="car-title">Ad. Title</label>
+                <input type="text" id="car-title" required
+                       placeholder="Ex: Hyundai Accent 2009 Cairo Automatic" />
+            </div>
+            <div class="make-model">
+                <div class="make">
+                    <label for="Make">Make*</label>
+                    <select id="Make">
+                        @foreach (string brand in carBrands)
+                        {
+                            <option value="@brand">@brand</option>
+                        }
+                    </select>
+                </div>
+          
+                <div class="model">
+                    <label for="Model">Model*</label>
+                    <select id="Model">
+                        @foreach (string modell in carModels["Nissan"])
+                        {
+                            <option value="@modell">@modell</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="car-year">
+                <label for="car-title">Year*</label>
+                <input type="number" id="car-title" required class="my-input"
+                       min="1900" max="2099" step="1" placeholder="year" />
+            </div>
+            <div class="Km-city">
+                <div class="Km">
+                    <label for="car-Km">Km*</label>
+                    <input type="text" id="car-Km" required
+                           placeholder="How many KM?" class="my-input" />
+                </div>
+                <div class="city">
+                    <label for="City">City*</label>
+                    <select id="City">
+                        @foreach (string city in egyptCities)
+                        {
+                            <option value="@city">@city</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <span class="sec-color" style="margin-top:20px;">chooese car color</span>
+            <div class="car-color">
+                <div class="color-box" style="background-color:red;">
+                    <span>Red</span>
+                </div>
+                <div class="color-box" style="background-color:lightgreen;">
+                    <span>Green</span>
+                </div>
+                <div class="color-box" style="background-color:gold;">
+                    <span>Gold</span>
+                </div>
+                <div class="color-box" style="background-color:silver">
+                    <span>Silver</span>
+                </div>
+                <div class="color-box" >
+                    <span style="color:black;">white</span>
+                </div>
+                <div class="color-box" style="background-color:black;">
+                    <span>Black</span>
+                </div>
+                <div class="color-box" style="background-color:#002aff;">
+                    <span>Blue</span>
+                </div>
+                <div class="color-box" style="background-color:#cdaa7a;">
+                    <span>Bronze</span>
+                </div>
+            </div>
+            <div class="transition-fuel">
+                <div class="gearing">
+                    <label for="gear">Gearing*</label>
+                    <select id="gear">
+                        <option value="manual">manual</option>
+                        <option value="automatic">automatic</option>
+                    </select>
+                </div>
+                <div class="fuel">
+                    <label for="Fuel">Fuel*</label>
+                    <select id="Fuel">
+                        <option value="Gas">Gas</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybird">Hybird</option>
+                        <option value="Natural Gas">Natural Gas</option>
+                        <option value="Diesel">Diesel</option>
+                    </select>
+                </div>
+            </div>
+            <div class="car-price">
+                <label for="car-price">Price</label>
+                <input type="text" id="car-price" required class="my-input" />
+            </div>
+        </div>
+        <div>
+            <input class="sub" type="submit" value="SELL CAR" />
+        </div>
+    </form>
+   
+
+    
+</div>
