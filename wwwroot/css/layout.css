@@ -243,6 +243,9 @@ nav i:last-child {
 }
 /* End Navbar */
 /* Start Footer */
+footer{
+    margin-top: 30px;
+}
 footer .container .cols .box-link > h4 {
     border-bottom: 1px solid white;
 }
