@@ -1,0 +1,37 @@
+﻿@page
+@model Car_Store.Pages.AddShowRoomModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
+<div class="all-page-content">
+    
+    <form method="post" id="main-form">
+        @*start car info*@
+        <span class="sec-color"><i class="fa-solid fa-memo-circle-info"></i> Show Room Details</span>
+        <div class="car-details">
+            <div class="car-title">
+                <label for="car-title">Name*</label>
+                <input  name="name" type="text" id="car-title" required
+                       placeholder="Ex: Giza152" />
+            </div>
+            <div class="car-year">
+                <label for="car-title">City*</label>
+                <input name="city" type="text" id="car-title" required class="my-input" placeholder="Ex: Giza" />
+            </div>
+            <div class="transition-fuel">
+                <div class="gearing">
+                    <label for="Fuel">Street*</label>
+                    <input name="street" type="text" id="car-title" required class="my-input" placeholder="Ex: Matbaa Street" />
+                </div>
+                <div class="fuel">
+                    <label for="Fuel">Phone Number*</label>
+                    <input name="phoneNumber" type="text" id="car-title" required class="my-input" placeholder="Ex: 01100242415" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <input form="main-form" class="sub" type="submit" value="Add Show Room" />
+        </div>
+    </form>
+</div>
