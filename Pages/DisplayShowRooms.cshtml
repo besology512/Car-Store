@@ -1,0 +1,36 @@
+﻿@page
+@model Car_Store.Pages.DisplayShowRoomsModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/Tables.css" asp-append-version="true">
+<div class="the-table">
+    <table class="styled-table">
+        <thead>
+            <tr class="active-row">
+                <th scope="col">Count</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Street</th>
+                <th scope="col">Number</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.DT.Rows.Count; i++)
+            {
+                <tr class="active-row">
+                    <th scope="row">@(i+1)</th>
+                @for (int j = 0; j < Model.DT.Columns.Count; j++)
+                {
+                    <td>@Model.DT.Rows[i][j]</td>
+                    
+                }
+                    <td><a asp-page="/UpdateRoom" asp-route-name="@Model.DT.Rows[i][0]">Update</a></td>
+                    <td><a asp-page="/DeleteRoom" asp-route-name="@Model.DT.Rows[i][0]">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

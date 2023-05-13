@@ -1,0 +1,22 @@
+﻿@page
+@model Car_Store.Pages.DeleteRoomModel
+@{
+}
+
+
+<link rel="stylesheet" href="~/css/delete.css" asp-append-version="true">
+
+<div class="ask card">
+    <div>
+        <span>Are you sure you want to delete @Model.room.Name?</span>
+    </div>
+    <div>
+        <form method="post" > 
+            <input  type="hidden" name="previousName" value="@Model.room.Name"   />
+            <div class="divbutton">
+                <input style="background-color:red;" class="button" asp-page-handler="Yes" type="submit" value="Yes" />
+                <input style="background-color:green;" class="button" asp-page-handler="No" type="submit" value="No" />
+            </div>
+        </form>
+    </div>
+</div>
