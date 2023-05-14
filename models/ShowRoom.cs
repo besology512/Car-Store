@@ -21,7 +21,7 @@ namespace Car_Store.models
         public object getAll() {
             return db.ReadAll("SHOWROOM");
         }
-        public object getTuple()
+        public object getTuple() //it return row data
         {
             return db.ReadTuple(Name,"SHOWROOM", "Show_Room_Name");
         }

@@ -11,7 +11,7 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=LAPTOP-8NJTOS7O;Initial Catalog=THECARSTORE;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=THECARSTORE;Integrated Security=True";
             con = new SqlConnection(conString);
         }
         
@@ -98,5 +98,20 @@ namespace Car_Store.models
                 con.Close();
             }catch(SqlException ex) { con.Close();}
         }
+
+        // overloading if the primarykey is integer
+        public void deletetuple(string tableName, int pKey, string pColumn)
+        {
+            string query = "delete from " + tableName + " where " + pColumn + " =" + pKey + ";";
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException ex) { con.Close(); }
+        }
+
     }
 }
