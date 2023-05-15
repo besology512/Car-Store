@@ -37,7 +37,8 @@
             </p>
             <div class="button d-flex center-flex-mobile center-flex-table">
                 <a href="#" class="p-15 bg-blue w-fit mr-20 rad-25 c-white mt-20">Order Now</a>
-                <a href="#" class="p-15 border w-fit rad-25 c-blue mt-20">Sign In</a>
+                @if (HttpContext.Session.GetInt32("User_Type") == null)
+                {<a href="#" class="p-15 border w-fit rad-25 c-blue mt-20">Sign In</a>}
             </div>
         </div>
     </div>
