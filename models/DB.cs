@@ -34,6 +34,22 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); }
         }
 
+        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
+        {
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
+                "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "')";
+            DateTime currentDate = DateTime.Now;
+            string formattedDate = currentDate.ToString("yyyy-MM-dd");
+            string q2 = "INSERT INTO USED_VEHICLE VALUES(" + 1 + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ")";
+            excute_nonQuery(q);
+            excute_nonQuery(q2);
+        }
+
+        public void insert_product(string category,int branchId,int qunatity,string brand,int price,int status , string description)
+        {
+            string q = "INSERT INTO PRODUCT VALUES('" + category + "'," + branchId + "," + qunatity + ",'" + brand + "'," + price + ",' '," + status + ",'" + description + "')";
+            excute_nonQuery(q);
+        }
 
         private object Readtable(string Q)
         {
