@@ -1,0 +1,39 @@
+﻿@page
+@model Car_Store.Pages.UpdateRoomModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
+<div class="all-page-content">
+
+    <form method="post" id="main-form">
+        @*start car info*@
+        <span class="sec-color"><i class="fa-solid fa-memo-circle-info"></i> Show Room Details</span>
+        <div class="car-details">
+            <div class="car-title">
+                <label for="car-title">Name*</label>
+                <input name="name" type="text" id="car-title" required
+                       placeholder="Ex: Giza152" value="@Model.DT.Rows[0][0]" />
+            </div>
+            <div class="car-year">
+                <label for="car-title">City*</label>
+                <input name="city" type="text" id="car-title" required class="my-input" placeholder="Ex: Giza" value="@Model.DT.Rows[0][1]" />
+            </div>
+            <div class="transition-fuel">
+                <div class="gearing">
+                    <label for="Fuel">Street*</label>
+                    <input name="street" type="text" id="car-title" required class="my-input" placeholder="Ex: Matbaa Street" value="@Model.DT.Rows[0][2]"  />
+                </div>
+                <div class="fuel">
+                    <label for="Fuel">Phone Number*</label>
+                    <input name="phoneNumber" type="text" id="car-title" required class="my-input" placeholder="Ex: 01100242415" value="@Model.DT.Rows[0][3]" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <input form="main-form" class="sub" type="submit" value="Update Show Room" />
+        </div>
+        <input type="hidden" name="previousName" value="@Model.room.Name"  />
+    </form>
+</div>
+

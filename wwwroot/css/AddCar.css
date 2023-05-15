@@ -89,6 +89,7 @@ input[type="file"] {
     border-radius: 10px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
     padding: 20px;
+    margin-top:10px;
     margin-bottom: 20px;
     background-color: #fff;
     flex-direction: column;

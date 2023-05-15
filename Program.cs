@@ -9,7 +9,8 @@ builder.Services.AddSingleton<customer>();//
 builder.Services.AddSingleton<vehicles>();//
 builder.Services.AddSingleton<new_vehicle>();//
 builder.Services.AddSingleton<used_vehicle>();//
-
+builder.Services.AddSingleton<ShowRoom>();//
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -25,6 +26,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
