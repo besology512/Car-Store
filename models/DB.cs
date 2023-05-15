@@ -31,6 +31,27 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
+
+
+        private object Readtable(string Q)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(Q, con);
+                dt.Load(cmd.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return ex;
+            }
+        }
+
+
         public List<vehicle> GetVehicles(
             string car_status = "",
             string showroom = "",
@@ -129,7 +150,7 @@ namespace Car_Store.models
                 Q = "select * from VEHICLE ";
             }
 
-            DataTable table = (DataTable)readTable(Q);
+            DataTable table = (DataTable)Readtable(Q);
             List<vehicle> returned = new List<vehicle>();
             foreach (DataRow row in table.Rows)
             {
@@ -149,8 +170,8 @@ namespace Car_Store.models
             }
             return returned;
         }
-        private object readTable(string Q)
-
+/*        private object readTable(string Q);
+*/
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
         {
             string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
@@ -162,23 +183,6 @@ namespace Car_Store.models
             excute_nonQuery(q2);
         }
 
-        private object Readtable(string Q)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand(Q, con);
-                dt.Load(cmd.ExecuteReader());
-                con.Close();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                con.Close();
-                return ex;
-            }
-        }
 
         private object getsinglevalue(string Q)
         {
