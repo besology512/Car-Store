@@ -92,6 +92,7 @@ CREATE TABLE VEHICLE(
 	Body_Style VARCHAR(20),
 	iimage VARCHAR(150)
 );
+insert into VEHICLE('new', 'ezaby', )
 
 CREATE TABLE NEW_VEHICLE(
 	Vehicle_ID INT PRIMARY KEY,
@@ -218,6 +219,41 @@ CREATE TABLE works_in_branchdep(
 	ON DELETE SET NULL
 	ON UPDATE CASCADE
 );
+
+CREATE TABLE wishlist_products(
+	Customer_ID int,
+	Product_ID int
+	primary key (Customer_ID, Product_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Product_ID) references PRODUCT(ProductID)
+);
+
+CREATE TABLE wishlist_vehicle(
+	Customer_ID int,
+	vehichle_ID int
+	primary key (Customer_ID, vehichle_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
+);
+
+
+CREATE TABLE Cart_products(
+	Customer_ID int,
+	Product_ID int
+	primary key (Customer_ID, Product_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Product_ID) references PRODUCT(ProductID)
+);
+
+CREATE TABLE Cart_vehicle(
+	Customer_ID int,
+	vehichle_ID int
+	primary key (Customer_ID, vehichle_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
+);
+
+
 
 ALTER TABLE VEHICLE
 ADD CONSTRAINT SHOW_ROOM_INVEHICLE_TO_SHOWROOM FOREIGN KEY(SHOWROOM) REFERENCES SHOWROOM(Show_Room_Name)
