@@ -17,12 +17,22 @@ namespace Car_Store.models
         [Required]
         public string phoneNumber;
         [Required]
+        public string UserName;
+        [Required]
         public string date;
         [Required, NotNull]
         public string password;
         public void insert()
         {
-            db.insertUser(this.fname, this.Lname, this.password, this.date, this.Email);
+            db.insertUser(this.fname, this.Lname, this.password, this.date, this.Email, this.UserName);
         }
+        public string getPasswordCl() {
+            return (string)db.getPasswordClient(UserName);
+        }
+        public string getPasswordEmp()
+        {
+            return (string)db.getPasswordEmployee(UserName);
+        }
+
     }
 }
