@@ -35,8 +35,8 @@
                                 <input type="range" min="100" max="10000" value="5000" id="slider-2" oninput="slideTwo()">
                             </div>
                             <div class="price_slider_amount">
-                                <input type="text" id="min_price" name="min_price" data-min="490" placeholder="Min price" style="display: none;">
-                                <input type="text" id="max_price" name="max_price" data-max="13500" placeholder="Max price" style="display: none;">
+                                <input type="text" id="min_price" name="min_price" value="2980" data-min="490" placeholder="Min price" style="display: none;">
+                                <input type="text" id="max_price" name="max_price" value = "2398" data-max="13500" placeholder="Max price" style="display: none;">
                                 <button type="submit" class="filter-button">Filter</button>
                                 <div class="price_label">
                                     Price: <span class="from" id="range1">$2,980</span> — <span class="to" id="range2">$12,650</span>
@@ -108,37 +108,19 @@
             </div>
         </div>
     </div>
-    <!-- <div class="slider">
-        <div class="wrapper-slider">
-            <div class="values">
-                <span id="range1">
-                    0
-                </span>
-                <span> &dash; </span>
-                <span id="range2">
-                    100
-                </span>
-            </div>
-            <div class="container-slider">
-                <div class="slider-track"></div>
-                <input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
-                <input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
-            </div>
-        </div>
 
 
-    </div> -->
-    <!-- End Filter -->
-
+            <!-- cars cards -->
     <div class="d-flex cards detials-B w-fit ml-2 gap-20">
-        <!-- cars cards -->
-        <div class="box rad-10 bg-white Bo-Sh">
-            <img class="rad-20  pt-10 pr-10 pl-10" src="images/image-car-7.jpeg" alt="">
-            <h3 class="fs-14 pl-10">Mercedes G class</h3>
+        @for (int i = 0; i < Model.PageCars.Count; i++)
+        {
+            <div class="box rad-10 bg-white Bo-Sh">
+                <img class="rad-20  pt-10 pr-10 pl-10" src="@Model.PageCars[i].car_image" alt="">
+            <h3 class="fs-14 pl-10">@Model.PageCars[i].Brand Model: @Model.PageCars[i].year_model</h3>
             <div class="d-flex fl-column pl-10 mb-15 c-grey">
-                <span class="pb-10">Four-wheel-drive</span>
-                <span class="pb-10">Powerful V8</span>
-                <span class="pb-10">Highest-quality leather</span>
+                <span class="mt-20 pb-10">CC Range: @Model.PageCars[i].CC_Range</span>
+                <span class="pb-10">Gearing: @Model.PageCars[i].Gearing</span>
+                <span class="pb-10">Body Style: @Model.PageCars[i].Body_Style</span>
             </div>
             <div class="stars m-10">
                 <i class="fa-solid fa-star c-orange-s fs-15"></i>
@@ -159,6 +141,9 @@
                 </form>
             </div>
         </div>
+        }
+        
+        @*
         <div class="box rad-10 bg-white">
             <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">
             <h3 class="fs-14 pl-10">Mercedes G class</h3>
@@ -563,7 +548,7 @@
                     Cart
                 </span>
             </div>
-        </div>
+        </div>*@
         <!-- end cars cards -->
     </div>
 </div>

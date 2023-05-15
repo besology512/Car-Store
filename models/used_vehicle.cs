@@ -2,7 +2,7 @@
 
 namespace Car_Store.models
 {
-    public class used_vehicle:vehicles
+    public class used_vehicle:vehicle
     {
         [Required]
         int Vehicle_id;

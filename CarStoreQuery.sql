@@ -177,8 +177,8 @@ CREATE TABLE ORDERS(
 );
 
 CREATE TABLE CLIENT(
-	ClientID INT Unique IDENTITY(1,1),
-	Client_Username VARCHAR(100) Primary Key,
+	ClientID INT Primary Key IDENTITY(1,1),
+	Client_Username VARCHAR(100) Unique,
 	Client_FName VARCHAR(20),
 	Client_LName VARCHAR(20),
 	pass varchar(30),
@@ -266,3 +266,4 @@ ON UPDATE CASCADE
 INSERT INTO CLIENT (Client_FName, Client_LName, pass, bdate, Mail)
 VALUES('Tarek', 'moth5azel', '32332', '2003-07-20', 'teto@tota.com');
 
+insert into EMPLOYEE values('admin', 'Mohamed', 'sayed', 'Ali', 'admin', 1234, '08-03-2020', 'm', 35000, null, 1)

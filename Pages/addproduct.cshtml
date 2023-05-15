@@ -27,12 +27,12 @@
 <link rel="stylesheet" href="~/css/Add-Product.css" asp-append-version="true">
 
 <div class="my-page-product">
-    <div class="my-card">
-        <input type="file" id="car-image" name="car-image">
+    <div class="my-card" onclick="document.getElementById('car-image').click()">
         <label for="upload-image">
             <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
             Upload product image
         </label>
+        <input type="file" id="car-image" accept="image/*" name="car-image">
     </div>
     <div class="card">
         <form method="post" id="add-from">

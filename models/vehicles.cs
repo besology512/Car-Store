@@ -2,8 +2,35 @@
 
 namespace Car_Store.models
 {
-    public class vehicles
+    public class vehicle
     {
+        public vehicle()
+        {
+                
+        }
+        public vehicle(
+            string car_status = "",
+            string showroom = "",
+            string Brand = "",
+            int CC_Range = 0,
+            string color = "",
+            int year_model = 0,
+            string Gearing = "",
+            string Body_Style = "",
+            string car_image = "")
+        {
+            this.car_status = car_status;
+            this.showroom = showroom;
+            this.Brand = Brand;
+            this.CC_Range = CC_Range;
+            this.color = color;
+            this.year_model = year_model;
+            this.Gearing = Gearing;
+            this.Body_Style = Body_Style;
+            this.car_image = car_image;
+        }
+
+
         [Required, MaxLength(20)]
         public string car_status; // status of the car used,new 
 

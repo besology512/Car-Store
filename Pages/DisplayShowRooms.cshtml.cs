@@ -9,10 +9,18 @@ namespace Car_Store.Pages
     {
         public ShowRoom Room { get; set; }
         public DataTable DT { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             Room = new ShowRoom();
             DT = (DataTable)Room.getAll();
+
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
+           
         }
         public void OnPostDelete() {
             Console.WriteLine("Ahmed");
