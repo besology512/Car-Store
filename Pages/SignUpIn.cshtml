@@ -1,6 +1,7 @@
 ﻿@page
 @model Car_Store.Pages.SignUpIn
 @{
+    Layout = "_Layout";
 }
 
 
@@ -16,12 +17,15 @@
                 <i class="fa-sharp fa-solid fa-car-side"></i>
                 <span>TRMP car</span>
             </div>
-            <form action="" method="post" id="form1">
+            <form  action="" method="post" id="form1">
                 <label for="FirstName">First Name</label>
                 <input asp-for="@Model.Customer.fname" type="text" id="FirstName" name = "fname" required autocomplete="name">
 
                 <label for="LastName">Last Name</label>
                 <input asp-for="@Model.Customer.Lname" type="text" name = "Lname" id="LastName" required>
+
+                <label for="UserName">Username</label>
+                <input asp-for="@Model.Customer.UserName" type="text" name = "UserName" id="UserName" required>
 
                 <label for="Email">Email</label>
                 <input asp-for="@Model.Customer.Email" type="email" name = "Email" id="Email" required>
@@ -49,20 +53,20 @@
             </div>
             <div class="right-content">
                 @*<p>Don't have an account? <span style="color: #0d6efd;"> Sign Up</span></p>*@
-                <form action="" method="post">
+                <form  action="" method="post">
 
-                    <label for="Email2">Email</label>
-                    <input type="email" id="Email2" required>
+                    <label for="UserName2">Username</label>
+                    <input name="UserName2" type="text" id="UserName2" required>
 
                     <label for="Password2">Password</label>
-                    <input type="password" id="Password2" required>
+                    <input name="Password2" type="password" id="Password2" required>
 
-                    <input type="submit" class="BTN" value="Login">
+                    <input asp-page-handler="Login" type="submit" class="BTN" value="Login">
                     <hr>
                 </form>
                 <a href="/AdminView"><p>Don't have an account? <span style="color: #0d6efd;"> Sign Up</span></p></a>
                 <div class="buttons">
-                    <input type="submit" form="form1" class="form1" value="Create account" style="background-color: #0d6efd;">
+                    <input asp-page-handler="SignUp" type="submit" form="form1" class="form1" value="Create account" style="background-color: #0d6efd;">
                     <input type="submit" class="form1" value="Sign-in with google" style="background-color: #2D3748;">
                 </div>
             </div>

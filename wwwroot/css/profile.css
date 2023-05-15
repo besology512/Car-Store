@@ -36,8 +36,9 @@
     right: 20px;
 }
 
-.left ul li span {
+.left ul li a span {
     margin-left: 10px;
+    color:black;
 }
 
 .left img {

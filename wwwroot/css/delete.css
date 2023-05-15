@@ -1,0 +1,51 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+}
+
+.ask {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:50px;
+    /*padding:20px;*/
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 16px;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    flex-basis:50%;
+}
+
+.divbutton {
+    display:flex;
+    width:100%;
+    gap:20px;
+}
+
+.card {
+    margin-top: 60px;
+    margin-bottom: 590px;
+    /*padding: 0px 70px;*/
+    border-radius: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    padding: 20px;
+    background-color: #fff;
+    width:500px;
+}
