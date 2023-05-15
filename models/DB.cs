@@ -11,12 +11,15 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=Bassam;Initial Catalog=THECARSTORE;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=THECARSTORE;Integrated Security=True";
             con = new SqlConnection(conString);
         }
 
+        public string date1 { get; set; }
         public void insertUser(string Fname, string Lname, string pass, string date, string email, string UserName)
         { //to return any data type
+/*            string date1 = date.ToString();
+*/
             string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try

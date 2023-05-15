@@ -1,6 +1,7 @@
 CREATE DATABASE THECARSTORE
 USE TheCarStore
 
+Drop Database THECARSTORE
 CREATE TABLE EMPLOYEE(  
 	ID INT IDENTITY(1,1), 
 	Emp_Username VARCHAR(100) unique,
@@ -176,8 +177,8 @@ CREATE TABLE ORDERS(
 );
 
 CREATE TABLE CLIENT(
-	ClientID INT Unique IDENTITY(1,1),
-	Client_Username VARCHAR(100) Primary Key,
+	ClientID INT Primary Key IDENTITY(1,1),
+	Client_Username VARCHAR(100) Unique,
 	Client_FName VARCHAR(20),
 	Client_LName VARCHAR(20),
 	pass varchar(30),

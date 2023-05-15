@@ -19,25 +19,25 @@
             </div>
             <form  action="" method="post" id="form1">
                 <label for="FirstName">First Name</label>
-                <input asp-for="@Model.Customer.fname" type="text" id="FirstName" name = "fname" required autocomplete="name">
+                <input asp-for="@Model.Customer.Client_FName" type="text" id="FirstName" name="fname" required autocomplete="name">
 
                 <label for="LastName">Last Name</label>
-                <input asp-for="@Model.Customer.Lname" type="text" name = "Lname" id="LastName" required>
+                <input asp-for="@Model.Customer.Client_LName" type="text" name = "Lname" id="LastName" required>
 
                 <label for="UserName">Username</label>
-                <input asp-for="@Model.Customer.UserName" type="text" name = "UserName" id="UserName" required>
+                <input asp-for="@Model.Customer.UserType" type="text" name = "UserName" id="UserName" required>
 
                 <label for="Email">Email</label>
-                <input asp-for="@Model.Customer.Email" type="email" name = "Email" id="Email" required>
+                <input asp-for="@Model.Customer.Mail" type="email" name = "Email" id="Email" required>
 
                 <label for="Phonenumber">Phone Number</label>
                 <input asp-for="@Model.Customer.phoneNumber" type="tel" name = "phoneNumber" id="Phonenumber" required>
 
                 <label for="Date">Date of birth</label>
-                <input asp-for="@Model.Customer.date" type="date" name = "date" id="Date" required>
+                <input asp-for="@Model.Customer.bdate" type="date" name = "date" id="Date" required>
 
                 <label for="Password">Password</label>
-                <input asp-for="@Model.Customer.password" type="password" name="password" id="Password" required>
+                <input asp-for="@Model.Customer.pass" type="password" name="password" id="Password" required>
 
                 <label for="ConfirmPassword">Confirm Password</label>
                 <input type="password" id="ConfirmPassword" required>
