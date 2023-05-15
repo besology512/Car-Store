@@ -10,10 +10,18 @@ namespace Car_Store.Pages
 
         public ShowRoom room { get; set; }
         
-        public void OnGet(string name)
+        public IActionResult OnGet(string name)
         {
             room = new ShowRoom();
             room.Name = name;
+
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
+
         }
         public IActionResult OnPostYes(string previousName)
         {

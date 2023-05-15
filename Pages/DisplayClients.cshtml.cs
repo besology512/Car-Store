@@ -9,11 +9,19 @@ namespace Car_Store.Pages
     {
         public Client client { get; set; }
         public DataTable DT { get; set; } 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             client = new Client();
             DT = (DataTable)client.getAll();
             client.UserType = (int)DT.Rows[0][7]; //for testing
+
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
+
         }
     }
 }

@@ -14,7 +14,6 @@ namespace Car_Store.Pages
 
         public void OnGet()
         {
-            Console.WriteLine(HttpContext.Session.GetString("User_Type"));
 
         }
     }

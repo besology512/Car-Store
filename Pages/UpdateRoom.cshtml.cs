@@ -14,11 +14,19 @@ namespace Car_Store.Pages
         public ShowRoom room { get; set; }
         public ShowRoom newroom { get; set; }
 
-        public void OnGet(string name)
+        public IActionResult OnGet(string name)
         {
             room = new ShowRoom();
             room.Name = name;
-            DT = (DataTable)room.getTuple(); 
+            DT = (DataTable)room.getTuple();
+
+
+                if (HttpContext.Session.GetInt32("User_Type") != 1)
+                {
+                    return RedirectToPage("/index");
+                }
+                return Page();
+
         }
         public IActionResult OnPost(string name, string city, string phoneNumber, string street, string previousName)
         {

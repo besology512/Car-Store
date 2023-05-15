@@ -1,7 +1,6 @@
 CREATE DATABASE THECARSTORE
 USE TheCarStore
 
-Drop Database THECARSTORE
 CREATE TABLE EMPLOYEE(  
 	ID INT IDENTITY(1,1), 
 	Emp_Username VARCHAR(100) unique,
@@ -231,3 +230,4 @@ ON UPDATE CASCADE
 INSERT INTO CLIENT (Client_FName, Client_LName, pass, bdate, Mail)
 VALUES('Tarek', 'moth5azel', '32332', '2003-07-20', 'teto@tota.com');
 
+insert into EMPLOYEE values('admin', 'Mohamed', 'sayed', 'Ali', 'admin', 1234, '08-03-2020', 'm', 35000, null, 1)
