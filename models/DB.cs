@@ -11,13 +11,13 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=THECARSTORE;Integrated Security=True";
+            string conString = "Data Source=LAPTOP-8NJTOS7O;Initial Catalog=THECARSTORE;Integrated Security=True";
             con = new SqlConnection(conString);
         }
         
-        public void insertUser(string Fname, string Lname, string pass, string date, string email)
+        public void insertUser(string Fname, string Lname, string pass, string date, string email, string UserName)
         { //to return any data type
-            string query = "insert into CLIENT values ('"+Fname+ "', '" + Lname + "', '" + pass + "', '" + date + "', '" + email + "')";
+            string query = "insert into CLIENT values ('"+UserName+"','"+Fname+ "', '" + Lname + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -111,6 +111,44 @@ namespace Car_Store.models
                 con.Close();
             }
             catch (SqlException ex) { con.Close(); }
+        }
+        public object getPasswordClient(string UserName)
+        { //to return any data type
+            string query = "select pass from CLIENT where Client_Username = '" + UserName + "';";
+            object pass;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                pass = sqlCommand.ExecuteScalar();
+                if (pass == null) {
+                    con.Close();
+                    return "notFound";
+                }
+                con.Close();
+                return (string)pass;
+            }
+            catch (SqlException) { con.Close(); return "notFound";  }
+        }        
+        
+        public object getPasswordEmployee(string UserName)
+        { //to return any data type
+            string query = "select pass from EMPLOYEE where Emp_Username = '" + UserName + "';";
+            object pass;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                pass = sqlCommand.ExecuteScalar();
+                if (pass == null)
+                {
+                    con.Close();
+                    return "notFound";
+                }
+                con.Close();
+                return (string)pass;
+            }
+            catch (SqlException) { con.Close(); return "notFound"; }
         }
 
     }
