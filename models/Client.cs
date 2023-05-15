@@ -9,6 +9,8 @@ namespace Car_Store.models
 
         [Required]
         public int ClientID;
+        [Required, MaxLength(100)]
+        public string Client_Username { get; set; }
         [Required, MaxLength(20)]
         public string Client_FName;
         [Required, MaxLength(20)]
@@ -19,6 +21,7 @@ namespace Car_Store.models
         public DateOnly bdate; //should have Date type
         [Required, MaxLength(100), EmailAddress]
         public string Mail;
+        public int UserType { get; set; }
 
 
 

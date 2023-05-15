@@ -13,6 +13,7 @@ namespace Car_Store.Pages
         {
             client = new Client();
             DT = (DataTable)client.getAll();
+            client.UserType = (int)DT.Rows[0][7]; //for testing
         }
     }
 }
