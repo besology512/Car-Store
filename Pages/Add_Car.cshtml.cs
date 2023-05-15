@@ -10,12 +10,12 @@ namespace Car_Store.Pages
     {
         private readonly DB DATABASE;
 
-        
+
 
         [BindProperty]
         public string MyColor { get; set; }
         [BindProperty]
-        vehicles ParentV { get; set; }
+        vehicle ParentV { get; set; }
         [BindProperty]
         used_vehicle u_Vehicle { get; set; }
         public Add_CarModel(DB My_DB)
@@ -27,12 +27,12 @@ namespace Car_Store.Pages
         public void OnGet()
         {
         }
-        
-        public void OnPost(string brand,int year,int KM,int CARCLASS , string Cstyle ,string GEAR,int CC,int pr)
+
+        public void OnPost(string brand, int year, int KM, int CARCLASS, string Cstyle, string GEAR, int CC, int pr)
         {
-            
-            DATABASE.insert_vechile(brand, CC,MyColor, year, GEAR, Cstyle, pr, KM, CARCLASS);
+
+            DATABASE.insert_vechile(brand, CC, MyColor, year, GEAR, Cstyle, pr, KM, CARCLASS);
         }
-        
+
     }
 }
