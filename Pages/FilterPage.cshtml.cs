@@ -26,10 +26,7 @@ namespace Car_Store.Pages
             PageCars = db.GetVehicles();
             Console.WriteLine(PageCars.Count); //it worked YAAAAAAAAAAAAAAAAAAAAAAAAAS
         }
-        public void OnPost()
-        {
 
-        }
         public void OnPost() { 
         
         }

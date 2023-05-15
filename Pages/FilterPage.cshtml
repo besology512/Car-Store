@@ -1,7 +1,18 @@
 ﻿@page
 @model Car_Store.Pages.FilterPageModel
 @{
-    Layout = "_Layout";
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
 }
 
 
