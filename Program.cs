@@ -10,6 +10,7 @@ builder.Services.AddSingleton<vehicles>();//
 builder.Services.AddSingleton<new_vehicle>();//
 builder.Services.AddSingleton<used_vehicle>();//
 builder.Services.AddSingleton<ShowRoom>();//
+builder.Services.AddSingleton<product>();//
 builder.Services.AddSession();
 
 var app = builder.Build();
