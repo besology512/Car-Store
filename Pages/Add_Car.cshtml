@@ -1,6 +1,7 @@
 ﻿@page
 @model Car_Store.Pages.Add_CarModel
 @{
+    Layout = "_Layout";
     string[] carBrands = new string[] {"Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW",
                                    "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroen",
                                    "Dodge", "Ferrari", "Fiat", "Ford", "GMC", "Honda", "Hyundai",
@@ -43,7 +44,7 @@
     carModels.Add("Mercedes-Benz", new string[] { "C-Class", "E-Class", "G-Class", "GLC", "GLE", "S-Class" });
     carModels.Add("Mini", new string[] { "Clubman", "Cooper", "Countryman" });
     carModels.Add("Mitsubishi", new string[] { "Eclipse Cross", "Outlander", "Outlander Sport" });
-    carModels.Add("Nissan", new string[] { "Altima", "Kicks", "Maxima", "Murano", "Rogue", "Sentra" });
+    carModels.Add("Nissan", new string[] { "Altima", "Kicks", "Maxima", "Murano", "Rogue", "Sentra","Tida" });
     carModels.Add("Porsche", new string[] { "911", "Cayenne", "Macan", "Panamera" });
     carModels.Add("Ram", new string[] { "1500", "2500", "3500" });
     carModels.Add("Rolls-Royce", new string[] { "Dawn", "Ghost", "Phantom", "Wraith" });
@@ -110,8 +111,7 @@
 
 <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
 <div class="all-page-content">
-    
-    <form id="main-form">
+    <form id="main-form" method="post">
         <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
         <div class="image-add">
             <div class="img-card">
@@ -144,13 +144,12 @@
         <div class="car-details">
             <div class="car-title">
                 <label for="car-title">Ad. Title</label>
-                <input type="text" id="car-title" required
-                       placeholder="Ex: Hyundai Accent 2009 Cairo Automatic" />
+                <input type="text" id="car-title" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic"/>
             </div>
             <div class="make-model">
                 <div class="make">
                     <label for="Make">Make*</label>
-                    <select id="Make">
+                    <select id="Make" name="SelectedBrand">
                         @foreach (string brand in carBrands)
                         {
                             <option value="@brand">@brand</option>
@@ -171,13 +170,13 @@
             <div class="car-year">
                 <label for="car-title">Year*</label>
                 <input type="number" id="car-title" required class="my-input"
-                       min="1900" max="2099" step="1" placeholder="year" />
+                       min="1900" max="2099" step="1" placeholder="year" name="year" />
             </div>
             <div class="Km-city">
                 <div class="Km">
                     <label for="car-Km">Km*</label>
                     <input type="text" id="car-Km" required
-                           placeholder="How many KM?" class="my-input" />
+                           placeholder="How many KM?" class="my-input" name="KM" />
                 </div>
                 <div class="city">
                     <label for="City">City*</label>
@@ -189,7 +188,7 @@
                     </select>
                 </div>
             </div>
-            <span class="sec-color" style="margin-top:20px;">chooese car color</span>
+            <span style="margin-top:20px;">chooese car color</span>
             <div class="car-color">
                 <div class="color-box" style="background-color:red;">
                     <span>Red</span>
@@ -209,17 +208,47 @@
                 <div class="color-box" style="background-color:black;">
                     <span>Black</span>
                 </div>
-                <div class="color-box" style="background-color:#002aff;">
+                <div class="color-box" style="background-color:#002aff;" data-value="blue">
                     <span>Blue</span>
                 </div>
                 <div class="color-box" style="background-color:#cdaa7a;">
                     <span>Bronze</span>
                 </div>
+                <input id="MyColor" type="hidden" asp-for="MyColor" />
+                <script>
+                    var colorBoxes = document.querySelectorAll(".color-box");
+                    colorBoxes.forEach(function (colorBox) {
+                        colorBox.addEventListener("click", function () {
+                            var colorSpan = this.querySelector("span");
+                            var colorValue = colorSpan.textContent;
+                            this.style.borderColor = "blue";
+                            document.getElementById("MyColor").value = colorValue;
+                        });
+                    });
+                </script>
+            </div>
+            <div class="class-style">
+                <div class="Class">
+                    <label for="car-Class">Class*</label>
+                    <input type="text" id="car-Class" required
+                           placeholder="insert you are car class" class="my-input" name="CARCLASS" />
+                </div>
+                <div class="style">
+                    <label for="Car-style">Style*</label>
+                    <select id="Car-style" name="Cstyle">
+                        <option>Sedan</option>
+                        <option>SUV</option>
+                        <option>Coube</option>
+                        <option>Mini-Van</option>
+                        <option>Cross-Over</option>
+                        <option>Convertable</option>
+                    </select>
+                </div>
             </div>
             <div class="transition-fuel">
                 <div class="gearing">
                     <label for="gear">Gearing*</label>
-                    <select id="gear">
+                    <select id="gear" name="GEAR">
                         <option value="manual">manual</option>
                         <option value="automatic">automatic</option>
                     </select>
@@ -235,16 +264,19 @@
                     </select>
                 </div>
             </div>
+            <div class="cc-range">
+                <label for="car-CC">CC Range*</label>
+                <input type="text" id="car-CC" class="my-input" required name="CC"/>
+            </div>
             <div class="car-price">
                 <label for="car-price">Price</label>
-                <input type="text" id="car-price" required class="my-input" />
+                <input type="text" id="car-price" required class="my-input" name="pr" />
             </div>
         </div>
         <div>
             <input class="sub" type="submit" value="SELL CAR" />
         </div>
     </form>
-   
-
-    
 </div>
+
+

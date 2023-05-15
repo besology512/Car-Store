@@ -1,6 +1,7 @@
 ﻿@page
 @model Car_Store.Pages.AdminViewModel
 @{
+    Layout = "adminlay";
 }
 
 <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true">
@@ -17,7 +18,7 @@
             </div>
             <ul class="theList">
                 <li> <i class="fa-solid fa-bell"></i> Notifications</li>
-                <a href="/DisplayClients"><li> <i class="fa-solid fa-user"></i> Users</li></a>
+                <li><a asp-page="/addproduct"> <i class="fa-solid fa-user"></i> Add product</a></li>
                 <li> <i class="fa-sharp fa-solid fa-plus"></i> Pending Purchases</li>
                 <li><i class="fa-sharp fa-solid fa-folder-plus"></i>Pending Posts</li>
                 <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i>Log Out</li>

@@ -39,6 +39,11 @@ label {
 .all-page-content {
     padding: 100px;
 }
+@media (max-width:768px){
+    .all-page-content {
+        padding: 10px;
+    }
+}
 .image-add{
     display:flex;
     flex-wrap:wrap;
@@ -87,7 +92,8 @@ input[type="file"] {
     margin-top:10px;
     margin-bottom: 20px;
     background-color: #fff;
-    flex-direction:column;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 
@@ -105,6 +111,7 @@ input[type="file"] {
     margin: 0;
     border-radius: 5px;
     line-height: unset;
+    
 }
 
 
@@ -172,6 +179,34 @@ input[type="file"] {
 
 }
 /*end car km and city*/
+
+/*start class and style*/
+
+.class-style {
+    flex-basis: 100%;
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.class-style .Class {
+    flex-basis: 50%;
+}
+
+.class-style .style {
+    flex-basis: 50%;
+}
+
+.class-style select {
+    width: 100%;
+    background-color: transparent !important;
+    box-shadow: unset !important;
+    border: 1px solid #e4e4e4 !important;
+    padding-left: 16px !important;
+    border-radius: 5px !important;
+    height: 50px;
+}
+/*end car class and style/
 
 /*start color*/
 .car-color{
