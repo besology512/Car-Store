@@ -95,6 +95,17 @@
 }
 
 /* End Global Variabiles */
+.cart-btn {
+    width: 100%;
+    border: none;
+}
+
+.cart-btn:hover {
+    background-color: #0d69d5;
+    color:white;
+}
+
+
 html {
     scroll-behavior: smooth;
 }

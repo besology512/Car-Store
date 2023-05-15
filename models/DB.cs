@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System;
+using System.Security.Cryptography;
+
 namespace Car_Store.models
 {
     
@@ -227,6 +229,20 @@ namespace Car_Store.models
                 return (string)pass;
             }
             catch (SqlException) { con.Close(); return "notFound"; }
+        }
+
+        public void insertCartWish(string table, int CId, int PId)
+        { //to return any data type
+            string query = "insert into"+ table +" values (" + CId + "," + PId + ")";
+            object type;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                type = sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
         }
 
 
