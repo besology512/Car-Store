@@ -1,7 +1,19 @@
 ﻿@page
 @model Car_Store.Pages.SignUpIn
 @{
-    Layout = "_Layout";
+        
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
 }
 
 
@@ -25,7 +37,7 @@
                 <input asp-for="@Model.Customer.Client_LName" type="text" name = "Lname" id="LastName" required>
 
                 <label for="UserName">Username</label>
-                <input asp-for="@Model.Customer.UserType" type="text" name = "UserName" id="UserName" required>
+                <input @* asp-for="@Model.Customer.UserType"*@ type="text" name="UserName" id="UserName" required>
 
                 <label for="Email">Email</label>
                 <input asp-for="@Model.Customer.Mail" type="email" name = "Email" id="Email" required>
