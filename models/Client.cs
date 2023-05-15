@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Car_Store.models
@@ -18,9 +19,11 @@ namespace Car_Store.models
         [Required, MaxLength(30)]
         public string pass;
         [Required, MaxLength(20)]
-        public DateOnly bdate; //should have Date type
+        public string bdate; //should have Date type
         [Required, MaxLength(100), EmailAddress]
         public string Mail;
+        [Required]
+        public string phoneNumber;
         public int UserType { get; set; }
 
 
@@ -35,6 +38,24 @@ namespace Car_Store.models
             db.deletetuple("CLIENT", ID, "ClientID");
         }
 
+        public void insert()
+        {
+            db.insertUser(this.Client_FName, this.Client_LName, this.pass, this.bdate, this.Mail, this.Client_Username);
+        }
+
+        public string getPasswordCl()
+        {
+            return (string)db.getPasswordClient(Client_Username);
+        }
+        public string getPasswordEmp()
+        {
+            return (string)db.getPasswordEmployee(Client_Username);
+        }
+
+        public DataTable getRow(string Name, string tablename, string pKey)
+        {
+            return (DataTable)db.ReadTuple(Name, tablename, pKey);
+        }
 
 
     }
