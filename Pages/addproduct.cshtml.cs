@@ -5,8 +5,14 @@ namespace Car_Store.Pages
 {
     public class addproductModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
         }
     }
 }

@@ -24,8 +24,14 @@ namespace Car_Store.Pages
             DATABASE = My_DB;
 
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1 || HttpContext.Session.GetInt32("User_Type") != 0)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
         }
 
         public void OnPost(string brand, int year, int KM, int CARCLASS, string Cstyle, string GEAR, int CC, int pr)

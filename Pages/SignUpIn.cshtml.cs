@@ -23,11 +23,18 @@ namespace Car_Store.Pages
         {
             this.Customer = Customer;
         }
-        
 
-        public void OnGet()
+
+        public IActionResult OnGet()
         {
+
+            if (HttpContext.Session.GetInt32("User_Type") == 1 || HttpContext.Session.GetInt32("User_Type") == 0)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
         }
+
         public IActionResult OnPostSignUp(string fname, string Lname, string phoneNumber, string date, string password, string Email, string UserName)
         {
             Customer.Client_FName = fname;

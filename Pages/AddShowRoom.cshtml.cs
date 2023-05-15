@@ -12,9 +12,16 @@ namespace Car_Store.Pages
         public ShowRoom room { get; set; }
 
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
         }
+
         public void OnPost(string name, string city, string phoneNumber, string street) {
             room.Name = name;
             room.City = city;
