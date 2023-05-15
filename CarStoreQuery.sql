@@ -92,6 +92,7 @@ CREATE TABLE VEHICLE(
 	Body_Style VARCHAR(20),
 	iimage VARCHAR(150)
 );
+insert into VEHICLE('new', 'ezaby', )
 
 CREATE TABLE NEW_VEHICLE(
 	Vehicle_ID INT PRIMARY KEY,
@@ -176,8 +177,8 @@ CREATE TABLE ORDERS(
 );
 
 CREATE TABLE CLIENT(
-	ClientID INT Unique IDENTITY(1,1),
-	Client_Username VARCHAR(100) Primary Key,
+	ClientID INT Primary Key IDENTITY(1,1),
+	Client_Username VARCHAR(100) Unique,
 	Client_FName VARCHAR(20),
 	Client_LName VARCHAR(20),
 	pass varchar(30),
@@ -219,6 +220,41 @@ CREATE TABLE works_in_branchdep(
 	ON UPDATE CASCADE
 );
 
+CREATE TABLE wishlist_products(
+	Customer_ID int,
+	Product_ID int
+	primary key (Customer_ID, Product_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Product_ID) references PRODUCT(ProductID)
+);
+
+CREATE TABLE wishlist_vehicle(
+	Customer_ID int,
+	vehichle_ID int
+	primary key (Customer_ID, vehichle_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
+);
+
+
+CREATE TABLE Cart_products(
+	Customer_ID int,
+	Product_ID int
+	primary key (Customer_ID, Product_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Product_ID) references PRODUCT(ProductID)
+);
+
+CREATE TABLE Cart_vehicle(
+	Customer_ID int,
+	vehichle_ID int
+	primary key (Customer_ID, vehichle_ID)
+	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
+);
+
+
+
 ALTER TABLE VEHICLE
 ADD CONSTRAINT SHOW_ROOM_INVEHICLE_TO_SHOWROOM FOREIGN KEY(SHOWROOM) REFERENCES SHOWROOM(Show_Room_Name)
 ON DELETE SET NULL
@@ -230,3 +266,4 @@ ON UPDATE CASCADE
 INSERT INTO CLIENT (Client_FName, Client_LName, pass, bdate, Mail)
 VALUES('Tarek', 'moth5azel', '32332', '2003-07-20', 'teto@tota.com');
 
+insert into EMPLOYEE values('admin', 'Mohamed', 'sayed', 'Ali', 'admin', 1234, '08-03-2020', 'm', 35000, null, 1)

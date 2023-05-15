@@ -13,13 +13,18 @@ namespace Car_Store.Pages
         {
             database = db;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
         }
         public void OnPost()
         {
-            database.insert_product(p.Category, p.branchId,p.quantity,p.brand,p.price,1,p.Description);
+            database.insert_product(p.Category, p.branchId, p.quantity, p.brand, p.price, 1, p.Description);
         }
 
     }

@@ -9,10 +9,18 @@ namespace Car_Store.Pages.Shared
     public class DeleteClientModel : PageModel
     {
         public Client client { get; set; }
-        public void OnGet(int ID)
+        public IActionResult OnGet(int ID)
         {
             client = new Client();
             client.ClientID = ID;
+            
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1 || HttpContext.Session.GetInt32("User_Type") != 0)
+            {
+                return RedirectToPage("/index");
+            }
+            return Page();
+          
         }
 
         public IActionResult OnPostYes(int ID)
