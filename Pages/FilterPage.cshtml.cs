@@ -9,7 +9,6 @@ namespace Car_Store.Pages
     public class FilterPageModel : PageModel
     {
         [BindProperty]
-
         public WishCart cartWish { get; set; } 
 
         public List<vehicle> PageCars { get; set; }
@@ -24,18 +23,72 @@ namespace Car_Store.Pages
         public void OnGet()
         {
             PageCars = db.GetVehicles();
-            Console.WriteLine(PageCars.Count); //it worked YAAAAAAAAAAAAAAAAAAAAAAAAAS
         }
 
         public void OnPost() { 
         
         }
-        public void OnPostAddToCart(int PID, int CID, int typepv, int typecw) {
-            cartWish.CId = 1; /*PID;*/
-            cartWish.PId = 1; /*PID;*/
-            cartWish.typepv = 1;/*type;*/
-            cartWish.typecw = 1;/*type;*/
+        public IActionResult OnPostAddCarToCart(int PID) {
+            if (HttpContext.Session.GetInt32("User_ID") == null)
+            {
+                return RedirectToPage("/SignUpIn");
+            }
+            else
+            {
+                cartWish.CId = (int)HttpContext.Session.GetInt32("User_ID");
+            }
+            cartWish.PId = PID; 
+            cartWish.typepv = 1;
+            cartWish.typecw = 0;
             cartWish.insert();
+            return Page();
+        }
+        public IActionResult OnPostAddCarToWishList(int PID)
+        {
+            if (HttpContext.Session.GetInt32("User_ID") == null)
+            {
+                return RedirectToPage("/SignUpIn");
+            }
+            else { 
+                cartWish.CId = (int)HttpContext.Session.GetInt32("User_ID");
+            }
+            cartWish.PId = PID;
+            cartWish.typepv = 1;
+            cartWish.typecw = 1;
+            cartWish.insert();
+            return Page();
+        }
+        public IActionResult OnPostAddProductToWishList(int PID)
+        {
+            if (HttpContext.Session.GetInt32("User_ID") == null)
+            {
+                return RedirectToPage("/SignUpIn");
+            }
+            else
+            {
+                cartWish.CId = (int)HttpContext.Session.GetInt32("User_ID");
+            }
+            cartWish.PId = PID;
+            cartWish.typepv = 0;
+            cartWish.typecw = 1;
+            cartWish.insert();
+            return Page();
+        }
+        public IActionResult OnPostAddProductToCart(int PID)
+        {
+            if (HttpContext.Session.GetInt32("User_ID") == null)
+            {
+                return RedirectToPage("/SignUpIn");
+            }
+            else
+            {
+                cartWish.CId = (int)HttpContext.Session.GetInt32("User_ID");
+            }
+            cartWish.PId = PID;
+            cartWish.typepv = 0;
+            cartWish.typecw = 0;
+            cartWish.insert();
+            return Page();
         }
     }
 }
