@@ -834,3 +834,4 @@ INSERT INTO Cart_vehicle (Customer_ID, vehichle_ID) VALUES
 (8, 16),
 (9, 17),
 (10, 17);
+ 
