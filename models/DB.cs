@@ -190,17 +190,6 @@ namespace Car_Store.models
         }
 /*        private object readTable(string Q);
 */
-        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
-        {
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
-                "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "')";
-            DateTime currentDate = DateTime.Now;
-            string formattedDate = currentDate.ToString("yyyy-MM-dd");
-            string q2 = "INSERT INTO USED_VEHICLE VALUES(" + 1 + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ")";
-            excute_nonQuery(q);
-            excute_nonQuery(q2);
-        }
-
 
         private object getsinglevalue(string Q)
         {
