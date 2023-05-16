@@ -126,7 +126,7 @@ namespace Car_Store.models
                 Q = "select * from VEHICLE ";
             }
 
-            DataTable table = (DataTable)readTable(Q);
+            DataTable table = (DataTable)Readtable(Q);
             List<vehicle> returned = new List<vehicle>();
             foreach (DataRow row in table.Rows)
             {
@@ -146,7 +146,6 @@ namespace Car_Store.models
             }
             return returned;
         }
-        private object readTable(string Q)
 
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
         {
