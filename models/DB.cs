@@ -350,7 +350,7 @@ namespace Car_Store.models
         public void updateServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
         {
 
-            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "," + "latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
+            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "'," + "latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
             try
             {
                 con.Open();

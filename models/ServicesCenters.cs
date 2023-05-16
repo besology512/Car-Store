@@ -35,7 +35,7 @@ namespace Car_Store.models
         {
             return db.ReadTuple(ID, "Services_Center", "ID");
         }
-        public void update(string PreviousName)
+        public void update(int ID)
         {
             db.updateServiceCenter(this.ID, this.Name, this.Address, this.Services, this.latitude, this.longitude, this.stars);
         }
