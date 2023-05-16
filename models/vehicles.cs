@@ -9,6 +9,7 @@ namespace Car_Store.models
                 
         }
         public vehicle(
+            int id = 0,
             string car_status = "",
             string showroom = "",
             string Brand = "",
@@ -19,6 +20,7 @@ namespace Car_Store.models
             string Body_Style = "",
             string car_image = "")
         {
+            this.Id= id;
             this.car_status = car_status;
             this.showroom = showroom;
             this.Brand = Brand;
@@ -30,6 +32,8 @@ namespace Car_Store.models
             this.car_image = car_image;
         }
 
+        [Required]
+        public int Id;
 
         [Required, MaxLength(20)]
         public string car_status; // status of the car used,new 

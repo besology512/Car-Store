@@ -28,6 +28,6 @@ namespace Car_Store.models
                 db.insertCartWish("Cart_vehicle", CId, PId);
             }
         }
-        ~WishCart() {}
+        ~WishCart() { }
     }
 }

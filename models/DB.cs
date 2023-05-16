@@ -13,7 +13,8 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=LAPTOP-8NJTOS7O;Initial Catalog=THECARSTORE;Integrated Security=True";
+
+            string conString = "Data Source=SQL5110.site4now.net;Initial Catalog=db_a994a9_trmpcar;User Id=db_a994a9_trmpcar_admin;Password=Tarek2016";
             con = new SqlConnection(conString);
         }
 
@@ -34,6 +35,7 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); }
         }
 
+
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
         {
             string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
@@ -49,6 +51,13 @@ namespace Car_Store.models
         {
             string q = "INSERT INTO PRODUCT VALUES('" + category + "'," + branchId + "," + qunatity + ",'" + brand + "'," + price + ",' '," + status + ",'" + description + "')";
             excute_nonQuery(q);
+        }
+
+        public object getUser(int ID )
+        {
+            string q = "SELECT Client_FName, Client_LName ,Client_Phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
+
+            return Readtable(q);
         }
 
         private object Readtable(string Q)
@@ -71,6 +80,7 @@ namespace Car_Store.models
 
 
         public List<vehicle> GetVehicles(
+            int id = 0,
             string car_status = "",
             string showroom = "",
             string Brand = "",
@@ -174,6 +184,7 @@ namespace Car_Store.models
             {
 
                 vehicle newVehicle = new vehicle(
+                   id: row["Vehicle_No"] != null ? (int)(row["Vehicle_No"]) : 0,
                    car_status: row["Car_Status"] != null ? row["Car_Status"].ToString() : "",
                    showroom: row["SHOWROOM"] != null ? row["SHOWROOM"].ToString() : "",
                    Brand: row["Brand"] != null ? row["Brand"].ToString() : "",
@@ -190,6 +201,18 @@ namespace Car_Store.models
         }
 /*        private object readTable(string Q);
 */
+
+        //public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
+        //{
+        //    string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
+        //        "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "')";
+        //    DateTime currentDate = DateTime.Now;
+        //    string formattedDate = currentDate.ToString("yyyy-MM-dd");
+        //    string q2 = "INSERT INTO USED_VEHICLE VALUES(" + 1 + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ")";
+        //    excute_nonQuery(q);
+        //    excute_nonQuery(q2);
+        //}
+
 
         private object getsinglevalue(string Q)
         {
