@@ -24,6 +24,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
+                <th scope="col">Phone Number</th>
                 <th scope="col">Password</th>
                 <th scope="col">BirthDate</th>
                 <th scope="col">Email</th>
@@ -37,8 +38,14 @@
                 <tr class="active-row">
                     @for (int j = 0; j < Model.DT.Columns.Count; j++)
                     {
-                        <td>@Model.DT.Rows[i][j]</td>
-
+                        if (Model.DT.Columns[j].ToString() == "Client_image")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            <td>@Model.DT.Rows[i][j]</td>
+                        }
                     }
                     <td><a asp-page="/DeleteClient" asp-route-ID="@Model.DT.Rows[i][0]">Delete</a></td>
                 </tr>

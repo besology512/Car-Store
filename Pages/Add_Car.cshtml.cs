@@ -27,7 +27,7 @@ namespace Car_Store.Pages
         public IActionResult OnGet()
         {
 
-            if (HttpContext.Session.GetInt32("User_Type") != 1 || HttpContext.Session.GetInt32("User_Type") != 0)
+            if (HttpContext.Session.GetInt32("User_Type") != 1 && HttpContext.Session.GetInt32("User_Type") != 0)
             {
                 return RedirectToPage("/index");
             }
