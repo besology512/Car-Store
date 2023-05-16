@@ -1,6 +1,20 @@
 ﻿@page
 @model Car_Store.Pages.AddShowRoomModel
 @{
+        
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
+
 }
 
 <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">

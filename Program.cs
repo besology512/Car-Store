@@ -6,10 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<DB>();//
 builder.Services.AddSingleton<customer>();//
+builder.Services.AddSingleton<Client>();//
 builder.Services.AddSingleton<vehicle>();//
 builder.Services.AddSingleton<new_vehicle>();//
 builder.Services.AddSingleton<used_vehicle>();//
 builder.Services.AddSingleton<ShowRoom>();//
+builder.Services.AddSingleton<product>();//
 builder.Services.AddSession();
 
 var app = builder.Build();

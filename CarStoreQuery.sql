@@ -17,6 +17,7 @@ CREATE TABLE EMPLOYEE(
 	PRIMARY KEY(ID), 
 	FOREIGN KEY (SuperID) REFERENCES EMPLOYEE(ID)
 );
+select * from CLIENT
 
 CREATE TABLE BRANCH(
 	BranchID INT,
@@ -109,6 +110,7 @@ CREATE TABLE VEHICLE(
 	image2 varbinary(max),
 	image3 varbinary(max)
 );
+insert into VEHICLE('new', 'ezaby', )
 
 CREATE TABLE NEW_VEHICLE(
 	Vehicle_ID INT PRIMARY KEY,

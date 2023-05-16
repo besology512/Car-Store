@@ -1,7 +1,18 @@
 ﻿@page
 @model Car_Store.Pages.FilterPageModel
 @{
-    Layout = "_Layout";
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
 }
 
 
@@ -135,10 +146,10 @@
                 <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
             </div>
             <div class="A-d mr-20 ml-20">
-                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
-                    Add To
-                    Cart
-                </span>
+                <!--<asp:TextBox runat="server" ID="TextBox1"></asp:TextBox>-->
+                <form method="post">
+                    <input asp-page-handler="AddToCart" class="cart-btn center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10" type="submit" value="Add to Cart" />
+                </form>
             </div>
         </div>
         }
@@ -246,7 +257,7 @@
                 <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
             </div>
             <div class="A-d mr-20 ml-20">
-                <span class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
+                <span asp-method-handler="" class="center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10">
                     Add To
                     Cart
                 </span>

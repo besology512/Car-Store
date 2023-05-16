@@ -1,7 +1,18 @@
 ﻿@page
 @model Car_Store.Pages.Add_CarModel
 @{
-    Layout = "_Layout";
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
     string[] carBrands = new string[] {"Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW",
                                    "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroen",
                                    "Dodge", "Ferrari", "Fiat", "Ford", "GMC", "Honda", "Hyundai",
