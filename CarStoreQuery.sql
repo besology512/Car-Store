@@ -20,7 +20,7 @@ CREATE TABLE EMPLOYEE(
 );
 select * from SERVICES_CENTER
 Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
-Update Services_Center set Name = 'Mohamed' where ID = 1
+Update Services_Center set longitude = 31.485585206751594, latitude = 30.06611893449402  where ID = 213
 
 select* from SERVICES_CENTER
 
@@ -325,7 +325,8 @@ INSERT INTO EMPLOYEE (ID, Emp_Username, Fname, Mname, Lname, pass, SSN, BirthDat
 (31, 'user', 'Nouwwr', 'Dwd', 'El wHodqa', 'user', 456721212, '1994-05-30', 'F', 55000, 4, 0),
 (32, 'admin', 'Nouwr', 'Ddw', 'Elw Hodqa', 'admin', 416781212, '1994-05-30', 'F', 55000, 4, 1);
 
-select * from employee
+select * from Client
+
 -- BRANCH table
 INSERT INTO BRANCH (BranchID, MgrID, Bname, City, Street, BuildingNo) VALUES
 (1, 2, 'Main Branch', 'Giza', 'Zewail', '123'),
@@ -637,6 +638,7 @@ INSERT INTO SERVICES_CENTER_BRANDS (Service_Center_Name, CarBrand) VALUES
 ('QRS Service Center', 'Audi'),
 ('TUV Service Center', 'Lexus');
 
+select * from client
 -- CLIENT
 INSERT INTO CLIENT (Client_Username, Client_FName, Client_LName, pass, bdate, Mail) VALUES
 ('johnsmith', 'John', 'Smith', 'password123', '1990-05-10', 'johnsmith@example.com'),

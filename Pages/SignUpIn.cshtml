@@ -18,6 +18,7 @@
 }
 
 
+
 <link rel="stylesheet" href="~/css/sighupStyle.css" asp-append-version="true">
 
 <div class="Body">
@@ -31,29 +32,49 @@
                 <span>TRMP car</span>
             </div>
             <form  action="" method="post" id="form1">
+@*                <div asp-validation-summary="All" class="text-danger"></div>
+*@
+
+
+                <span asp-validation-for="@Model.Customer.Client_FName" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="FirstName">First Name</label>
-                <input asp-for="@Model.Customer.Client_FName" type="text" id="FirstName" name="fname" required autocomplete="name">
+                <input asp-for="@Model.Customer.Client_FName" type="text" id="FirstName" name="fname" required autocomplete="name" minlength="2" maxlength="20" pattern="[A-Za-z0-9 ]+">
 
+
+                <span asp-validation-for="@Model.Customer.Client_LName" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="LastName">Last Name</label>
-                <input asp-for="@Model.Customer.Client_LName" type="text" name = "Lname" id="LastName" required>
+                <input asp-for="@Model.Customer.Client_LName" type="text" name="Lname" id="LastName" required minlength="2" maxlength="20" pattern="[A-Za-z0-9 ]+">
 
+
+                <span asp-validation-for="@Model.Customer.Client_Username" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="UserName">Username</label>
-                <input @* asp-for="@Model.Customer.UserType"*@ type="text" name="UserName" id="UserName" required>
+                <input asp-for="@Model.Customer.Client_Username" type="text" name="UserName" id="UserName" required minlength="2" maxlength="100" pattern="[A-Za-z0-9 ]+">
 
+
+                <span asp-validation-for="@Model.Customer.Mail" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="Email">Email</label>
-                <input asp-for="@Model.Customer.Mail" type="email" name = "Email" id="Email" required>
+                <input asp-for="@Model.Customer.Mail" type="email" name="Email" id="Email" required minlength="6" maxlength="100">
 
+
+                <span asp-validation-for="@Model.Customer.phoneNumber" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="Phonenumber">Phone Number</label>
-                <input asp-for="@Model.Customer.phoneNumber" type="tel" name = "phoneNumber" id="Phonenumber" required>
+                <input asp-for="@Model.Customer.phoneNumber" type="tel" name="phoneNumber" id="Phonenumber" required minlength="5" maxlength="20" pattern="[0-9]+">
 
+
+                <span asp-validation-for="@Model.Customer.bdate" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="Date">Date of birth</label>
                 <input asp-for="@Model.Customer.bdate" type="date" name = "date" id="Date" required>
 
-                <label for="Password">Password</label>
-                <input asp-for="@Model.Customer.pass" type="password" name="password" id="Password" required>
 
+                <span id="passwordMismatchError" style="color: red; display: none;">Passwords do not match</span>
+                <span asp-validation-for="@Model.Customer.pass" style="color:red; margin:-12px 0 12px;"></span>
+                <label for="Password">Password</label>
+                <input asp-for="@Model.Customer.pass" type="password" name="password" id="Password" required minlength="3" maxlength="30">
+
+                <span asp-validation-for="@Model.Customer.ConfirmPassword" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="ConfirmPassword">Confirm Password</label>
-                <input type="password" id="ConfirmPassword" required>
+                <input type="password" asp-for="@Model.Customer.ConfirmPassword" id="ConfirmPassword" name = "cofirmPassword" required minlength="3" maxlength="30">
+
             </form>
             <input type="checkbox" id="checkb" required form="form1">
             <label for="checkb">I agree to all the <span style="color: #0d6efd;"> Terms </span> and <span style="color: #0d6efd;"> privacy policy</span></label>
@@ -86,3 +107,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Get the password and confirm password fields
+    var passwordField = document.getElementById("Password");
+    var confirmPasswordField = document.getElementById("ConfirmPassword");
+
+    // Get the error message element
+    var errorMessage = document.getElementById("passwordMismatchError");
+
+    // Function to check if the password and confirm password fields match
+    function checkPasswordMatch() {
+        if (passwordField.value !== confirmPasswordField.value) {
+            // Passwords don't match, display the error message
+            errorMessage.style.display = "block";
+        } else {
+            // Passwords match, hide the error message
+            errorMessage.style.display = "none";
+        }
+    }
+
+    // Add an event listener to the confirm password field to check for password match
+    confirmPasswordField.addEventListener("input", checkPasswordMatch);
+</script>
