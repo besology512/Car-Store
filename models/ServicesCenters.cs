@@ -39,7 +39,7 @@ namespace Car_Store.models
         {
             db.updateServiceCenter(this.ID, this.Name, this.Address, this.Services, this.latitude, this.longitude, this.stars);
         }
-        public void delete(string Name)
+        public void delete(int ID)
         {
             db.deletetuple("Services_Center", ID, "ID");
         }

@@ -19,9 +19,6 @@ namespace Car_Store.Pages
             {
                 return RedirectToPage("/index");
             }
-            ID = id;
-            db = new DB();
-            myCenter = new ServicesCenters();
             DT = new DataTable();
 
             myCenter.ID = id;
