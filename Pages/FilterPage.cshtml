@@ -146,9 +146,10 @@
                 <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
             </div>
             <div class="A-d mr-20 ml-20">
-                    <!--<asp:TextBox runat="server" ID="TextBox1"></asp:TextBox>-->
                 <form method="post">
-                    <input asp-page-handler="AddToCart" class="cart-btn center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10" type="submit" value="Add to Cart" />
+                    <input name="PID" value="@Model.PageCars[i].Id" type="hidden" />
+                    <input asp-page-handler="AddCarToCart" class="cart-btn center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10" type="submit" value="Add to Cart" /> 
+                    <input asp-page-handler="AddCarToWishList" class="cart-btn center-flex Bo-Sh rad-15 cursor-pointer Trs-03 c-black bg-eee pt-10 pb-10 mb-10" type="submit" value="Add to Wishlist" />
                 </form>
             </div>
         </div>
