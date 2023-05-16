@@ -19,11 +19,12 @@ namespace Car_Store.models
         }
 
         public string date1 { get; set; }
-        public void insertUser(string Fname, string Lname, string pass, string date, string email, string UserName)
+        public void insertUser(string Fname, string Lname, string pass, string phoneNumber, string date, string email, string UserName)
         { //to return any data type
             /*            string date1 = date.ToString();
             */
-            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+
+            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber  + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {

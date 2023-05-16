@@ -4,6 +4,7 @@ using Car_Store.models;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Reflection;
 
 namespace Car_Store.Pages
 {
@@ -25,18 +26,21 @@ namespace Car_Store.Pages
         }
 
 
+
+
         public IActionResult OnGet()
         {
-
             if (HttpContext.Session.GetInt32("User_Type") == 1 || HttpContext.Session.GetInt32("User_Type") == 0)
             {
                 return RedirectToPage("/index");
             }
             return Page();
+
         }
 
         public IActionResult OnPostSignUp(string fname, string Lname, string phoneNumber, string date, string password, string Email, string UserName)
         {
+
             Customer.Client_FName = fname;
             Customer.Client_LName = Lname;
             Customer.phoneNumber = phoneNumber;
@@ -45,8 +49,10 @@ namespace Car_Store.Pages
             Customer.Mail = Email;        
             Customer.Client_Username = UserName;
             Customer.insert();
+            Console.WriteLine("I signed up");
             return RedirectToPage("/Index");
         }
+
         public IActionResult OnPostLogin(string UserName2, string Password2) { 
             Customer.Client_Username = UserName2;
             Customer.pass = Password2;
