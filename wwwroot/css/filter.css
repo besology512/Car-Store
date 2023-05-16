@@ -554,9 +554,9 @@ nav i:last-child {
 /* start filter */
 .filter {
     width: 40%;
-    height: 100%;
-    margin: 20px;
-    border-radius: 20px;
+    height: 90%;
+    margin-right: 10px;
+    margin-left: 10px;
     border-radius: 10px;
 }
 
@@ -1017,3 +1017,58 @@ input[type="range"]:active::-webkit-slider-thumb {
     .wrapper::-webkit-scrollbar {
         display: none; /* Hide scrollbar */
     }
+    .card_image{
+        position: relative;
+    }
+    .card_image img {
+        transition: transform 0.5s, filter 0.5s;
+        height: 90%;
+        width:90%;
+        overflow: hidden;
+    }
+    .card_image img:hover {
+        transform: scale(1.2);
+        filter: brightness(70%);
+    }
+    .card_image .new {
+        width: 40px;
+        height: 23px;
+        border-radius: 50px;
+        background-color: #0DA2F5;
+        position: absolute;
+        left: 30px;
+        top: 13px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 13px;
+    }
+    .card_image .used {
+        width: 40px;
+        height: 23px;
+        border-radius: 50px;
+        background-color: #097763;
+        position: absolute;
+        left: 30px;
+        top: 13px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 13px;
+    }
+.card_image{
+    overflow: hidden;
+}
+
+.content {
+    min-height: calc(100vh - (20vh));
+    padding: 20px;
+    box-sizing: border-box;
+}
+.filter-button:hover {
+    box-shadow: 0 0 10px rgba(0, 1, 0, 0.5);
+}

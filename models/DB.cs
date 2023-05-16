@@ -13,7 +13,7 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "\"Data Source=SQL5110.site4now.net;Initial Catalog=db_a994a9_trmpcar;User Id=db_a994a9_trmpcar_admin;Password=Tarek2016";
+            string conString = "Data Source=bassam;Initial Catalog=TRMPcar;Integrated Security=True";
             con = new SqlConnection(conString);
         }
 
@@ -65,7 +65,7 @@ namespace Car_Store.models
             catch (Exception ex)
             {
                 con.Close();
-                return ex;
+                return dt;
             }
         }
 
@@ -162,6 +162,10 @@ namespace Car_Store.models
             {
                 Q = "select * from VEHICLE " +
                     "where iimage =  '" + car_image + "' ";
+            }else if(Brand != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "' ";
             }
             else
             {
@@ -182,13 +186,53 @@ namespace Car_Store.models
                    year_model: row["Year_Model"] != null ? (int)row["Year_Model"] : 0,
                    Gearing: row["Gearing"] != null ? row["Gearing"].ToString() : "",
                    Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : "",
-                   car_image: row["iimage"] is null ? row["iimage"].ToString() : ""
+                   car_image: row["iimage"] != null ? (byte[])row["iimage"] :new byte[]{0x00}
                    );
                 returned.Add(newVehicle);
             }
             return returned;
         }
 
+        public DataTable GetAvailableFilters(string filter)
+        {
+            string Q = "";
+            if (filter == "Brands")
+            {
+                Q = "SELECT DISTINCT Brand FROM VEHICLE";
+            }
+            else if (filter == "Colors")
+            {
+                Q = "SELECT DISTINCT Color FROM VEHICLE";
+            }
+            else if (filter == "gearing")
+            {
+                Q = "SELECT DISTINCT Gearing FROM VEHICLE";
+            }
+            else if (filter == "MinMax")
+            {
+                Q = "SELECT MIN(p.Price) AS MinPrice, MAX(p.Price) AS MaxPrice\r\nFROM (\r\n" +
+                    "    SELECT NEW_VEHICLE.Price, Vehicle_ID  FROM NEW_VEHICLE\r\n    UNION ALL\r\n" +
+                    "    SELECT USED_VEHICLE.Price, Vehicle_ID FROM USED_VEHICLE\r\n) AS p\r\nJOIN VEHICLE" +
+                    " v ON p.Vehicle_ID = v.Vehicle_No;";
+            }
+            else if (filter == "status") {
+                Q = "SELECT DISTINCT Car_Status FROM VEHICLE";
+            }else if (filter == "Year Model")
+            {
+                Q = "SELECT DISTINCT Year_Model FROM VEHICLE";
+            }else if(filter == "warranty years"){
+                Q = "SELECT DISTINCT Warranty_years FROM VEHICLE";
+            }
+            else if (filter == "warranty kilometers")
+            {
+                Q = "SELECT DISTINCT Warranty_Kilometers FROM VEHICLE";
+            }
+            else if(filter == "seats")
+            {
+                Q = "SELECT DISTINCT Seats FROM VEHICLE";
+            }
+            return (DataTable)Readtable(Q);
+        }
 
         private object getsinglevalue(string Q)
         {

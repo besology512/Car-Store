@@ -15,8 +15,5 @@ namespace Car_Store.models
 
         [Required]
         string posting_date;
-
-        [Required]
-        int car_class;
     }
 }

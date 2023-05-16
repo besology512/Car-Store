@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Data;
 @model Car_Store.Pages.FilterPageModel
 @{
     if (HttpContext.Session.GetInt32("User_Type") == null)
@@ -18,6 +19,7 @@
 
 <link rel="stylesheet" href="~/css/filter.css" asp-append-version="true">
 <!-- Info before filter and cars -->
+<div class = "content">
 <div class="pre-filter">
     <select name="cars" id="cars">
         <option value="1">Default sorting</option>
@@ -34,11 +36,12 @@
 <div class="main-container d-flex ">
     <div class="filter">
         <!-- Start Filter -->
+            <form method="post" id="filter">
         <div class="wrapper">
             <div class="wd-wpb">
                 <div class="widget widget sidebar-widget woocommerce widget_price_filter">
                     <h5 class="widget-title">Filter by price</h5>
-                    <form>
+                    
                         <div class="price_slider_wrapper">
                             <div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                                 <div class="slider-track"></div>
@@ -48,38 +51,30 @@
                             <div class="price_slider_amount">
                                 <input type="text" id="min_price" name="min_price" value="2980" data-min="490" placeholder="Min price" style="display: none;">
                                 <input type="text" id="max_price" name="max_price" value = "2398" data-max="13500" placeholder="Max price" style="display: none;">
-                                <button type="submit" class="filter-button">Filter</button>
+                                <input type="submit" class="filter-button" value = "Filter" asp-page-handler="Filter"/>
                                 <div class="price_label">
                                     Price: <span class="from" id="range1">$2,980</span> — <span class="to" id="range2">$12,650</span>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-                    <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
-                    <div class="wd-scroll" style="display: none;">
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option1" onchange="changeTickbox(this)">
-                            <label for="option1"></label>
-                        </div>
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option2" onchange="changeTickbox(this)">
-                            <label for="option2"></label>
-                        </div>
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option3" onchange="changeTickbox(this)">
-                            <label for="option3"></label>
-                        </div>
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option4" onchange="changeTickbox(this)">
-                            <label for="option4"></label>
-                        </div>
+                    @{
+                        if (Model.Brands.Rows.Count != 0)
+                        {
+                            <div class="clickable-div"> <h5 class="widget-title">Filter by Brands</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
+                            <div class="wd-scroll" style="display: none;">
+                                @for (int i = 0; i < Model.Brands.Rows.Count; i++)
+                                {
+                                    <div class="mini-option">
+                                        <span>@Model.Brands.Rows[i][0].ToString()</span>
+                                        <input type="checkbox" class="tickbox" id="brand_@i" onchange="changeTickbox(this)" runat="server" name = "brand_@i">
+                                        <label for="brand_@i"></label>
+                                    </div>
+                                }
                     </div>
+                        }
+                }
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
                     <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
@@ -118,6 +113,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 
 
@@ -125,8 +121,19 @@
     <div class="d-flex cards detials-B w-fit ml-2 gap-20">
         @for (int i = 0; i < Model.PageCars.Count; i++)
         {
-            <div class="box rad-10 bg-white Bo-Sh">
-                <img class="rad-20  pt-10 pr-10 pl-10" src="@Model.PageCars[i].car_image" alt="">
+            <div class="box rad-10 bg-white Bo-Sh zooming">
+                <div class="card_image">
+                    @if (Model.PageCars[i].car_status == "new")
+                    {
+                        <span class="new">NEW</span>
+                    }
+                    else
+                    {
+                        <span class="used">USED</span>
+                    }
+
+                    <img class="rad-20  pt-10 pr-10 pl-10" src="data:image/png;base64,@Model.PageCars[i].car_image" alt="">
+                </div>
             <h3 class="fs-14 pl-10">@Model.PageCars[i].Brand Model: @Model.PageCars[i].year_model</h3>
             <div class="d-flex fl-column pl-10 mb-15 c-grey">
                 <span class="mt-20 pb-10">CC Range: @Model.PageCars[i].CC_Range</span>
@@ -153,7 +160,7 @@
             </div>
         </div>
         }
-        
+        </div>
         @*
         <div class="box rad-10 bg-white">
             <img class="rad-20 pt-10 pr-10 pl-10" src="images/image-car-3.jpeg" alt="">

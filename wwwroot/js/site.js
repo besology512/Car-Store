@@ -71,3 +71,20 @@ for (let i = 0; i < collapseDivs.length; i++) {
         }
     });
 }
+
+//footer styling with the filter
+
+const container = document.getElementById('filter');
+const footer = document.getElementById('footer');
+const containerTopOffset = container.getBoundingClientRect().top;
+
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.pageYOffset;
+    const footerTopOffset = footer.getBoundingClientRect().top;
+
+    if (footerTopOffset <= container.clientHeight + containerTopOffset) {
+        container.style.top = `${footerTopOffset - container.clientHeight - containerTopOffset}px`;
+    } else {
+        container.style.top = `${scrollPosition + 20}px`;
+    }
+});
