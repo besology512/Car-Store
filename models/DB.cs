@@ -15,7 +15,6 @@ namespace Car_Store.models
         {
 
 
-
             con = new SqlConnection(conString);
         }
 
