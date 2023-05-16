@@ -18,11 +18,16 @@ CREATE TABLE EMPLOYEE(
 	PRIMARY KEY(ID), 
 	FOREIGN KEY (SuperID) REFERENCES EMPLOYEE(ID)
 );
-select * from SERVICES_CENTER
-Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
-Update Services_Center set longitude = 31.485585206751594, latitude = 30.06611893449402  where ID = 213
 
-select* from SERVICES_CENTER
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE BRANCH(
 	BranchID INT,
@@ -36,6 +41,8 @@ CREATE TABLE BRANCH(
 	ON DELETE SET NULL
 	ON UPDATE CASCADE
 );
+
+
 
 CREATE TABLE PRODUCT(
 	ProductID INT PRIMARY KEY ,
@@ -51,6 +58,11 @@ CREATE TABLE PRODUCT(
 	ON UPDATE cascade --added
 
 );
+select * from PRODUCT
+select * from BRANCH
+
+select BRANCH.BranchID from BRANCH
+
 
 
 CREATE TABLE SUPPLIER(
@@ -110,22 +122,26 @@ CREATE TABLE VEHICLE(
 	Seats int,
 	Traction_Type varchar(30),
 	Cylinders int,
+	CarDescription varchar(1000),
 	Tank_Capacity int,
 	iimage varbinary(max),
 	image2 varbinary(max),
 	image3 varbinary(max)
 );
-insert into VEHICLE('new', 'ezaby', )
+
+
 
 CREATE TABLE NEW_VEHICLE(
 	Vehicle_ID INT PRIMARY KEY,
-	NUMBER_OF_CLASSES INT NOT NULL,
-	Start_Price INT NOT NULL,
-	End_Price INT NOT NULL
+	Price INT NOT NULL,
 	CONSTRAINT NEW_VEHICLE_TO_VEHICLE FOREIGN KEY(Vehicle_ID) REFERENCES VEHICLE(Vehicle_No)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE
 );
+
+
+
+
 
 CREATE TABLE USED_VEHICLE(
 	Vehicle_ID INT PRIMARY KEY,
@@ -139,17 +155,10 @@ CREATE TABLE USED_VEHICLE(
 
 );
 
-CREATE TABLE CAR_CLASSES(
-	Vehicle_ID INT,
-	Class INT,
-	Price INT NOT NULL,
-	Deposit INT NOT NULL,
-	Minimum_Installment INT
-	PRIMARY KEY(Vehicle_ID,Class),
-	CONSTRAINT NEW_VEHICLE_CLASS_TO_NEW_VEHICLE FOREIGN KEY(Vehicle_ID) REFERENCES NEW_VEHICLE(Vehicle_ID)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
-);
+select * from vehicle 
+add city varchar(20)
+
+
 
 CREATE TABLE SHOWROOM(
 	Show_Room_Name VARCHAR(100) PRIMARY KEY,
@@ -168,6 +177,9 @@ CREATE TABLE SERVICES_CENTER(
 	longitude DECIMAL(17, 14),
 	Stars INT,
 );
+
+alter table services_center
+add stars INT check(stars >= 0 and stars <= 5)
 
 CREATE TABLE SERVICES_CENTER_PHONENUMBER(
 	Service_Center_ID INT,
@@ -214,7 +226,7 @@ CREATE TABLE CLIENT(
 	UserType INT Default 0,
 );
 
-select * from CLIENT
+
 CREATE TABLE CLIENT_PHONENUMBER(
 	ClientID INT,
 	PhoneNumber varchar(20),
@@ -250,40 +262,79 @@ CREATE TABLE wishlist_products(
 	Customer_ID int,
 	Product_ID int
 	primary key (Customer_ID, Product_ID)
-	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Customer_ID) references CLIENT(ClientID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	Foreign key (Product_ID) references PRODUCT(ProductID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 );
+
+
 
 CREATE TABLE wishlist_vehicle(
 	Customer_ID int,
 	vehichle_ID int
 	primary key (Customer_ID, vehichle_ID)
-	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Customer_ID) references CLIENT(ClientID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 );
+
+
 
 CREATE TABLE Cart_products(
 	Customer_ID int,
 	Product_ID int
 	primary key (Customer_ID, Product_ID)
-	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Customer_ID) references CLIENT(ClientID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	Foreign key (Product_ID) references PRODUCT(ProductID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 );
+
+
+
 
 CREATE TABLE Cart_vehicle(
 	Customer_ID int,
 	vehichle_ID int
 	primary key (Customer_ID, vehichle_ID)
-	Foreign key (Customer_ID) references CLIENT(ClientID),
+	Foreign key (Customer_ID) references CLIENT(ClientID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 );
 
 
-
+create table Client_Posts(
+	ClientId INT,
+	VehcileId INT,
+	PRIMARY KEY(ClientId,VehcileId),
+	FOREIGN KEY (ClientId) REFERENCES CLIENT(ClientID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	FOREIGN KEY (VehcileId) REFERENCES VEHICLE(Vehicle_No)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+SELECT * FROM CLIENT
+SELECT * FROM VEHICLE
 ALTER TABLE VEHICLE
 ADD CONSTRAINT SHOW_ROOM_INVEHICLE_TO_SHOWROOM FOREIGN KEY(SHOWROOM) REFERENCES SHOWROOM(Show_Room_Name)
 ON DELETE SET NULL
 ON UPDATE CASCADE
+
+select * from Client_Posts
+
+select * from CLIENT
 
 -- Till Here--
 
@@ -292,7 +343,6 @@ ON UPDATE CASCADE
 
 -- EMPLOYEE table
 INSERT INTO EMPLOYEE (ID, Emp_Username, Fname, Mname, Lname, pass, SSN, BirthDate, Gender, Salary, SuperID, UserType) VALUES
-(1, 'mohamedali', 'Mohamed', 'F', 'Ali', 'password6', 234567890, '1988-08-08', 'M', 55000, 1, 0),
 (2, 'beso', 'Ahmed', 'Bassam', 'Abdelaal', '123', 214567890, '2003-07-06', 'M', 100000, NULL, 1),
 (3, 'tarekteto', 'Tarek', 'Shalaby', 'Mohammed', 'password6', 232567890, '1988-08-08', 'M', 55000, NULL, 1),
 (4, 'sieka', 'Mohamed', 'Elsayed', 'Mohammed', 'password6', 244567890, '1988-08-08', 'M', 55000, NULL, 1),
@@ -329,7 +379,6 @@ select * from Client
 
 -- BRANCH table
 INSERT INTO BRANCH (BranchID, MgrID, Bname, City, Street, BuildingNo) VALUES
-(1, 2, 'Main Branch', 'Giza', 'Zewail', '123'),
 (2, 3, 'Masara Branch', 'Cairo', 'Shaheed Ghaly', '25'),
 (3, 2, 'Tarek Branch', 'Giza', 'Hadayek El Ahram', '789'),
 (4, 4, 'Elsayed Branch', 'Giza', 'Elhosary', '1011'),
@@ -487,14 +536,14 @@ INSERT INTO SHOWROOM (Show_Room_Name, City, Street, phoneNumber) VALUES
 INSERT INTO VEHICLE (Car_Status, SHOWROOM, Brand, CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats, Traction_Type, Cylinders, Tank_Capacity, iimage)
 VALUES ('new', 'Main Showroom', 'Toyota', 2000, 'Red', 2022, 'Automatic',
 'Sedan', 2000, 150, 200, 3, 50000, 8, 6, 'Gasoline', 8.5, 1800, 1400, 500,
-5, '2WD', 4, 60, (SELECT BulkColumn FROM OPENROWSET(BULK N'D:\Academic\Second Year\Spring\DataBase\Project\Car_Store\wwwroot\images\DataBase\toyota1.jpg',SINGLE_BLOB) as Image));
+5, '2WD', 4, 60, (SELECT BulkColumn FROM OPENROWSET(BULK N'C:\Users\Tarek\Documents\GitHub\Car-Store\wwwroot\images\DataBase\toyota1.jpg',SINGLE_BLOB) as Image));
 
 INSERT INTO VEHICLE (Car_Status, SHOWROOM, Brand, CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity,
 hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width,
 height, Trunk_Size, Seats, Traction_Type, Cylinders, Tank_Capacity, iimage)
 VALUES ('new', 'Main Showroom', 'Honda', 1800, 'White', 2022, 'Automatic',
 'Sedan', 1800, 130, 190, 3, 50000, 7, 6, 'Gasoline', 7.5, 1800, 1400, 450,
-5, '2WD', 4, 55, (SELECT BulkColumn FROM OPENROWSET(BULK N'D:\Academic\Second Year\Spring\DataBase\Project\Car_Store\wwwroot\images\DataBase\honda1.jpg', SINGLE_BLOB) as Image));
+5, '2WD', 4, 55, (SELECT BulkColumn FROM OPENROWSET(BULK N'C:\Users\Tarek\Documents\GitHub\Car-Store\wwwroot\images\DataBase\toyota1.jpg',SINGLE_BLOB) as Image));
 
 INSERT INTO VEHICLE (Car_Status, SHOWROOM, Brand, CC_Rnage, Color,
 Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power,
@@ -503,7 +552,7 @@ speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats,
 Traction_Type, Cylinders, Tank_Capacity, iimage)
 VALUES ('new', 'Main Showroom', 'Ford', 2500, 'Black', 2022,
 'Automatic', 'SUV', 2500, 180, 220, 3, 50000, 10, 6, 'Diesel',
-10.5, 2000, 1600, 700, 7, '4WD', 6, 80, (SELECT BulkColumn FROM OPENROWSET(BULK N'D:\Academic\Second Year\Spring\DataBase\Project\Car_Store\wwwroot\images\DataBase\ford1.jpg', SINGLE_BLOB) as Image));
+10.5, 2000, 1600, 700, 7, '4WD', 6, 80, (SELECT BulkColumn FROM OPENROWSET(BULK N'C:\Users\Tarek\Documents\GitHub\Car-Store\wwwroot\images\DataBase\toyota1.jpg',SINGLE_BLOB) as Image));
 
 INSERT INTO VEHICLE (Car_Status, SHOWROOM, Brand, CC_Rnage, Color,
 Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power,
@@ -513,7 +562,7 @@ Traction_Type, Cylinders, Tank_Capacity, iimage)
 VALUES ('new', 'Main Showroom', 'Nissan', 1500, 'Blue', 2022,
 'Manual', 'Hatchback', 1500, 100, 180, 3, 50000, 8, 5,
 'Gasoline', 7.0, 1600, 1300, 350, 5, '2WD', 4, 50,
-(SELECT BulkColumn FROM OPENROWSET(BULK N'D:\Academic\Second Year\Spring\DataBase\Project\Car_Store\wwwroot\images\DataBase\nissan1.jpg', SINGLE_BLOB) as Image));
+(SELECT BulkColumn FROM OPENROWSET(BULK N'C:\Users\Tarek\Documents\GitHub\Car-Store\wwwroot\images\DataBase\toyota1.jpg',SINGLE_BLOB) as Image));
 
 INSERT INTO VEHICLE (Car_Status, SHOWROOM, Brand, CC_Rnage, Color,
 Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power,
@@ -523,7 +572,7 @@ Traction_Type, Cylinders, Tank_Capacity, iimage)
 VALUES ('used', 'Cairo Showroom', 'BMW', 2000, 'Black', 2019,
 'Automatic', 'Sedan', 2000, 150, 240, 2, 20000, 7, 6,
 'Petrol', 9.0, 1700, 1400, 400, 5, 'RWD', 6, 60,
-(SELECT BulkColumn FROM OPENROWSET(BULK N'D:\Academic\Second Year\Spring\DataBase\Project\Car_Store\wwwroot\images\DataBase\bmw1.jpg', SINGLE_BLOB) as Image));
+(SELECT BulkColumn FROM OPENROWSET(BULK N'C:\Users\Tarek\Documents\GitHub\Car-Store\wwwroot\images\DataBase\toyota1.jpg',SINGLE_BLOB) as Image));
 
 INSERT INTO VEHICLE (Car_Status, SHOWROOM, Brand, CC_Rnage, Color,
 Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power,
@@ -533,17 +582,17 @@ Traction_Type, Cylinders, Tank_Capacity, iimage)
 VALUES ('new', 'Cairo Showroom', 'Mercedes', 3000, 'White', 2022,
 'Automatic', 'SUV', 3000, 250, 260, 5, 100000, 6, 7,
 'Diesel', 10.0, 1900, 1600, 600, 7, '4WD', 8, 80,
-(SELECT BulkColumn FROM OPENROWSET(BULK N'D:\Academic\Second Year\Spring\DataBase\Project\Car_Store\wwwroot\images\DataBase\mercedes1.jpg', SINGLE_BLOB) as Image));
+(SELECT BulkColumn FROM OPENROWSET(BULK N'C:\Users\Tarek\Documents\GitHub\Car-Store\wwwroot\images\DataBase\\mercedes1.jpg', SINGLE_BLOB) as Image));
 
 
 -- New_Vehicle
 select * from VEHICLE
 
-INSERT INTO NEW_VEHICLE (Vehicle_ID, NUMBER_OF_CLASSES, Start_Price, End_Price) VALUES
-(2, 2, 40000, 60000),
-(3, 4, 60000, 90000),
-(4, 1, 30000, 35000),
-(5, 5, 70000, 120000);
+INSERT INTO NEW_VEHICLE (Vehicle_ID, Price) VALUES
+(2,60000),
+(3, 90000),
+(4, 35000),
+(5, 120000);
 
 -- USED_VEHICLE
 INSERT INTO USED_VEHICLE (Vehicle_ID, Kilometers, Price, Posting_Date, Class) VALUES
@@ -553,27 +602,15 @@ INSERT INTO USED_VEHICLE (Vehicle_ID, Kilometers, Price, Posting_Date, Class) VA
 (5, 70000, 55000, '2022-05-30', 4);
 
 -- CAR_CLASSES
-INSERT INTO CAR_CLASSES (Vehicle_ID, Class, Price, Deposit, Minimum_Installment) VALUES
-(2, 1, 40000, 8000, 1600),
-(2, 2, 50000, 10000, 2000),
-(3, 1, 60000, 12000, 2400),
-(3, 2, 70000, 14000, 2800),
-(3, 3, 80000, 16000, 3200),
-(3, 4, 90000, 18000, 3600),
-(4, 1, 30000, 6000, 1200),
-(5, 1, 70000, 14000, 2800),
-(5, 2, 80000, 16000, 3200),
-(5, 3, 90000, 18000, 3600),
-(5, 4, 100000, 20000, 4000),
-(5, 5, 120000, 24000, 4800);
+
 
 
 
 -- Service_Centers
-
+select * from SERVICES_CENTER
 --To change
-INSERT INTO SERVICES_CENTER (Service_Center_Name, City, Street, BuildingNo) VALUES
-('ABC Service Center', 'Cairo', 'El-Nasr Road', '123'),
+INSERT INTO SERVICES_CENTER (Name, City, Street, BuildingNo,longitude,latitude) VALUES
+('ABC Service Center', 'Cairo', 'El-Nasr Road', '123',30.04754894570406,30.04754894570406),
 ('XYZ Service Center', 'Alexandria', 'El-Raml Station', '456'),
 ('DEF Service Center', 'Giza', 'Pyramids Street', '789'),
 ('GHI Service Center', 'Luxor', 'Corniche El-Nile', '234'),
@@ -640,7 +677,7 @@ INSERT INTO SERVICES_CENTER_BRANDS (Service_Center_Name, CarBrand) VALUES
 
 select * from client
 -- CLIENT
-INSERT INTO CLIENT (Client_Username, Client_FName, Client_LName, pass, bdate, Mail) VALUES
+INSERT INTO CLIENT (Client_Username, Client_FName, Client_LName, pass, bdate, Mail,Client_phone) VALUES
 ('johnsmith', 'John', 'Smith', 'password123', '1990-05-10', 'johnsmith@example.com'),
 ('ahmedali', 'Ahmed', 'Ali', 'mypassword', '1995-02-21', 'ahmedali@example.com'),
 ('emilyjones', 'Emily', 'Jones', 'emilypassword', '1987-09-04', 'emilyjones@example.com'),
@@ -651,6 +688,11 @@ INSERT INTO CLIENT (Client_Username, Client_FName, Client_LName, pass, bdate, Ma
 ('laylakhaleed', 'Layla', 'Khaled', 'mypassword', '1996-03-25', 'laylakhaleed@example.com'),
 ('sarahjohnson', 'Sarah', 'Johnson', 'mypassword', '1989-06-17', 'sarahjohnson@example.com'),
 ('abdulrahmanali', 'Abdulrahman', 'Ali', 'mypassword', '1994-08-29', 'abdulrahmanali@example.com');
+
+INSERT INTO CLIENT (Client_Username, Client_FName, Client_LName, pass, bdate, Mail,Client_phone) VALUES
+('Tarek1488', 'Tarek', 'asharf', 'Tarek2016', '2003-08-14', 'tarekshalaby@example.com','01124656030')
+
+
 
 INSERT INTO CLIENT (Client_Username, Client_FName, Client_LName, pass, bdate, Mail) VALUES
 ('johndoe', 'John', 'Doe', 'password123', '1991-02-14', 'johndoe@example.com'),
@@ -807,17 +849,18 @@ INSERT INTO works_in_branchdep (Emp_ID, Branch_ID, Dep_ID) VALUES
 -- wishlist_products
 
 INSERT INTO wishlist_products (Customer_ID, Product_ID) VALUES
-(1, 11)
+(1, 1)
 
 select * from client
 select * from PRODUCT
 -- wishlist_vehicle
 INSERT INTO wishlist_vehicle (Customer_ID, vehichle_ID) VALUES
-(1, 15)
+(1, 2)
 
 -- Cart_products
+
 INSERT INTO Cart_products (Customer_ID, Product_ID) VALUES
-(1, 11),
+(1, 1),
 (2, 12),
 (3, 13),
 (4, 14),
@@ -828,16 +871,66 @@ INSERT INTO Cart_products (Customer_ID, Product_ID) VALUES
 (9, 14),
 (10, 15);
 
+alter table vehicle
+add rating int check(rating >=0 and rating <=5)
+
 -- Cart_vehicle
 INSERT INTO Cart_vehicle (Customer_ID, vehichle_ID) VALUES
-(1, 15),
-(2, 16),
-(3, 17),
-(4, 18),
-(5, 19),
-(6, 20),
-(7, 20),
-(8, 16),
-(9, 17),
-(10, 17);
- 
+
+
+(4, 6),
+(5, 4),
+(6, 2),
+(7, 5),
+(8, 1),
+(9, 3),
+(10, 6);
+
+
+select * from CLIENT
+select * from USED_VEHICLE
+select * from Client_Posts
+
+insert into Client_Posts values 
+(1,2),
+(1,3),
+(1,4),
+
+
+
+
+
+
+--select --VEHICLE.Brand,
+--VEHICLE.Vehicle_No,
+--VEHICLE.CarDescription,
+--VEHICLE.CC_Rnage,
+--VEHICLE.Color,
+--VEHICLE.Year_Model,
+--VEHICLE.Gearing,
+--VEHICLE.Body_Style,
+--VEHICLE.iimage,
+--USED_VEHICLE.Price,
+--USED_VEHICLE.Kilometers,
+--USED_VEHICLE.Posting_Date,
+--USED_VEHICLE.Class 
+
+FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts 
+
+ON Client_Posts.VehcileId = VEHICLE.Vehicle_No
+
+WHERE Client_Posts.ClientId = 1
+
+select * from VEHICLE
+SELECT  TOP 1 Vehicle_No FROM VEHICLE
+ORDER BY Vehicle_No DESC
+
+
+select * from VEHICLE
+order by Vehicle_No desc
+
+delete from VEHICLE
+where Vehicle_No in (9,8,7);
+
+select * from Client_Posts
+select * from CLIENT

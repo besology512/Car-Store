@@ -20,29 +20,33 @@
 
 <div class="all-page-content-c">
     <div class="posts">
-        <div class="Post-Card">
-            <img src="~/images/noah-boyer-we3H3hwCPtc-unsplash.jpg" alt="Example Image">
-            <h2>Example Title</h2>
-            <p>$9.99</p>
-            <button class="delete-button">Delete</button>
-        </div>
-        <div class="Post-Card">
-            <img src="~/images/noah-boyer-we3H3hwCPtc-unsplash.jpg" alt="Example Image">
-            <h2>Example Title</h2>
-            <p>$9.99</p>
-            <button class="delete-button">Delete</button>
-        </div>
-        <div class="Post-Card">
-            <img src="~/images/noah-boyer-we3H3hwCPtc-unsplash.jpg" alt="Example Image">
-            <h2>Example Title</h2>
-            <p>$9.99</p>
-            <button class="delete-button">Delete</button>
-        </div>
-        <div class="Post-Card">
-            <img src="~/images/noah-boyer-we3H3hwCPtc-unsplash.jpg" alt="Example Image">
-            <h2>Example Title</h2>
-            <p>$9.99</p>
-            <button class="delete-button">Delete</button>
-        </div>
+        @for(int i = 0; i<Model.dtable.Rows.Count; i++)
+        {
+            <div class="Post-Card">
+
+                <span class="sec-color">@Model.dtable.Rows[i][11]</span>
+                @{
+                    string img = Convert.ToBase64String((byte[])@Model.dtable.Rows[i][8]);
+
+                }
+                <img src="data:image/png;base64,@img" alt="Example Image">
+
+                <h2>@Model.dtable.Rows[i][0] <span>@Model.dtable.Rows[i][5]</span></h2>
+                <p class="sec-color">@Model.dtable.Rows[i][2]</p>
+                <p>@Model.dtable.Rows[i][6] <span>@Model.dtable.Rows[i][7] CC</span></p>
+
+                <p>@Model.dtable.Rows[i][4] <span class="main-color">@Model.dtable.Rows[i][3]</span></p>
+                <p class="main-color">@Model.dtable.Rows[i][10]Km</p>
+                <p class="main-color">@Model.dtable.Rows[i][9] $</p>
+                <form method="post">
+                    <input type="hidden" value="@Model.dtable.Rows[i][1]" name = "vehcId"  />
+                    <div>
+                        <input type="submit" asp-page-handler="Delete" class="delete-button" value="delete" />
+                        <input type="submit" asp-page-handler="Edit" class="delete-button" value="edit" />
+                    </div>
+                </form>
+            </div>
+        }
+
     </div>
 </div>

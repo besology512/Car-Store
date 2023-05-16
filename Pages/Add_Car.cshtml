@@ -126,7 +126,7 @@
         <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
         <div class="image-add">
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" name="car-image">
+                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image1"  accept="image/*">
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
@@ -134,7 +134,7 @@
             </div>
             
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" name="car-image" accept="image/*">
+                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image2 name="  accept="image/*">
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
@@ -142,7 +142,7 @@
             </div>
             
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" name="car-image" accept="image/*">
+                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image3 name="  accept="image/*">
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
@@ -155,12 +155,12 @@
         <div class="car-details">
             <div class="car-title">
                 <label for="car-title">Ad. Title</label>
-                <input type="text" id="car-title" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic"/>
+                <input type="text" asp-for="@Model.ParentV.cardesc" name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic"/>
             </div>
             <div class="make-model">
                 <div class="make">
                     <label for="Make">Make*</label>
-                    <select id="Make" name="SelectedBrand">
+                    <select id="Make" asp-for="@Model.ParentV.Brand" name="Brand">
                         @foreach (string brand in carBrands)
                         {
                             <option value="@brand">@brand</option>
@@ -170,7 +170,7 @@
           
                 <div class="model">
                     <label for="Model">Model*</label>
-                    <select id="Model">
+                    <select id="Model" asp-for="@Model.ParentV.carmodel" name="Model">
                         @foreach (string modell in carModels["Nissan"])
                         {
                             <option value="@modell">@modell</option>
@@ -180,18 +180,19 @@
             </div>
             <div class="car-year">
                 <label for="car-title">Year*</label>
-                <input type="number" id="car-title" required class="my-input"
-                       min="1900" max="2099" step="1" placeholder="year" name="year" />
+                
+                <input type="number" asp-for="@Model.ParentV.year_model" required class="my-input"
+                       min="1900" max="2099" step="1" placeholder="year" name="Year" />
             </div>
             <div class="Km-city">
                 <div class="Km">
                     <label for="car-Km">Km*</label>
-                    <input type="text" id="car-Km" required
+                    <input type="text" id="car-Km" required asp-for="@Model.u_Vehicle.Km
                            placeholder="How many KM?" class="my-input" name="KM" />
                 </div>
                 <div class="city">
                     <label for="City">City*</label>
-                    <select id="City">
+                    <select id="City" asp-for="@Model.u_Vehicle.city" name="City">
                         @foreach (string city in egyptCities)
                         {
                             <option value="@city">@city</option>
@@ -242,11 +243,11 @@
                 <div class="Class">
                     <label for="car-Class">Class*</label>
                     <input type="text" id="car-Class" required
-                           placeholder="insert you are car class" class="my-input" name="CARCLASS" />
+                       asp-for="@Model.u_Vehicle.car_class"    placeholder="insert you are car class" class="my-input" name="CarClass" />
                 </div>
                 <div class="style">
                     <label for="Car-style">Style*</label>
-                    <select id="Car-style" name="Cstyle">
+                    <select id="Car-style"  name="Cstyle" asp-for="@Model.ParentV.Body_Style" >
                         <option>Sedan</option>
                         <option>SUV</option>
                         <option>Coube</option>
@@ -259,14 +260,14 @@
             <div class="transition-fuel">
                 <div class="gearing">
                     <label for="gear">Gearing*</label>
-                    <select id="gear" name="GEAR">
+                    <select id="gear" name="GEAR" asp-for="@Model.ParentV.Gearing" >
                         <option value="manual">manual</option>
                         <option value="automatic">automatic</option>
                     </select>
                 </div>
                 <div class="fuel">
                     <label for="Fuel">Fuel*</label>
-                    <select id="Fuel">
+                    <select id="Fuel" asp-for="@Model.ParentV.fuel" name="Fuel">
                         <option value="Gas">Gas</option>
                         <option value="Electric">Electric</option>
                         <option value="Hybird">Hybird</option>
@@ -277,11 +278,11 @@
             </div>
             <div class="cc-range">
                 <label for="car-CC">CC Range*</label>
-                <input type="text" id="car-CC" class="my-input" required name="CC"/>
+                <input type="text" id="car-CC" class="my-input" required name="CC" asp-for="@Model.ParentV.CC_Range" />
             </div>
             <div class="car-price">
                 <label for="car-price">Price</label>
-                <input type="text" id="car-price" required class="my-input" name="pr" />
+                <input type="text" id="car-price" required class="my-input" name="Price" asp-for="@Model.u_Vehicle.price" />
             </div>
         </div>
         <div>
