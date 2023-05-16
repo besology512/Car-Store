@@ -15,8 +15,6 @@ namespace Car_Store.models
         {
 
 
-            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=TRMBcar;Integrated Security=True";
-
             con = new SqlConnection(conString);
         }
 
