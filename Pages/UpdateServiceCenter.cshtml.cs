@@ -21,6 +21,8 @@ namespace Car_Store.Pages
             }
             DT = new DataTable();
 
+            myCenter = new ServicesCenters();
+
             myCenter.ID = id;
             
             DT = (DataTable)myCenter.getTuple();
