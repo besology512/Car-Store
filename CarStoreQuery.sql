@@ -18,7 +18,11 @@ CREATE TABLE EMPLOYEE(
 	PRIMARY KEY(ID), 
 	FOREIGN KEY (SuperID) REFERENCES EMPLOYEE(ID)
 );
-select * from CLIENT
+select * from SERVICES_CENTER
+Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
+Update Services_Center set Name = 'Mohamed' where ID = 1
+
+select* from SERVICES_CENTER
 
 CREATE TABLE BRANCH(
 	BranchID INT,
@@ -834,3 +838,4 @@ INSERT INTO Cart_vehicle (Customer_ID, vehichle_ID) VALUES
 (8, 16),
 (9, 17),
 (10, 17);
+ 

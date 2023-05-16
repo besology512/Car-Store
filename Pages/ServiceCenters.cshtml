@@ -48,110 +48,85 @@
     <h1 class="text-c">Most Relevant</h1>
 
 
-    <div class="service-center-box">
-        <div class="center-map">
-            <iframe width="100%"
+    @if (HttpContext.Session.GetInt32("User_Type") != 1)
+    {
+        @for (int i = 0; i < Model.DT.Rows.Count; i++)
+        {
+            Model.mapsLink = "https://maps.google.com/maps?q=" + Model.DT.Rows[i][4].ToString() + "," + Model.DT.Rows[i][5].ToString() + "&z=12&output=embed&zoomcontrol=0";
+
+            <div class="service-center-box">
+                <div class="center-map">
+                    <iframe width="100%"
                     height="100%"
                     frameborder="0" style="border:0; border-radius: 25px;"
-                    src="https://maps.google.com/maps?q=30.107399736879323,31.257629625035257&z=12&output=embed&zoomcontrol=0">
-                allowfullscreen>
-            </iframe>
-        </div>
+                    src=@Model.mapsLink>
+                        title="Google Maps"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="center-description">
+                    <h3>@Model.DT.Rows[i][1]</h3>
+                    <p class="Address"> Adress: </p>
+                    <span> @Model.DT.Rows[i][2]</span>
+                    <p class="Services"> Services: </p>
+                    <span> @Model.DT.Rows[i][3]</span>
+                    <div class="stars">
 
-        <div class="center-description">
-            <h3>X Auto Service Center</h3>
-            <p class="Address"> Adress: </p>
-            <span> اسراء المعلمين، ميت عقبة، حي العجوزة، الجيزة</span>
-            <p class="Services"> Services: </p>
-            <span> متخصصون في تصليح تكيف سيارات نيسان تيدا  </span>
-            <div class="stars">
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
+                        @for (int j = 0; j < (int)Model.DT.Rows[i][6]; j++)
+                        {
+                            <span class="star filled-s">&#9733;</span>
+                        }
+
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
+    }
+    else
+    {
 
-    <div class="service-center-box">
-        <div class="center-map">
-            <iframe width="100%"
-                    height="100%"
-                    frameborder="0" style="border:0; border-radius: 25px;"
-                    src="https://maps.google.com/maps?q=30.107399736879323,31.257629625035257&z=12&output=embed&zoomcontrol=0">
-                allowfullscreen>
-            </iframe>
-        </div>
+        @for (int i = 0; i < Model.DT.Rows.Count; i++)
+        {
+            Model.mapsLink = "https://maps.google.com/maps?q=" + Model.DT.Rows[i][4].ToString() + "," + Model.DT.Rows[i][5].ToString() + "&z=12&output=embed&zoomcontrol=0";
 
-        <div class="center-description">
-            <h3>X Auto Service Center</h3>
-            <p class="Address"> Adress: </p>
-            <span> اسراء المعلمين، ميت عقبة، حي العجوزة، الجيزة</span>
-            <p class="Services"> Services: </p>
-            <span> متخصصون في تصليح تكيف سيارات نيسان تيدا  </span>
-            <div class="stars">
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
+            <div class="service-center-box">
+                <div class="center-map">
+                    <iframe width="100%"
+                            height="100%"
+                            frameborder="0" style="border:0; border-radius: 25px;"
+                            src=@Model.mapsLink>
+                        title="Google Maps"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="center-description">
+                    <h3>@Model.DT.Rows[i][1]</h3>
+                    <p class="Address"> Adress: </p>
+                    <span> @Model.DT.Rows[i][2]</span>
+                    <p class="Services"> Services: </p>
+                    <span> @Model.DT.Rows[i][3]</span>
+                    <div class="stars">
+
+                        @for (int j = 0; j < (int)Model.DT.Rows[i][6]; j++)
+                        {
+                            <span class="star filled-s">&#9733;</span>
+                        }
+
+                    </div>
+
+                    <div class="updateDelete" style="margin-top: 9px">
+                        <a class="update"  style="color:black" asp-page ="/UpdateServiceCenter" asp-route-id = "@Model.DT.Rows[i][0]"> <i class="fa-solid fa-pencil"></i> Update </a>
+                        <a class="delete" style="color:black" asp-page ="/DeleteServiceCenter" asp-route-id = "@Model.DT.Rows[i][0]"> <i class="fa-solid fa-trash" style="color:red"></i> Delete </a>
+
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </div>
+        }
+
+        
+    }
 
 
-    <div class="service-center-box">
-        <div class="center-map">
-            <iframe width="100%"
-                    height="100%"
-                    frameborder="0" style="border:0; border-radius: 25px;"
-                    src="https://maps.google.com/maps?q=30.107399736879323,31.257629625035257&z=12&output=embed&zoomcontrol=0">
-                allowfullscreen>
-            </iframe>
-        </div>
-
-        <div class="center-description">
-            <h3>X Auto Service Center</h3>
-            <p class="Address"> Adress: </p>
-            <span> اسراء المعلمين، ميت عقبة، حي العجوزة، الجيزة</span>
-            <p class="Services"> Services: </p>
-            <span> متخصصون في تصليح تكيف سيارات نيسان تيدا  </span>
-            <div class="stars">
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="service-center-box">
-        <div class="center-map">
-            <iframe width="100%"
-                    height="100%"
-                    frameborder="0" style="border:0; border-radius: 25px;"
-                    src="https://maps.google.com/maps?q=30.107399736879323,31.257629625035257&z=12&output=embed&zoomcontrol=0">
-                allowfullscreen>
-            </iframe>
-        </div>
-
-        <div class="center-description">
-            <h3>X Auto Service Center</h3>
-            <p class="Address"> Adress: </p>
-            <span> اسراء المعلمين، ميت عقبة، حي العجوزة، الجيزة</span>
-            <p class="Services"> Services: </p>
-            <span> متخصصون في تصليح تكيف سيارات نيسان تيدا  </span>
-            <div class="stars">
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-                <span class="star filled-s">&#9733;</span>
-            </div>
-        </div>
-    </div>
 </section>
 <!-- End Most Relevant Section-->
