@@ -29,6 +29,9 @@ namespace Car_Store.models
 
         [Required]
         public int quantity { get; set; }
+
+        [Required]
+        public int Id { get; set; }
     }
 
 }

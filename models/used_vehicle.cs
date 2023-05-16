@@ -2,21 +2,24 @@
 
 namespace Car_Store.models
 {
-    public class used_vehicle:vehicle
+    public class used_vehicle
     {
         [Required]
-        int Vehicle_id;
+        public int Vehicle_id;
 
         [Required]
-        int Km;// car moved kilometers
+        public int Km;// car moved kilometers
 
         [Required]
-        int price;
+        public int price;
 
         [Required]
-        string posting_date;
+        public string posting_date;
 
         [Required]
-        int car_class;
+        public int car_class;
+
+        [Required,MaxLength(30)]
+        public string city;
     }
 }

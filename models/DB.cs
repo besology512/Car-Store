@@ -13,11 +13,10 @@ namespace Car_Store.models
 
         public DB()
         {
-<<<<<<< HEAD
-            string conString = "Data Source=LAPTOP-8NJTOS7O;Initial Catalog=THECARSTORE;Integrated Security=True";
-=======
-            string conString = "Data Source=SQL5110.site4now.net;Initial Catalog=db_a994a9_trmpcar;User Id=db_a994a9_trmpcar_admin;Password=Tarek2016";
->>>>>>> c50b903953b4972aba6143f6a7d9dc702a9d38f7
+
+
+            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
+
             con = new SqlConnection(conString);
         }
 
@@ -39,30 +38,88 @@ namespace Car_Store.models
         }
 
 
-        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
+        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class,string cardes,string name,string fuel,string city)
         {
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
-                "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "')";
+
+            byte[] imageData1;
+            byte[] imageData2;
+            byte[] imageData3;
+
+            // Convert the image files to binary data
+            //using (var memoryStream1 = new MemoryStream())
+            //{
+            //    iimage.CopyTo(memoryStream1);
+            //    imageData1 = memoryStream1.ToArray();
+            //}
+
+            //using (var memoryStream2 = new MemoryStream())
+            //{
+            //    image2.CopyTo(memoryStream2);
+            //    imageData2 = memoryStream2.ToArray();
+            //}
+
+            //using (var memoryStream3 = new MemoryStream())
+            //{
+            //    image3.CopyTo(memoryStream3);
+            //    imageData3 = memoryStream3.ToArray();
+            //}
+
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel)" +
+            "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
+            + "','"  + name + "','" + fuel + "')";
+            
             DateTime currentDate = DateTime.Now;
+            
             string formattedDate = currentDate.ToString("yyyy-MM-dd");
-            string q2 = "INSERT INTO USED_VEHICLE VALUES(" + 1 + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ")";
+
             excute_nonQuery(q);
+            
+            int vecId = getTopVehicleId();
+
+            string q2 = "INSERT INTO USED_VEHICLE VALUES(" + vecId + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ",'" + city + "')";
+            
             excute_nonQuery(q2);
         }
-
-        public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description)
+        public int getTopVehicleId()
         {
-            string q = "INSERT INTO PRODUCT VALUES('" + category + "'," + branchId + "," + qunatity + ",'" + brand + "'," + price + ",' '," + status + ",'" + description + "')";
+            string q = "SELECT  TOP 1 Vehicle_No FROM VEHICLE ORDER BY Vehicle_No DESC";
+            return (int)getsinglevalue(q);
+        }
+        public void insert_CLIENT_POSTS(int clientid,int vehicleId )
+        {
+            string q = "INSERT INTO Client_Posts VALUES(" + clientid + " , " + vehicleId + ")";
             excute_nonQuery(q);
+        }
+
+        public void delet_CLIENT_POST(int vecId,int ClieTnID)
+        {
+            string q = "delete from Client_Posts where ClientId =  " + ClieTnID + " AND " + "VehcileId = " + vecId;
+            excute_nonQuery(q);
+        }
+
+        public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description,int pid)
+        {
+            string q = "INSERT INTO PRODUCT (CATEGORY,BranchNo,Quantity,brand,Price,Statuss,Product_title,ProductID) VALUES('" + category + "'," + branchId + "," + qunatity + ",'" + brand + "'," + price + "," + status + ",'" + description + "'," + pid + ")";
+            excute_nonQuery(q);
+        }
+
+        public object get_branchid()
+        {
+            string q = "select BRANCH.BranchID from BRANCH";
+            return Readtable(q);
         }
 
         public object getUser(int ID )
         {
-            string q = "SELECT Client_FName, Client_LName ,Client_Phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
+            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
 
             return Readtable(q);
         }
-
+        public object GetPostedCar(int ID)
+        {
+            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,VEHICLE.iimage,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
+            return Readtable(q);
+        }
         private object Readtable(string Q)
         {
             DataTable dt = new DataTable();

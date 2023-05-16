@@ -22,9 +22,9 @@ namespace Car_Store.Pages
             }
             return Page();
         }
-        public void OnPost()
+        public void OnPost(string carimage,string ptitle,string pcat,int branchid,int quantity,string brand,int price,int pId)
         {
-            database.insert_product(p.Category, p.branchId, p.quantity, p.brand, p.price, 1, p.Description);
+            database.insert_product(pcat, branchid, quantity,brand,price, 1,ptitle,pId);
         }
 
     }

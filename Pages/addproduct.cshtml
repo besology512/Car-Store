@@ -43,17 +43,17 @@
             <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
             Upload product image
         </label>
-        <input type="file" id="car-image" accept="image/*" name="car-image" asp-for="@Model.p.image">
+        <input type="file" id="car-image" accept="image/*" name="carimage" asp-for="@Model.p.image">
     </div>
     <div class="card">
         <form method="post" id="add-from">
             <div class="product-title">
                 <label for="p-title">Add title</label>
-                <input required id="p-title" type="text" class="my-input" placeholder="Ex: mobile holder" asp-for="@Model.p.Description" />
+                <input required id="p-title" type="text" class="my-input" name="ptitle" placeholder="Ex: mobile holder" asp-for="@Model.p.Description" />
             </div>
             <div>
                 <label for="p-Category">Category</label>
-                <select required id="p-Category" class="my-select" asp-for="@Model.p.Category">
+                <select required id="p-Category" class="my-select" name="pcat" asp-for="@Model.p.Category">
                     @foreach(string cateory in carAccessories)
                     {
                         <option value="@cateory">@cateory</option>
@@ -63,8 +63,8 @@
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="p-branch">branch</label>
-                    <select required class="my-select" id="p-branch" asp-for="@Model.p.branchId">
-                        @for (int i = 1; i < 5; i++)
+                    <select required class="my-select" id="p-branch" name="branchid" asp-for="@Model.p.branchId">
+                        @for (int i = 1; i < 31; i++)
                         {
                             <option value="@i">@i</option>
                         }
@@ -72,18 +72,22 @@
                 </div>
                 <div class="flex-item-d">
                     <label for="p-quantity">Quantity</label>
-                    <input required id="p-quantity" type="text" class="my-input" asp-for="@Model.p.quantity" placeholder="Enter product quantity" />
+                    <input required id="p-quantity" type="text" class="my-input" name="quantity" asp-for="@Model.p.quantity" placeholder="Enter product quantity" />
                 </div>
             </div>
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="p-brand">brand</label>
-                    <input required id="p-brand" type="text" asp-for="@Model.p.brand" class="my-input" placeholder="Enter product brand" />
+                    <input required id="p-brand" type="text" asp-for="@Model.p.brand" name="brand" class="my-input" placeholder="Enter product brand" />
                 </div>
                 <div class="flex-item-d">
                     <label for="p-price">Price</label>
-                    <input required id="p-price" type="text" class="my-input" asp-for="@Model.p.price" placeholder="Enter product price" />
+                    <input required id="p-price" type="text" class="my-input" name="price" asp-for="@Model.p.price" placeholder="Enter product price" />
                 </div>
+            </div>
+            <div class="Id">
+                <label for="p-Id">Add ID</label>
+                <input class="my-input" required id="p-Id" type="text" name="pId" placeholder="Enter product ID" />
             </div>
 
         </form>

@@ -30,7 +30,7 @@ namespace Car_Store.models
             this.car_image = car_image;
         }
 
-
+        string car_image;
         [Required, MaxLength(20)]
         public string car_status; // status of the car used,new 
 
@@ -55,7 +55,18 @@ namespace Car_Store.models
         [Required,MaxLength(20)]
         public string Body_Style; // style of the car --> suv,sedan,copeh
 
-        [MaxLength(150)]
-        public string car_image;
+        
+        public IFormFile car_image1;
+        public IFormFile car_image2;
+        public IFormFile car_image3;
+
+        [Required,MaxLength(1000)]
+        public string cardesc;
+
+        [MaxLength(30)]
+        public string carmodel;
+
+        [MaxLength(20)]
+        public string fuel;
     }
 }
