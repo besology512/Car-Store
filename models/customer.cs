@@ -24,7 +24,7 @@ namespace Car_Store.models
         public string password;
         public void insert()
         {
-            db.insertUser(this.fname, this.Lname, this.password, this.date, this.Email, this.UserName);
+          //  db.insertUser(this.fname, this.Lname, this.password, this.date, this.Email, this.UserName);
         }
         public string getPasswordCl() {
             return (string)db.getPasswordClient(UserName);

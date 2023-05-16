@@ -26,7 +26,6 @@ namespace Car_Store.Pages
                     return RedirectToPage("/index");
                 }
                 return Page();
-
         }
         public IActionResult OnPost(string name, string city, string phoneNumber, string street, string previousName)
         {

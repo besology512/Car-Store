@@ -290,35 +290,19 @@ nav i:last-child {
 .searching
 {
     display:flex;
-    height: 400px;
+    height: 450px;
     margin-top: 40px;
 }
-.searching .searching_box
-{
-width : 40%;
-background : #fff;
-height: 100%;
-margin-right:8px;
-border-radius: 20px;
-text-align: center;
 
-}
 
 .searching .map_box
 {
-    width : 60%;
+    width : 100%;
     background : #777;
     height: 100%;
-    margin-left: 8px;
-}
+    margin-left: 800px;
+}   
 
-.searching_box input 
-{
-    width : 70%;
-    margin: 20px 40px 20px 40px;
-    padding: 6px 20px;
-    text-align: center;
-}
 /*End searching section */
 
 /* Start Most Relevant Section */
