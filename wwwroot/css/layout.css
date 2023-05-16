@@ -114,6 +114,7 @@ nav .all-ctg .details:hover {
 }
 
 nav .all-ctg .details .burgra {
+    
     width: 30px;
     height: 30px;
     translate: 5px 3px;
@@ -218,6 +219,15 @@ nav .other .icons i:not(:first-child)::after {
 
 nav i:last-child {
     margin-right: -22%;
+}
+
+.my-i{
+    display:none !important;
+}
+@media(max-width:768px){
+    .my-i{
+        display:block !important;
+    }
 }
 
 .in-mobile {

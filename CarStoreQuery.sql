@@ -1,5 +1,6 @@
-CREATE DATABASE TRMPcar
-USE TRMPcar
+CREATE DATABASE TRMBcar
+USE TRMBcar
+
 
 CREATE TABLE EMPLOYEE(  
 	ID INT, 
@@ -155,26 +156,29 @@ CREATE TABLE SHOWROOM(
 
 
 CREATE TABLE SERVICES_CENTER(
-	Service_Center_Name VARCHAR(100) PRIMARY KEY,
-	City VARCHAR(50) NOT NULL,
-	Street VARCHAR(100) NOT NULL,
-	BuildingNo VARCHAR(10)
+	ID INT Primary Key,
+	Name VARCHAR(100) Unique NOT NULL,
+	Address VARCHAR(200) NOT NULL,
+	Services VARCHAR(300),
+	latitude DECIMAL(17, 14),
+	longitude DECIMAL(17, 14),
+	Stars INT,
 );
 
 CREATE TABLE SERVICES_CENTER_PHONENUMBER(
-	Service_Center_Name VARCHAR(100),
+	Service_Center_ID INT,
 	PhoneNumber INT,
-	PRIMARY KEY(Service_Center_Name,PhoneNumber),
-	FOREIGN KEY (Service_Center_Name) REFERENCES SERVICES_CENTER(Service_Center_Name)
+	PRIMARY KEY(Service_Center_ID,PhoneNumber),
+	FOREIGN KEY (Service_Center_ID) REFERENCES SERVICES_CENTER(ID)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
 CREATE TABLE SERVICES_CENTER_BRANDS(
-	Service_Center_Name VARCHAR(100),
+	Service_Center_ID INT,
 	CarBrand VARCHAR(50),
-	PRIMARY KEY(Service_Center_Name,CarBrand),
-	FOREIGN KEY (Service_Center_Name) REFERENCES SERVICES_CENTER(Service_Center_Name)
+	PRIMARY KEY(Service_Center_ID,CarBrand),
+	FOREIGN KEY (Service_Center_ID) REFERENCES SERVICES_CENTER(ID)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 );
@@ -313,7 +317,9 @@ INSERT INTO EMPLOYEE (ID, Emp_Username, Fname, Mname, Lname, pass, SSN, BirthDat
 (27, 'sarahebrahim', 'Sarah', 'Aa', 'Ebrahim', 'password27', 678984234, '1998-09-30', 'F', 45000, 3, 0),
 (28, 'omarhamed', 'Omar', 'Bb', 'Hamed', 'password28', 789012615, '1987-02-17', 'M', 60000, 3, 0),
 (29, 'ahmedhamed', 'Ahmed', 'Cc', 'Hamed', 'password29', 890184456, '1992-04-09', 'M', 65000, NULL, 0),
-(30, 'nourelhoda', 'Nour', 'Dd', 'El Hoda', 'password30', 901784567, '1994-05-30', 'F', 55000, 4, 0);
+(30, 'nourelhoda', 'Nour', 'Dd', 'El Hoda', 'password30', 456781282, '1994-05-30', 'F', 55000, 4, 0),
+(31, 'user', 'Nouwwr', 'Dwd', 'El wHodqa', 'user', 456721212, '1994-05-30', 'F', 55000, 4, 0),
+(32, 'admin', 'Nouwr', 'Ddw', 'Elw Hodqa', 'admin', 416781212, '1994-05-30', 'F', 55000, 4, 1);
 
 select * from employee
 -- BRANCH table
@@ -559,6 +565,8 @@ INSERT INTO CAR_CLASSES (Vehicle_ID, Class, Price, Deposit, Minimum_Installment)
 
 
 -- Service_Centers
+
+--To change
 INSERT INTO SERVICES_CENTER (Service_Center_Name, City, Street, BuildingNo) VALUES
 ('ABC Service Center', 'Cairo', 'El-Nasr Road', '123'),
 ('XYZ Service Center', 'Alexandria', 'El-Raml Station', '456'),
