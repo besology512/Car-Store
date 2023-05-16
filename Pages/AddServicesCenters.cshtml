@@ -1,0 +1,68 @@
+﻿@page
+@model Car_Store.Pages.Shared.AddServicesCentersModel
+@{
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
+}
+
+
+<link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
+<div class="all-page-content">
+
+    <form method="post" id="main-form">
+        <span class="sec-color"><i class="fa-solid fa-memo-circle-info"></i> Service Center Details</span>
+        <div class="car-details">
+            <div class="car-title">
+                <label for="car-title">ID*</label>
+                <input name="id" type="text" id="car-title" required
+                       placeholder="Ex: 120" />
+            </div>
+
+            <div class="car-year">
+                <label for="car-title">Name*</label>
+                <input name="name" type="text" id="car-title" required class="my-input" placeholder="Ex: Elnasr Services Center" />
+            </div>
+
+            <div class="car-year">
+                <label for="car-title">Address*</label>
+                <input name="address" type="text" id="car-title" required class="my-input" placeholder="Ex: Maadi, street 8, behind bazoka restaurant" />
+            </div>
+
+            <div class="car-year">
+                <label for="car-title">Stars*</label>
+                <input name="stars" type="text" id="car-title" required class="my-input" placeholder="Ex: 3" />
+            </div>
+
+            <div class="car-year">
+                <label for="car-title">Services*</label>
+                <input name="services" type="text" id="car-title" required class="my-input" placeholder="Ex: We fix tyota Cars. We specialized in glasses." />
+            </div>
+
+            <div class="transition-fuel">
+                <div class="gearing">
+                    <label for="Fuel">Latitude*</label>
+                    <input name="latitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 30.04754894570406" />
+                </div>
+                <div class="fuel">
+                    <label for="Fuel">Logitude*</label>
+                    <input name="longitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 31.182370441104478" />
+                </div>
+            </div>
+
+
+        </div>
+        <div>
+            <input form="main-form" class="sub" type="submit" value="Add Show Room" />
+        </div>
+    </form>
+</div>
