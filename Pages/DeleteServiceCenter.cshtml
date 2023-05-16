@@ -1,0 +1,35 @@
+﻿@page
+@model Car_Store.Pages.DeleteServiceCenterModel
+@{
+
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
+}
+
+
+<link rel="stylesheet" href="~/css/delete.css" asp-append-version="true">
+
+<div class="ask card">
+    <div>
+        <span>Are you sure you want to delete the service center with ID: @Model.ID ?</span>
+    </div>
+    <div>
+        <form method="post">
+            <div class="divbutton">
+                <input type ="hidden" name="id" value="@Model.ID"/>
+                <input style="background-color:red;" class="button" asp-page-handler="Yes" type="submit" value="Yes" />
+                <input style="background-color:green;" class="button" asp-page-handler="No" type="submit" value="No" />
+            </div>
+        </form>
+    </div>
+</div>
