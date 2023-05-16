@@ -14,108 +14,90 @@
         Layout = "adminlay";
     }
 }
+@{
+    double sum = 0;
+    for (int i = 0; i < Model.dtCarNew.Rows.Count; i++)
+    {
+        sum += (int)@Model.dtCarNew.Rows[i][5];
+
+    }    
+    for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+    {
+        sum += (int)@Model.dtCarUsed.Rows[i][5];
+
+    }
+}
 
 <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true">
 <!-- Start Cart Section-->
 <section class="cart page_margin">
         <div class="items">
             <div class="item-box">
+
+                @for(int i = 0; i<Model.dtCarNew.Rows.Count; i++){
                 <div class="item">
                     <div class="car-img">
-                        <img src="./images/image-car-6.jpg" alt="car image">
-                    </div>
-                    <div class="item-description">
-                        <h3>Mazda CX404</h3>
-                        <div class="color-info"><span class="color">Color:</span> <span>Baby blue</span></div>
-                        <div class="class-info"><span class="class">Class:</span> <span>Third</span></div>
-
-                        <div class="icons">
-                            <div class="remove">
-                                <a href="">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span>remove</span>
-                                </a>
-                            </div>
-
-                            <div class="Add-wishlist">
-                                <a href="">
-                                    <i class="fa-regular fa-heart"></i>
-                                    <span>Add to wishlist</span>
-                                </a>
-                            </div>
+                            @{
+                                string img = Convert.ToBase64String((byte[])Model.dtCarNew.Rows[i][3]);
+                            }
+                            <img src="data:image/png;base64,@img" alt="car image">
                         </div>
-                        <div class="price"> $1,199,00</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="car-img">
-                        <img src="./images/image-car-6.jpg" alt="car image">
-                    </div>
-                    <div class="item-description">
-                        <h3>Mazda CX404</h3>
-                        <div class="color-info"><span class="color">Color:</span> <span>Baby blue</span></div>
-                        <div class="class-info"><span class="class">Class:</span> <span>Third</span></div>
-
-                        <div class="icons">
-                            <div class="remove">
-                                <a href="">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span>remove</span>
-                                </a>
+                        <div class="item-description">
+                            <h3>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
+                            <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarNew.Rows[i][2]</span></div>
+                            <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarNew.Rows[i][4]</span></div>
+                            <div class="icons">
+                                <div class="remove">
+                                    <form method="post">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <input name="pId" type="hidden" style="border:none;" value="@Model.dtCarNew.Rows[i][6]" />
+                                        <input asp-page-handler="Remove" type="submit" style="border:none; cursor:pointer" value="remove"/>
+                                    </form>
+                                </div>
                             </div>
-
-                            <div class="Add-wishlist">
-                                <a href="">
-                                    <i class="fa-regular fa-heart"></i>
-                                    <span>Add to wishlist</span>
-                                </a>
-                            </div>
+                            <div class="price"> @Model.dtCarNew.Rows[i][5] $</div>
                         </div>
-                        <div class="price"> $1,199,00</div>
                     </div>
-                </div>
+                }
 
-                <div class="item">
-                    <div class="car-img">
-                        <img src="./images/image-car-6.jpg" alt="car image">
-                    </div>
-                    <div class="item-description">
-                        <h3>Mazda CX404</h3>
-                        <div class="color-info"><span class="color">Color:</span> <span>Baby blue</span></div>
-                        <div class="class-info"><span class="class">Class:</span> <span>Third</span></div>
-
-                        <div class="icons">
-                            <div class="remove">
-                                <a href="">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span>remove</span>
-                                </a>
-                            </div>
-
-                            <div class="Add-wishlist">
-                                <a href="">
-                                    <i class="fa-regular fa-heart"></i>
-                                    <span>Add to wishlist</span>
-                                </a>
-                            </div>
+                @for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+                {
+                    <div class="item">
+                        <div class="car-img">
+                           @{
+                                string img = Convert.ToBase64String((byte[])Model.dtCarUsed.Rows[i][3]);
+                            }
+                            <img src="data:image/png;base64,@img" alt="car image">
                         </div>
-                        <div class="price"> $1,199,00</div>
+                        <div class="item-description">
+                            <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>
+                            <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarUsed.Rows[i][2]</span></div>
+                            <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarUsed.Rows[i][4]</span></div>
+                            <div class="icons">
+                                <div class="remove">
+                                    <form method="post">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <input name="pId" type="hidden" style="border:none" value="@Model.dtCarUsed.Rows[i][6]" />
+                                        <input asp-page-handler="Remove" type="submit" style="border:none; cursor:pointer" value="remove" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="price"> @Model.dtCarUsed.Rows[i][5] $</div>
+                        </div>
                     </div>
-                </div>
-
+                }
             </div>
         </div>
 
         <div class="bill">
             <h3>Receipt</h3>
-            <div class="total-price price"><span class="total">Total Price</span> <span class="price-value">$120000</span> </div>
+            <div class="total-price price"><span class="total">Total Price</span> <span class="price-value">@sum $</span> </div>
             <div class="shipping-price price"><span class="shipping">Shipping</span> <span class="price-value">$11.99</span> </div>
             <div class="hr"><hr></div>
             <div class="promocode bill-title"> <div>Apply promocode</div></div>
             <div class="promo-input"><input type="text" placeholder="Promo code"> <a href=""><span class="apply-promo">Apply</span></a></div>
             <div class="hr"><hr></div>
-            <div class="total-price-value bill-title"><div class="total">The total amount (including VAT) </div> <span class="price-value">$122000</span> </div>
+        <div class="total-price-value bill-title"><div class="total">The total amount (including VAT) </div> <span class="price-value">@(Math.Round((sum * 1.1), 3)) $</span> </div>
             <div class="btn"><button> Proceed to checkout</button></div>
         </div>
 </section>
