@@ -13,7 +13,7 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "\"Data Source=SQL5110.site4now.net;Initial Catalog=db_a994a9_trmpcar;User Id=db_a994a9_trmpcar_admin;Password=Tarek2016";
+            string conString = "Data Source=SQL5110.site4now.net;Initial Catalog=db_a994a9_trmpcar;User Id=db_a994a9_trmpcar_admin;Password=Tarek2016";
             con = new SqlConnection(conString);
         }
 
@@ -34,6 +34,7 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); }
         }
 
+
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
         {
             string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
@@ -49,6 +50,13 @@ namespace Car_Store.models
         {
             string q = "INSERT INTO PRODUCT VALUES('" + category + "'," + branchId + "," + qunatity + ",'" + brand + "'," + price + ",' '," + status + ",'" + description + "')";
             excute_nonQuery(q);
+        }
+
+        public object getUser(int ID )
+        {
+            string q = "SELECT Client_FName, Client_LName ,Client_Phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
+
+            return Readtable(q);
         }
 
         private object Readtable(string Q)
