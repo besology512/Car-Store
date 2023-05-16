@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Car_Store.Pages
 {
@@ -38,19 +39,34 @@ namespace Car_Store.Pages
 
         }
 
-        public IActionResult OnPostSignUp(string fname, string Lname, string phoneNumber, string date, string password, string Email, string UserName)
+        public IActionResult OnPostSignUp(string fname, string Lname, string phoneNumber, string date, string password, string cofirmPassword,  string Email, string UserName)
         {
 
-            Customer.Client_FName = fname;
-            Customer.Client_LName = Lname;
-            Customer.phoneNumber = phoneNumber;
-            Customer.bdate = date;
-            Customer.pass = password;
-            Customer.Mail = Email;        
-            Customer.Client_Username = UserName;
-            Customer.insert();
-            Console.WriteLine("I signed up");
-            return RedirectToPage("/Index");
+            if (password != cofirmPassword)
+            {
+                // Manually add the input values to the ModelState dictionary
+                ModelState.SetModelValue("Customer.Client_FName", new ValueProviderResult(fname));
+                ModelState.SetModelValue("Customer.Client_LName", new ValueProviderResult(Lname));
+                ModelState.SetModelValue("Customer.Client_Username", new ValueProviderResult(UserName));
+                ModelState.SetModelValue("Customer.Mail", new ValueProviderResult(Email));
+                ModelState.SetModelValue("Customer.phoneNumber", new ValueProviderResult(phoneNumber));
+                ModelState.SetModelValue("Customer.bdate", new ValueProviderResult(date));
+                
+                return Page();
+            }
+            else
+            {
+
+                Customer.Client_FName = fname;
+                Customer.Client_LName = Lname;
+                Customer.phoneNumber = phoneNumber;
+                Customer.bdate = date;
+                Customer.pass = password;
+                Customer.Mail = Email;
+                Customer.Client_Username = UserName;
+                Customer.insert();
+                return RedirectToPage("/Index");
+            }
         }
 
         public IActionResult OnPostLogin(string UserName2, string Password2) { 

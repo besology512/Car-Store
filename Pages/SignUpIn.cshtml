@@ -18,6 +18,7 @@
 }
 
 
+
 <link rel="stylesheet" href="~/css/sighupStyle.css" asp-append-version="true">
 
 <div class="Body">
@@ -65,13 +66,14 @@
                 <input asp-for="@Model.Customer.bdate" type="date" name = "date" id="Date" required>
 
 
+                <span id="passwordMismatchError" style="color: red; display: none;">Passwords do not match</span>
                 <span asp-validation-for="@Model.Customer.pass" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="Password">Password</label>
                 <input asp-for="@Model.Customer.pass" type="password" name="password" id="Password" required minlength="3" maxlength="30">
 
                 <span asp-validation-for="@Model.Customer.ConfirmPassword" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="ConfirmPassword">Confirm Password</label>
-                <input type="password" asp-for="@Model.Customer.ConfirmPassword" id="ConfirmPassword" required minlength="3" maxlength="30">
+                <input type="password" asp-for="@Model.Customer.ConfirmPassword" id="ConfirmPassword" name = "cofirmPassword" required minlength="3" maxlength="30">
 
             </form>
             <input type="checkbox" id="checkb" required form="form1">
@@ -105,3 +107,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Get the password and confirm password fields
+    var passwordField = document.getElementById("Password");
+    var confirmPasswordField = document.getElementById("ConfirmPassword");
+
+    // Get the error message element
+    var errorMessage = document.getElementById("passwordMismatchError");
+
+    // Function to check if the password and confirm password fields match
+    function checkPasswordMatch() {
+        if (passwordField.value !== confirmPasswordField.value) {
+            // Passwords don't match, display the error message
+            errorMessage.style.display = "block";
+        } else {
+            // Passwords match, hide the error message
+            errorMessage.style.display = "none";
+        }
+    }
+
+    // Add an event listener to the confirm password field to check for password match
+    confirmPasswordField.addEventListener("input", checkPasswordMatch);
+</script>
