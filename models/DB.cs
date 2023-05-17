@@ -14,18 +14,17 @@ namespace Car_Store.models
         public DB()
         {
 
-
-            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
-
+            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=TRMBcar;Integrated Security=True";
             con = new SqlConnection(conString);
         }
 
         public string date1 { get; set; }
-        public void insertUser(string Fname, string Lname, string pass, string date, string email, string UserName)
+        public void insertUser(string Fname, string Lname, string pass, string phoneNumber, string date, string email, string UserName)
         { //to return any data type
             /*            string date1 = date.ToString();
             */
-            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+
+            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -328,6 +327,25 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
+
+
+        public void insertServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
+        { //to return any data type
+            //Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
+
+            string query = "insert into Services_Center values (" + id + ", '" + Name + "', '" + Address + "', '" + services + "' ," + latitude + "," + longitude + "," + stars + ")";
+            object type;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                type = sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+
+
         public object ReadAll(string tablename)
         { //to return any data type
             string query = "select * from " + tablename;
@@ -338,6 +356,13 @@ namespace Car_Store.models
             string query = "select * " + " from " + tablename + " where " + pKey + " = " + "'" + Name + "';";
             return FunctionReaderTupleExecute(query);
         }
+
+        public object ReadTuple(int ID, string tablename, string pKey)
+        { //to return any data type
+            string query = "select * " + " from " + tablename + " where " + pKey + " = " + ID + ";";
+            return FunctionReaderTupleExecute(query);
+        }
+
         private object FunctionReaderExecute(string query)
         {
             DataTable dt = new DataTable();
@@ -379,6 +404,23 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
+
+
+        public void updateServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
+        {
+
+            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "'," + "latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+
+
         public void deletetuple(string tableName, string pKey, string pColumn)
         {
             string query = "delete from " + tableName + " where " + pColumn + " = '" + pKey + "';";
