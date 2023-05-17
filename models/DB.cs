@@ -13,7 +13,7 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=bassam;Initial Catalog=TRMPcar;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
 
             con = new SqlConnection(conString);
         }
@@ -40,33 +40,9 @@ namespace Car_Store.models
 
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city)
         {
-
-            byte[] imageData1;
-            byte[] imageData2;
-            byte[] imageData3;
-
-            // Convert the image files to binary data
-            //using (var memoryStream1 = new MemoryStream())
-            //{
-            //    iimage.CopyTo(memoryStream1);
-            //    imageData1 = memoryStream1.ToArray();
-            //}
-
-            //using (var memoryStream2 = new MemoryStream())
-            //{
-            //    image2.CopyTo(memoryStream2);
-            //    imageData2 = memoryStream2.ToArray();
-            //}
-
-            //using (var memoryStream3 = new MemoryStream())
-            //{
-            //    image3.CopyTo(memoryStream3);
-            //    imageData3 = memoryStream3.ToArray();
-            //}
-
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel)" +
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality)" +
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
-            + "','" + name + "','" + fuel + "')";
+            + "','" + name + "','" + fuel + "'," + 0 + ")";
 
             DateTime currentDate = DateTime.Now;
 
@@ -80,6 +56,12 @@ namespace Car_Store.models
 
             excute_nonQuery(q2);
         }
+
+        public void insert_to_pendingposts(int clientID , int vehcId)
+        {
+            string q = "insert into PENDING_POSTS values( " + clientID + "," + vehcId + ")";
+            excute_nonQuery(q);
+        } 
         public int getTopVehicleId()
         {
             string q = "SELECT  TOP 1 Vehicle_No FROM VEHICLE ORDER BY Vehicle_No DESC";
@@ -104,6 +86,34 @@ namespace Car_Store.models
             excute_nonQuery(q);
         }
 
+        public void approve_car(int carid,int clientID)
+        {
+            insert_CLIENT_POSTS(clientID, carid);
+            string q1 = "update VEHICLE set visibality = 1  " +
+                "where VEHICLE.Vehicle_No = " + carid;
+            excute_nonQuery(q1);
+            string q2 = "delete from PENDING_POSTS where PENDING_POSTS.CLIENT_ID = " + clientID +
+                " AND PENDING_POSTs.VEHCILE_ID = " + carid;
+            excute_nonQuery(q2);
+        }
+
+        public void declinecar(int carid, int clientID)
+        {
+            string q1 = "delete from PENDING_POSTS where PENDING_POSTS.CLIENT_ID = " + clientID +
+                " AND PENDING_POSTs.VEHCILE_ID = " + carid;
+            excute_nonQuery(q1);
+            string q2 = "delete from VEHICLE where VEHICLE.Vehicle_No = " + carid;
+            excute_nonQuery(q2);
+        }
+
+        public object get_pending_post()
+        {
+            string q = "select  VEHICLE.CarDescription, USED_VEHICLE.Posting_Date, USED_VEHICLE.Price, VEHICLE.CC_Rnage, PENDING_POSTS.VEHCILE_ID, CLIENT.Client_Username , PENDING_POSTS.CLIENT_ID " +
+                "from (VEHICLE JOIN USED_VEHICLE ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID) " +
+                "JOIN PENDING_POSTS  ON VEHICLE.Vehicle_No = PENDING_POSTS.VEHCILE_ID JOIN CLIENT ON CLIENT.ClientID = PENDING_POSTS.CLIENT_ID";
+            return Readtable(q);
+        }
+
         public object get_branchid()
         {
             string q = "select BRANCH.BranchID from BRANCH";
@@ -118,7 +128,7 @@ namespace Car_Store.models
         }
         public object GetPostedCar(int ID)
         {
-            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,VEHICLE.iimage,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
+            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
             return Readtable(q);
         }
         private object Readtable(string Q)
