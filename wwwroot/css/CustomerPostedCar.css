@@ -11,6 +11,13 @@
     flex-wrap:wrap;
     gap:20px;
 }
+.sec-color {
+    color: #6d6c6c;
+}
+
+.main-color {
+    color: #0d6efd;
+}
 
 .Post-Card {
     flex-basis:22%;
@@ -19,6 +26,10 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+
+}
+.Post-Card h2{
+    
 }
 
 .Post-Card img {
@@ -53,3 +64,5 @@
 .delete-button:hover {
   background-color: #c00;
 }
+
+
