@@ -19,7 +19,7 @@ namespace Car_Store.models
         [Required]
         public int car_class;
 
-        [Required,MaxLength(30)]
+        [Required, MaxLength(30)]
         public string city;
     }
 }
