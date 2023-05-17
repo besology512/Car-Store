@@ -489,7 +489,7 @@ namespace Car_Store.models
 
         public void insertCartWish(string table, int CId, int PId)
         { //to return any data type
-            string query = "insert into" + table + " values (" + CId + "," + PId + ")";
+            string query = "insert into " + table + " values (" + CId + "," + PId + ")";
             object type;
             try
             {
@@ -499,9 +499,49 @@ namespace Car_Store.models
                 con.Close();
             }
             catch (SqlException) { con.Close(); }
+        } 
+        
+        public object getCarNew(int CId, string tableName)
+        { //to return any data type
+            string query = "select Brand, name, Color, iimage,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" +tableName + " join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
         }
 
+        public object getCarUsed(int CId, string tableName)
+        { //to return any data type
+            string query = "select Brand, name, Color, iimage, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" +tableName +" join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
 
+        public void deleteCartVehicle(string tablename, int pId, int CId, string column) {
+            string query = "delete from "+ tablename +" where Customer_ID = "+CId+" and "+  column +"=" + pId;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close();}
+        }
 
     }
 }

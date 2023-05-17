@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.OAuth.Claims;
+using System.Data;
 
 namespace Car_Store.models
 {
@@ -27,6 +28,27 @@ namespace Car_Store.models
             {
                 db.insertCartWish("Cart_vehicle", CId, PId);
             }
+        }
+
+        public DataTable getCartUsed()
+        {
+            return (DataTable)db.getCarUsed(CId, "Cart_vehicle");
+        }        
+        public DataTable getCartNew()
+        {
+            return (DataTable)db.getCarNew(CId, "Cart_vehicle");
+        }        
+        public DataTable getWishUsed()
+        {
+            return (DataTable)db.getCarUsed(CId, "wishlist_vehicle");
+        }        
+        public DataTable getWishNew()
+        {
+            return (DataTable)db.getCarNew(CId, "wishlist_vehicle");
+        }
+
+        public void delete(string table, string column) {
+            db.deleteCartVehicle( table, PId, CId, column);
         }
         ~WishCart() { }
     }

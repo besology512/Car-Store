@@ -23,147 +23,104 @@
 </section>
 <!-- End Current Page Section-->
 <!-- Start Wishlist Section-->
-<section class="wishlist page_margin">
-    <div class="car-image">
-        <img src="./images//Nissan-Tida-2007.jpg" alt="car1">
-    </div>
-
-    <div class="car-description">
-        <h4>Nissan Tida 2007</h4>
-        <p class="car-color">
-            Color:
-            <span>White</span>
-        </p>
-        <p class="car-class">
-            Class:
-            <span>First</span>
-        </p>
-        <p class="car-class">
-            Description:
-            <span>The Nissan Tida 2007 is a compact car that offers a spacious interior and good fuel efficiency. It features a 1.8-liter engine, front-wheel drive, and comes in sedan and.....</span>
-        </p>
-        <p class="price">$1,199.00</p>
-
-        <div class="car-icons">
-            <div class="remove-icon">
-                <a href="">
-                    <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
-                    <span>Remove</span>
-                </a>
+    @for(int i = 0; i<Model.dtCarNew.Rows.Count; i++){
+    <section class="wishlist page_margin">
+        <div class="car-image">
+            @{
+                string img = Convert.ToBase64String((byte[])Model.dtCarNew.Rows[i][3]);
+            }
+            <img src="data:image/png;base64,@img" alt="car1">
+        </div>
+    
+        <div class="car-description">
+            <h4>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h4>
+            <p class="car-color">
+                Color:
+                <span>@Model.dtCarNew.Rows[i][2]</span>
+            </p>
+            @*<p class="car-class">
+                Description:
+                <span>The Nissan Tida 2007 is a compact car that offers a spacious interior and good fuel efficiency. It features a 1.8-liter engine, front-wheel drive, and comes in sedan and.....</span>
+            </p>*@
+            <p class="price">@Model.dtCarNew.Rows[i][5] $</p>
+    
+            <div class="car-icons">
+                <div class="remove-icon">
+                    <form method="post">
+                        <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
+                        <input name="pID" type="hidden" value="@Model.dtCarNew.Rows[i][6]" />
+                        <input asp-page-handler="Delete" type="submit" style="border:none; cursor:pointer" value="Remove" />
+                    </form>
+                </div>
+                    <form method="post">
+                        <input name="pID" type="hidden" value="@Model.dtCarNew.Rows[i][6]" />
+                        <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+                        <input asp-page-handler="AddToCart" style="border:none; cursor:pointer" type="submit" value="Add to cart" />
+                    </form>
+                <div class="comparison-icon">
+                    <a href="">
+                        <i class="fa-solid fa-shuffle" style="color: #000000;"></i>
+                        <span>Add to comparison</span>
+                    </a>
+                </div>
             </div>
+    
+        </div>
+    
+    </section>
+    <hr class="hr-wishlist">
+    }
 
-            <div class="cart-icon">
-                <a href="">
-                    <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
-                    <span>Add To Cart</span>
-                </a>
-            </div>
 
-            <div class="comparison-icon">
-                <a href="">
-                    <i class="fa-solid fa-shuffle" style="color: #000000;"></i>
-                    <span>Add to comparison</span>
-                </a>
-            </div>
+@for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+{
+    <section class="wishlist page_margin">
+        <div class="car-image">
+            @{
+                string img = Convert.ToBase64String((byte[])Model.dtCarUsed.Rows[i][3]);
+            }
+            <img src="data:image/png;base64,@img" alt="car1">
         </div>
 
-    </div>
+        <div class="car-description">
+            <h4>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h4>
+            <p class="car-color">
+                Color:
+                <span>@Model.dtCarUsed.Rows[i][2]</span>
+            </p>
+            @*<p class="car-class">
+        Description:
+        <span>The Nissan Tida 2007 is a compact car that offers a spacious interior and good fuel efficiency. It features a 1.8-liter engine, front-wheel drive, and comes in sedan and.....</span>
+        </p>*@
+            <p class="price">@Model.dtCarUsed.Rows[i][5] $</p>
 
-</section>
-<hr class="hr-wishlist">
-<section class="wishlist page_margin">
-    <div class="car-image">
-        <img src="./images/Nissan-Tida-2007.jpg" alt="car1">
-    </div>
+            <div class="car-icons">
+                <div class="remove-icon">
+                    <form method="post">
+                        <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
+                        <input name="pID" type="hidden" value="@Model.dtCarUsed.Rows[i][6]" />
+                        <input asp-page-handler="Delete" style="border:none; cursor:pointer" type="submit" value="Remove" />
+                    </form>
+                </div>
 
-    <div class="car-description">
-        <h4>Nissan Tida 2007</h4>
-        <p class="car-color">
-            Color:
-            <span>White</span>
-        </p>
-        <p class="car-class">
-            Class:
-            <span>First</span>
-        </p>
-        <p class="car-class">
-            Description:
-            <span>The Nissan Tida 2007 is a compact car that offers a spacious interior and good fuel efficiency. It features a 1.8-liter engine, front-wheel drive, and comes in sedan and.....</span>
-        </p>
-        <p class="price">$1,199.00</p>
+                <div class="cart-icon">
+                    <form method="post">
+                        <input name="pID" type="hidden" value="@Model.dtCarUsed.Rows[i][6]" />
+                        <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+                        <input asp-page-handler="AddToCart" style="border:none; cursor:pointer" type="submit" value="Add to cart" />
+                    </form>
+                </div>
 
-        <div class="car-icons">
-            <div class="remove-icon">
-                <a href="">
-                    <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
-                    <span>Remove</span>
-                </a>
+                <div class="comparison-icon">
+                    <a href="">
+                        <i class="fa-solid fa-shuffle" style="color: #000000;"></i>
+                        <span>Add to comparison</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="cart-icon">
-                <a href="">
-                    <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
-                    <span>Add To Cart</span>
-                </a>
-            </div>
-
-            <div class="comparison-icon">
-                <a href="">
-                    <i class="fa-solid fa-shuffle" style="color: #000000;"></i>
-                    <span>Add to comparison</span>
-                </a>
-            </div>
         </div>
 
-    </div>
-
-</section>
-<hr class="hr-wishlist">
-<section class="wishlist page_margin">
-    <div class="car-image">
-        <img src="./images/Nissan-Tida-2007.jpg" alt="car1">
-    </div>
-
-    <div class="car-description">
-        <h4>Nissan Tida 2007</h4>
-        <p class="car-color">
-            Color:
-            <span>White</span>
-        </p>
-        <p class="car-class">
-            Class:
-            <span>First</span>
-        </p>
-        <p class="car-class">
-            Description:
-            <span>The Nissan Tida 2007 is a compact car that offers a spacious interior and good fuel efficiency. It features a 1.8-liter engine, front-wheel drive, and comes in sedan and.....</span>
-        </p>
-        <p class="price">$1,199.00</p>
-
-        <div class="car-icons">
-            <div class="remove-icon">
-                <a href="">
-                    <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
-                    <span>Remove</span>
-                </a>
-            </div>
-
-            <div class="cart-icon">
-                <a href="">
-                    <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
-                    <span>Add To Cart</span>
-                </a>
-            </div>
-
-            <div class="comparison-icon">
-                <a href="">
-                    <i class="fa-solid fa-shuffle" style="color: #000000;"></i>
-                    <span>Add to comparison</span>
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-<!-- End Wishlist Section-->
+    </section>
+    <hr class="hr-wishlist">
+}

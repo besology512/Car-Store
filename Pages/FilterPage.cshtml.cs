@@ -41,7 +41,7 @@ namespace Car_Store.Pages
             cartWish.typepv = 1;
             cartWish.typecw = 0;
             cartWish.insert();
-            return Page();
+            return RedirectToPage("/FilterPage");
         }
         public IActionResult OnPostAddCarToWishList(int PID)
         {
@@ -56,7 +56,7 @@ namespace Car_Store.Pages
             cartWish.typepv = 1;
             cartWish.typecw = 1;
             cartWish.insert();
-            return Page();
+            return RedirectToPage("/FilterPage");
         }
         public IActionResult OnPostAddProductToWishList(int PID)
         {
@@ -72,7 +72,7 @@ namespace Car_Store.Pages
             cartWish.typepv = 0;
             cartWish.typecw = 1;
             cartWish.insert();
-            return Page();
+            return RedirectToPage("/FilterPage");
         }
         public IActionResult OnPostAddProductToCart(int PID)
         {
@@ -88,7 +88,7 @@ namespace Car_Store.Pages
             cartWish.typepv = 0;
             cartWish.typecw = 0;
             cartWish.insert();
-            return Page();
+            return RedirectToPage("/FilterPage");
         }
     }
 }
