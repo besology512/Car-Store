@@ -25,11 +25,11 @@
             <div class="Post-Card">
 
                 <span class="sec-color">@Model.dtable.Rows[i][11]</span>
-                @{
-                    string img = Convert.ToBase64String((byte[])@Model.dtable.Rows[i][8]);
+               //{
+                  //string img = Convert.ToBase64String((byte[])@Model.dtable.Rows[i][8]);
 
-                }
-                <img src="data:image/png;base64,@img" alt="Example Image">
+               //
+                <img src="" alt="Example Image">
 
                 <h2>@Model.dtable.Rows[i][0] <span>@Model.dtable.Rows[i][5]</span></h2>
                 <p class="sec-color">@Model.dtable.Rows[i][2]</p>
