@@ -164,13 +164,13 @@ namespace Car_Store.models
                     "where iimage =  '" + car_image + "' ";
             }else if (Brand!=""&&color!="")
             {
-				Q = "select * from VEHICLE " +
-					  "where Brand =  '" + Brand + "' ";
-			}
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "' and Color = '" + color + "'";
+            }
             else if (Brand != "")
             {
                 Q = "select * from VEHICLE " +
-                    "where Brand =  '" + Brand + "' and Color = '" + color + "'";
+                    "where Brand =  '" + Brand + "'";
             } else if (color != "")
             {
                 Q = "select * from VEHICLE " +
