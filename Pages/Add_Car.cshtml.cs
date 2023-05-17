@@ -46,8 +46,7 @@ namespace Car_Store.Pages
                 ,KM,CarClass, CarDesc,Model,Fuel,City);
             int carid = DATABASE.getTopVehicleId();
             CID = (int)HttpContext.Session.GetInt32("User_ID");
-            
-            DATABASE.insert_CLIENT_POSTS(CID, carid);
+            DATABASE.insert_to_pendingposts(CID,carid);
         }
 
     }

@@ -235,7 +235,8 @@
                         colorBox.addEventListener("click", function () {
                             var colorSpan = this.querySelector("span");
                             var colorValue = colorSpan.textContent;
-                            this.style.borderColor = "blue";
+                            //this.style.borderColor = "blue";
+                            this.style.border = "1px solid black";
                             document.getElementById("MyColor").value = colorValue;
                         });
                     });

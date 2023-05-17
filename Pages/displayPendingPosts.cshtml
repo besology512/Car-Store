@@ -1,0 +1,40 @@
+﻿@page
+@model Car_Store.Pages.displayPendingPostsModel
+@{
+    Layout = "adminlay";
+
+}
+<link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
+
+
+<div class="all-page-content-c">
+    <div class="posts">
+        @for (int i = 0; i < Model.dtable.Rows.Count; i++)
+        {
+            <div class="Post-Card">
+
+                <p class="sec-color">@Model.dtable.Rows[i][1]</p>
+                <p>@Model.dtable.Rows[i][5]</p>
+                <p>Vehicle ID <span class="main-color">@Model.dtable.Rows[i][4]</span></p>
+                
+                <img src="" alt="Example Image">
+                
+                <p class="sec-color">@Model.dtable.Rows[i][0]</p>
+                <p><span class="main-color">@Model.dtable.Rows[i][3] CC</span></p>
+                <p>Price <span class="main-color">@Model.dtable.Rows[i][2] $</span></p>
+
+                
+                <form method="post">
+
+                    <input type="hidden" value="@Model.dtable.Rows[i][6]" name="ClientId" />
+                    <input type="hidden" value="@Model.dtable.Rows[i][4]" name="vehcId" />
+                    <div>
+                        <input type="submit" style="background-color:#198754;" asp-page-handler="Accept" class="delete-button" value="Accept" />
+                        <input type="submit" style="background-color:#dc3545;" asp-page-handler="Decline" class="delete-button" value="Decline" />
+                    </div>
+                </form>
+            </div>
+        }
+
+    </div>
+</div>
