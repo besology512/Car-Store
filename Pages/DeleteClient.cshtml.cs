@@ -11,14 +11,12 @@ namespace Car_Store.Pages.Shared
         public Client client { get; set; }
         public IActionResult OnGet(int ID)
         {
-            client = new Client();
-            client.ClientID = ID;
-            
-
-            if (HttpContext.Session.GetInt32("User_Type") != 1 || HttpContext.Session.GetInt32("User_Type") != 0)
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
             {
                 return RedirectToPage("/index");
             }
+            client = new Client();
+            client.ClientID = ID;
             return Page();
           
         }
