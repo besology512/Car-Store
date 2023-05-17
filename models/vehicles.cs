@@ -38,7 +38,8 @@ namespace Car_Store.models
         }
 
         public vehicle(
-            byte[] car_image = new byte[] { 0x00 },
+            byte[] car_image,
+            int id = 0,
             string car_status = "",
             string showroom = "",
             string Brand = "",
@@ -60,6 +61,7 @@ namespace Car_Store.models
             this.Body_Style = Body_Style;
             this.car_image = Convert.ToBase64String(car_image);
             this.Rating = Rating;
+            this.Id = id;
         }
 
         [Required]

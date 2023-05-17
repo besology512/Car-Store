@@ -257,6 +257,7 @@ namespace Car_Store.models
             {
 
                 vehicle newVehicle = new vehicle(
+                    row["iimage"] != null ? (byte[])row["iimage"] : new byte[] { 0x00 },
                    id: row["Vehicle_No"] != null ? (int)(row["Vehicle_No"]) : 0,
                    car_status: row["Car_Status"] != null ? row["Car_Status"].ToString() : "",
                    showroom: row["SHOWROOM"] != null ? row["SHOWROOM"].ToString() : "",
@@ -265,8 +266,7 @@ namespace Car_Store.models
                    color: row["Color"] != null ? row["Color"].ToString() : "",
                    year_model: row["Year_Model"] != null ? (int)row["Year_Model"] : 0,
                    Gearing: row["Gearing"] != null ? row["Gearing"].ToString() : "",
-                   Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : "",
-                   car_image: row["iimage"] != null ? (byte[])row["iimage"] : new byte[] { 0x00 }
+                   Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : ""
                    );
                 returned.Add(newVehicle);
             }
