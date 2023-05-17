@@ -19,6 +19,11 @@ CREATE TABLE EMPLOYEE(
 	FOREIGN KEY (SuperID) REFERENCES EMPLOYEE(ID)
 );
 
+select * from SERVICES_CENTER
+Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
+Update Services_Center set longitude = 31.485585206751594, latitude = 30.06611893449402  where ID = 213
+
+
 
 
 
@@ -876,8 +881,6 @@ add rating int check(rating >=0 and rating <=5)
 
 -- Cart_vehicle
 INSERT INTO Cart_vehicle (Customer_ID, vehichle_ID) VALUES
-
-
 (4, 6),
 (5, 4),
 (6, 2),

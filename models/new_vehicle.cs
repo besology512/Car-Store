@@ -8,12 +8,6 @@ namespace Car_Store.models
         int vehicle_id;
 
         [Required]
-        int Number_of_classes;
-
-        [Required]
-        int start_price;
-
-        [Required]
-        int end_price;
+        int price;
     }
 }

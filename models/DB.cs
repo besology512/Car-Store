@@ -13,8 +13,8 @@ namespace Car_Store.models
 
         public DB()
         {
+            string conString = "Data Source=bassam;Initial Catalog=TRMPcar;Integrated Security=True";
 
-            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
             con = new SqlConnection(conString);
         }
 
@@ -24,7 +24,7 @@ namespace Car_Store.models
             /*            string date1 = date.ToString();
             */
 
-            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber  + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -37,7 +37,8 @@ namespace Car_Store.models
         }
 
 
-        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class,string cardes,string name,string fuel,string city)
+
+        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city)
         {
 
             byte[] imageData1;
@@ -65,18 +66,18 @@ namespace Car_Store.models
 
             string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel)" +
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
-            + "','"  + name + "','" + fuel + "')";
-            
+            + "','" + name + "','" + fuel + "')";
+
             DateTime currentDate = DateTime.Now;
-            
+
             string formattedDate = currentDate.ToString("yyyy-MM-dd");
 
             excute_nonQuery(q);
-            
+
             int vecId = getTopVehicleId();
 
             string q2 = "INSERT INTO USED_VEHICLE VALUES(" + vecId + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ",'" + city + "')";
-            
+
             excute_nonQuery(q2);
         }
         public int getTopVehicleId()
@@ -84,19 +85,20 @@ namespace Car_Store.models
             string q = "SELECT  TOP 1 Vehicle_No FROM VEHICLE ORDER BY Vehicle_No DESC";
             return (int)getsinglevalue(q);
         }
-        public void insert_CLIENT_POSTS(int clientid,int vehicleId )
+        public void insert_CLIENT_POSTS(int clientid, int vehicleId)
+
         {
             string q = "INSERT INTO Client_Posts VALUES(" + clientid + " , " + vehicleId + ")";
             excute_nonQuery(q);
         }
 
-        public void delet_CLIENT_POST(int vecId,int ClieTnID)
+        public void delet_CLIENT_POST(int vecId, int ClieTnID)
         {
             string q = "delete from Client_Posts where ClientId =  " + ClieTnID + " AND " + "VehcileId = " + vecId;
             excute_nonQuery(q);
         }
 
-        public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description,int pid)
+        public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
         {
             string q = "INSERT INTO PRODUCT (CATEGORY,BranchNo,Quantity,brand,Price,Statuss,Product_title,ProductID) VALUES('" + category + "'," + branchId + "," + qunatity + ",'" + brand + "'," + price + "," + status + ",'" + description + "'," + pid + ")";
             excute_nonQuery(q);
@@ -108,7 +110,7 @@ namespace Car_Store.models
             return Readtable(q);
         }
 
-        public object getUser(int ID )
+        public object getUser(int ID)
         {
             string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
 
@@ -133,7 +135,7 @@ namespace Car_Store.models
             catch (Exception ex)
             {
                 con.Close();
-                return ex;
+                return dt;
             }
         }
 
@@ -232,6 +234,21 @@ namespace Car_Store.models
                 Q = "select * from VEHICLE " +
                     "where iimage =  '" + car_image + "' ";
             }
+            else if (Brand != "" && color != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "' and Color = '" + color + "'";
+            }
+            else if (Brand != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "'";
+            }
+            else if (color != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Color =  '" + color + "' ";
+            }
             else
             {
                 Q = "select * from VEHICLE ";
@@ -252,14 +269,14 @@ namespace Car_Store.models
                    year_model: row["Year_Model"] != null ? (int)row["Year_Model"] : 0,
                    Gearing: row["Gearing"] != null ? row["Gearing"].ToString() : "",
                    Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : "",
-                   car_image: row["iimage"] is null ? row["iimage"].ToString() : ""
+                   car_image: row["iimage"] != null ? (byte[])row["iimage"] : new byte[] { 0x00 }
                    );
                 returned.Add(newVehicle);
             }
             return returned;
         }
-/*        private object readTable(string Q);
-*/
+        /*        private object readTable(string Q);
+        */
 
         //public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
         //{
@@ -272,6 +289,50 @@ namespace Car_Store.models
         //    excute_nonQuery(q2);
         //}
 
+        public DataTable GetAvailableFilters(string filter)
+        {
+            string Q = "";
+            if (filter == "Brands")
+            {
+                Q = "SELECT DISTINCT Brand FROM VEHICLE";
+            }
+            else if (filter == "Colors")
+            {
+                Q = "SELECT DISTINCT Color FROM VEHICLE";
+            }
+            else if (filter == "gearing")
+            {
+                Q = "SELECT DISTINCT Gearing FROM VEHICLE";
+            }
+            else if (filter == "MinMax")
+            {
+                Q = "SELECT MIN(p.Price) AS MinPrice, MAX(p.Price) AS MaxPrice\r\nFROM (\r\n" +
+                    "    SELECT NEW_VEHICLE.Price, Vehicle_ID  FROM NEW_VEHICLE\r\n    UNION ALL\r\n" +
+                    "    SELECT USED_VEHICLE.Price, Vehicle_ID FROM USED_VEHICLE\r\n) AS p\r\nJOIN VEHICLE" +
+                    " v ON p.Vehicle_ID = v.Vehicle_No;";
+            }
+            else if (filter == "status")
+            {
+                Q = "SELECT DISTINCT Car_Status FROM VEHICLE";
+            }
+            else if (filter == "Year Model")
+            {
+                Q = "SELECT DISTINCT Year_Model FROM VEHICLE";
+            }
+            else if (filter == "warranty years")
+            {
+                Q = "SELECT DISTINCT Warranty_years FROM VEHICLE";
+            }
+            else if (filter == "warranty kilometers")
+            {
+                Q = "SELECT DISTINCT Warranty_Kilometers FROM VEHICLE";
+            }
+            else if (filter == "seats")
+            {
+                Q = "SELECT DISTINCT Seats FROM VEHICLE";
+            }
+            return (DataTable)Readtable(Q);
+        }
 
         private object getsinglevalue(string Q)
         {
@@ -359,7 +420,7 @@ namespace Car_Store.models
 
         public object ReadTuple(int ID, string tablename, string pKey)
         { //to return any data type
-            string query = "select * " + " from " + tablename + " where " + pKey + " = " +  ID + ";";
+            string query = "select * " + " from " + tablename + " where " + pKey + " = " + ID + ";";
             return FunctionReaderTupleExecute(query);
         }
 
@@ -516,9 +577,9 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); return 0; }
         }
 
-        public object getCarUsed(int CId, string tableName)
+        public object getCarNew(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, iimage, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" +tableName +" join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, iimage,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
             DataTable dt = new DataTable();
             try
             {
@@ -531,8 +592,25 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); return 0; }
         }
 
-        public void deleteCartVehicle(string tablename, int pId, int CId, string column) {
-            string query = "delete from "+ tablename +" where Customer_ID = "+CId+" and "+  column +"=" + pId;
+        public object getCarUsed(int CId, string tableName)
+        { //to return any data type
+            string query = "select Brand, name, Color, iimage, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
+
+        public void deleteCartVehicle(string tablename, int pId, int CId, string column)
+        {
+            string query = "delete from " + tablename + " where Customer_ID = " + CId + " and " + column + "=" + pId;
             try
             {
                 con.Open();
@@ -540,7 +618,7 @@ namespace Car_Store.models
                 sqlCommand.ExecuteNonQuery();
                 con.Close();
             }
-            catch (SqlException) { con.Close();}
+            catch (SqlException) { con.Close(); }
         }
 
     }
