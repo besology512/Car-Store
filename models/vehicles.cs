@@ -6,7 +6,7 @@ namespace Car_Store.models
     {
         public vehicle()
         {
-                
+
         }
         public vehicle(
             int id = 0,
@@ -20,7 +20,7 @@ namespace Car_Store.models
             string Body_Style = "",
             string car_image = "")
         {
-            this.Id= id;
+            this.Id = id;
             this.car_status = car_status;
             this.showroom = showroom;
             this.Brand = Brand;
@@ -34,20 +34,20 @@ namespace Car_Store.models
 
         [Required]
         public int Id;
-
+        string car_image;
         [Required, MaxLength(20)]
         public string car_status; // status of the car used,new 
 
         [MaxLength(100)]
         public string showroom;
 
-        [Required,MaxLength(50)]
+        [Required, MaxLength(50)]
         public string Brand;
 
         [Required]
         public int CC_Range;
 
-        [Required,MaxLength(20)]
+        [Required, MaxLength(20)]
         public string color;
 
         [Required]
@@ -56,10 +56,17 @@ namespace Car_Store.models
         [Required, MaxLength(20)]
         public string Gearing; // the car manual or automatic
 
-        [Required,MaxLength(20)]
+        [Required, MaxLength(20)]
         public string Body_Style; // style of the car --> suv,sedan,copeh
 
-        [MaxLength(150)]
-        public string car_image;
+
+        [Required, MaxLength(1000)]
+        public string cardesc;
+
+        [MaxLength(30)]
+        public string carmodel;
+
+        [MaxLength(20)]
+        public string fuel;
     }
 }

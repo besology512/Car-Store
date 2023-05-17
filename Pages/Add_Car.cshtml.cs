@@ -10,14 +10,17 @@ namespace Car_Store.Pages
     {
         private readonly DB DATABASE;
 
-
+        [BindProperty]
+        public int CID { get; set; }
 
         [BindProperty]
         public string MyColor { get; set; }
+        
         [BindProperty]
-        vehicle ParentV { get; set; }
+        public vehicle ParentV { get; set; }
+        
         [BindProperty]
-        used_vehicle u_Vehicle { get; set; }
+        public used_vehicle u_Vehicle { get; set; }
         public Add_CarModel(DB My_DB)
         {
 
@@ -27,17 +30,24 @@ namespace Car_Store.Pages
         public IActionResult OnGet()
         {
 
-            if (HttpContext.Session.GetInt32("User_Type") != 1 || HttpContext.Session.GetInt32("User_Type") != 0)
+            if (HttpContext.Session.GetInt32("User_Type") != 1 && HttpContext.Session.GetInt32("User_Type") != 0)
             {
                 return RedirectToPage("/index");
             }
+            
             return Page();
+
         }
 
-        public void OnPost(string brand, int year, int KM, int CARCLASS, string Cstyle, string GEAR, int CC, int pr)
+        public void OnPost(string Brand,string City,string Model,string Fuel, string CarDesc, int Year, int KM, int CarClass, string Cstyle, string GEAR, int CC, int Price)
         {
 
-            DATABASE.insert_vechile(brand, CC, MyColor, year, GEAR, Cstyle, pr, KM, CARCLASS);
+            DATABASE.insert_vechile(Brand,CC, MyColor,Year,GEAR,Cstyle,Price
+                ,KM,CarClass, CarDesc,Model,Fuel,City);
+            int carid = DATABASE.getTopVehicleId();
+            CID = (int)HttpContext.Session.GetInt32("User_ID");
+            
+            DATABASE.insert_CLIENT_POSTS(CID, carid);
         }
 
     }
