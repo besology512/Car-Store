@@ -126,7 +126,7 @@
         <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
         <div class="image-add">
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image1"  accept="image/*">
+                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image"  accept="image/*">
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
@@ -134,7 +134,7 @@
             </div>
             
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image2 name="  accept="image/*">
+                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image name="  accept="image/*">
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
@@ -142,7 +142,7 @@
             </div>
             
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image3 name="  accept="image/*">
+                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image name="  accept="image/*">
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
@@ -267,7 +267,7 @@
                 </div>
                 <div class="fuel">
                     <label for="Fuel">Fuel*</label>
-                    <select id="Fuel" asp-for="@Model.ParentV.fuel" name="Fuel">
+                    <select id="Fuel" asp-for="@Model.ParentV.Fuel" name="Fuel">
                         <option value="Gas">Gas</option>
                         <option value="Electric">Electric</option>
                         <option value="Hybird">Hybird</option>
