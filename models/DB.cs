@@ -14,6 +14,7 @@ namespace Car_Store.models
         public DB()
         {
             string conString = "Data Source=bassam;Initial Catalog=TRMPcar;Integrated Security=True";
+
             con = new SqlConnection(conString);
         }
 
@@ -34,6 +35,7 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
+
 
 
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city)
@@ -84,6 +86,7 @@ namespace Car_Store.models
             return (int)getsinglevalue(q);
         }
         public void insert_CLIENT_POSTS(int clientid, int vehicleId)
+
         {
             string q = "INSERT INTO Client_Posts VALUES(" + clientid + " , " + vehicleId + ")";
             excute_nonQuery(q);
@@ -557,6 +560,21 @@ namespace Car_Store.models
                 con.Close();
             }
             catch (SqlException) { con.Close(); }
+        } 
+        
+        public object getCarNew(int CId, string tableName)
+        { //to return any data type
+            string query = "select Brand, name, Color, iimage,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" +tableName + " join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
         }
 
         public object getCarNew(int CId, string tableName)
@@ -577,6 +595,7 @@ namespace Car_Store.models
         public object getCarUsed(int CId, string tableName)
         { //to return any data type
             string query = "select Brand, name, Color, iimage, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+
             DataTable dt = new DataTable();
             try
             {

@@ -64,6 +64,9 @@ namespace Car_Store.models
             this.Id = id;
         }
 
+
+        string car_image;
+
         [Required]
         public int Id;
         [Required, MaxLength(20)]
@@ -92,6 +95,7 @@ namespace Car_Store.models
 
 
         [Required, MaxLength(1000)]
+
         public string cardesc;
 
         [MaxLength(30)]
@@ -140,6 +144,7 @@ namespace Car_Store.models
         public string car_image3;
         [Required]
         public int Rating;
+
 
 
 
