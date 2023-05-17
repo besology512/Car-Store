@@ -162,10 +162,19 @@ namespace Car_Store.models
             {
                 Q = "select * from VEHICLE " +
                     "where iimage =  '" + car_image + "' ";
-            }else if(Brand != "")
+            }else if (Brand!=""&&color!="")
+            {
+				Q = "select * from VEHICLE " +
+					  "where Brand =  '" + Brand + "' ";
+			}
+            else if (Brand != "")
             {
                 Q = "select * from VEHICLE " +
-                    "where Brand =  '" + Brand + "' ";
+                    "where Brand =  '" + Brand + "' and Color = '" + color + "'";
+            } else if (color != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Color =  '" + color + "' ";
             }
             else
             {

@@ -91,17 +91,39 @@ namespace Car_Store.Pages
             status = db.GetAvailableFilters("status");
             warranty_years = db.GetAvailableFilters("warranty years");
             warranty_kilometers = db.GetAvailableFilters("warranty kilometers");
-            Console.WriteLine(CheckedBrands.Count);
-            if (CheckedBrands.Count != 0)
+            if (CheckedBrands.Count != 0 && CheckedColors.Count != 0)
             {
-                PageCars = new List<vehicle>();
-                foreach (string brand in CheckedBrands)
-                {
-                    Console.WriteLine("I'm here with "+brand);
-                    PageCars = PageCars.Concat(db.GetVehicles(Brand:brand)).ToList();
-                    Console.WriteLine(PageCars.Count);
-                }
-            }
+				PageCars = new List<vehicle>();
+				foreach (string brand in CheckedBrands)
+				{
+					foreach (string color in CheckedColors)
+					{
+						Console.WriteLine("I'm here with " + color + brand);
+						PageCars = PageCars.Concat(db.GetVehicles(Brand: brand, color: color)).ToList();
+						Console.WriteLine(PageCars.Count);
+					}
+				}
+                return;
+			}
+            else if (CheckedBrands.Count != 0 && CheckedColors.Count == 0)
+            {
+				PageCars = new List<vehicle>();
+				foreach (string brand in CheckedBrands)
+				{
+					Console.WriteLine("I'm here with " + brand);
+					PageCars = PageCars.Concat(db.GetVehicles(Brand: brand)).ToList();
+					Console.WriteLine(PageCars.Count);
+				}
+			}
+			else if (CheckedColors.Count != 0 && CheckedBrands.Count == 0)
+            {
+				PageCars = new List<vehicle>();
+				foreach (string color in CheckedColors)
+				{
+                    Console.WriteLine("the color I have is:" + color);
+					PageCars = PageCars.Concat(db.GetVehicles(color: color)).ToList();
+				}
+			}
             else
             {
                 PageCars = db.GetVehicles();
@@ -109,17 +131,27 @@ namespace Car_Store.Pages
         }
 
     public void OnPostFilter() {
-            Brands = db.GetAvailableFilters("Brands");
-            Console.WriteLine("rows are: " + Brands.Rows.Count);
-            for (int i = 0; i < Brands.Rows.Count; i++)
+			Brands = db.GetAvailableFilters("Brands");
+			gearing = db.GetAvailableFilters("gearing");
+			MinMax = db.GetAvailableFilters("MinMax");
+			Colors = db.GetAvailableFilters("Colors");
+			status = db.GetAvailableFilters("status");
+			for (int i = 0; i < Brands.Rows.Count; i++)
             {
                 bool isChecked = Request.Form["brand_"+i] == "on";
                 if (isChecked) {
-                    CheckedBrands.Add(Brands.Rows[i][0].ToString());
-                    Console.WriteLine(Brands.Rows[i][0].ToString()); 
+                    CheckedBrands.Add(Brands.Rows[i][0].ToString()); 
                 }
             }
-            OnGet();
+			for (int i = 0; i < Colors.Rows.Count; i++)
+			{
+				bool isChecked = Request.Form["color_" + i] == "on";
+				if (isChecked)
+				{
+					CheckedColors.Add(Colors.Rows[i][0].ToString());
+				}
+			}
+			OnGet();
 /*            HttpContext.Session.Set<List<string>>("CheckedBrands", CheckedBrands);*/
             /*return RedirectToAction("FilterPage");*/
         }

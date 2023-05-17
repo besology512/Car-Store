@@ -77,19 +77,22 @@
                 }
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-                    <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
-                    <div class="wd-scroll" style="display: none;">
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option5" onchange="changeTickbox(this)">
-                            <label for="option5"></label>
-                        </div>
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option6" onchange="changeTickbox(this)">
-                            <label for="option6"></label>
-                        </div>
-                    </div>
+                    @{
+                        if (Model.Colors.Rows.Count != 0)
+                        {
+                            <div class="clickable-div"> <h5 class="widget-title">Filter by Colors</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
+                            <div class="wd-scroll" style="display: none;">
+                                @for (int i = 0; i < Model.Colors.Rows.Count; i++)
+                                {
+                                    <div class="mini-option">
+                                        <span>@Model.Colors.Rows[i][0].ToString()</span>
+                                        <input type="checkbox" class="tickbox" id="color_@i" onchange="changeTickbox(this)" runat="server" name="color_@i">
+                                        <label for="color_@i"></label>
+                                    </div>
+                                }
+                            </div>
+                        }
+                }
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
                     <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>

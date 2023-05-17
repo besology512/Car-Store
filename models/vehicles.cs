@@ -44,7 +44,8 @@ namespace Car_Store.models
             string color = "",
             int year_model = 0,
             string Gearing = "",
-            string Body_Style = ""
+            string Body_Style = "",
+            int Rating = 0
             )
         {
             this.car_status = car_status;
@@ -56,6 +57,7 @@ namespace Car_Store.models
             this.Gearing = Gearing;
             this.Body_Style = Body_Style;
             this.car_image = Convert.ToBase64String(car_image);
+            this.Rating = Rating;
         }
 
 
@@ -126,6 +128,8 @@ namespace Car_Store.models
         public string car_image2;
         [Required]
         public string car_image3;
+        [Required]
+        public int Rating;
 
 
 

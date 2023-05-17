@@ -1069,6 +1069,3 @@ input[type="range"]:active::-webkit-slider-thumb {
     padding: 20px;
     box-sizing: border-box;
 }
-.filter-button:hover {
-    box-shadow: 0 0 10px rgba(0, 1, 0, 0.5);
-}
