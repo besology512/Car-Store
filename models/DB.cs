@@ -577,20 +577,6 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); return 0; }
         }
 
-        public object getCarNew(int CId, string tableName)
-        { //to return any data type
-            string query = "select Brand, name, Color, iimage,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
-            DataTable dt = new DataTable();
-            try
-            {
-                con.Open();
-                SqlCommand sqlCommand = new SqlCommand(query, con);
-                dt.Load(sqlCommand.ExecuteReader());
-                con.Close();
-                return dt;
-            }
-            catch (SqlException) { con.Close(); return 0; }
-        }
 
         public object getCarUsed(int CId, string tableName)
         { //to return any data type

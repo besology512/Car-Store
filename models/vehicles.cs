@@ -64,9 +64,6 @@ namespace Car_Store.models
             this.Id = id;
         }
 
-
-        string car_image;
-
         [Required]
         public int Id;
         [Required, MaxLength(20)]
