@@ -36,6 +36,13 @@ namespace Car_Store.Pages
             ID = (int)HttpContext.Session.GetInt32("User_ID");
             database.edit_client_info(ID, Fname , Lname , Phone,Email, Pass);
             return RedirectToPage("/profile");
+        }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
 
         }
     }

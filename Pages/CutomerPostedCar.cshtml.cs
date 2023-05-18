@@ -38,6 +38,13 @@ namespace Car_Store.Pages
             Databse.delet_CLIENT_POST(vehcId, Id);
             return RedirectToPage("/CutomerPostedCar");
         }
-        
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
+
     }
 }
