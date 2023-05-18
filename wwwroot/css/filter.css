@@ -711,6 +711,7 @@ label {
     background-color: rgb(225,235,255);
     ;
     border: 0;
+    cursor: pointer;
 }
 
 .widget_price_filter [class*="price_slider_amount"] .price_label {
