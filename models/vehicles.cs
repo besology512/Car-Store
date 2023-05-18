@@ -23,7 +23,7 @@ namespace Car_Store.models
             int year_model = 0,
             string Gearing = "",
             string Body_Style = "",
-            string car_path= ""
+            string car_path = ""
 
             )
         {
@@ -40,6 +40,9 @@ namespace Car_Store.models
         }
 
         public vehicle(
+            string car_image = "",
+            string car_image2 = "",
+            string car_image3 = "",
             int id = 0,
             string car_status = "",
             string showroom = "",
@@ -49,7 +52,11 @@ namespace Car_Store.models
             int year_model = 0,
             string Gearing = "",
             string Body_Style = "",
-            int Rating = 0
+            int Rating = 0,
+            int visibility = 0,
+            int Price = 0,
+            int Count = 0,
+            string car_path = ""
             )
         {
             this.car_status = car_status;
@@ -62,7 +69,28 @@ namespace Car_Store.models
             this.Body_Style = Body_Style;
             this.Rating = Rating;
             this.Id = id;
+            this.Rating = Rating;
+            this.car_image = car_image;
+            this.car_image2 = car_image2;
+            this.car_image3 = car_image3;
+            switch (visibility)
+            {
+                case 0: this.visibility = "Pending"; break;
+                case 1: this.visibility = "In Stock"; break;
+                case 2: this.visibility = "Out of Stock"; break;
+                default: this.visibility = "Pending"; break;
+            }
+            this.Price = Price;
+            this.Count = Count;
+            this.car_path = car_path;
+
         }
+        [Required]
+        public int Count;
+        [Required]
+        public int Price;
+        [Required]
+        public string visibility;
 
 
         public string car_path { get; set; }
@@ -100,7 +128,7 @@ namespace Car_Store.models
         [MaxLength(30)]
         public string carmodel;
 
-        public IFormFile car_image;
+        public string car_image { get; set; }
         [Required, MaxLength(30)]
         public string name;
 

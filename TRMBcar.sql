@@ -122,6 +122,7 @@ CREATE TABLE VEHICLE(
 );
 alter table Vehicle add visibality INT check (visibality >= 0 and visibality <=2 )
 ---- 0 = penidng , 1 = instock and visible , 2 = out of stock
+alter table used_vehicle add count int
 
 
 
@@ -154,6 +155,11 @@ CREATE TABLE USED_VEHICLE(
 ALTER TABLE USED_VEHICLE
 ADD CITY VARCHAR(20)
 
+select * from USED_VEHICLE
+select * from VEHICLE
+select * from NEW_VEHICLE
+
+update NEW_VEHICLE set count = 5;
 
 CREATE TABLE SHOWROOM(
 	Show_Room_Name VARCHAR(100),
@@ -352,7 +358,7 @@ select * from CLIENT
 
 
 
+select * from VEHICLE
 
 
-
-
+SELECT VEHICLE.Vehicle_No,name,rating,Car_Status,COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count,SHOWROOM,Brand,CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats, Traction_Type, Cylinders, CarDescription, Tank_Capacity, C_image1, C_image2, C_image3, visibality,COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price, Kilometers, Posting_Date, Class,CITY FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID WHERE COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN 10000 AND 100000000 AND visibality <> 0

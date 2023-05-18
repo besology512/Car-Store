@@ -9,7 +9,7 @@ let displayValOne = document.getElementById("range1");
 let displayValTwo = document.getElementById("range2");
 let minGap = 100;
 let sliderTrack = document.querySelector(".slider-track");
-let sliderMaxValue = document.getElementById("slider-1").max;
+let sliderMaxValue = document.getElementById("slider-2").max;
 let sliderMinValue = document.getElementById("slider-1").min;
 
 function slideOne() {
@@ -29,7 +29,6 @@ function slideTwo() {
 function fillColor() {
     percent1 = ((sliderOne.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100;
     percent2 = ((sliderTwo.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100;
-    percent2 = (sliderTwo.value / sliderMaxValue) * 100;
     sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
 }
 
@@ -88,3 +87,14 @@ window.addEventListener('scroll', () => {
         container.style.top = `${scrollPosition + 20}px`;
     }
 });
+
+
+function toggleCheckboxes(elem, otherCheckboxId) {
+    var otherCheckbox = document.getElementById(otherCheckboxId);
+
+    if (otherCheckbox.checked) {
+        otherCheckbox.checked = false;
+        console.log();
+    }
+    elem.checked != elem.checked;
+}
