@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 using Car_Store.models;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Car_Store.Pages
 {
@@ -27,6 +28,11 @@ namespace Car_Store.Pages
             DATABASE = My_DB;
 
         }
+
+        [BindProperty]
+        public IFormFile carImg { get; set; }
+
+
         public IActionResult OnGet()
         {
 
@@ -39,14 +45,33 @@ namespace Car_Store.Pages
 
         }
 
-        public void OnPost(string Brand,string City,string Model,string Fuel, string CarDesc, int Year, int KM, int CarClass, string Cstyle, string GEAR, int CC, int Price)
+        public void OnPost(string Brand,string City,string Model,string Fuel, string CarDesc, int Year, int KM, int CarClass, string Cstyle, string GEAR, int CC, int Price, IFormFile carImg)
         {
 
-            DATABASE.insert_vechile(Brand,CC, MyColor,Year,GEAR,Cstyle,Price
-                ,KM,CarClass, CarDesc,Model,Fuel,City);
-            int carid = DATABASE.getTopVehicleId();
-            CID = (int)HttpContext.Session.GetInt32("User_ID");
-            DATABASE.insert_to_pendingposts(CID,carid);
+
+            if (carImg != null && carImg.Length > 0)
+            {
+                int carid = DATABASE.getTopVehicleId() + 1;
+
+                string fileName = CarDesc.Replace(" ", "-") + "-" + carid.ToString() + ".jpg"; // we should inject something unique here like id
+
+                string imagePath = Path.Combine("wwwroot", "images", fileName);
+
+                // Save the uploaded image to the specified path
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    carImg.CopyTo(fileStream);
+                }
+
+                string finalPath = imagePath.Replace("wwwroot", "");
+
+                DATABASE.insert_vechile(Brand, CC, MyColor, Year, GEAR, Cstyle, Price, KM, CarClass, CarDesc, Model, Fuel, City, finalPath);
+                CID = (int)HttpContext.Session.GetInt32("User_ID");
+                DATABASE.insert_to_pendingposts(CID, carid);
+
+            }
+
+
         }
 
     }

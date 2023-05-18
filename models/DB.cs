@@ -13,7 +13,7 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=TRMBcar;Integrated Security=True";
 
             con = new SqlConnection(conString);
         }
@@ -38,11 +38,11 @@ namespace Car_Store.models
 
 
 
-        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city)
+        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city, string path)
         {
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality)" +
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1)" +
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
-            + "','" + name + "','" + fuel + "'," + 0 + ")";
+            + "','" + name + "','" + fuel + "'," + 0 + ", '" + path + "')";
 
             DateTime currentDate = DateTime.Now;
 
@@ -270,7 +270,6 @@ namespace Car_Store.models
             {
 
                 vehicle newVehicle = new vehicle(
-                    row["iimage"] != null ? (byte[])row["iimage"] : new byte[] { 0x00 },
                    id: row["Vehicle_No"] != null ? (int)(row["Vehicle_No"]) : 0,
                    car_status: row["Car_Status"] != null ? row["Car_Status"].ToString() : "",
                    showroom: row["SHOWROOM"] != null ? row["SHOWROOM"].ToString() : "",
@@ -279,8 +278,9 @@ namespace Car_Store.models
                    color: row["Color"] != null ? row["Color"].ToString() : "",
                    year_model: row["Year_Model"] != null ? (int)row["Year_Model"] : 0,
                    Gearing: row["Gearing"] != null ? row["Gearing"].ToString() : "",
-                   Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : ""
-                   );
+                   Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : "",
+                   car_path: row["C_image1"] != null ? row["C_image1"].ToString() : ""
+                   ) ;
                 returned.Add(newVehicle);
             }
             return returned;
@@ -574,7 +574,7 @@ namespace Car_Store.models
         
         public object getCarNew(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, iimage,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" +tableName + " join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, C_image1,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
             DataTable dt = new DataTable();
             try
             {
@@ -590,7 +590,7 @@ namespace Car_Store.models
 
         public object getCarUsed(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, iimage, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, C_image1, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
 
             DataTable dt = new DataTable();
             try
