@@ -44,7 +44,7 @@ namespace Car_Store.models
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
             + "','" + name + "','" + fuel + "'," + 0 + ")";
 
-            DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Today;
 
             string formattedDate = currentDate.ToString("yyyy-MM-dd");
 
@@ -114,6 +114,16 @@ namespace Car_Store.models
             return Readtable(q);
         }
 
+        public void edit_client_info(int clientID,string Fname , string Lname , string phone , string mail,string pass)
+        {
+            string q = "update CLIENT set Client_FName = '" + Fname + "'" +
+                " , Client_LName = '" + Lname + "'" + " , Client_phone = '" + phone + "'"
+                + " , Mail = '" + mail + "'," + "pass = '" + pass + "'" + " where ClientID = " + clientID;
+            excute_nonQuery(q);
+
+
+        }
+
         public object get_branchid()
         {
             string q = "select BRANCH.BranchID from BRANCH";
@@ -122,7 +132,7 @@ namespace Car_Store.models
 
         public object getUser(int ID)
         {
-            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
+            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass FROM CLIENT WHERE ClientID = " + ID;
 
             return Readtable(q);
         }

@@ -28,7 +28,7 @@
         <header>
             <div class="container">
                 <!-- Start Research -->
-                <div class="head bn-flex mt-5 mr-20">
+                <div class="head bn-flex ">
                  <a style="color:black; padding-right:10px" asp-page="/Index"><h2 class="m-20 fw-bold fs-18"><i class="fa-sharp fa-solid fa-car-side" style="padding-right:10px; color: #000000"></i>TRMB cars</h2></a>
                     <div class="search">
                         <i class="fa-regular fa-magnifying-glass p-absloute c-grey"></i>
@@ -78,7 +78,11 @@
                             <a style="color:black; padding-right:10px" asp-page="/SignUpIn"><i class="fa-solid mr-10 p-5 fa-heart bg-white rad-half"></i></a>
                             <a style="color:black; padding-right:10px" asp-page="/SignUpIn"><i class="fa-solid mr-10 p-5 fa-cart-shopping bg-white rad-half"></i></a>
                             <a style="color:black; padding-right:10px; padding-top:3px;" asp-page="/SignUpIn"><span>Sell car</span></a><!--direct to sign up/in if not signed in-->
-
+                            <div class="dark-mode-switch">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <label for="dark-mode-toggle"></label>
+                            </div>
+       
                         </div>
                     </div>
                     <i class="fas fa-bars  my-i toggle-menu  fs-0 c-white mr-10 "></i>
@@ -170,6 +174,21 @@
                 </div>
                 </div>
             </footer>
+        <script>
+            const darkModeSwitch = document.getElementById('dark-mode-toggle');
+            const body = document.body;
+
+            darkModeSwitch.addEventListener('change', () => {
+                if (darkModeSwitch.checked) {
+                    body.classList.add('dark-mode');
+                    const header = document.querySelector('.head');
+                    header.style.backgroundColor = 'white';
+                } else {
+                    body.classList.remove('dark-mode');
+                    
+                }
+            });
+        </script>
              <!-- End Footer -->
     </body>
 </html>
