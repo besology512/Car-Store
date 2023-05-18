@@ -13,7 +13,7 @@ namespace Car_Store.models
 
         public DB()
         {
-            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=TRMBcar;Integrated Security=True";
 
             con = new SqlConnection(conString);
         }
