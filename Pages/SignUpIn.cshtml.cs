@@ -39,7 +39,7 @@ namespace Car_Store.Pages
 
         }
 
-        public IActionResult OnPostSignUp(string fname, string Lname, string phoneNumber, string date, string password, string cofirmPassword,  string Email, string UserName)
+        public IActionResult OnPostSignUp(string fname, string Lname, string phoneNumber, string date, string password, string cofirmPassword,  string Email, string UserName )
         {
 
             if (password != cofirmPassword)

@@ -314,7 +314,7 @@ nav i:last-child {
 /* End Navbar */
 /* Start Footer */
 footer{
-   height:40px;
+   height:fit-content;
 }
 footer .container .cols .box-link > h4 {
     border-bottom: 1px solid white;
@@ -325,3 +325,4 @@ footer .container .line .mobile-app i {
     opacity: 0.8;
 }
 /* End Footer */
+
