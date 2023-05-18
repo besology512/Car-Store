@@ -77,7 +77,9 @@
                             <a style="color:black; padding-right:10px" asp-page="/WishList"><i class="fa-solid mr-10 p-5 fa-heart bg-white rad-half"></i></a>
                             <a style="color:black; padding-right:10px" asp-page="/CartPage"><i class="fa-solid mr-10 p-5 fa-cart-shopping bg-white rad-half"></i></a>
                             <a style="color:black; padding-right:10px; padding-top:3px;" asp-page="/Add_Car"><span>Add car</span></a>
-
+                            <form method="post">
+                                <input asp-page-handler="Logout" type="submit" style="color:black;background-color:transparent; cursor:pointer;border:none; padding-right:10px; padding-top:3px;" value="logout" />
+                            </form>
                         </div>
                     </div>
                     <i class="fas fa-bars toggle-menu my-i  fs-0 c-white mr-10 "></i>

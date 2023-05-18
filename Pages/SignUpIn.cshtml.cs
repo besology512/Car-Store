@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Car_Store.Services.EmailService;
 
 namespace Car_Store.Pages
 {
@@ -14,16 +15,15 @@ namespace Car_Store.Pages
         [BindProperty]
         public Client Customer { get; set; }
 
-        //public SignUpIn(customer customer)
-        //{
-        //    Customer = customer;
-        //}
+        public EmailDto request { get; set; }
+        public IEmailService service { get; set; }
 
         public DataTable dt { get; set; }
 
-        public SignUpIn(Client Customer)
+        public SignUpIn(Client Customer, IEmailService service)
         {
             this.Customer = Customer;
+            this.service = service;
         }
 
 
@@ -64,7 +64,10 @@ namespace Car_Store.Pages
                 Customer.pass = password;
                 Customer.Mail = Email;
                 Customer.Client_Username = UserName;
+                request = new EmailDto();
+                request.To = Email;
                 Customer.insert();
+                service.SendEmail(request);
                 return RedirectToPage("/Index");
             }
         }
@@ -102,6 +105,12 @@ namespace Car_Store.Pages
                 return Page();
             }
 
+        }
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
         }
 
     }
