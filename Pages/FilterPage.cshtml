@@ -20,17 +20,6 @@
 <link rel="stylesheet" href="~/css/filter.css" asp-append-version="true">
 <!-- Info before filter and cars -->
 <div class = "content">
-<div class="pre-filter">
-    <select name="cars" id="cars">
-        <option value="1">Default sorting</option>
-        <option value="2">Sort by popularity</option>
-        <option value="mercedes">sort by average rating</option>
-        <option value="audi">sort by latest</option>
-        <option value="audi">sort by price low to high</option>
-        <option value="audi">sort by price high to low</option>
-
-    </select>
-</div>
 <!-- end  -->
 <!-- Start Best Offer -->
 <div class="main-container d-flex ">
@@ -45,12 +34,12 @@
                         <div class="price_slider_wrapper">
                             <div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                                 <div class="slider-track"></div>
-                                <input type="range" min="100" max="10000" value="1000" id="slider-1" oninput="slideOne()">
-                                <input type="range" min="100" max="10000" value="5000" id="slider-2" oninput="slideTwo()">
+                                    <input type="range" min="@Model.ConstMinPrice" max="@Model.ConstMaxPrice" value="@Model.MinPrice" name="min_price" id="slider-1" oninput="slideOne()">
+                                    <input type="range" min="@Model.ConstMinPrice" max="@Model.ConstMaxPrice" value="@Model.MaxPrice" name="max_price" id="slider-2" oninput="slideTwo()">
                             </div>
                             <div class="price_slider_amount">
-                                <input type="text" id="min_price" name="min_price" value="2980" data-min="490" placeholder="Min price" style="display: none;">
-                                <input type="text" id="max_price" name="max_price" value = "2398" data-max="13500" placeholder="Max price" style="display: none;">
+                                    <input type="text"  name="min_price" asp-for="@Model.selectedMIN" data-min="490" placeholder="Min price" style="display: none;">
+                                    <input type="text" name="max_price"   data-max="13500" placeholder="Max price" style="display: none;">
                                 <input type="submit" class="filter-button" value = "Filter" asp-page-handler="Filter"/>
                                 <div class="price_label">
                                     Price: <span class="from" id="range1">$2,980</span> — <span class="to" id="range2">$12,650</span>
@@ -77,42 +66,72 @@
                             }
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-                            @{
-                                if (Model.Colors.Rows.Count != 0)
-                                {
-                                            <div class="clickable-div"> <h5 class="widget-title">Filter by Colors</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
-                                            <div class="wd-scroll" style="display: none;">
-                                        @for (int i = 0; i < Model.Colors.Rows.Count; i++)
-                                        {
-                                                            <div class="mini-option">
-                                                                <span>@Model.Colors.Rows[i][0].ToString()</span>
-                                                                <input type="checkbox" class="tickbox" id="color_@i" onchange="changeTickbox(this)" runat="server" name="color_@i">
-                                                                <label for="color_@i"></label>
-                                                            </div>
-                                        }
+                    @{
+                                
+                                
+                            <div class="clickable-div"> <h5 class="widget-title">Filter by Colors</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
+                            <div class="wd-scroll" style="display: none;">
+                        @for (int i = 0; i < Model.Colors.Rows.Count; i++)
+                        {
+                                            <div class="mini-option">
+                                                <span>@Model.Colors.Rows[i][0].ToString()</span>
+                                                <input type="checkbox" class="tickbox" id="color_@i" onchange="changeTickbox(this)" runat="server" name="color_@i">
+                                                <label for="color_@i"></label>
                                             </div>
-                                }
-                            }
+                        }
+                            </div>
+                                
+                    }
                 </div>
                 <div id="woodmart-woocommerce-layered-nav-2" class="wd-widget-collapse widget widget sidebar-widget woodmart-woocommerce-layered-nav">
-                    <div class="clickable-div"> <h5 class="widget-title">Filter by Color</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
-                    <div class="wd-scroll" style="display: none;">
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option7" onchange="changeTickbox(this)">
-                            <label for="option7"></label>
+                    @{
+
+
+                        <div class="clickable-div"> <h5 class="widget-title">Other Filters</h5> <i class="fa-solid fa-chevron-down select-arrow"></i> </div>
+                        <div class="wd-scroll" style="display: none;">
+                            <div class="d-flex justify-content-between">
+                                    <div class="mini-option">
+                                            <input type="checkbox" class="tickbox" id="Manual" onchange="changeTickbox(this)" runat="server" name="Manual" onclick="toggleCheckboxes(this, 'Auto')">
+                                        <label for="Manual"></label>
+                                            <span>Manual</span>
+
+                                    </div>
+                                    <div class="mini-option ml-40">
+                                            <input type="checkbox" class="tickbox" id="Auto" onchange="changeTickbox(this)" runat="server" name="Auto" onclick="toggleCheckboxes(this, 'Manual')">
+                                        <label for="Auto"></label>
+                                            <span>Automatic</span>
+
+                                    </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="mini-option">
+                                    <input type="checkbox" class="tickbox" id="New" onchange="changeTickbox(this)" runat="server" name="New">
+                                    <label for="New"></label>
+                                    <span>New</span>
+
+                                </div>
+                                        <div class="mini-option" style="margin-left: 64px">
+                                            <input type="checkbox" class="tickbox" id="Used" onchange="changeTickbox(this)" runat="server" name="Used">
+                                            <label for="Used"></label>
+                                            <span>Used</span>
+
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                        <h5 class="widget-title">Number of Seats</h5>
+                            @for (int i = 0; i < Model.NumberOfSeatsAvailable.Rows.Count; i++)
+                                        {
+                                            <div class="mini-option ml-10">
+                                                <input type="checkbox" class="tickbox" id="seat_@Model.NumberOfSeatsAvailable.Rows[i][0]" onchange="changeTickbox(this)" runat="server" name="seat_@Model.NumberOfSeatsAvailable.Rows[i][0]">
+                                                <label for="seat_@Model.NumberOfSeatsAvailable.Rows[i][0]"></label>
+                                                <span>@Model.NumberOfSeatsAvailable.Rows[i][0]</span>
+                                            </div>
+                                        }
+                                
+                            </div>
                         </div>
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option8" onchange="changeTickbox(this)">
-                            <label for="option8"></label>
-                        </div>
-                        <div class="mini-option">
-                            <span>LG</span>
-                            <input type="checkbox" class="tickbox" id="option9" onchange="changeTickbox(this)">
-                            <label for="option9"></label>
-                        </div>
-                    </div>
+
+                    }
                 </div>
             </div>
         </div>
@@ -152,9 +171,22 @@
                         <i class="fa-solid fa-star c-orange-s fs-15"></i>
                     </div>
                     <div class="stock-d d-flex fl-column">
-                        <i class="fa-solid fa-check fa-fw yes fs-20  c-blue p-absolute"></i>
-                        <span class="fw-bold ml-25">In Stock</span>
-                        <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$1.199.00</span>
+                        @if (Model.PageCars[i].Count == 0)
+                        {
+                           <div class = "d-flex">
+                            <i class="fa-solid fa-circle mr-5" style="color:red;padding-left:5px"></i>
+                            <span class="fw-bold">Out of Stock</span>
+                           </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex">
+                                <i class="fa-solid fa-check fa-fw yes fs-20  c-blue mr-5"></i>
+                                <span class="fw-bold">Out of Stock</span>
+                            </div>                   
+                        }
+                        
+                        <span class="c-blue fw-bold mb-20 fs-14 ml-20 pt-10">$@Model.PageCars[i].Price</span>
                     </div>
                     <div class="A-d mr-20 ml-20">
                         <form method="post">

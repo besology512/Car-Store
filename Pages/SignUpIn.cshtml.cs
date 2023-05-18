@@ -88,7 +88,9 @@ namespace Car_Store.Pages
                 HttpContext.Session.SetInt32("User_ID", (int)dt.Rows[0][0]);
                 HttpContext.Session.SetInt32("User_Type", (int)dt.Rows[0][11]);
 
-                Console.WriteLine(HttpContext.Session.GetInt32("User_Type"));
+
+
+
                 return RedirectToPage("/AdminView");
                 //go to employee
             }
