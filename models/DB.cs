@@ -55,7 +55,7 @@ namespace Car_Store.models
 
             int vecId = getTopVehicleId();
 
-            string q2 = "INSERT INTO USED_VEHICLE VALUES(" + vecId + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ",'" + city + "')";
+            string q2 = "INSERT INTO USED_VEHICLE VALUES(" + vecId + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ",'" + city + "'," + 1 + ")";
 
             excute_nonQuery(q2);
         }
