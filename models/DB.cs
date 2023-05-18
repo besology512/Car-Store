@@ -14,8 +14,7 @@ namespace Car_Store.models
         public DB()
         {
 
-            string conString = "Data Source=bassam;Initial Catalog=TRMBcar2;Integrated Security=True";
-
+            string conString = "Data Source=DESKTOP-KQT84LF\\MSSQLSERVER2023;Initial Catalog=TRMBcar;Integrated Security=True";
 
 
 
@@ -165,111 +164,118 @@ namespace Car_Store.models
 
 
         public List<vehicle> GetVehicles(
-            List<string> Seats,
+            int id = 0,
             string car_status = "",
             string showroom = "",
             string Brand = "",
+            int CC_Range = 0,
             string color = "",
+            int year_model = 0,
             string gearing = "",
-            int maxPrice = 0,
-            int minPrice = 0,
-           string status = ""
-            )
+            string body_Style = "",
+            string car_image = "")
         {
-            string Q = "SELECT VEHICLE.Vehicle_No,name,rating,Car_Status,COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count,SHOWROOM,Brand,CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats, Traction_Type, Cylinders, CarDescription, Tank_Capacity, C_image1, C_image2, C_image3, visibality,COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price, Kilometers, Posting_Date, Class,CITY FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID ";
-
-            if (Brand != "" && color != "" && gearing!="" && status != "")
+            string Q = "";
+            if (showroom != "" && car_status != "" && Brand != "" && CC_Range != 0 && color != "" && year_model != 0 && gearing != "" && body_Style != "" && car_image != "")
             {
-                Q+=
-                "where Brand =  '" + Brand + "' and Color = '" + color + "'" + "and Car_Status = '" + status + "' "+ "and Gearing = '" + gearing +"' and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE " +
+                   "where showroom =  '" + showroom + "' " +
+                   "and car_status = '" + car_status + "' " +
+                   "and Brand = '" + Brand + "' " +
+                   "and CC_Rnage = '" + CC_Range +
+                   "and Color = '" + color + "' " +
+                   "and Year_Model = '" + year_model +
+                   "and Gearing = '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
             }
-            else if (Brand != "" && color != "" && gearing != "")
+            else if (car_status != "" && Brand != "" && CC_Range != 0 && color != "" && year_model != 0 && gearing != "" && body_Style != "" && car_image != "")
             {
-                Q +=
-                "where Brand =  '" + Brand + "' and Color = '" + color + "'" + "and Gearing = '" + gearing + "' and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE " +
+                    "where car_status =  '" + car_status + "' " +
+                    "and Brand = '" + Brand + "' " +
+                    "and CC_Rnage = '" + CC_Range +
+                    "and Color = '" + color + "' " +
+                   "and Year_Model = '" + year_model +
+                   "and Gearing = '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
             }
-            else if (Brand != "" && color != "" && status!="")
+            else if (Brand != "" && CC_Range != 0 && color != "" && year_model != 0 && gearing != "" && body_Style != "" && car_image != "")
             {
-                Q +=   
-                "where Brand =  '" + Brand + "' and Color = '" + color + "'" + "and Car_Status = '" + status + "' " + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "' " +
+                    "and CC_Rnage = '" + CC_Range +
+                    "and Color = '" + color + "' " +
+                    "and Year_Model = '" + year_model +
+                   "and Gearing = '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
+            }
+            else if (CC_Range != 0 && color != "" && year_model != 0 && gearing != "" && body_Style != "" && car_image != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where CC_Rnage =  '" + CC_Range +
+                    "and Color = '" + color + "' " +
+                    "and Year_Model = '" + year_model +
+                   "and Gearing = '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
+            }
+            else if (color != "" && year_model != 0 && gearing != "" && body_Style != "" && car_image != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Color =  '" + color + "' " +
+                    "and Year_Model = '" + year_model +
+                   "and Gearing = '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
+            }
+            else if (year_model != 0 && gearing != "" && body_Style != "" && car_image != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Year_Model =  '" + year_model +
+                   "and Gearing = '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
+            }
+            else if (gearing != "" && body_Style != "" && car_image != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Gearing =  '" + gearing + "' " +
+                   "and Body_Style = '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
+            }
+            else if (body_Style != "" && car_image != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where Body_Style =  '" + body_Style + "' " +
+                   "and iimage = '" + car_image + "' ";
+            }
+            else if (car_image != "")
+            {
+                Q = "select * from VEHICLE " +
+                    "where iimage =  '" + car_image + "' ";
             }
             else if (Brand != "" && color != "")
             {
-                Q +=
-                "where Brand =  '" + Brand + "' and Color = '" + color + "'" + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (Brand != "" && gearing != "" && status!="")
-            {
-                Q +=  
-                "where Brand =  '" + Brand + "'" + " and Car_Status = '" + status + "' " +  " and Gearing = '" + gearing + "' and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (Brand != "" && gearing != "")
-            {
-                Q +=
-                "where Brand =  '" + Brand + "'" + "and Gearing = '" + gearing + "' and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (Brand != ""&&status!="")
-            {
-                Q +=
-                "where Brand =  '" + Brand + "'" + " and Car_Status = '" + status + "' " + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "' and Color = '" + color + "'";
             }
             else if (Brand != "")
             {
-                Q +=
-                "where Brand =  '" + Brand + "'" + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE " +
+                    "where Brand =  '" + Brand + "'";
             }
-            else if (color != "" && gearing!="" && car_status!="")
+            else if (color != "")
             {
-                    
-                Q+= "where Color =  '" + color + "'" + " and Gearing = '" + gearing + "'"
-                    + " and Car_Status = '" + status + "' " + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (color != "" && gearing != "")
-            {
-
-                Q += "where Color =  '" + color + "'" + " and Gearing = '" + gearing + "'"
-                    + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (color != "" && status != "")
-            {
-                Q += "where Color =  '" + color + "'" + " and Car_Status = '" + status + "' "
-                    + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if(color!=""){
-                    Q += "where Color =  '" + color + "'"
-                        + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (gearing != "" && status != "")
-            {
-                Q += "where Gearing =  '" + gearing + "'" + " and Car_Status = '" + status + "' "
-                       + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if (gearing!="")
-            {
-                Q += "where Gearing =  '" + gearing + "'"
-                       + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
-            }
-            else if(status!=""){
-                Q += "where Car_Status = '" + status + "' " + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE " +
+                    "where Color =  '" + color + "' ";
             }
             else
             {
-                Q += "WHERE COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+                Q = "select * from VEHICLE ";
             }
-            if (Seats.Count != 0)
-            {
-                string Q2 = "Seats IN (";
-                    
-                for (int i = 0;i<Seats.Count-1;i++)
-                {
-                    Q2 += Seats[i] +",";
-                }
-                Q2 +=Seats[Seats.Count-1] + ")";
-                Q += " and " + Q2;
-            }
-
-            Q += " AND visibality <> 0";
-            Console.WriteLine(Q);
 
             DataTable table = (DataTable)Readtable(Q);
             List<vehicle> returned = new List<vehicle>();
@@ -277,28 +283,34 @@ namespace Car_Store.models
             {
 
                 vehicle newVehicle = new vehicle(
-                   car_image: row["C_image1"] is not System.DBNull ? row["C_image1"].ToString() : "",
-                   car_image2: row["C_image2"] is not System.DBNull ? row["C_image2"].ToString():"",
-                   car_image3: row["C_image3"] is not System.DBNull ? row["C_image3"].ToString():"",
-                   id: row["Vehicle_No"] is not System.DBNull ? (int)(row["Vehicle_No"]) : 0,
-                   car_status: row["Car_Status"] is not System.DBNull ? row["Car_Status"].ToString() : "",
-                   showroom: row["SHOWROOM"] is not System.DBNull ? row["SHOWROOM"].ToString() : "",
-                   Brand: row["Brand"] is not System.DBNull ? row["Brand"].ToString() : "",
+                   id: row["Vehicle_No"] != null ? (int)(row["Vehicle_No"]) : 0,
+                   car_status: row["Car_Status"] != null ? row["Car_Status"].ToString() : "",
+                   showroom: row["SHOWROOM"] != null ? row["SHOWROOM"].ToString() : "",
+                   Brand: row["Brand"] != null ? row["Brand"].ToString() : "",
                    CC_Range: row["CC_Rnage"] != null ? (int)row["CC_Rnage"] : 0,
-                   color: row["Color"] is not System.DBNull ? row["Color"].ToString() : "",
+                   color: row["Color"] != null ? row["Color"].ToString() : "",
                    year_model: row["Year_Model"] != null ? (int)row["Year_Model"] : 0,
-                   Gearing: row["Gearing"] is not System.DBNull ? row["Gearing"].ToString() : "",
-                   Body_Style: row["Body_Style"] is not System.DBNull ? row["Body_Style"].ToString() : "",
-                   Rating: row["rating"] is not System.DBNull ? (int)row["rating"] : new Random().Next(0, 6),
-                   visibility: row["visibality"] is not System.DBNull ? (int)row["visibality"] : 0,
-                   Price: row["Price"] is not System.DBNull ? (int)row["Price"] : 0,
-                   Count: row["count"] is not System.DBNull ? (int)row["count"]:0
-                   );
+                   Gearing: row["Gearing"] != null ? row["Gearing"].ToString() : "",
+                   Body_Style: row["Body_Style"] != null ? row["Body_Style"].ToString() : "",
+                   car_path: row["C_image1"] != null ? row["C_image1"].ToString() : ""
+                   ) ;
                 returned.Add(newVehicle);
             }
             return returned;
         }
+        /*        private object readTable(string Q);
+        */
 
+        //public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
+        //{
+        //    string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
+        //        "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "')";
+        //    DateTime currentDate = DateTime.Now;
+        //    string formattedDate = currentDate.ToString("yyyy-MM-dd");
+        //    string q2 = "INSERT INTO USED_VEHICLE VALUES(" + 1 + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ")";
+        //    excute_nonQuery(q);
+        //    excute_nonQuery(q2);
+        //}
 
         public DataTable GetAvailableFilters(string filter)
         {
@@ -306,8 +318,6 @@ namespace Car_Store.models
             if (filter == "Brands")
             {
                 Q = "SELECT DISTINCT Brand FROM VEHICLE";
-            }else if(filter == "Seats"){
-                Q = "SELECT DISTINCT Seats FROM VEHICLE";
             }
             else if (filter == "Colors")
             {
@@ -317,9 +327,12 @@ namespace Car_Store.models
             {
                 Q = "SELECT DISTINCT Gearing FROM VEHICLE";
             }
-            else if (filter == "Price")
+            else if (filter == "MinMax")
             {
-                Q = "SELECT MAX( COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price)) as Max, MIN( COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price))  as Min FROM  VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID";
+                Q = "SELECT MIN(p.Price) AS MinPrice, MAX(p.Price) AS MaxPrice\r\nFROM (\r\n" +
+                    "    SELECT NEW_VEHICLE.Price, Vehicle_ID  FROM NEW_VEHICLE\r\n    UNION ALL\r\n" +
+                    "    SELECT USED_VEHICLE.Price, Vehicle_ID FROM USED_VEHICLE\r\n) AS p\r\nJOIN VEHICLE" +
+                    " v ON p.Vehicle_ID = v.Vehicle_No;";
             }
             else if (filter == "status")
             {

@@ -5,41 +5,41 @@ using System.Data;
 using Microsoft.SqlServer.Server;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-using System.Runtime.InteropServices;
-using System.Collections.Specialized;
-using System.Drawing;
 
 namespace Car_Store.Pages
 {
     public class FilterPageModel : PageModel
     {
         [BindProperty]
-        public List<string> Seats { get; set; }
-        [BindProperty] public DataTable NumberOfSeatsAvailable { get; set; }
-        [BindProperty]
-        public string status { get; set; }
-        [BindProperty]
-        public bool Auto { get; set; }
-        [BindProperty]
-        public bool Manual { get; set; }
-        [BindProperty]
         public WishCart cartWish { get; set; }
         public List<string> CheckedBrands { get; set; }
         public DataTable Brands { get; set; }
         [BindProperty] public DataTable Colors { get; set; }
-        [BindProperty] public int ConstMinPrice { get; set; }
-        [BindProperty] public int ConstMaxPrice { get; set; }
-
-        [BindProperty] public int MinPrice { get; set; }
-        [BindProperty] public int MaxPrice { get; set; }
+        [BindProperty] public DataTable MinMax { get; set; }
         [BindProperty] public DataTable gearing { get; set; }
         [BindProperty] public DataTable warranty_years { get; set; }
         [BindProperty] public DataTable warranty_kilometers { get; set; }
+        [BindProperty] public DataTable status { get; set; }
         [BindProperty] public List<string> CheckedColors { get; set; }
         [BindProperty] public List<string> checkedWarrantyYears { get; set; }
         [BindProperty] public List<string> checkedWarrantyKilometers { get; set; }
-        [BindProperty] public int selectedMIN { get; set; }
-        [BindProperty] public int selectedMAX { get; set; }
+        /*        [BindProperty]
+                public List<string> CheckedBrands
+                {
+                    get
+                    {
+                        List<string> list = HttpContext.Session.Get<List<string>>("CheckedBrands");
+                        if (list == null)
+                        {
+                            list = new List<string>();
+                            HttpContext.Session.Set<List<string>>("MyList", list);
+                        }
+                        return list;
+                    }
+                    set { }
+                }*/
+
+
         [BindProperty]
         public List<vehicle> PageCars { get; set; }
         [BindProperty]
@@ -49,57 +49,48 @@ namespace Car_Store.Pages
             PageCars = new List<vehicle>();
             this.db = myDatabase;
             Colors = new DataTable();
+            MinMax = new DataTable();
             gearing = new DataTable();
             Brands = new DataTable();
+            status = new DataTable();
             warranty_kilometers = new DataTable();
             warranty_years = new DataTable();
             CheckedBrands = new List<string>();
+            Console.WriteLine("construction");
             //WHEN I DELETE IT IT DOESN'T WORK
             CheckedColors = new List<string>();
             checkedWarrantyYears = new List<string>();
             checkedWarrantyKilometers = new List<string>();
             cartWish = new WishCart();
-            MinPrice = (int)(db.GetAvailableFilters("Price").Rows[0][1]);
-            MaxPrice = (int)(db.GetAvailableFilters("Price").Rows[0][0]);
-            ConstMinPrice = MinPrice;
-            ConstMaxPrice = MaxPrice;
-            Auto = false;
-            Manual = false;
-            status = "";
-            Seats = new List<string>();
-            NumberOfSeatsAvailable = new DataTable();
         }
+
+        /*        protected void FilterByBrand(object sender, EventArgs e)
+                {
+                    // Create a list to store the checked brand names
+                    List<string> checkedBrands = new List<string>();
+
+                    // Iterate through the checkboxes to check the state of each one
+                    foreach (var control in brand_1.Controls)
+                    {
+                        if (control is CheckBox checkbox && checkbox.Checked)
+                        {
+                            // If the checkbox is checked, add its brand name to the list
+                            var brandName = checkbox.Parent.Controls[0].ToString();
+                            checkedBrands.Add(brandName);
+                        }
+                    }
+                }*/
 
 
         public void OnGet()
         {
-            NumberOfSeatsAvailable = db.GetAvailableFilters("Seats");
             Brands = db.GetAvailableFilters("Brands");
             gearing = db.GetAvailableFilters("gearing");
+            MinMax = db.GetAvailableFilters("MinMax");
             Colors = db.GetAvailableFilters("Colors");
+            status = db.GetAvailableFilters("status");
             warranty_years = db.GetAvailableFilters("warranty years");
             warranty_kilometers = db.GetAvailableFilters("warranty kilometers");
-            if (CheckedBrands.Count != 0 && CheckedColors.Count != 0 && Auto!=Manual)
-            {
-                PageCars = new List<vehicle>();
-                foreach (string brand in CheckedBrands)
-                {
-                    foreach (string color in CheckedColors)
-                    {
-                        
-                        if (Auto)
-                        {
-                            PageCars = PageCars.Concat(db.GetVehicles(Seats,Brand: brand, color: color, minPrice: MinPrice, maxPrice: MaxPrice,gearing:"Automatic",status:status)).ToList();
-                        }
-                        else
-                        {
-                            PageCars = PageCars.Concat(db.GetVehicles(Seats, Brand: brand, color: color, minPrice: MinPrice, maxPrice: MaxPrice ,gearing: "manual", status: status)).ToList();
-                        }
-                    }
-                }
-                return;
-            }
-
             if (CheckedBrands.Count != 0 && CheckedColors.Count != 0)
             {
                 PageCars = new List<vehicle>();
@@ -107,23 +98,9 @@ namespace Car_Store.Pages
                 {
                     foreach (string color in CheckedColors)
                     {
-                        PageCars = PageCars.Concat(db.GetVehicles(Seats, Brand: brand, color: color, minPrice: MinPrice, maxPrice: MaxPrice, status: status)).ToList();
-                    }
-                }
-                return;
-            }
-            else if (CheckedBrands.Count != 0 && CheckedColors.Count == 0 && Auto!=Manual)
-            {
-                PageCars = new List<vehicle>();
-                foreach (string brand in CheckedBrands)
-                {
-                    if (Auto)
-                    {
-                        PageCars = PageCars.Concat(db.GetVehicles(Seats, Brand: brand, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "Automatic", status: status)).ToList();
-                    }
-                    else
-                    {
-                        PageCars = PageCars.Concat(db.GetVehicles(Seats, Brand: brand, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "manual", status: status)).ToList();
+                        Console.WriteLine("I'm here with " + color + brand);
+                        PageCars = PageCars.Concat(db.GetVehicles(Brand: brand, color: color)).ToList();
+                        Console.WriteLine(PageCars.Count);
                     }
                 }
                 return;
@@ -133,64 +110,33 @@ namespace Car_Store.Pages
                 PageCars = new List<vehicle>();
                 foreach (string brand in CheckedBrands)
                 {
-                    PageCars = PageCars.Concat(db.GetVehicles(Seats, Brand: brand, minPrice: MinPrice, maxPrice: MaxPrice, status: status)).ToList();
+                    Console.WriteLine("I'm here with " + brand);
+                    PageCars = PageCars.Concat(db.GetVehicles(Brand: brand)).ToList();
+                    Console.WriteLine(PageCars.Count);
                 }
-                return;
-            }
-            else if (CheckedColors.Count != 0 && CheckedBrands.Count == 0 && Auto!=Manual)
-            {
-                PageCars = new List<vehicle>();
-                foreach (string color in CheckedColors)
-                {
-                    if (Auto)
-                    {
-                        PageCars = PageCars.Concat(db.GetVehicles(Seats, color: color, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "Automatic", status: status)).ToList();
-                    }
-                    else
-                    {
-                        PageCars = PageCars.Concat(db.GetVehicles(Seats, color: color, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "manual", status: status)).ToList();
-                    }
-                }
-                return;
             }
             else if (CheckedColors.Count != 0 && CheckedBrands.Count == 0)
             {
                 PageCars = new List<vehicle>();
                 foreach (string color in CheckedColors)
                 {
-                    PageCars = PageCars.Concat(db.GetVehicles(Seats, color: color, minPrice: MinPrice, maxPrice: MaxPrice, status: status)).ToList();
+                    Console.WriteLine("the color I have is:" + color);
+                    PageCars = PageCars.Concat(db.GetVehicles(color: color)).ToList();
                 }
-                return;
-            }
-            else if (Auto != Manual)
-            {
-                if (Auto)
-                {
-                    PageCars = db.GetVehicles(Seats, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "Automatic", status: status);
-                }
-                else
-                {
-                    PageCars = db.GetVehicles(Seats, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "Manual", status: status);
-                }
-            }
-            else if(selectedMAX != MaxPrice || selectedMIN != MinPrice)
-            {
-                PageCars = db.GetVehicles(Seats, minPrice: MinPrice,maxPrice:MaxPrice, status: status);
             }
             else
             {
-                PageCars = db.GetVehicles(Seats);
-                return;
+                PageCars = db.GetVehicles();
             }
         }
 
-        public void OnPostFilter( int min_price, int max_price)
+        public void OnPostFilter()
         {
             Brands = db.GetAvailableFilters("Brands");
             gearing = db.GetAvailableFilters("gearing");
+            MinMax = db.GetAvailableFilters("MinMax");
             Colors = db.GetAvailableFilters("Colors");
-            NumberOfSeatsAvailable = db.GetAvailableFilters("seats");
-            MinPrice = min_price; MaxPrice = max_price;
+            status = db.GetAvailableFilters("status");
             for (int i = 0; i < Brands.Rows.Count; i++)
             {
                 bool isChecked = Request.Form["brand_" + i] == "on";
@@ -207,29 +153,9 @@ namespace Car_Store.Pages
                     CheckedColors.Add(Colors.Rows[i][0].ToString());
                 }
             }
-
-            Manual = Request.Form["Manual"] == "on";
-            Auto = Request.Form["Auto"] == "on";
-            if (Request.Form["New"] == "on" && !(Request.Form["Used"] == "on"))
-            {
-                status = "new";
-            }
-            else if (!(Request.Form["New"] == "on") && (Request.Form["Used"] == "on"))
-            {
-                status = "Used";
-            }
-            else { status  = ""; }
-            Console.WriteLine(NumberOfSeatsAvailable.Rows.Count);
-
-            for (int i = 0; i < NumberOfSeatsAvailable.Rows.Count; i++)
-            {
-                if (Request.Form["seat_" + NumberOfSeatsAvailable.Rows[i][0].ToString()] == "on")
-                {
-                    Console.WriteLine(NumberOfSeatsAvailable.Rows[i][0]);
-                    Seats.Add(NumberOfSeatsAvailable.Rows[i][0].ToString());
-                }
-            }
             OnGet();
+            /*            HttpContext.Session.Set<List<string>>("CheckedBrands", CheckedBrands);*/
+            /*return RedirectToAction("FilterPage");*/
         }
         public IActionResult OnPostAddCarToCart(int PID)
         {
