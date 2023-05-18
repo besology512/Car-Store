@@ -84,7 +84,7 @@
         </div>
         <div class="right">
             <div class="caption">
-                <h1>Tarek shalaby</h1>
+                <h1>@Model.dt.Rows[0][0] @Model.dt.Rows[0][1]</h1>
                 <div>
                     <i class="fa-solid fa-location-pin" style="color: #6d6c6c;"></i>
                     <span style="color: #6d6c6c; font-weight: normal;">Egypt</span>
@@ -124,30 +124,57 @@
                 </div>
                 <div class="info">
                     <p style="color: #6d6c6c;">Info</p>
+                    <form method="post" id="edit-form">
+                    </form>
                     <ul>
                         <li style="gap: 30px;">
                             <p>First name: </p>
-                            <p style="color: #6d6c6c;">@Model.dt.Rows[0][0]</p>
+                            <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][0]" disabled placeholder="@Model.dt.Rows[0][0]" name="Fname" />
                         </li>
                         <li style="gap: 30px;">
                             <p>Last name: </p>
-                            <p style="color: #6d6c6c;">@Model.dt.Rows[0][1]</p>
+                            <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][1]" disabled placeholder="@Model.dt.Rows[0][1]" name="Lname" />
+                            
                         </li>
                         <li style="gap: 59px;">
                             <p>Phone: </p>
-                            <p style="color: #1C61E7;">@Model.dt.Rows[0][2]</p>
+                            <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][2]" disabled placeholder="@Model.dt.Rows[0][2]" name="Phone" />
                         </li>
                         <li style="gap: 64px;">
                             <p>Email: </p>
-                            <p style="color: #6d6c6c;">@Model.dt.Rows[0][4]</p>
+                            <input form="edit-form" class="hidden-input" style="width:250px;" value="@Model.dt.Rows[0][4]" disabled placeholder="@Model.dt.Rows[0][4]" name="Email" />
+                        </li>
+                        <li style="gap:36px;">
+                            <p>Password: </p>
+                            <input form="edit-form" class="hidden-input" type="password" id="pass-input" value="@Model.dt.Rows[0][5]" disabled placeholder="@Model.dt.Rows[0][5]" name="Pass" />
                         </li>
                         
                         <hr>
                         <li style="gap: 36px;">
                             <p>Birth date: </p>
-                            <p style="color: #6d6c6c;">@Model.dt.Rows[0][3]</p>
+                            <input class="non-edit-input" disabled placeholder="@(((DateTime)Model.dt.Rows[0][3]).ToLongDateString())" />
                         </li>
                     </ul>
+                    <div class="edit-save">
+                        <div class="p-buttons">
+                            <button class="edit-btn" id="edit-button">Edit</button>
+                            <input id="save-btn" class="save-btn" style="display:none" type= "submit" value="save" form="edit-form" />
+                        </div>
+                    </div>
+                    <script>
+                        const editButton = document.getElementById("edit-button");
+                        const inputs = document.querySelectorAll(".hidden-input");
+                        const sinput = document.getElementById("save-btn")
+                        var pass = document.getElementById("pass-input")
+                        editButton.addEventListener("click", function () {
+                            inputs.forEach(input => {
+                                input.classList.toggle("show-input");
+                                input.removeAttribute("disabled");
+                                sinput.style.display = "block";
+                                pass.type = "text";
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>

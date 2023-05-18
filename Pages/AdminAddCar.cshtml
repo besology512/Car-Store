@@ -1,5 +1,5 @@
 ﻿@page
-@model Car_Store.Pages.Add_CarModel
+@model Car_Store.Pages.AdminAddCarModel
 @{
     if (HttpContext.Session.GetInt32("User_Type") == null)
     {
@@ -55,7 +55,7 @@
     carModels.Add("Mercedes-Benz", new string[] { "C-Class", "E-Class", "G-Class", "GLC", "GLE", "S-Class" });
     carModels.Add("Mini", new string[] { "Clubman", "Cooper", "Countryman" });
     carModels.Add("Mitsubishi", new string[] { "Eclipse Cross", "Outlander", "Outlander Sport" });
-    carModels.Add("Nissan", new string[] { "Altima", "Kicks", "Maxima", "Murano", "Rogue", "Sentra","Tida" });
+    carModels.Add("Nissan", new string[] { "Altima", "Kicks", "Maxima", "Murano", "Rogue", "Sentra", "Tida" });
     carModels.Add("Porsche", new string[] { "911", "Cayenne", "Macan", "Panamera" });
     carModels.Add("Ram", new string[] { "1500", "2500", "3500" });
     carModels.Add("Rolls-Royce", new string[] { "Dawn", "Ghost", "Phantom", "Wraith" });
@@ -122,11 +122,11 @@
 
 <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
 <div class="all-page-content">
-    <form id="main-form" method="post" enctype="multipart/form-data">
+    <form id="main-form" method="post">
         <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
         <div class="image-add">
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" name = "carImg" accept="image/*">
+                <input type="file" id="car-image"  accept="image/*">
 
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
@@ -134,7 +134,22 @@
                 </label>
             </div>
 
+            <div class="img-card" onclick="document.getElementById('car-image').click()">
+                <input type="file" id="car-image"  name="" accept="image/*">
 
+                <label for="car-image">
+                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
+                    chose image
+                </label>
+            </div>
+
+            <div class="img-card" onclick="document.getElementById('car-image').click()">
+                <input type="file" id="car-image"  name="" accept="image/*">
+                <label for="car-image">
+                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
+                    chose image
+                </label>
+            </div>
         </div>
         @*end image add*@
         @*start car info*@
@@ -142,22 +157,22 @@
         <div class="car-details">
             <div class="car-title">
                 <label for="car-title">Ad. Title</label>
-                <input type="text" asp-for="@Model.ParentV.cardesc" name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic"/>
+                <input type="text"  name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic" />
             </div>
             <div class="make-model">
                 <div class="make">
                     <label for="Make">Make*</label>
-                    <select id="Make" asp-for="@Model.ParentV.Brand" name="Brand">
+                    <select id="Make"  name="Brand">
                         @foreach (string brand in carBrands)
                         {
                             <option value="@brand">@brand</option>
                         }
                     </select>
                 </div>
-          
+
                 <div class="model">
                     <label for="Model">Model*</label>
-                    <select id="Model" asp-for="@Model.ParentV.carmodel" name="Model">
+                    <select id="Model"  name="Model">
                         @foreach (string modell in carModels["Nissan"])
                         {
                             <option value="@modell">@modell</option>
@@ -167,19 +182,19 @@
             </div>
             <div class="car-year">
                 <label for="car-title">Year*</label>
-                
-                <input type="number" asp-for="@Model.ParentV.year_model" required class="my-input"
+
+                <input type="number"  required class="my-input"
                        min="1900" max="2022" step="1" placeholder="year" name="Year" />
             </div>
             <div class="Km-city">
                 <div class="Km">
                     <label for="car-Km">Km*</label>
-                    <input type="text" id="car-Km" required asp-for="@Model.u_Vehicle.Km
-                           placeholder="How many KM?" class="my-input" name="KM" />
+                    <input type="text" id="car-Km" required 
+                           placeholder=" How many KM?" class="my-input" name="KM" />
                 </div>
                 <div class="city">
                     <label for="City">City*</label>
-                    <select id="City" asp-for="@Model.u_Vehicle.city" name="City">
+                    <select id="City"  name="City">
                         @foreach (string city in egyptCities)
                         {
                             <option value="@city">@city</option>
@@ -201,7 +216,7 @@
                 <div class="color-box" style="background-color:silver">
                     <span>Silver</span>
                 </div>
-                <div class="color-box" >
+                <div class="color-box">
                     <span style="color:black;">white</span>
                 </div>
                 <div class="color-box" style="background-color:black;">
@@ -231,11 +246,11 @@
                 <div class="Class">
                     <label for="car-Class">Class*</label>
                     <input type="text" id="car-Class" required
-                       asp-for="@Model.u_Vehicle.car_class"    placeholder="insert you are car class" class="my-input" name="CarClass" />
+                          placeholder="insert you are car class" class="my-input" name="CarClass" />
                 </div>
                 <div class="style">
                     <label for="Car-style">Style*</label>
-                    <select id="Car-style"  name="Cstyle" asp-for="@Model.ParentV.Body_Style" >
+                    <select id="Car-style" name="Cstyle" >
                         <option>Sedan</option>
                         <option>SUV</option>
                         <option>Coube</option>
@@ -248,14 +263,14 @@
             <div class="transition-fuel">
                 <div class="gearing">
                     <label for="gear">Gearing*</label>
-                    <select id="gear" name="GEAR" asp-for="@Model.ParentV.Gearing" >
+                    <select id="gear" name="GEAR" >
                         <option value="manual">manual</option>
                         <option value="automatic">automatic</option>
                     </select>
                 </div>
                 <div class="fuel">
                     <label for="Fuel">Fuel*</label>
-                    <select id="Fuel" asp-for="@Model.ParentV.Fuel" name="Fuel">
+                    <select id="Fuel"  name="Fuel">
                         <option value="Gas">Gas</option>
                         <option value="Electric">Electric</option>
                         <option value="Hybird">Hybird</option>
@@ -266,18 +281,18 @@
             </div>
             <div class="cc-range">
                 <label for="car-CC">CC Range*</label>
-                <input type="text" id="car-CC" class="my-input" required name="CC" asp-for="@Model.ParentV.CC_Range" />
+                <input type="text" id="car-CC" class="my-input" required name="CC"  />
             </div>
             <div class="car-price">
                 <label for="car-price">Price</label>
-                <input type="text" id="car-price" required class="my-input" name="Price" asp-for="@Model.u_Vehicle.price" />
+                <input type="text" id="car-price" required class="my-input" name="Price" />
             </div>
         </div>
         <div>
             <input class="sub" type="submit" value="SELL CAR" />
         </div>
     </form>
-    <p style="color:green;">@Model.Alertmsg</p>
+    @*<p style="color:green;">@Model.Alertmsg</p>*@
 </div>
 
 

@@ -31,5 +31,12 @@ namespace Car_Store.Pages
             DATABASE.declinecar(vehcId, ClientId);
             return RedirectToPage("/displayPendingPosts");
         }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }

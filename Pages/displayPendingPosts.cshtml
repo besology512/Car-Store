@@ -13,7 +13,7 @@
         {
             <div class="Post-Card">
 
-                <p class="sec-color">@Model.dtable.Rows[i][1]</p>
+                <p class="sec-color">@(((DateTime)Model.dtable.Rows[i][1]).ToLongDateString())</p>
                 <p>@Model.dtable.Rows[i][5]</p>
                 <p>Vehicle ID <span class="main-color">@Model.dtable.Rows[i][4]</span></p>
                 

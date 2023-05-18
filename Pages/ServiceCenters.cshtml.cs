@@ -15,5 +15,12 @@ namespace Car_Store.Pages
             myCenter = new ServicesCenters();
             DT = (DataTable)myCenter.getAll();
         }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }

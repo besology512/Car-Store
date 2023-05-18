@@ -2,6 +2,11 @@
 *{
     box-sizing:border-box !important;
 }
+.image-add {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 .sec-color {
     color: #6d6c6c;
