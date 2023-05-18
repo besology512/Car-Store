@@ -38,7 +38,9 @@ namespace Car_Store.models
         }
 
         public vehicle(
-            byte[] car_image,
+            string car_image = "",
+            string car_image2 = "",
+            string car_image3 = "",
             int id = 0,
             string car_status = "",
             string showroom = "",
@@ -48,7 +50,10 @@ namespace Car_Store.models
             int year_model = 0,
             string Gearing = "",
             string Body_Style = "",
-            int Rating = 0
+            int Rating = 0,
+            int visibility = 0,
+            int Price = 0,
+            int Count = 0
             )
         {
             this.car_status = car_status;
@@ -59,10 +64,28 @@ namespace Car_Store.models
             this.year_model = year_model;
             this.Gearing = Gearing;
             this.Body_Style = Body_Style;
-            this.car_image = Convert.ToBase64String(car_image);
-            this.Rating = Rating;
             this.Id = id;
+            this.Rating = Rating;
+            this.car_image = car_image;
+            this.car_image2 = car_image2;
+            this.car_image3 = car_image3;
+            switch (visibility)
+            {
+                case 0: this.visibility = "Pending"; break;
+                case 1: this.visibility = "In Stock"; break;
+                case 2: this.visibility = "Out of Stock"; break;
+                default: this.visibility = "Pending"; break;
+            }
+            this.Price = Price;
+            this.Count = Count;
+
         }
+        [Required]
+        public int Count;
+        [Required]
+        public int Price;
+        [Required]
+        public string visibility;
 
         [Required]
         public int Id;
