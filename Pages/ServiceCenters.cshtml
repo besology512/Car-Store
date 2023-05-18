@@ -35,6 +35,7 @@
                 allowfullscreen>
         </iframe>
     </div>
+
 </section>
 <!-- End Search Section-->
 <!-- Start Most Relevant Section-->
@@ -46,7 +47,7 @@
     {
         @for (int i = 0; i < Model.DT.Rows.Count; i++)
         {
-            Model.mapsLink = "https://maps.google.com/maps?q=" + Model.DT.Rows[i][4].ToString() + "," + Model.DT.Rows[i][5].ToString() + "&z=12&output=embed&zoomcontrol=0";
+            Model.mapsLink = "https://maps.google.com/maps?q=" + Model.DT.Rows[i][5].ToString() + "," + Model.DT.Rows[i][6].ToString() + "&z=12&output=embed&zoomcontrol=0";
 
             <div class="service-center-box">
                 <div class="center-map">
@@ -66,7 +67,7 @@
                     <span> @Model.DT.Rows[i][3]</span>
                     <div class="stars">
 
-                        @for (int j = 0; j < (int)Model.DT.Rows[i][6]; j++)
+                        @for (int j = 0; j < (int)Model.DT.Rows[i][7]; j++)
                         {
                             <span class="star filled-s">&#9733;</span>
                         }
@@ -81,7 +82,7 @@
 
         @for (int i = 0; i < Model.DT.Rows.Count; i++)
         {
-            Model.mapsLink = "https://maps.google.com/maps?q=" + Model.DT.Rows[i][4].ToString() + "," + Model.DT.Rows[i][5].ToString() + "&z=12&output=embed&zoomcontrol=0";
+            Model.mapsLink = "https://maps.google.com/maps?q=" + Model.DT.Rows[i][5].ToString() + "," + Model.DT.Rows[i][6].ToString() + "&z=12&output=embed&zoomcontrol=0";
 
             <div class="service-center-box">
                 <div class="center-map">
@@ -101,7 +102,7 @@
                     <span> @Model.DT.Rows[i][3]</span>
                     <div class="stars">
 
-                        @for (int j = 0; j < (int)Model.DT.Rows[i][6]; j++)
+                       @for (int j = 0; j < (int)Model.DT.Rows[i][7]; j++)
                         {
                             <span class="star filled-s">&#9733;</span>
                         }
