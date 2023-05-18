@@ -122,34 +122,19 @@
 
 <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
 <div class="all-page-content">
-    <form id="main-form" method="post">
+    <form id="main-form" method="post" enctype="multipart/form-data">
         <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
         <div class="image-add">
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image"  accept="image/*">
+                <input type="file" id="car-image" name = "carImg" accept="image/*">
 
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
                     chose image
                 </label>
             </div>
-            
-            <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image name="  accept="image/*">
 
-                <label for="car-image">
-                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
-                    chose image
-                </label>
-            </div>
-            
-            <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" asp-for="@Model.ParentV.car_image name="  accept="image/*">
-                <label for="car-image">
-                    <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
-                    chose image
-                </label>
-            </div>
+
         </div>
         @*end image add*@
         @*start car info*@
