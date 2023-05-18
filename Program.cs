@@ -1,4 +1,5 @@
 using Car_Store.models;
+using Car_Store.Services.EmailService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddSingleton<ShowRoom>();//
 builder.Services.AddSingleton<product>();//
 builder.Services.AddSingleton<WishCart>();//
 builder.Services.AddSession();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 

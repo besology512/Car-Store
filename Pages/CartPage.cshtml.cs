@@ -32,7 +32,14 @@ namespace Car_Store.Pages
             wc.PId = pId;
             wc.delete("Cart_vehicle", "vehichle_ID");
             return RedirectToPage("/CartPage");
-        }        
-        
+        }
+
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }

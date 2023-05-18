@@ -10,6 +10,7 @@ namespace Car_Store.Pages
     {
         private readonly DB DATABASE;
 
+        public String  Alertmsg { get; set; }
         [BindProperty]
         public int CID { get; set; }
 
@@ -36,6 +37,7 @@ namespace Car_Store.Pages
             }
             
             return Page();
+            Alertmsg = "";
 
         }
 
@@ -47,6 +49,14 @@ namespace Car_Store.Pages
             int carid = DATABASE.getTopVehicleId();
             CID = (int)HttpContext.Session.GetInt32("User_ID");
             DATABASE.insert_to_pendingposts(CID,carid);
+            Alertmsg = "Post is pending now it will approved by admin soon";
+        }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
         }
 
     }

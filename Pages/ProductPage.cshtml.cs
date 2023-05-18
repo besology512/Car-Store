@@ -8,5 +8,12 @@ namespace Car_Store.Pages
         public void OnGet()
         {
         }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }
