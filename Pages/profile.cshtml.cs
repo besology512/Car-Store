@@ -31,5 +31,12 @@ namespace Car_Store.Pages
             return Page();
 
         }
+        public IActionResult OnPost(string Fname , string Lname , string Email , string Phone,string Pass) {
+
+            ID = (int)HttpContext.Session.GetInt32("User_ID");
+            database.edit_client_info(ID, Fname , Lname , Phone,Email, Pass);
+            return RedirectToPage("/profile");
+
+        }
     }
 }
