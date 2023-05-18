@@ -278,7 +278,7 @@ namespace Car_Store.models
             {
 
                 vehicle newVehicle = new vehicle(
-                   car_image: row["C_image1"] is not System.DBNull ? row["C_image1"].ToString() : "",
+                   car_path: row["C_image1"] is not System.DBNull ? row["C_image1"].ToString() : "",
                    car_image2: row["C_image2"] is not System.DBNull ? row["C_image2"].ToString() : "",
                    car_image3: row["C_image3"] is not System.DBNull ? row["C_image3"].ToString() : "",
                    id: row["Vehicle_No"] is not System.DBNull ? (int)(row["Vehicle_No"]) : 0,
@@ -294,6 +294,7 @@ namespace Car_Store.models
                    visibility: row["visibality"] is not System.DBNull ? (int)row["visibality"] : 0,
                    Price: row["Price"] is not System.DBNull ? (int)row["Price"] : 0,
                    Count: row["count"] is not System.DBNull ? (int)row["count"] : 0
+                   
                    );
                 returned.Add(newVehicle);
             }

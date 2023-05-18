@@ -55,7 +55,8 @@ namespace Car_Store.models
             int Rating = 0,
             int visibility = 0,
             int Price = 0,
-            int Count = 0
+            int Count = 0,
+            string car_path = ""
             )
         {
             this.car_status = car_status;
@@ -81,6 +82,7 @@ namespace Car_Store.models
             }
             this.Price = Price;
             this.Count = Count;
+            this.car_path = car_path;
 
         }
         [Required]
@@ -126,7 +128,7 @@ namespace Car_Store.models
         [MaxLength(30)]
         public string carmodel;
 
-        public IFormFile car_image;
+        public string car_image { get; set; }
         [Required, MaxLength(30)]
         public string name;
 
