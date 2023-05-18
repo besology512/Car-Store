@@ -22,7 +22,9 @@ namespace Car_Store.models
             string color = "",
             int year_model = 0,
             string Gearing = "",
-            string Body_Style = ""
+            string Body_Style = "",
+            string car_path= ""
+
             )
         {
             this.Id = id;
@@ -34,7 +36,7 @@ namespace Car_Store.models
             this.year_model = year_model;
             this.Gearing = Gearing;
             this.Body_Style = Body_Style;
-            this.car_image = "";
+            this.car_path = car_path;
         }
 
         public vehicle(
@@ -64,6 +66,7 @@ namespace Car_Store.models
             this.year_model = year_model;
             this.Gearing = Gearing;
             this.Body_Style = Body_Style;
+            this.Rating = Rating;
             this.Id = id;
             this.Rating = Rating;
             this.car_image = car_image;
@@ -87,6 +90,8 @@ namespace Car_Store.models
         [Required]
         public string visibility;
 
+
+        public string car_path { get; set; }
         [Required]
         public int Id;
         [Required, MaxLength(20)]
@@ -121,8 +126,7 @@ namespace Car_Store.models
         [MaxLength(30)]
         public string carmodel;
 
-        [MaxLength(150)]
-        public string car_image;
+        public IFormFile car_image;
         [Required, MaxLength(30)]
         public string name;
 

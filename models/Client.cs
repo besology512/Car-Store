@@ -20,8 +20,11 @@ namespace Car_Store.models
         [Required, MaxLength(30), MinLength(3)]
         public string pass;
         [Required]
+
         public string ConfirmPassword { get; set; }
 
+        [Required, MaxLength(50)]
+        public string address;
 
 
 

@@ -22,6 +22,7 @@ namespace Car_Store.models
         public string date;
         [Required, NotNull]
         public string password;
+
         public void insert()
         {
           //  db.insertUser(this.fname, this.Lname, this.password, this.date, this.Email, this.UserName);

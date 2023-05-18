@@ -13,7 +13,11 @@ namespace Car_Store.models
 
         public DB()
         {
+
             string conString = "Data Source=bassam;Initial Catalog=TRMBcar2;Integrated Security=True";
+
+
+
 
             con = new SqlConnection(conString);
         }
@@ -24,7 +28,7 @@ namespace Car_Store.models
             /*            string date1 = date.ToString();
             */
 
-            string query = "insert into CLIENT values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -38,13 +42,13 @@ namespace Car_Store.models
 
 
 
-        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city)
+        public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city, string path)
         {
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality)" +
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1)" +
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
-            + "','" + name + "','" + fuel + "'," + 0 + ")";
+            + "','" + name + "','" + fuel + "'," + 0 + ", '" + path + "')";
 
-            DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Today;
 
             string formattedDate = currentDate.ToString("yyyy-MM-dd");
 
@@ -114,6 +118,16 @@ namespace Car_Store.models
             return Readtable(q);
         }
 
+        public void edit_client_info(int clientID,string Fname , string Lname , string phone , string mail,string pass)
+        {
+            string q = "update CLIENT set Client_FName = '" + Fname + "'" +
+                " , Client_LName = '" + Lname + "'" + " , Client_phone = '" + phone + "'"
+                + " , Mail = '" + mail + "'," + "pass = '" + pass + "'" + " where ClientID = " + clientID;
+            excute_nonQuery(q);
+
+
+        }
+
         public object get_branchid()
         {
             string q = "select BRANCH.BranchID from BRANCH";
@@ -122,7 +136,7 @@ namespace Car_Store.models
 
         public object getUser(int ID)
         {
-            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail FROM CLIENT WHERE ClientID = " + ID;
+            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass FROM CLIENT WHERE ClientID = " + ID;
 
             return Readtable(q);
         }
@@ -284,19 +298,7 @@ namespace Car_Store.models
             }
             return returned;
         }
-        /*        private object readTable(string Q);
-        */
 
-        //public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class)
-        //{
-        //    string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style)" +
-        //        "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "')";
-        //    DateTime currentDate = DateTime.Now;
-        //    string formattedDate = currentDate.ToString("yyyy-MM-dd");
-        //    string q2 = "INSERT INTO USED_VEHICLE VALUES(" + 1 + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ")";
-        //    excute_nonQuery(q);
-        //    excute_nonQuery(q2);
-        //}
 
         public DataTable GetAvailableFilters(string filter)
         {
@@ -572,7 +574,7 @@ namespace Car_Store.models
         
         public object getCarNew(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, iimage,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" +tableName + " join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, C_image1,Year_Model, Price, NEW_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = "+tableName+".vehichle_ID) join NEW_VEHICLE on VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
             DataTable dt = new DataTable();
             try
             {
@@ -588,7 +590,7 @@ namespace Car_Store.models
 
         public object getCarUsed(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, iimage, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, C_image1, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
 
             DataTable dt = new DataTable();
             try

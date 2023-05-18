@@ -27,5 +27,11 @@ namespace Car_Store.Pages
             database.insert_product(pcat, branchid, quantity,brand,price, 1,ptitle,pId);
         }
 
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }

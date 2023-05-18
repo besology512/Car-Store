@@ -295,5 +295,12 @@ namespace Car_Store.Pages
             cartWish.insert();
             return RedirectToPage("/FilterPage");
         }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }

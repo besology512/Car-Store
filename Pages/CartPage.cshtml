@@ -37,10 +37,7 @@
                 @for(int i = 0; i<Model.dtCarNew.Rows.Count; i++){
                 <div class="item">
                     <div class="car-img">
-                            @{
-                                string img = Convert.ToBase64String((byte[])Model.dtCarNew.Rows[i][3]);
-                            }
-                            <img src="data:image/png;base64,@img" alt="car image">
+                            <img src="@Model.dtCarNew.Rows[i][3]" alt="car image">
                         </div>
                         <div class="item-description">
                             <h3>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
@@ -64,10 +61,8 @@
                 {
                     <div class="item">
                         <div class="car-img">
-                           @{
-                                string img = Convert.ToBase64String((byte[])Model.dtCarUsed.Rows[i][3]);
-                            }
-                            <img src="data:image/png;base64,@img" alt="car image">
+
+                            <img src="@Model.dtCarUsed.Rows[i][3]" alt="car image">
                         </div>
                         <div class="item-description">
                             <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>

@@ -25,7 +25,6 @@
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Phone Number</th>
-                <th scope="col">Password</th>
                 <th scope="col">BirthDate</th>
                 <th scope="col">Email</th>
                 <th scope="col">UserType</th>
@@ -38,10 +37,30 @@
                 <tr class="active-row">
                     @for (int j = 0; j < Model.DT.Columns.Count; j++)
                     {
-                        if (Model.DT.Columns[j].ToString() == "Client_image")
+                        if (@Model.DT.Columns[j].ToString() == "Client_image")
                         {
                             continue;
                         }
+                        else if (@Model.DT.Columns[j].ToString() == "pass")
+                        {
+                            continue;
+                        }
+                        else if (Model.DT.Columns[j].ToString() == "UserType")
+                        {
+                            if ((int)Model.DT.Rows[i][j] == 0)
+                            {
+                                
+                                <td>Client</td>
+
+                            }
+                            else if((int)Model.DT.Rows[i][j] == 0)
+                            {
+                                <td>Admin</td>
+                                
+                            }
+
+                        }
+
                         else
                         {
                             <td>@Model.DT.Rows[i][j]</td>
