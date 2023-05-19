@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TRMB cars</title>
         <!-- My Style -->
-        <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/adminlay.css" asp-append-version="true">
         <!-- Nomralize Css -->
         <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true">
         <!-- Font Awesome -->
@@ -23,156 +23,171 @@
         
     </head>
     <body>
-        <header>
-            <div class="container">
-                <!-- Start Research -->
-                <div class="head bn-flex mt-5 mr-20">
-                 <a style="color:black; padding-right:10px" asp-page="/Index"><h2 class="m-20 fw-bold fs-18"><i class="fa-sharp fa-solid fa-car-side" style="padding-right:10px; color: #000000"></i>TRMB cars</h2></a>
-                    <div class="search">
-                        <i class="fa-regular fa-magnifying-glass p-absloute c-grey"></i>
-                        <input type="text" class="border rad-6 c-grey" placeholder="Search">
-                    </div>
-                    <div class="soical d-flex">
-                        <i class="fa-solid fa-user-group"></i>
-                    <div style="padding-right:55px;" class="support m-0 d-flex fl-column">
-                            <span class="fs-14 mb-10 cursor-pointer">Support</span>
-                            <span class="c-blue fs-14">+20 101 456 1603</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Research -->
-                <!-- Start Navbar -->
-                <nav class="w-full bn-flex">
-                    <div class="all-ctg ml-20 d-flex">
-                        <div class="details Trs-05 rad-20 bg-white p-relative mt-10 mb-10 ml-40">
-                            <div class="burgra bg-blue rad-half p-absolute">
-                                <span class="bg-white Trs-03"></span>
-                                <span class="bg-white Trs-03"></span>
-                                <span class="bg-white Trs-03"></span>
-                                <ul class="bg-ccc Trs-03 pt-10 pb-5 pl-10 pr-10 w-110 rad-10 mt-35">
-                                    <li class="pt-10 Trs-03 pb-10 border-b">
-                                        <a class="c-black" href="#services">services</a>
-                                    </li>
-                                    <li class="pt-10 Trs-03 pb-10 border-b">
-                                        <a class="c-black" href="#best-offer">best-offer</a>
-                                    </li>
-                                    <li class="pt-10 Trs-03 pb-10">
-                                        <a class="c-black" href="#footer">footer</a>
-                                    </li>
-                                </ul>
+    <!--========== NAV ==========-->
+    <div class="nav" id="navbar">
+        <nav class="nav__container">
+            <div>
+                <a href="#" class="nav__link nav__logo">
+                    <!-- the icon will apear in the project -->
+                    <i class="fa-sharp fa-solid fa-car-side"></i>
+                    <span class="nav__logo-name">TRMB Cars</span>
+                </a>
+
+                <div class="nav__list">
+                    <div class="nav__items">
+                         <h3 class="nav__subtitle">Ahmed  Bassam</h3>
+
+                        <a asp-page="/AdminView" class="nav__link active">
+                            <!-- <i class="fa-solid fa-chart-line"></i> in the bigger website -->
+                            <i class='bx bx-home nav__icon'></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-user nav__icon'></i>
+                            <span class="nav__name">Profile</span>
+                        </a>
+
+                        <div class="nav__dropdown">
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-user nav__icon'></i>
+                                <span class="nav__name">Manage</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+
+                            <div class="nav__dropdown-collapse">
+                                <div class="nav__dropdown-content">
+                                    <a class="nav__dropdown-item" asp-page="/DisplayClients">Users</a>
+                                    <a  class="nav__dropdown-item" asp-page="/addproduct">Products</a>
+                                    <a class="nav__dropdown-item">Employees</a>
+                                    <a  class="nav__dropdown-item">Branches</a>
+                                    <a  class="nav__dropdown-item">Departments</a>
+                                    <a  class="nav__dropdown-item" asp-page="/AddShowRoom">Show Rooms</a>
+                                    <a class="nav__dropdown-item" a asp-page="/AddServicesCenters">Service Center</a>
+                                </div>
                             </div>
-                            <p class="c-black pl-10 m-10 ml-30 fs-14 fw-bold">All Categores</p>
                         </div>
-                        <div class="center-flex c-black fw-bold fs-15">
-                            <a href="/AdminView" class="pl-10 Trs-05 c-black pr-10">Admin View</a>
-                            <a href="/ServiceCenters" class="pl-10 Trs-05 c-black pr-10">Service Centers</a>
+
+                        
+                    </div>
+
+                    <div class="nav__items">
+                        <!-- <h3 class="nav__subtitle">Menu</h3> -->
+
+                        <div class="nav__dropdown">
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-bell nav__icon'></i>
+                                <span class="nav__name">Notifications</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+
+                            <div class="nav__dropdown-collapse">
+                                <div class="nav__dropdown-content">
+                                    <a asp-page="/displayPendingPosts" class="nav__dropdown-item">Pending Posts</a>
+                                    <a  class="nav__dropdown-item">Purschases</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="nav__dropdown">
+                            <a  class="nav__link">
+                                <i class='bx bx-bell nav__icon'></i>
+                                <span class="nav__name">Statistics</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+
+                            <div class="nav__dropdown-collapse">
+                                <div class="nav__dropdown-content">
+                                    <a class="nav__dropdown-item">Employees</a>
+                                    <a class="nav__dropdown-item">Orders</a>
+                                    <a class="nav__dropdown-item">Vehicles</a>
+                                    <a class="nav__dropdown-item">Clients</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <div  class="other center-flex mr-60">
-                        <span class="mr-10 fw-bold Trs-03 cursor-pointer">USA</span>
-                        <span class="mr-10 fw-bold Trs-03 cursor-pointer">USD</span>
-                        <div class="icons p-relative d-flex">
-                            <a style="color:black; padding-right:10px" asp-page="/profile"><i class="fa-sharp mr-10 cursor-pointer p-5 fa-regular bg-white rad-half fa-circle-user"></i></a>
-                            <a style="color:black; padding-right:10px" asp-page="/Compare"><i class="fa-solid mr-10 p-5 fa-shuffle bg-white rad-half"></i></a>
-                            <a style="color:black; padding-right:10px" asp-page="/WishList"><i class="fa-solid mr-10 p-5 fa-heart bg-white rad-half"></i></a>
-                            <a style="color:black; padding-right:10px" asp-page="/CartPage"><i class="fa-solid mr-10 p-5 fa-cart-shopping bg-white rad-half"></i></a>
-
-                            <a style="color:black; padding-right:10px; padding-top:3px;" asp-page="/AdminAddCar"><span>Add car</span></a>     
-                            <form method="post">
-                                <input asp-page-handler="Logout" type="submit" style="color:black;background-color:transparent; cursor:pointer;border:none; padding-right:10px; padding-top:3px;" value="logout" />
-                            </form>
-
-                        </div>
-                    </div>
-                    <i class="fas fa-bars toggle-menu my-i  fs-0 c-white mr-10 "></i>
-                </nav>
-                <div class="in-mobile ">
-                    <ul class="bg-ccc Trs-05 m-0 ml--20">
-                        <a class="c-black fw-bold Trs-03 pt-15 pb-15 d-block" href="#">
-                            <li class="active">Promotions</li>
-                        </a>
-                        <a class="c-black fw-bold Trs-03 d-block pt-15 pb-15" href="#">
-                            <li class="">Branches</li>
-                        </a>
-                        <a class="c-black fw-bold Trs-03 d-block pt-15 pb-15" href="#">
-                            <li class="">Our Contacts</li>
-                        </a>
-                    </ul>
                 </div>
             </div>
-        </header>
-            <!-- End Navbar -->
-            <div class="container">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
+
+            <a href="#" class="nav__link nav__logout">
+                <i class='bx bx-log-out nav__icon'></i>
+                <span class="nav__name">Log Out</span>
+            </a>
+        </nav>
+    </div>
+
+    <!--========== CONTENTS ==========-->
+    <div class="container">
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- Start Footer -->
+    <footer>
+        <div class="container">
+            <div class="container bg-blue w-full">
+                <div class="cols ba-flex mb-20 d-block">
+                    <div class="box-link mt-10">
+                        <h4 class="fs-18 c-white mb-10" style="width: 100%;">Service</h4>
+                        <div class="fl-column d-flex mt-15 ">
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Sell Car</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Buy Car</span></a>
+                        </div>
+                    </div>
+                    <div class="box-link mt-10">
+                        <h4 class="fs-18 c-white mb-10" style="width: 80%;">Know more</h4>
+                        <div class="fl-column d-flex mt-15 ">
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Privacy Policy</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Terms of Services</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block">Contacts</span></a>
+                        </div>
+                    </div>
+                    <div class="box-link mt-10">
+                        <h4 class="fs-18 c-white mb-10" style="width: 80%;">Categories</h4>
+                        <div class="fl-column d-flex mt-15 ">
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Used</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">New Cars</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block">Accessories</span></a>
+                        </div>
+                    </div>
+                    <div class="box-link mt-10">
+                        <h4 class="fs-18 c-white mb-10" style="width: 90%;">Brands</h4>
+                        <div class="fl-column d-flex mt-15 ">
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Nissan</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Tesla</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block">Jeep</span></a>
+                        </div>
+                    </div>
+                    <div class="box-link mt-10">
+                        <h4 class="fs-16 c-white mb-10">Service Contacts</h4>
+                        <div class="fl-column d-flex mt-15 ">
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">6th October</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block pb-10">Ismailia</span></a>
+                            <a href="#"><span class="fs-16 c-white d-block">Zamalek</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="line bn-flex ">
+                    <div class="social ml-15 mb-15 pl-20">
+                        <span class="c-white fs-17 pr-10">Follow Us</span>
+                        <a href="#"><i class="fa-brands c-white fa-whatsapp pr-5 fs-18"></i></a>
+                        <a href="#"><i class="fa-brands c-white fa-facebook-f pr-5 fs-18"></i></a>
+                        <a href="#"><i class="fa-brands c-white fa-youtube pr-5 fs-18"></i></a>
+                        <a href="#"><i class="fa-brands c-white fa-linkedin pr-5 fs-18"></i></a>
+                        <a href="#"><i class="fa-brands c-white fa-twitter pr-5 fs-18"></i></a>
+                        <a href="#"><i class="fa-brands c-white fa-instagram pr-5 fs-18"></i></a>
+                    </div>
+                    <div class="mobile-app mr-20 pr-20">
+                        <span class="c-white pr-15">Mobile App</span>
+                        <a href="#"><i class="fa-brands fa-apple c-white fs-18 pr-5 "></i></a>
+                        <a href="#"><i class="fa-brands fa-android c-white fs-18 "></i></a>
+                    </div>
+                </div>
+                <span class="center-flex c-white fs-14 ">Copyright Are reserved TRMB Cars &copy; 2023</span>
             </div>
-            
-            <!-- Start Footer -->
-            <footer>
-                <div class="container">
-                    <div class="container bg-blue w-full">
-                    <div class="cols ba-flex mb-20 d-block">
-                        <div class="box-link mt-10">
-                            <h4 class="fs-18 c-white mb-10" style="width: 100%;">Service</h4>
-                            <div class="fl-column d-flex mt-15 ">
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Sell Car</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Buy Car</span></a>
-                            </div>
-                        </div>
-                        <div class="box-link mt-10">
-                            <h4 class="fs-18 c-white mb-10" style="width: 80%;">Know more</h4>
-                            <div class="fl-column d-flex mt-15 ">
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Privacy Policy</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Terms of Services</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block">Contacts</span></a>
-                            </div>
-                        </div>
-                        <div class="box-link mt-10">
-                            <h4 class="fs-18 c-white mb-10" style="width: 80%;">Categories</h4>
-                            <div class="fl-column d-flex mt-15 ">
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Used</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">New Cars</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block">Accessories</span></a>
-                            </div>
-                        </div>
-                        <div class="box-link mt-10">
-                            <h4 class="fs-18 c-white mb-10" style="width: 90%;">Brands</h4>
-                            <div class="fl-column d-flex mt-15 ">
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Nissan</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Tesla</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block">Jeep</span></a>
-                            </div>
-                        </div>
-                        <div class="box-link mt-10">
-                            <h4 class="fs-16 c-white mb-10">Service Contacts</h4>
-                            <div class="fl-column d-flex mt-15 ">
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">6th October</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block pb-10">Ismailia</span></a>
-                                <a href="#"><span class="fs-16 c-white d-block">Zamalek</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="line bn-flex ">
-                        <div class="social ml-15 mb-15 pl-20">
-                            <span class="c-white fs-17 pr-10">Follow Us</span>
-                            <a href="#"><i class="fa-brands c-white fa-whatsapp pr-5 fs-18"></i></a>
-                            <a href="#"><i class="fa-brands c-white fa-facebook-f pr-5 fs-18"></i></a>
-                            <a href="#"><i class="fa-brands c-white fa-youtube pr-5 fs-18"></i></a>
-                            <a href="#"><i class="fa-brands c-white fa-linkedin pr-5 fs-18"></i></a>
-                            <a href="#"><i class="fa-brands c-white fa-twitter pr-5 fs-18"></i></a>
-                            <a href="#"><i class="fa-brands c-white fa-instagram pr-5 fs-18"></i></a>
-                        </div>
-                        <div class="mobile-app mr-20 pr-20">
-                            <span class="c-white pr-15">Mobile App</span>
-                            <a href="#"><i class="fa-brands fa-apple c-white fs-18 pr-5 "></i></a>
-                            <a href="#"><i class="fa-brands fa-android c-white fs-18 "></i></a>
-                        </div>
-                    </div>
-                    <span class="center-flex c-white fs-14 ">Copyright Are reserved TRMB Cars &copy; 2023</span>
-                </div>
-                </div>
-            </footer>
-             <!-- End Footer -->
+        </div>
+    </footer>
     </body>
+<!-- End Footer -->
 </html>
