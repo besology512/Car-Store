@@ -29,15 +29,15 @@
                 </p>
             </div>
             <ul class="theList">
-                <li><a asp-page="/displayPendingPosts"> <i class="fa-solid fa-bell"></i> Pending Posts </a></li>
-                <li><a asp-page="/addproduct"> <i class="fa-solid fa-user"></i> Add product</a></li>
-                <li><a asp-page="/AddShowRoom"> <i class="fa-solid fa-user"></i> Add Show Room</a></li>
-                <li><a asp-page="/DisplayShowRooms"> <i class="fa-solid fa-user"></i> Display Show Rooms</a></li>
-                <li><a asp-page="/DisplayClients"> <i class="fa-solid fa-user"></i> Users</a></li>
-                <li><a asp-page="/AddServicesCenters"> <i class="fa-solid fa-wrench"></i> Add Services Centers</a></li>
-                <li><a asp-page="/AddEmployee"> <i class="fa-sharp fa-solid fa-plus"></i> Add Employee </a></li>
+                <a asp-page="/displayPendingPosts"><li> <i class="fa-solid fa-bell"></i> Pending Posts </li></a>
+                <a asp-page="/addproduct"><li> <i class="fa-solid fa-user"></i> Add product</li> </a>
+                <a asp-page="/AddShowRoom"><li> <i class="fa-solid fa-user"></i> Add Show Room</li></a>
+                <a asp-page="/DisplayShowRooms"><li> <i class="fa-solid fa-user"></i> Display Show Rooms</li> </a>
+                <a asp-page="/DisplayClients"><li> <i class="fa-solid fa-user"></i> Users</li> </a>
+                <a asp-page="/AddServicesCenters"><li> <i class="fa-solid fa-wrench"></i> Add Services Centers</li> </a>
+                <a asp-page="/AddEmployee"><li> <i class="fa-sharp fa-solid fa-plus"></i> Add Employee </li> </a>
 
-
+                
                 <form method = "post">
                         <button class ="logoutBtn" type="submit" sytle="padding: 0; margin-top: -45px; background: transparent; text-align: left;" asp-page-handler="Logout">
                     <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i>Log Out</li>

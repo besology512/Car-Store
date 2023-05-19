@@ -57,6 +57,10 @@ div .containerAdmin {
     border-radius: 6px;
 }
 
+    .theList li:hover {
+        background: #bababa
+    }
+
 .allpagecontent i {
     padding-left: 15px;
     padding-right: 5px;
