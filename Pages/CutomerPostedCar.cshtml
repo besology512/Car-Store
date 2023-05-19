@@ -24,12 +24,8 @@
         {
             <div class="Post-Card">
 
-                @*<span class="sec-color">@Model.dtable.Rows[i][11]</span>
-                @{
-                    string img = Convert.ToBase64String((byte[])@Model.dtable.Rows[i][8]);
 
-                }*@
-                <img src="" alt="Example Image">
+                <img src="@Model.dtable.Rows[i]["C_image1"]" alt="Example Image">
                 <h2>@Model.dtable.Rows[i][0] <span>@Model.dtable.Rows[i][5]</span></h2>
                 <p class="sec-color">@Model.dtable.Rows[i][2]</p>
                 <p>@Model.dtable.Rows[i][6] <span>@Model.dtable.Rows[i][7] CC</span></p>

@@ -26,17 +26,18 @@ namespace Car_Store.Pages
             myCenter.ID = id;
             
             DT = (DataTable)myCenter.getTuple();
-            myCenter.Name = (string)DT.Rows[0][1];
-            myCenter.Address = (string)DT.Rows[0][2];
-            myCenter.Services = (string)DT.Rows[0][3];
-            myCenter.latitude = (decimal)DT.Rows[0][4];
-            myCenter.longitude = (decimal)DT.Rows[0][5];
-            myCenter.stars = (int)DT.Rows[0][6];
+            myCenter.Name = (string)DT.Rows[0]["Name"];
+            myCenter.Address = (string)DT.Rows[0]["Address"];
+            myCenter.Services = (string)DT.Rows[0]["Services"];
+            myCenter.PhoneNumber = (int)DT.Rows[0]["PhoneNumber"];
+            myCenter.latitude = (decimal)DT.Rows[0]["latitude"];
+            myCenter.longitude = (decimal)DT.Rows[0]["longitude"];
+            myCenter.stars = (int)DT.Rows[0]["stars"];
             return Page();
 
         }
 
-        public IActionResult OnPost(string name, string address, string services, decimal latitude, decimal longitude, int stars)
+        public IActionResult OnPost(string name, string address, string services, decimal latitude, decimal longitude, int stars, int phone)
         {
             myCenter = new ServicesCenters();
             myCenter.ID = ID;
@@ -46,8 +47,9 @@ namespace Car_Store.Pages
             myCenter.latitude = latitude;
             myCenter.longitude = longitude;
             myCenter.stars = stars;
+            myCenter.PhoneNumber = phone;
             myCenter.update(ID);
-            return RedirectToPage("/index");
+            return RedirectToPage("/ServiceCenters");
 
         }
 

@@ -14,7 +14,7 @@ namespace Car_Store.models
         public DB()
         {
 
-            string conString = "Data Source=bassam;Initial Catalog=TRMBcar2;Integrated Security=True";
+            string conString = "Data Source=SQL6031.site4now.net;Initial Catalog=db_a99893_trmbcar;User Id=db_a99893_trmbcar_admin;Password=TR$$MB$$8865";
 
 
 
@@ -38,12 +38,12 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
-
+        
 
 
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city, string path)
         {
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1,Car_Status)" +
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1)" +
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
             + "','" + name + "','" + fuel + "'," + 0 + ", '" + path + "' )";
 
@@ -54,6 +54,8 @@ namespace Car_Store.models
             excute_nonQuery(q);
 
             int vecId = getTopVehicleId();
+            
+                
 
             string q2 = "INSERT INTO USED_VEHICLE VALUES(" + vecId + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ",'" + city + "'," + 1 + ")";
 
@@ -81,6 +83,11 @@ namespace Car_Store.models
         public int getTopVehicleId()
         {
             string q = "SELECT  TOP 1 Vehicle_No FROM VEHICLE ORDER BY Vehicle_No DESC";
+            if(getsinglevalue(q) == null)
+            {
+                return 0;
+            }
+            
             return (int)getsinglevalue(q);
         }
         public void insert_CLIENT_POSTS(int clientid, int vehicleId)
@@ -124,7 +131,7 @@ namespace Car_Store.models
 
         public object get_pending_post()
         {
-            string q = "select  VEHICLE.CarDescription, USED_VEHICLE.Posting_Date, USED_VEHICLE.Price, VEHICLE.CC_Rnage, PENDING_POSTS.VEHCILE_ID, CLIENT.Client_Username , PENDING_POSTS.CLIENT_ID " +
+            string q = "select  VEHICLE.CarDescription, USED_VEHICLE.Posting_Date, USED_VEHICLE.Price, VEHICLE.CC_Rnage, PENDING_POSTS.VEHCILE_ID, CLIENT.Client_Username , PENDING_POSTS.CLIENT_ID, VEHICLE.C_image1 " +
                 "from (VEHICLE JOIN USED_VEHICLE ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID) " +
                 "JOIN PENDING_POSTS  ON VEHICLE.Vehicle_No = PENDING_POSTS.VEHCILE_ID JOIN CLIENT ON CLIENT.ClientID = PENDING_POSTS.CLIENT_ID";
             return Readtable(q);
@@ -154,8 +161,13 @@ namespace Car_Store.models
         }
         public object GetPostedCar(int ID)
         {
-            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
+            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class, VEHICLE.C_image1 FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
             return Readtable(q);
+        }
+        public void del_temp()
+        {
+            string q = "delete from VEHICLE";
+            excute_nonQuery(q);
         }
         private object Readtable(string Q)
         {
@@ -429,11 +441,11 @@ namespace Car_Store.models
         }
 
 
-        public void insertServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
+        public void insertServiceCenter(string Name, string Address, string services, int PhoneNumber, decimal latitude, decimal longitude, int stars)
         { //to return any data type
             //Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
 
-            string query = "insert into Services_Center values (" + id + ", '" + Name + "', '" + Address + "', '" + services + "' ," + latitude + "," + longitude + "," + stars + ")";
+            string query = "insert into Services_Center values (" + "'" + Name + "', '" + Address + "', '" + services + "'," + PhoneNumber + "," + latitude + "," + longitude + "," + stars + ")";
             object type;
             try
             {
@@ -506,10 +518,10 @@ namespace Car_Store.models
         }
 
 
-        public void updateServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
+        public void updateServiceCenter(int id, string Name, string Address, string services, int PhoneNumber ,decimal latitude, decimal longitude, int stars)
         {
 
-            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "'," + "latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
+            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "',  PhoneNumber = " + PhoneNumber + ", latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
             try
             {
                 con.Open();

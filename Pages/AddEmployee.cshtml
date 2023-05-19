@@ -1,0 +1,83 @@
+﻿@page
+@model Car_Store.Pages.AddEmployeeModel
+@{
+    Layout = "adminlay";
+}
+
+<link rel="stylesheet" href="~/css/Add-Product.css" asp-append-version="true">
+
+<div class="my-page">
+
+    <h2 class="sec-color"> Add Employee Info</h2>
+    <div class="card">
+        <form id="add-emp" method="post">
+            <div class="flex-row-double">
+                <div class="flex-item-d">
+                    <label for="emp-uname">Employee user name*</label>
+                    <input class="my-input" type="text" minlength="10" required id="emp-uname" name="UserName" />
+                </div>
+                <div class="flex-item-d">
+                    <label for="emp-password">Employee Password*</label>
+                    <input class="my-input" type="text" minlength="8" required id="emp-password" name="Password" />
+                </div>
+            </div>
+            <div>
+                <label for="emp-fname">Employee First Name*</label>
+                <input class="my-input" type="text" minlength="3" required id="emp-fname" name="Fname" />
+            </div>
+            <div>
+                <label for="emp-mname">Employee Middle Name*</label>
+                <input class="my-input" type="text" minlength="3" required id="emp-mname" name="Mname" />
+            </div>
+            <div>
+                <label for="emp-lname">Employee Last Name*</label>
+                <input class="my-input" type="text" minlength="3" required id="emp-lname" name="Lname" />
+            </div>
+            <div class="flex-row-double">
+                <div class="flex-item-d">
+                    <label for="emp-ssn">Employee SSN*</label>
+                    <input class="my-input" type="number" minlength="16" required id="emp-ssn" name="SSN" />
+                </div>
+                <div class="flex-item-d">
+                    <label for="emp-bdate">Employee Birth date*</label>
+                    <input class="my-input" type="date"  required id="emp-bdate" name="Bdate" />
+                </div>
+            </div>
+            <div class="flex-row-double">
+                <div class="flex-item-d">
+                    <label for="emp-gender">Employee Gender*</label>
+                    <select id="emp-gender" class="my-select" required name="Gender" >
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div class="flex-item-d">
+                    <label for="emp-super">Employee Supervisor ID*</label>
+                    <select id="emp-super" class="my-select" required name="SuperID">
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="flex-row-double">
+                <div class="flex-item-d">
+                    <label for="emp-salary">Employee Salary*</label>
+                    <input class="my-input" type="text" required id="emp-salary" name="Salary" />
+                </div>
+                <div class="flex-item-d">
+                    <label for="emp-utype">Employee User Type*</label>
+                    <select id="emp-utype" class="my-select" required name="UserType">
+                        <option value="1">1</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    <div>
+        <input class="submit-btn" type="submit" form="add-emp" />
+    </div>
+        
+
+
+
+</div>

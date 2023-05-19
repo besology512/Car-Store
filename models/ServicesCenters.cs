@@ -22,10 +22,12 @@ namespace Car_Store.models
         public decimal longitude { get; set; }
         [Required]
         public int stars{ get; set; }
+        [Required]
+        public int PhoneNumber { get; set; }
 
         public void insert()
         {
-            db.insertServiceCenter(this.ID, this.Name, this.Address, this.Services, this.latitude, this.longitude, this.stars);
+            db.insertServiceCenter(this.Name, this.Address, this.Services, this.PhoneNumber ,this.latitude, this.longitude, this.stars);
         }
         public object getAll()
         {
@@ -37,7 +39,7 @@ namespace Car_Store.models
         }
         public void update(int ID)
         {
-            db.updateServiceCenter(this.ID, this.Name, this.Address, this.Services, this.latitude, this.longitude, this.stars);
+            db.updateServiceCenter(this.ID, this.Name, this.Address, this.Services, this.PhoneNumber, this.latitude, this.longitude, this.stars);
         }
         public void delete(int ID)
         {

@@ -67,7 +67,9 @@ namespace Car_Store.Pages
                 request = new EmailDto();
                 request.To = Email;
                 Customer.insert();
-                service.SendEmail(request);
+
+/*                service.SendEmail(request);
+*/
                 return RedirectToPage("/Index");
             }
         }
