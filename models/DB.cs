@@ -655,6 +655,41 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); return 0; }
         }
 
+        public object getNewCar(int CId)
+        { //to return any data type
+            string query = "select v.name, v.brand, v.CC_Rnage, v.Color, v.Year_Model, v.Gearing, v.Body_Style, V.Fuel, v.CarDescription, v.C_image1, n.Price, n.count from Vehicle v join NEW_Vehicle n on v.Vehicle_No = n.Vehicle_ID where n.Vehicle_ID = " + CId + ";";
+
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
+
+        public object getUsedCar(int CId)
+        { //to return any data type
+            string query = "select v.name, v.brand, v.CC_Rnage, v.Color, v.Year_Model, v.Gearing, v.Body_Style, V.Fuel, v.CarDescription, v.C_image1, u.Kilometers, u.Price, u.Class, u.City from Vehicle v join Used_vehicle u on v.Vehicle_no = u.Vehicle_ID where u.Vehicle_ID = " + CId + ";";
+
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
+
+
+
+
         public void deleteCartVehicle(string tablename, int pId, int CId, string column)
         {
             string query = "delete from " + tablename + " where Customer_ID = " + CId + " and " + column + "=" + pId;
