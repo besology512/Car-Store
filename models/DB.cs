@@ -14,7 +14,7 @@ namespace Car_Store.models
         public DB()
         {
 
-            string conString = "Data Source=DESKTOP-KDC2LT0;Initial Catalog=TRMBcar;Integrated Security=True";
+            string conString = "Data Source=SQL6031.site4now.net;Initial Catalog=db_a99893_trmbcar;User Id=db_a99893_trmbcar_admin;Password=TR$$MB$$8865";
 
 
 
@@ -429,11 +429,11 @@ namespace Car_Store.models
         }
 
 
-        public void insertServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
+        public void insertServiceCenter(string Name, string Address, string services, int PhoneNumber, decimal latitude, decimal longitude, int stars)
         { //to return any data type
             //Insert into Services_Center values(1,'Ahmed', 'Zamalek Street', 'Nissan Tida issues', 30.04754894570406, 30.04754894570406, 4)
 
-            string query = "insert into Services_Center values (" + id + ", '" + Name + "', '" + Address + "', '" + services + "' ," + latitude + "," + longitude + "," + stars + ")";
+            string query = "insert into Services_Center values (" + "'" + Name + "', '" + Address + "', '" + services + "'," + PhoneNumber + "," + latitude + "," + longitude + "," + stars + ")";
             object type;
             try
             {
@@ -506,10 +506,10 @@ namespace Car_Store.models
         }
 
 
-        public void updateServiceCenter(int id, string Name, string Address, string services, decimal latitude, decimal longitude, int stars)
+        public void updateServiceCenter(int id, string Name, string Address, string services, int PhoneNumber ,decimal latitude, decimal longitude, int stars)
         {
 
-            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "'," + "latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
+            string query = "update Services_Center set Name = '" + Name + "', Address = '" + Address + "', Services = '" + services + "',  PhoneNumber = " + PhoneNumber + ", latitude = " + latitude + "," + "longitude = " + longitude + "where ID = " + id + ";";
             try
             {
                 con.Open();
