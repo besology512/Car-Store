@@ -59,10 +59,20 @@
                             }
                             else if((int)Model.DT.Rows[i][j] == 0)
                             {
-                                <td>Admin</td>
+                                    <td>Admin</td>
+
+                                }
+                            }
+
+                            else if(Model.DT.Columns[j].ToString() == "bdate")
+                            {
+
+
+                                <td>@Model.DT.Rows[i][j].ToString().Replace(" 12:00:00 AM", "")</td>
+
                                 
                             }
-                        }
+
                         else
                         {
                             <td>@Model.DT.Rows[i][j]</td>
