@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace Car_Store.models
 {
@@ -99,6 +100,17 @@ namespace Car_Store.models
             excute_nonQuery(q);
             excute_nonQuery(q2);
         }
+        public void Delete_Car_by_admin(int vecId)
+        {
+            string q = "delete from VEHICLE where VEHICLE.Vehicle_No = " + vecId;
+            excute_nonQuery(q);
+        }
+        public object get_car_count()
+        {
+            string q = "select count(*) as car_count , VEHICLE.Car_Status  from VEHICLE group by VEHICLE.Car_Status";
+            return Readtable(q);
+            
+        }
 
         public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
         {
@@ -143,6 +155,18 @@ namespace Car_Store.models
             excute_nonQuery(q);
 
 
+        }
+        public object get_all_cars()
+        {
+            string q = "SELECT VEHICLE.Vehicle_No, name,Car_Status," +
+                "COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count," +
+                "Brand, CC_Rnage, Color, Year_Model, Gearing, Body_Style, Fuel, Seats, CarDescription, C_image1, visibality" +
+                ",COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price , Kilometers, Posting_Date, " +
+                "COALESCE(NEW_VEHICLE.Class,USED_VEHICLE.Class)AS Class ," +
+                "CITY " +
+                "FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID ";
+            return Readtable(q);
+            
         }
 
         public object get_branchid()
