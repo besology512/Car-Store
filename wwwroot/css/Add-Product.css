@@ -69,9 +69,19 @@ ul {
     list-style: none;
     padding: 0px;
 }
-.my-page-product{
+
+
+
+
+.my-page{
     padding:100px;
 }
+@media(max-width:768px) {
+    .my-page {
+        padding: 10px;
+    }
+}
+
 input[type="file"] {
     display: none;
 }

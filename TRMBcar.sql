@@ -364,7 +364,7 @@ select * from CLIENT
 
 
 
-
+select * from works_in_branchdep
 
 
 select * from VEHICLE
