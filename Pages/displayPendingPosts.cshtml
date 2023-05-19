@@ -6,7 +6,7 @@
 }
 <link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
 
-
+<div class="content">
 <div class="all-page-content-c">
     <div class="posts">
         @for (int i = 0; i < Model.dtable.Rows.Count; i++)
@@ -17,7 +17,7 @@
                 <p>@Model.dtable.Rows[i][5]</p>
                 <p>Vehicle ID <span class="main-color">@Model.dtable.Rows[i][4]</span></p>
                 
-                <img src="" alt="Example Image">
+                <img src="@Model.dtable.Rows[i]["C_image1"]" alt="Example Image">
                 
                 <p class="sec-color">@Model.dtable.Rows[i][0]</p>
                 <p><span class="main-color">@Model.dtable.Rows[i][3] CC</span></p>
@@ -37,4 +37,5 @@
         }
 
     </div>
+</div>
 </div>
