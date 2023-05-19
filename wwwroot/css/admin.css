@@ -127,3 +127,7 @@ img {
     width:150px;
     border-radius:18px;
 }
+
+.logoutBtn {
+    padding: 0; margin-top: -45px; background: transparent; text-align: left;
+}

@@ -37,7 +37,13 @@
                 <li><a asp-page="/AddServicesCenters"> <i class="fa-solid fa-wrench"></i> Add Services Centers</a></li>
                 <li> <i class="fa-sharp fa-solid fa-plus"></i> Pending Purchases</li>
                 <li><i class="fa-sharp fa-solid fa-folder-plus"></i>Pending Posts</li>
-                <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i>Log Out</li>
+                
+                <form method = "post">
+                        <button class ="logoutBtn" type="submit" sytle="padding: 0; margin-top: -45px; background: transparent; text-align: left;" asp-page-handler="Logout">
+                    <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i>Log Out</li>
+                    </button>
+                 </form>
+
             </ul>
         </div>
         <div class="pageconcentmiddle">
