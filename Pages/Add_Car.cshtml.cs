@@ -41,9 +41,13 @@ namespace Car_Store.Pages
             {
                 return RedirectToPage("/index");
             }
+            //DATABASE.del_temp();
             
-            return Page();
             Alertmsg = "";
+            //DATABASE.del_temp();
+            return Page();
+            
+            
 
         }
 

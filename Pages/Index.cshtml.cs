@@ -15,6 +15,7 @@ namespace Car_Store.Pages
         public void OnGet()
         {
             Console.WriteLine(HttpContext.Session.GetInt32("User_Type"));
+
         }
 
         public IActionResult OnPostLogout()
