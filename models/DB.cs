@@ -43,9 +43,9 @@ namespace Car_Store.models
 
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city, string path)
         {
-            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1)" +
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1,Car_Status)" +
             "VALUES('Used','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
-            + "','" + name + "','" + fuel + "'," + 0 + ", '" + path + "')";
+            + "','" + name + "','" + fuel + "'," + 0 + ", '" + path + "' )";
 
             DateTime currentDate = DateTime.Today;
 
@@ -58,6 +58,19 @@ namespace Car_Store.models
             string q2 = "INSERT INTO USED_VEHICLE VALUES(" + vecId + "," + Km + "," + price + ",'" + formattedDate + "'," + car_class + ",'" + city + "'," + 1 + ")";
 
             excute_nonQuery(q2);
+        }
+        public void admin_add_car(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style,int Price ,int car_class, string cardes, string name, string fuel, string path , int count)
+        {
+            string q = "INSERT INTO VEHICLE(Car_Status,Brand,CC_Rnage,Color,Year_Model,Gearing,Body_Style,CarDescription,name,Fuel,visibality,C_image1)" +
+            "VALUES('new','" + Brand + "'," + CC + ",'" + Color + "'," + year_Model + ",'" + Gearing + "','" + B_style + "','" + cardes
+            + "','" + name + "','" + fuel + "'," + 1 + ", '" + path + "' )";
+
+            excute_nonQuery(q);
+            int vecId = getTopVehicleId();
+
+            string q2 = "insert into NEW_VEHICLE (Vehicle_ID,Price,class,count) VALUES (" + vecId + "," + Price + "," + car_class + "," + count + ")";
+            excute_nonQuery(q2);
+
         }
 
         public void insert_to_pendingposts(int clientID, int vehcId)
@@ -175,7 +188,7 @@ namespace Car_Store.models
            string status = ""
             )
         {
-            string Q = "SELECT VEHICLE.Vehicle_No,name,rating,Car_Status,COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count,SHOWROOM,Brand,CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats, Traction_Type, Cylinders, CarDescription, Tank_Capacity, C_image1, C_image2, C_image3, visibality,COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price, Kilometers, Posting_Date, Class,CITY FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID ";
+            string Q = "SELECT VEHICLE.Vehicle_No,name,rating,Car_Status,COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count,SHOWROOM,Brand,CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats, Traction_Type, Cylinders, CarDescription, Tank_Capacity, C_image1, C_image2, C_image3, visibality,COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price, Kilometers, Posting_Date, COALESCE(NEW_VEHICLE.Class,USED_VEHICLE.Class)AS Class ,CITY FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID ";
 
             if (Brand != "" && color != "" && gearing != "" && status != "")
             {
