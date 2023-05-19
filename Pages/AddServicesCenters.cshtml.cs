@@ -19,16 +19,16 @@ namespace Car_Store.Pages.Shared
         }
 
 
-        public void OnPost(int id, string name, string address, string services, decimal latitude, decimal longitude, int stars)
+        public void OnPost(string name, string address, string services, decimal latitude, decimal longitude, int stars, int PhoneNumber)
         {
             myCenter = new ServicesCenters();
-            myCenter.ID = id;
             myCenter.Name = name;
             myCenter.Address = address; 
             myCenter.Services = services;   
             myCenter.latitude = latitude;
             myCenter.longitude = longitude; 
             myCenter.stars = stars;
+            myCenter.PhoneNumber = PhoneNumber; 
             myCenter.insert();
 
         }

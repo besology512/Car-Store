@@ -29,6 +29,7 @@
                 <th scope="col">BirthDate</th>
                 <th scope="col">Email</th>
                 <th scope="col">UserType</th>
+                <th scope="col">Address</th>
                 <th scope="col">Delete</th>
             </tr>
         </thead>
@@ -41,30 +42,31 @@
                         if (@Model.DT.Columns[j].ToString() == "Client_image")
                         {
                             continue;
+
                         }
                         else if (@Model.DT.Columns[j].ToString() == "pass")
                         {
                             continue;
-                        }
+                            }
                         else if (Model.DT.Columns[j].ToString() == "UserType")
                         {
                             if ((int)Model.DT.Rows[i][j] == 0)
                             {
-                                
-                                <td>Client</td>
 
+                                    <td>Client</td>
+@*                                    Console.WriteLine(@Model.DT.Columns[j]);
+*@
                             }
                             else if((int)Model.DT.Rows[i][j] == 0)
                             {
                                 <td>Admin</td>
                                 
                             }
-
                         }
-
                         else
                         {
                             <td>@Model.DT.Rows[i][j]</td>
+
                         }
                     }
                     <td><a asp-page="/DeleteClient" asp-route-ID="@Model.DT.Rows[i][0]">Delete</a></td>
