@@ -52,6 +52,7 @@ namespace Car_Store.Pages
                 CID = (int)HttpContext.Session.GetInt32("User_ID");
 
                 DATABASE.admin_add_car(Brand, CC, MyColor, Year, GEAR, Cstyle, Price, CarClass, CarDesc, Model, Fuel, finalPath, Quantity);
+                Alertmsg = "Car is added succesfully";
                 
             }
 

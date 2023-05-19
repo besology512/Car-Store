@@ -38,7 +38,7 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
-
+        
 
 
         public void insert_vechile(string Brand, int CC, string Color, int year_Model, string Gearing, string B_style, int price, int Km, int car_class, string cardes, string name, string fuel, string city, string path)
