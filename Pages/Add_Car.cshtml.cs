@@ -57,8 +57,8 @@ namespace Car_Store.Pages
 
             if (carImg != null && carImg.Length > 0)
             {
-                int carid = DATABASE.getTopVehicleId() + 1;
 
+                int carid = DATABASE.getTopVehicleId() + 1;
                 string fileName = CarDesc.Replace(" ", "-") + "-" + carid.ToString() + ".jpg"; // we should inject something unique here like id
 
                 string imagePath = Path.Combine("wwwroot", "images", fileName);
@@ -72,7 +72,9 @@ namespace Car_Store.Pages
                 string finalPath = imagePath.Replace("wwwroot", "");
 
                 DATABASE.insert_vechile(Brand, CC, MyColor, Year, GEAR, Cstyle, Price, KM, CarClass, CarDesc, Model, Fuel, City, finalPath);
+                
                 CID = (int)HttpContext.Session.GetInt32("User_ID");
+                
                 DATABASE.insert_to_pendingposts(CID, carid);
 
             }

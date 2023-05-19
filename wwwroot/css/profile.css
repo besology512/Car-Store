@@ -78,9 +78,17 @@
 }
 
 .left img {
-    width: 195px;
+    width: 225px;
     height: 225px;
     object-fit:cover;
+    border-radius:50%;
+}
+input[type="file"] {
+    display: none;
+}
+
+.image label {
+    color: white;
 }
 
 /* start right */

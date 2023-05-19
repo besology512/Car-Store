@@ -27,7 +27,7 @@ namespace Car_Store.models
             /*            string date1 = date.ToString();
             */
 
-            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "'images/facebook-default-no-profile-pic.jpg'" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -77,18 +77,13 @@ namespace Car_Store.models
 
         public void insert_to_pendingposts(int clientID, int vehcId)
         {
-            string q = "insert into PENDING_POSTS values( " + clientID + "," + vehcId + ")";
+            string q = "insert into PENDING_POSTS(CLIENT_ID,VEHCILE_ID) Values (" + clientID + "," + vehcId + ")";
             excute_nonQuery(q);
         }
         public int getTopVehicleId()
         {
-            string q = "SELECT  TOP 1 Vehicle_No FROM VEHICLE ORDER BY Vehicle_No DESC";
-            if(getsinglevalue(q) == null)
-            {
-                return 0;
-            }
-            
-            return (int)getsinglevalue(q);
+            string query = "SELECT IDENT_CURRENT('vehicle') AS CurrentIdentityValue";
+            return Convert.ToInt32(getsinglevalue(query));
         }
         public void insert_CLIENT_POSTS(int clientid, int vehicleId)
 
@@ -100,7 +95,9 @@ namespace Car_Store.models
         public void delet_CLIENT_POST(int vecId, int ClieTnID)
         {
             string q = "delete from Client_Posts where ClientId =  " + ClieTnID + " AND " + "VehcileId = " + vecId;
+            string q2 = "delete from VEHICLE where VEHICLE.Vehicle_No = " + vecId;
             excute_nonQuery(q);
+            excute_nonQuery(q2);
         }
 
         public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
@@ -137,11 +134,12 @@ namespace Car_Store.models
             return Readtable(q);
         }
 
-        public void edit_client_info(int clientID, string Fname, string Lname, string phone, string mail, string pass)
+        public void edit_client_info(int clientID, string Fname, string Lname, string phone, string mail, string pass , string img)
         {
             string q = "update CLIENT set Client_FName = '" + Fname + "'" +
                 " , Client_LName = '" + Lname + "'" + " , Client_phone = '" + phone + "'"
-                + " , Mail = '" + mail + "'," + "pass = '" + pass + "'" + " where ClientID = " + clientID;
+                + " , Mail = '" + mail + "'," + "pass = '" + pass + "' , " + "Client_image = '" + img + "'" + " where ClientID = "
+                + clientID;
             excute_nonQuery(q);
 
 
@@ -155,13 +153,25 @@ namespace Car_Store.models
 
         public object getUser(int ID)
         {
-            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass FROM CLIENT WHERE ClientID = " + ID;
+            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass, Client_image FROM CLIENT WHERE ClientID = " + ID;
 
             return Readtable(q);
         }
         public object GetPostedCar(int ID)
         {
-            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class, VEHICLE.C_image1 FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
+            string q = "select VEHICLE.Brand," +
+                "VEHICLE.Vehicle_No," +
+                "VEHICLE.CarDescription," +
+                "VEHICLE.CC_Rnage," +
+                "VEHICLE.Color," +
+                "VEHICLE.Year_Model," +
+                "VEHICLE.Gearing," +
+                "VEHICLE.Body_Style," +
+                "USED_VEHICLE.Price," +
+                "USED_VEHICLE.Kilometers," +
+                "USED_VEHICLE.Posting_Date," +
+                "USED_VEHICLE.Class," +
+                " VEHICLE.C_image1 FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
             return Readtable(q);
         }
         public void del_temp()

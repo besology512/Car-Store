@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Car_Store.models;
 using System.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Car_Store.Pages
 {
@@ -31,10 +32,26 @@ namespace Car_Store.Pages
             return Page();
 
         }
-        public IActionResult OnPost(string Fname , string Lname , string Email , string Phone,string Pass) {
+        public IActionResult OnPost(string Fname , string Lname , string Email , string Phone,string Pass, IFormFile PImage) {
+            string finalPath = Request.Form["PImage"];
+            if (PImage != null && PImage.Length > 0)
+            {
+                ID = (int)HttpContext.Session.GetInt32("User_ID");
+                string fileName = Fname.Replace(" ", "-") + "-" + ID.ToString() + ".jpg"; // we should inject something unique here like id
 
-            ID = (int)HttpContext.Session.GetInt32("User_ID");
-            database.edit_client_info(ID, Fname , Lname , Phone,Email, Pass);
+                string imagePath = Path.Combine("wwwroot", "images", fileName);
+
+                // Save the uploaded image to the specified path
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    PImage.CopyTo(fileStream);
+                }
+
+                finalPath = imagePath.Replace("wwwroot", "");
+            }
+                
+            
+            database.edit_client_info(ID, Fname , Lname , Phone,Email, Pass,finalPath);
             return RedirectToPage("/profile");
         }
 
