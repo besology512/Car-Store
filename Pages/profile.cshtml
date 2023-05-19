@@ -21,11 +21,21 @@
 <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true">
 <div class="content">
 <div class="page-body">
+        <form method="post" id="edit-form" enctype="multipart/form-data">
+        </form>
     <div class="page-content">
         <div class="left">
+            
             <div class="image">
-                <img src="images/IMG_3031.jpg" alt="">
+                <label for="p-img"><img id="profile-img" src="@Model.dt.Rows[0]["Client_image"]" alt="profile-image"></label>
+                <input form="edit-form" type="file" id="p-img" class="hidden-input" disabled value="@Model.dt.Rows[0]["Client_image"]" name="PImage" />
             </div>
+            
+            @*<div class="image">
+                
+            </div>*@
+            
+            
             <ul>
                 <li>
                     <div>
@@ -125,8 +135,7 @@
                 </div>
                 <div class="info">
                     <p style="color: #6d6c6c;">Info</p>
-                    <form method="post" id="edit-form">
-                    </form>
+                    
                     <ul>
                         <li style="gap: 30px;">
                             <p>First name: </p>
@@ -166,6 +175,7 @@
                         const editButton = document.getElementById("edit-button");
                         const inputs = document.querySelectorAll(".hidden-input");
                         const sinput = document.getElementById("save-btn")
+                        var profile_img  = document.getElementById("profile-img");
                         var pass = document.getElementById("pass-input")
                         editButton.addEventListener("click", function () {
                             inputs.forEach(input => {
@@ -173,6 +183,7 @@
                                 input.removeAttribute("disabled");
                                 sinput.style.display = "block";
                                 pass.type = "text";
+
                             });
                         });
                     </script>

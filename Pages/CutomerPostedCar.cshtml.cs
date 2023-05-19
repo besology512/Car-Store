@@ -36,6 +36,7 @@ namespace Car_Store.Pages
         public IActionResult OnPostDelete(int vehcId) {
             Id = (int)HttpContext.Session.GetInt32("User_ID");
             Databse.delet_CLIENT_POST(vehcId, Id);
+            
             return RedirectToPage("/CutomerPostedCar");
         }
 
