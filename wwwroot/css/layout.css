@@ -64,7 +64,11 @@ body.dark-mode {
 /*end darkmode switch*/
 
 
-
+.content {
+    min-height: calc(100vh - (20vh));
+    padding: 20px;
+    box-sizing: border-box;
+}
 
 
 
