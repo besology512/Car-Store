@@ -23,9 +23,13 @@
 <div class="containerIndex">
     <!-- Start Lnading -->
     <div class="landing bn-flex m-20">
+
+        <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[Model.Landing_random]["Vehicle_No"]">
             <div class="img-box mr-60 p-relative txt-c-mobile">
             <i class=" fas fa-angle-left change-background fa-2x p-absolute"></i>
-            <img class="rad-20 mr-10 ml-20" src="@Model.dt.Rows[Model.Landing_random]["C_image1"]" alt="">
+
+
+                <img class="rad-20 mr-10 ml-20" src="@Model.dt.Rows[Model.Landing_random]["C_image1"]" alt="">
             <i class=" fas fa-angle-right change-background fa-2x p-absolute"></i>
             <div class="center-flex mt-10 ml-20-mobile">
                 <span class="rad-half border mr-10 "></span>
@@ -33,6 +37,8 @@
                 <span class="rad-half border mr-10 "></span>
             </div>
         </div>
+
+        </a>
         <div class="landing-p ml-20 txt-c-mobile">
             <h2 class="c-blue fs-15">Label goes Here</h2>
             <span class="fs-50 d-block">3rbyat Top El top</span>
@@ -129,6 +135,9 @@
     </div>
     <!-- End Services -->
     <!-- Start Best Offer -->
+<div class="best-offer" id="best-offer">
+    <h2 class="main-head p-relative mt-40 mb-50">Best Offer</h2>
+
     <div class="posts">    
         @while(c < 4 && c < Model.dt.Rows.Count){
             Random Rnumber = new Random();
@@ -163,6 +172,7 @@
     <div class="mt-20 center-flex mb-20">
         <a asp-page="FilterPage" ><p class="fs-15 Bo-Sh-2 pt-10 pb-10 cursor-pointer pr-20 pl-20 bg-blue c-white rad-20">Explore More</p></a>
     </div>
+</div>
     <!-- End Best Offer -->
     <!-- Start Event -->
     <div class="event-father">
