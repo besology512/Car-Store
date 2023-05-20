@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 using System;
 using System.Security.Cryptography;
 using Org.BouncyCastle.Asn1.X509;
+using System.Data.Common;
+using Org.BouncyCastle.Asn1.Cms;
+using System.IO;
 
 namespace Car_Store.models
 {
@@ -702,7 +705,7 @@ namespace Car_Store.models
 
         public object getCarUsed(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, C_image1, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, C_image1, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId+ " and visibality = 1";
 
             DataTable dt = new DataTable();
             try
@@ -763,7 +766,71 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
+        public void order(string city, string street, string building, string house, int Id) {
+            string currentDate = DateTime.Today.ToString();
+            string time = DateTime.Now.TimeOfDay.ToString();
+            string query = "insert into ORDERS(order_date, order_time, order_status, City, Street, Building, HouseNo, ClientId) values ('"+currentDate+"', '"+time+"', 'Processing', '"+city+"', '"+street+"', '"+building+"', '"+house+"', "+Id+")";
+            string query2 = "delete from Cart_vehicle where Cart_vehicle.Customer_ID = "+Id;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                SqlCommand sqlCommand2 = new SqlCommand(query2, con);
+                sqlCommand.ExecuteNonQuery();
+                sqlCommand2.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+        public void purchaseCar(int Vid, int Cid) {
+            string query = "insert into OrderItems values ("+Cid+", "+Vid+")";
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
 
+        public void minusNewCar(int Vid) {
+            string query = "update NEW_VEHICLE set count = count-1 where Vehicle_ID = " + Vid;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+
+        public void notVisible(int Vid) {
+            string query = "update VEHICLE set visibality = 0 where Vehicle_No = " + Vid;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+
+        public object getOrders(int CID) {
+            string query = "select distinct VEHICLE.Brand, VEHICLE.name, VEHICLE.Color, orders.order_status, Vehicle.C_image1 from (orderItems join VEHICLE on orderItems.vehichle_ID = vehicle.Vehicle_No) join ORDERS on orderItems.Customer_ID = ORDERS.ClientID where Customer_ID = " + CID;
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
     }
 }
 

@@ -190,25 +190,6 @@ CREATE TABLE SERVICES_CENTER(
 
 
 
-
-
-
-
-CREATE TABLE ORDERS(
-	Order_No INT  IDENTITY(1,1),
-	order_date DATE NOT NULL,
-	order_time TIME,
-	order_status VARCHAR(20),
-	City VARCHAR(50),
-	Street VARCHAR(100),
-	Building VARCHAR(20),
-	HouseNo INT,
-	Branch_No INT,
-	CONSTRAINT PK_ORDERS PRIMARY KEY (Order_No),
-	CONSTRAINT FK_ORDERS_BRANCH FOREIGN KEY (Branch_No) REFERENCES BRANCH
-	ON UPDATE CASCADE
-);
-
 CREATE TABLE CLIENT(
 	ClientID INT  IDENTITY(1,1),
 	Client_Username VARCHAR(100) Unique,
@@ -225,14 +206,32 @@ CREATE TABLE CLIENT(
 
 
 
-CREATE TABLE CLIENT_ORDER(
-	Client_ID INT,
-	OrderID INT,
-	CONSTRAINT PK_CLIENT_ORDER PRIMARY KEY(Client_ID,OrderID),
-	CONSTRAINT FK_CLIENT_ORDERS_TO_CLIENT FOREIGN KEY (Client_ID) REFERENCES CLIENT(ClientID)
+
+
+CREATE TABLE ORDERS(
+	Order_No INT  IDENTITY(1,1),
+	Client_ID int,
+	order_date DATE NOT NULL,
+	order_time TIME,
+	order_status VARCHAR(20),
+	City VARCHAR(50),
+	Street VARCHAR(100),
+	Building VARCHAR(20),
+	HouseNo INT,
+	Branch_No INT,
+	CONSTRAINT PK_ORDERS PRIMARY KEY (Order_No),
+	CONSTRAINT FK_ORDERS_BRANCH FOREIGN KEY (Branch_No) REFERENCES BRANCH
+	ON UPDATE CASCADE
+);
+
+create table orderItems(
+	Customer_ID int,
+	vehichle_ID int
+	CONSTRAINT PK_Order_vehicle primary key (Customer_ID, vehichle_ID)
+	CONSTRAINT FK_Order_vehicle_TO_CLIENTID Foreign key (Customer_ID) references CLIENT(ClientID)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
-	CONSTRAINT FK_CLIENT_ORDERS_TO_ORDERS FOREIGN KEY (OrderID) REFERENCES ORDERS(Order_No)
+	CONSTRAINT FK_Cart_vehicle_TO_Vehicle_No Foreign key (Vehichle_ID) references vehicle(Vehicle_No)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );

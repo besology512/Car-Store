@@ -16,15 +16,15 @@ namespace Car_Store.Services.EmailService
         public void SendEmail(EmailDto request)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("18035@stemegypt.edu.eg"));
+            email.From.Add(MailboxAddress.Parse("trmbcar@outlook.com"));
             email.To.Add(MailboxAddress.Parse(request.To));
             email.Subject = request.Subject;
             email.Body = new TextPart(TextFormat.Html) { Text = request.Body };
 
             using var smtp = new SmtpClient();
-            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Connect("smtp.office365.com", 587, SecureSocketOptions.StartTls);
 
-            smtp.Authenticate("18035@stemegypt.edu.eg", "badabidorashad");
+            smtp.Authenticate("trmbcar@outlook.com", "TR$$MB$$8865");
             smtp.Send(email);
             smtp.Disconnect(true);
         }

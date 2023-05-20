@@ -41,5 +41,10 @@ namespace Car_Store.Pages
             HttpContext.Session.Remove("User_ID");
             return RedirectToPage("/Index");
         }
+
+        public IActionResult OnPostCheckout() {
+            
+            return RedirectToPage("/Checkout");
+        }
     }
 }
