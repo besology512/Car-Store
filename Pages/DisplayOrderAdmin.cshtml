@@ -1,0 +1,67 @@
+﻿@page
+@model Car_Store.Pages.DisplayOrderAdminModel
+@{
+    Layout = "adminlay";
+    string stat_color = "";
+}
+
+<link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
+
+
+<div class="all-page-content-c">
+    <p style="font-weight:bold">Number of Orders: <span class="mian-colr">@Model.ordersNum</span></p>
+    <div class="posts">
+        @for(int i = 0; i<Model.dt.Rows.Count; i++)
+        {
+            <div class="Post-Card">
+                <div class="double-items">
+                    <p class="sec-colr">@(((DateTime)Model.dt.Rows[i]["order_date"]).ToLongDateString())</p>
+                    <p style="color:#dc3545">@Model.dt.Rows[i]["Order_No"]</p>
+                </div>
+                <img src="@Model.dt.Rows[i]["C_image1"]" alt="Example Image">
+                <p>Vehicle Number: <span class="main-color">@Model.dt.Rows[i]["vehichle_ID"]</span> </p>
+                <div class="double-items">
+                    <p style="font-weight:bold;">@Model.dt.Rows[i]["C_NAME"]</p>
+                    <p class="main-color"><span style="color:black;">ClientID: </span> @Model.dt.Rows[i]["ClientID"]</p>
+                </div>
+                <h5>Location:</h5>
+                <p>@Model.dt.Rows[i]["City"] </p>
+                <p>@Model.dt.Rows[i]["Street"]</p>
+                <p>Building: <span>@Model.dt.Rows[i]["Building"]</span></p>
+                @if ((string)Model.dt.Rows[i]["order_status"] == "Delivering")
+                {
+                    stat_color = "#ffc107";
+                }
+                else if ((string)Model.dt.Rows[i]["order_status"] == "Delivered")
+                {
+                    stat_color = "#198754";
+                }
+                else if ((string)Model.dt.Rows[i]["order_status"] == "Processing")
+                {
+                    stat_color = "#dc3545";
+                }
+                <div class="double-items" style="padding-top:20px; gap:20px; justify-content: center;">
+                    <p style="font-weight:bold;">Status:</p>
+                    <p style="color:@stat_color; text-align:center; font-weight:bold;">@Model.dt.Rows[i]["order_status"]</p>
+                </div>
+            </div>
+        }
+    </div>
+    <form method="post" class="my-from">
+        <div>
+            <label for="order-id">Order_id</label>
+            <input id="order-id" required class="general-input" type="number"  name="OrderId" />
+        </div>
+        <div>
+            <label for = "o-status" >Order New Status</label>
+            <select class="general-input" name="OrderStatus"  >
+                <option value="Delivering">Delivering</option>
+                <option value="Delivered">Delivered</option>
+            </select>
+        </div>
+        <div style="align-self:end;">
+            <input type="submit" class="delete-button" />
+        </div>
+    </form>
+</div>
+
