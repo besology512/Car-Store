@@ -363,6 +363,7 @@ nav i:last-child {
     height: 400px;
     z-index: -1;
     position: relative;
+    object-fit:contain;
 }
 
 @media (min-width:1300px) {
@@ -473,6 +474,7 @@ nav i:last-child {
 .detials-B .box img {
     width: 280px;
     height: 200px;
+    object-fit:contain;
 }
 
 @media (max-width:767px) {
@@ -481,12 +483,14 @@ nav i:last-child {
     }
 
         .detials-B .box {
-            min-width: 380px;
+            max-width: 350px;
+            margin-left:60px;
         }
 
             .detials-B .box img {
                 margin-left: 35px;
             }
+        
 }
 
 .detials-B .A-d:hover span {
@@ -1069,4 +1073,9 @@ input[type="range"]:active::-webkit-slider-thumb {
     min-height: calc(100vh - (20vh));
     padding: 20px;
     box-sizing: border-box;
+}
+@media(max-width:470px){
+    .content {
+        padding: 20px 0px;
+    }
 }
