@@ -464,6 +464,7 @@ nav i:last-child {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .cart .bill button {
