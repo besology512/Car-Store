@@ -40,6 +40,7 @@ namespace Car_Store.models
                     dataPoints.Add(dataPoint);
                 }
             }
+            con.Close();
             return dataPoints;
         }
 
