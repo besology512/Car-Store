@@ -1,0 +1,149 @@
+﻿@page
+@model Car_Store.Pages.CheckoutModel
+@{
+}
+@{
+    if (HttpContext.Session.GetInt32("User_Type") == null)
+    {
+        Layout = "_Layout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 0)
+    {
+        Layout = "ClientLayout";
+    }
+    else if (HttpContext.Session.GetInt32("User_Type") == 1)
+    {
+        Layout = "adminlay";
+    }
+}
+@{
+
+    List<int> cars = new List<int>();
+    double sum = 0;
+    if (Model.dtCarNew != null)
+    {
+        for (int i = 0; i < Model.dtCarNew.Rows.Count; i++)
+        {
+            sum += (int)@Model.dtCarNew.Rows[i][5];
+            cars.Add((int)@Model.dtCarNew.Rows[i][6]);
+        }
+    }
+    if (Model.dtCarUsed != null)
+    {
+        for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+        {
+            sum += (int)@Model.dtCarUsed.Rows[i][5];
+            cars.Add((int)@Model.dtCarUsed.Rows[i][6]);
+        }
+    }
+}
+
+<link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true">
+<div class="content">
+    <!-- Start Cart Section-->
+    <span style="width:200px; margin-left:60px; font-size:25px;">
+        Order Items
+    </span>
+    <div style="width:calc(100%/1.5); margin-left:60px;">
+        <hr />    
+    </div>
+    <section class="cart page_margin">
+        <div class="items">
+            <div class="item-box">
+                @if (Model.dtCarNew != null)
+                {
+                    @for (int i = 0; i < Model.dtCarNew.Rows.Count; i++)
+                    {
+                        <div class="item">
+                            <div class="car-img">
+                                <img src="@Model.dtCarNew.Rows[i][3]" alt="car image">
+                            </div>
+                            <div class="item-description">
+                                <h3>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
+                                <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarNew.Rows[i][2]</span></div>
+                                <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarNew.Rows[i][4]</span></div>
+                                <div class="icons">
+                                    <div class="remove">
+                                    </div>
+                                </div>
+                                <div class="price"> @Model.dtCarNew.Rows[i][5] $</div>
+                            </div>
+                        </div>
+                    }
+                }
+                @if (Model.dtCarNew != null)
+                {
+                    @for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+                    {
+                        <div class="item">
+                            <div class="car-img">
+
+                                <img src="@Model.dtCarUsed.Rows[i][3]" alt="car image">
+                            </div>
+                            <div class="item-description">
+                                <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>
+                                <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarUsed.Rows[i][2]</span></div>
+                                <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarUsed.Rows[i][4]</span></div>
+                                <div class="icons">
+                                </div>
+                                <div class="price"> @Model.dtCarUsed.Rows[i][5] $</div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+                <div class="ShippingInfo">
+                    <form method="post" id="main-form">
+                        @*start car info*@
+                        <span class="sec-color"><i class="fa-solid fa-memo-circle-info"></i> Shipping Details</span>
+                        <div class="car-details">
+                            <div class="car-title">
+                                <label for="car-title">Your name *</label>
+                            <input form="checkout" name="name" type="text" id="car-title" required
+                                       placeholder="Ex: Giza152" />
+                            </div>
+                            <div class="car-year">
+                                <label for="car-title">City*</label>
+                            <input form="checkout" name="city" type="text" id="car-title" required class="my-input" placeholder="Ex: Giza" />
+                            </div>
+                            <div class="transition-fuel">
+                                <div class="gearing">
+                                    <label for="Fuel">Street *</label>
+                                    <input form="checkout" name="street" type="text" id="car-title" required class="my-input" placeholder="Ex: Matbaa Street" />
+                                </div>
+                                <div class="fuel">
+                                    <label for="Fuel">Building No. *</label>
+                                    <input form="checkout" name="building" type="text" id="car-title" required class="my-input" placeholder="Building 5" />
+                                </div>
+                            </div>
+                            <div class="transition-fuel">
+                            <div class="gearing">
+                                <label for="Fuel">House No *</label>
+                                <input form="checkout" name="house" type="text" id="car-title" required class="my-input" placeholder="House 5" />
+                                </div>
+                                <div class="fuel">
+                                    <label for="Fuel">Phone Number *</label>
+                                    <input form="checkout" name="phoneNumber" type="text" id="car-title" required class="my-input" placeholder="Ex: 01100242415" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+        </div>
+
+        <div class="bill" style="height:fit-content">
+            <h3>Checkout Receipt</h3>
+            <div class="total-price price"><span class="total">Total Price</span> <span class="price-value">@sum $</span> </div>
+            <div class="shipping-price price"><span class="shipping">Shipping</span> <span class="price-value">$11.99</span> </div>
+            <div class="hr"><hr></div>
+            <div class="total-price-value bill-title"><div class="total">The total amount (including VAT) </div> <span class="price-value">@(Math.Round((sum * 1.05), 3)) $</span> </div>
+            <form id="checkout" method="post">
+                <input form="checkout" type="hidden" value="@cars" name="carsList" />
+                <div class="btn"><button asp-page-handler="Checkout">Complete your Order</button></div>
+            </form>
+        </div>
+    </section>
+    <!-- End Cart Section-->
+</div>

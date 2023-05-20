@@ -20,6 +20,10 @@
     background-color: #f0f0f0;
 }
 
+.ShippingInfo {
+    margin-top:20px;
+}
+
 .Be-Head::after {
     content: "";
     position: absolute;

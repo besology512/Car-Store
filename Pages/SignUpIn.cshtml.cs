@@ -66,10 +66,10 @@ namespace Car_Store.Pages
                 Customer.Client_Username = UserName;
                 request = new EmailDto();
                 request.To = Email;
-                Customer.insert();
+                
 
-/*                service.SendEmail(request);
-*/
+                service.SendEmail(request);
+                Customer.insert();
                 return RedirectToPage("/Index");
             }
         }

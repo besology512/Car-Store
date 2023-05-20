@@ -49,7 +49,20 @@ namespace Car_Store.models
 
         public void delete(string table, string column) {
             db.deleteCartVehicle( table, PId, CId, column);
+        }        
+        public void addToOrders(string city, string street, string building, string house) {
+            db.order(city, street, building, house, this.CId);
         }
+        public void addVehicleOrdered(int Vid) {
+            db.purchaseCar(Vid, this.CId);
+        }
+        public void minusone(int Vid) {
+            db.minusNewCar(Vid);
+        }
+        public void changeVisibility(int Vid) {
+            db.notVisible(Vid);
+        }
+
         ~WishCart() { }
     }
 }
