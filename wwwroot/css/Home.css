@@ -18,6 +18,8 @@
     height: 400px;
     z-index: -1;
     position: relative;
+    object-fit: contain;
+    object-position: center;
 }
 
 @media (min-width:1300px) {
@@ -124,90 +126,105 @@
 }
 /* End Servieces */
 /* Start Best Offer */
-.main-head::before, .Be-Head::before {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    left: 51%;
-    translate: -30% 365%;
-    border: 1px solid black;
-    z-index: 1;
-    background-color: #f0f0f0;
+.sec-color {
+    color: #6d6c6c;
 }
 
-.main-head::before, .Be-Head::before {
-    content: "";
-    position: absolute;
-    width: 140px;
-    height: 2px;
-    left: 50%;
-    translate: -70px 0;
-    bottom: -16px;
-    background-color: black;
+.main-color {
+    color: #0d6efd;
 }
 
-.main-head::after, .Be-Head::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    translate: -91px 0;
-    bottom: -22px;
-    border: 1px solid black;
-    border-radius: 50%;
-    background-color: #fafafa;
-    z-index: 111;
+.posts {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-
-
-
-.main-head::before {
-    content: "";
-    position: absolute;
-    width: 140px;
-    height: 2px;
-    left: 50%;
-    translate: -70px 0;
-    bottom: -16px;
-    background-color: black;
-}
-
-.main-head::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    translate: -91px 0;
-    bottom: -22px;
-    border: 1px solid black;
-    border-radius: 50%;
-    background-color: #fafafa;
-}
-.best-offer .detials-B .box img {
-    width: 280px;
-    height: 200px;
-}
-
-@media (max-width:767px) {
-    .best-offer .detials-B {
-        flex-direction: column;
+@media (max-width:870px){
+    .posts{
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
     }
-
-        .best-offer .detials-B .box {
-            min-width: 380px;
-        }
-
-            .best-offer .detials-B .box img {
-                margin-left: 35px;
-            }
+}
+.sec-color {
+    color: #6d6c6c;
 }
 
-.best-offer .detials-B .A-d:hover span {
-    background-color: var(--blue-color);
+.main-color {
+    color: #0d6efd;
+}
+
+.posts .Post-Card {
+    flex-basis: 22%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: rgb(204, 204, 204) 0px 11px 20px 5px;
+    text-align: center;
+    max-width: 250px;
+    text-align: left;
+    background-color: white;
+    border: none;
+}
+.posts .Post-Card h2{
+    
+}
+
+.posts .Post-Card img {
+  width: 100% !important;
+  margin-bottom: 10px !important;
+  height: 144px !important;
+  object-fit: cover !important;
+  border-radius:10px !important;
+}
+
+.Post-Card h2 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+}
+
+.Post-Card p {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+}
+
+.my-from {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top:7px;
+}
+
+.add-btn {
+    height: 28px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: rgb(204, 204, 204) 0px 11px 20px 5px;
+    cursor: pointer;
+    width: 100%;
+}
+.add-btn:hover{
+    background-color: #0d69d5;
     color: white;
+}
+
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c00;
 }
 /* End Best Offer */
 /* Start Event */

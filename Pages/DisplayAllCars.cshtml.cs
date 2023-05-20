@@ -23,7 +23,7 @@ namespace Car_Store.Pages
         {
             
             dtable = (DataTable)DATABASE.get_all_cars();
-            statisticsTable = (DataTable)DATABASE.get_car_count();
+            statisticsTable = (DataTable)DATABASE.get_car_statistics();
         }
         public IActionResult OnPostDelete(int vehcId)
         {
