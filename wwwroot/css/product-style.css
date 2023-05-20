@@ -112,7 +112,7 @@ body {
     border-radius: 10px;
     height: 380px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
 }
 .landing .container .product .discription{
     flex-basis: 100%;
@@ -209,6 +209,8 @@ body {
     margin-right: auto;
     border-radius: 20px;
     height: auto;
+    object-fit:contain;
+
 }
 .similar-cars .crad button{
     width: 75%;

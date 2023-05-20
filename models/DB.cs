@@ -26,6 +26,24 @@ namespace Car_Store.models
         }
 
         public string date1 { get; set; }
+        public List<DataPoint> GetData(string query)
+        {
+            List<DataPoint> dataPoints = new List<DataPoint>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr != null)
+            {
+                while (dr.Read())
+                {
+                    DataPoint dataPoint = new DataPoint(dr["Id"], dr["XValue"], dr["YValue"]);
+                    dataPoints.Add(dataPoint);
+                }
+            }
+            con.Close();
+            return dataPoints;
+        }
+
         public void insertUser(string Fname, string Lname, string pass, string phoneNumber, string date, string email, string UserName)
         { //to return any data type
             /*            string date1 = date.ToString();
@@ -118,6 +136,25 @@ namespace Car_Store.models
         {
             string q = "select count(*) as car_count from VEHICLE ";
             return Convert.ToInt32((getsinglevalue(q)));
+        }
+        public void insert_emp(string Username,string Fname,string Mname,string Lname, string password,int SSN,string Bdate,string Gender, int salary,int super_id , int usertype, string jobType,int branch,int deparmentID)
+        {
+            string q = "Insert into EMPLOYEE values('"+Username+ "','"+Fname+"','"+Mname+"','"+Lname+"','"+password+"',"+SSN+",'"+Bdate+"','"+Gender+"',"+salary+","+super_id+","+usertype+",'"+jobType+"')";
+            excute_nonQuery(q);
+            string query = "SELECT IDENT_CURRENT('EMPLOYEE') AS CurrentIdentityValue";
+            int counter = Convert.ToInt32(getsinglevalue(query));
+            string q2 = "insert into works_in_branchdep values("+counter+","+branch + "," +deparmentID+")";
+            excute_nonQuery(q2);
+        }
+        public object get_department_num()
+        {
+            string q = "select * from DEPARTMENT";
+            return Readtable(q);
+        }
+        public object get_all_branches_num()
+        {
+            string q = "select  BRANCH.BranchID  from BRANCH";
+            return Readtable(q);
         }
 
         public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
@@ -530,7 +567,10 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
-
+        public object Select(string Q)
+        {
+            return FunctionReaderExecute(Q);
+        }
 
         public object ReadAll(string tablename)
         { //to return any data type
@@ -554,6 +594,7 @@ namespace Car_Store.models
             DataTable dt = new DataTable();
             try
             {
+                
                 con.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, con);
                 dt.Load(sqlCommand.ExecuteReader());
