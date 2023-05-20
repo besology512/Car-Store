@@ -134,8 +134,8 @@
             Random Rnumber = new Random();
             int Rnum = Rnumber.Next(c,Model.dt.Rows.Count);
             <div class="Post-Card">
-                <img src="@Model.dt.Rows[Rnum]["C_image1"]" alt="Example Image">
-                <p style="font-weight:bold;">@Model.dt.Rows[Rnum]["Brand"] <span>@Model.dt.Rows[Rnum]["Year_Model"]</span></p>
+                    <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[Rnum]["Vehicle_No"]"> <img src="@Model.dt.Rows[Rnum]["C_image1"]" alt="Car Image"> </a>
+                    <p style="font-weight:bold;">@Model.dt.Rows[Rnum]["Brand"] <span>@Model.dt.Rows[Rnum]["Year_Model"]</span></p>
                 <p class="sec-color">@Model.dt.Rows[Rnum]["CarDescription"]</p>
                 
                 @if(Convert.ToInt32(Model.dt.Rows[Rnum]["count"]) > 0){
