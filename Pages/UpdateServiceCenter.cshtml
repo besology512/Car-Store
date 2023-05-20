@@ -26,38 +26,38 @@
 
             <div class="car-year">
                 <label for="car-title">Name*</label>
-                <input name="name" type="text" id="car-title" required class="my-input" placeholder="Ex: Elnasr Services Center" value="@Model.myCenter.Name" />
+                    <input name="name" type="text" id="car-title" required class="my-input" placeholder="Ex: Elnasr Services Center" value="@Model.myCenter.Name" minlength="3" maxlength="50" pattern="[A-Za-z0-9]+" />
             </div>
 
             <div class="car-year">
                 <label for="car-title">Address*</label>
-                <input name="address" type="text" id="car-title" required class="my-input" placeholder="Ex: Maadi, street 8, behind bazoka restaurant" value="@Model.myCenter.Address" />
+                    <input name="address" type="text" id="car-title" required class="my-input" placeholder="Ex: Maadi, street 8, behind bazoka restaurant" value="@Model.myCenter.Address" minlength="3" maxlength="150" pattern="[A-Za-z0-9]+" />
             </div>
 
             <div class="car-year">
                 <label for="car-title">Phone Number</label>
-                <input name="phone" type="text" id="car-title" required class="my-input" placeholder="Enter the new Phone number" value="@Model.myCenter.PhoneNumber" />
+                    <input name="phone" type="text" id="car-title" required class="my-input" placeholder="Enter the new Phone number" value="@Model.myCenter.PhoneNumber" pattern="[0-9]+"/>
             </div>
 
 
             <div class="car-year">
                 <label for="car-title">Stars*</label>
-                <input name="stars" type="text" id="car-title" required class="my-input" placeholder="Ex: 3" value="@Model.myCenter.stars" />
+                    <input name="stars" type="text" id="car-title" required class="my-input" placeholder="Ex: 3" value="@Model.myCenter.stars" pattern="[0-5]" />
             </div>
 
             <div class="car-year">
                 <label for="car-title">Services*</label>
-                <input name="services" type="text" id="car-title" required class="my-input" placeholder="Ex: We fix tyota Cars. We specialized in glasses." value="@Model.myCenter.Services" />
+                    <input name="services" type="text" id="car-title" required class="my-input" placeholder="Ex: We fix tyota Cars. We specialized in glasses." value="@Model.myCenter.Services" minlength="3" maxlength="150" pattern="[A-Za-z0-9]+" />
             </div>
 
             <div class="transition-fuel">
                 <div class="gearing">
                     <label for="Fuel">Latitude*</label>
-                    <input name="latitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 30.04754894570406" value="@Model.myCenter.latitude"/>
+                        <input name="latitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 30.04754894570406" value="@Model.myCenter.latitude" pattern="[0-9.]*" />
                 </div>
                 <div class="fuel">
                     <label for="Fuel">Logitude*</label>
-                    <input name="longitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 31.182370441104478" value="@Model.myCenter.longitude"/>
+                        <input name="longitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 31.182370441104478" value="@Model.myCenter.longitude" pattern="[0-9.]*" />
                 </div>
             </div>
 

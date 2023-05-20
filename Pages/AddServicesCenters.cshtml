@@ -26,37 +26,37 @@
 
             <div class="car-year">
                 <label for="car-title">Name*</label>
-                <input name="name" type="text" id="car-title" required class="my-input" placeholder="Ex: Elnasr Services Center" />
+                    <input name="name" type="text" id="car-title" required class="my-input" placeholder="Ex: Elnasr Services Center" minlength="3" maxlength="30" pattern="[A-Za-z0-9]+" />
             </div>
 
             <div class="car-year">
                 <label for="car-title">Address*</label>
-                <input name="address" type="text" id="car-title" required class="my-input" placeholder="Ex: Maadi, street 8, behind bazoka restaurant" />
+                    <input name="address" type="text" id="car-title" required class="my-input" placeholder="Ex: Maadi, street 8, behind bazoka restaurant" minlength="3" maxlength="100" pattern="[A-Za-z0-9]+" />
             </div>
                 <div class="car-year">
                     <label for="car-title">Phone Number</label>
-                    <input name="PhoneNumber" type="text" id="car-title" required class="my-input" placeholder="Enter your Phone number" />
+                    <input name="PhoneNumber" type="text" id="car-title" required class="my-input" placeholder="Enter your Phone number" pattern="[0-9]+" />
                 </div>
 
 
             <div class="car-year">
                 <label for="car-title">Stars*</label>
-                <input name="stars" type="text" id="car-title" required class="my-input" placeholder="Ex: 3" />
+                    <input name="stars" type="text" id="car-title" required class="my-input" placeholder="Ex: 3" pattern="[0-5]"  />
             </div>
 
             <div class="car-year">
                 <label for="car-title">Services*</label>
-                <input name="services" type="text" id="car-title" required class="my-input" placeholder="Ex: We fix tyota Cars. We specialized in glasses." />
+                    <input name="services" type="text" id="car-title" required class="my-input" placeholder="Ex: We fix tyota Cars. We specialized in glasses." minlength="5" maxlength="300" pattern="[A-Za-z0-9]+" />
             </div>
 
             <div class="transition-fuel">
                 <div class="gearing">
                     <label for="Fuel">Latitude*</label>
-                    <input name="latitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 30.04754894570406" />
+                        <input name="latitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 30.04754894570406" pattern="[0-9.]*" />
                 </div>
                 <div class="fuel">
                     <label for="Fuel">Logitude*</label>
-                    <input name="longitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 31.182370441104478" />
+                        <input name="longitude" type="text" id="car-title" required class="my-input" placeholder="Ex: 31.182370441104478" pattern="[0-9.]*" />
                 </div>
             </div>
 

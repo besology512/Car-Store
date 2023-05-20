@@ -127,7 +127,7 @@
         <span class="sec-color"><i class="fa-solid fa-car"></i> add car images</span>
         <div class="image-add">
             <div class="img-card" onclick="document.getElementById('car-image').click()">
-                <input type="file" id="car-image" name="carImg" accept="image/*">
+                <input type="file" id="car-image" name="carImg" accept="image/*" required>
 
                 <label for="car-image">
                     <i class="fa-sharp fa-solid fa-cloud-arrow-up"></i>
@@ -141,7 +141,7 @@
         <div class="car-details">
             <div class="car-title">
                 <label for="car-title">Ad. Title</label>
-                <input type="text"  name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic" />
+                    <input type="text" name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic" required minlength="3" maxlength="300" pattern="[A-Za-z0-9]+" />
             </div>
             <div class="make-model">
                 <div class="make">
@@ -197,7 +197,7 @@
                 <div class="color-box" style="background-color:#cdaa7a;">
                     <span>Bronze</span>
                 </div>
-                <input id="MyColor" type="hidden" asp-for="MyColor" />
+                <input id="MyColor" type="hidden" asp-for="MyColor" required/>
                 <script>
                     var colorBoxes = document.querySelectorAll(".color-box");
                     colorBoxes.forEach(function (colorBox) {
@@ -215,7 +215,7 @@
                 <div class="Class">
                     <label for="car-Class">Class*</label>
                     <input type="text" id="car-Class" required
-                          placeholder="insert you are car class" class="my-input" name="CarClass" />
+                               placeholder="insert you are car class" class="my-input" name="CarClass" pattern="[0-9]+" />
                 </div>
                 <div class="style">
                     <label for="Car-style">Style*</label>
@@ -250,15 +250,15 @@
             </div>
             <div class="cc-range">
                 <label for="car-CC">CC Range*</label>
-                <input type="text" id="car-CC" class="my-input" required name="CC"  />
+                    <input type="text" id="car-CC" class="my-input" required name="CC" pattern="[0-9]+" />
             </div>
             <div class="car-price">
                 <label for="car-price">Price</label>
-                <input type="text" id="car-price" required class="my-input" name="Price" />
+                    <input type="text" id="car-price" required class="my-input" name="Price" pattern="[0-9]+" />
             </div>
             <div>
                 <label for="car-quantity">Add quantity*</label>
-                <input type="number" id="car-quantity" required class="my-input" name="Quantity"  />
+                <input type="number" id="car-quantity" required class="my-input" name="Quantity"/>
             </div>
         </div>
         <div>
