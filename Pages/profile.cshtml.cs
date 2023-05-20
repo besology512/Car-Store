@@ -37,7 +37,9 @@ namespace Car_Store.Pages
             if (PImage != null && PImage.Length > 0)
             {
                 ID = (int)HttpContext.Session.GetInt32("User_ID");
-                string fileName = Fname.Replace(" ", "-") + "-" + ID.ToString() + ".jpg"; // we should inject something unique here like id
+                Random rnum = new Random();
+                int num = rnum.Next();
+                string fileName = Fname.Replace(" ", "-") + "-" + ID.ToString()+num.ToString() + ".jpg"; // we should inject something unique here like id
 
                 string imagePath = Path.Combine("wwwroot", "images", fileName);
 
