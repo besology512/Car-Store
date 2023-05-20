@@ -22,6 +22,23 @@ namespace Car_Store.models
         }
 
         public string date1 { get; set; }
+        public List<DataPoint> GetData(string query)
+        {
+            List<DataPoint> dataPoints = new List<DataPoint>();
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr != null)
+            {
+                while (dr.Read())
+                {
+                    DataPoint dataPoint = new DataPoint(dr["Id"], dr["XValue"], dr["YValue"]);
+                    dataPoints.Add(dataPoint);
+                }
+            }
+            return dataPoints;
+        }
+
         public void insertUser(string Fname, string Lname, string pass, string phoneNumber, string date, string email, string UserName)
         { //to return any data type
             /*            string date1 = date.ToString();
@@ -456,7 +473,10 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
-
+        public object Select(string Q)
+        {
+            return FunctionReaderExecute(Q);
+        }
 
         public object ReadAll(string tablename)
         { //to return any data type
@@ -480,6 +500,7 @@ namespace Car_Store.models
             DataTable dt = new DataTable();
             try
             {
+                
                 con.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, con);
                 dt.Load(sqlCommand.ExecuteReader());

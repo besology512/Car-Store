@@ -20,6 +20,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
         
     </head>
     <body>
@@ -59,7 +60,7 @@
                                 <div class="nav__dropdown-content">
                                     <a class="nav__dropdown-item" asp-page="/DisplayClients">Users</a>
                                     <a  class="nav__dropdown-item" asp-page="/addproduct">Products</a>
-                                    <a class="nav__dropdown-item">Employees</a>
+                                    <a class="nav__dropdown-item" asp-page="/AddEmployee">Employees</a>
                                     <a  class="nav__dropdown-item">Branches</a>
                                     <a  class="nav__dropdown-item">Departments</a>
                                     <a  class="nav__dropdown-item" asp-page="/AddShowRoom">Show Rooms</a>
@@ -109,10 +110,11 @@
                     </div>
                 </div>
             </div>
-
-            <a href="#" class="nav__link nav__logout">
-                <i class='bx bx-log-out nav__icon'></i>
-                <span class="nav__name">Log Out</span>
+                <form method="post">
+                    <button class="logoutBtn" type="submit" sytle="padding: 0; margin-top: -45px; background: transparent; text-align: left;" asp-page-handler="Logout">
+                        <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i> Log Out</li>
+                    </button>
+                </form>
             </a>
         </nav>
     </div>

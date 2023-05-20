@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Data;
 @model Car_Store.Pages.AdminViewModel
 @{
     if (HttpContext.Session.GetInt32("User_Type") == null)
@@ -14,204 +15,380 @@
         Layout = "adminlay";
     }
 }
+<header>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
 
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Department', 'Male', 'Female'],
+        @foreach (var data in Model.MaleFemaleDepartment)
+        {
+            <text>['@data.Id', @data.XValue, @data.YValue], </text>
+        }
+                ]);
+
+            var options = {
+                chart: {
+                    title: 'Departments Gender Distribution'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['City', 'Branches','Departments'],
+        @foreach (DataRow row in Model.BranchByCity.Rows)
+        {
+            <text>['@row["City"]', @row["Branch_Count"],@row["Department_Count"]], </text>
+        }
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Branches in Cities'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('barchart_Branch_City'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['job Title', 'Highest', 'Average','Lowest'],
+        @foreach (DataRow row in Model.JobSalary.Rows)
+        {
+            <text>['@row["JOB_TYPE"]', @row["Highest_Salary"], @row["Average_Salary"], @row["Lowest_Salary"]], </text>
+        }
+                        ]);
+
+            var options = {
+                chart: {
+                    title: 'Job Salary'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('barchart_Job_Salary'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+        @foreach (DataRow row in Model.EmployeesByJob.Rows)
+        {
+            <text>['@row["JOB_TYPE"]', @row["Employee_Count"]], </text>
+        }
+            ]);
+
+            // Set chart options
+            var options = {
+                'title': 'How Much Pizza I Ate Last Night',
+                'width': 400,
+                'height': 300
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+        @foreach (DataRow row in Model.EmployeesByDep.Rows)
+        {
+            <text>['@row["Department_Name"]', @row["NumEmployees"]], </text>
+        }
+                    ]);
+
+            // Set chart options
+            var options = {
+                'title': 'How Many Employees in each department',
+                'width': 400,
+                'height': 300
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_employee_dep'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+        @foreach (DataRow row in Model.EmployeesByBranch.Rows)
+        {
+            <text>['@row["Bname"]', @row["NumEmployees"]], </text>
+        }
+                            ]);
+
+            // Set chart options
+            var options = {
+                'title': 'How Many Employees in each Branch',
+                'width': 400,
+                'height': 300
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_employee_Branch'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawVisualization);
+
+        function drawVisualization() {
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Branch');
+            data1.addColumn('number', 'Number of Cars');
+
+        @foreach (DataRow row in Model.CarsInBranches.Rows)
+        {
+            <text>data1.addRow(['@row["Bname"]', @row["NumCars"]]); </text>
+        }
+
+                var options1 = {
+                title: 'Number of Cars in the Branches',
+                vAxis: { title: 'Branches' },
+                hAxis: { title: 'Number of Cars' },
+                'width': 700,
+                'height': 700
+            };
+
+            var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div_cars_branches'));
+
+            chart1.draw(data1, options1);
+
+            var data2 = new google.visualization.DataTable();
+            data2.addColumn('string', 'Branch');
+            data2.addColumn('number', 'Average');
+
+        @foreach (DataRow row in Model.CarsInBranches.Rows)
+        {
+            <text>data2.addRow(['@row["Bname"]', @row["Average Price"]]); </text>
+        }
+
+                var options2 = {
+                title: 'Average Price in the Branches',
+                vAxis: { title: 'Branches' },
+                hAxis: { title: 'Average Price' },
+                'width': 700,
+                'height': 700
+            };
+
+            var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div_cars_branches_average'));
+
+            chart2.draw(data2, options2);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Branch');
+            data1.addColumn('number', 'Number of Suppliers');
+
+        @foreach (DataRow row in Model.BranchSupplier.Rows)
+        {
+            <text>data1.addRow(['@row["Bname"]', @row["Num_Suppliers"]]); </text>
+        }
+
+                        var options1 = {
+                title: 'Number Suppliers to Branches',
+                vAxis: { title: 'Branches' },
+                hAxis: { title: 'Number of Suppliers' },
+                'width': 1500,
+                'height': 700
+            };
+
+            var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div_cars_supplier'));
+
+            chart1.draw(data1, options1);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Brand', 'Number of Cars','New', 'Used'],
+        @foreach (DataRow row in Model.CarBrands.Rows)
+        {
+            <text>['@row["Brand"]', @row["Num_Cars"], @row["Num_New_Cars"], @row["Num_Used_Cars"]], </text>
+        }
+                ]);
+
+            var options = {
+                chart: {
+                    title: 'Number of Cars by Brand'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('chart_div_Brands'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Brand','Average Price'],
+        @foreach (DataRow row in Model.CarBrands.Rows)
+        {
+            <text>['@row["Brand"]', @row["Avg_New_Price"]], </text>
+        }
+                        ]);
+
+            var options = {
+                chart: {
+                    title: 'Average Price of Car Brands'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('chart_div_Brands_avg'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Year Model', 'In Company' , 'New','Used' ],
+        @foreach (DataRow row in Model.CarModel.Rows)
+        {
+            <text>['@row["Year_Model"]', @row["Count"], @row["Num_New_Cars"], @row["Num_Used_Cars"]], </text>
+        }
+                                ]);
+
+            var options = {
+                chart: {
+                    title: 'Models'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('chart_div_Models'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Body Style', 'In Company', 'New', 'Used'],
+        @foreach (DataRow row in Model.BodyStyle.Rows)
+        {
+            <text>['@row["Body_Style"]', @row["Count"], @row["Num_New_Cars"], @row["Num_Used_Cars"]], </text>
+        }
+                                        ]);
+
+            var options = {
+                chart: {
+                    title: 'Body Styles'
+                },
+                bars: 'vertical'
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('chart_div_BodyStyles'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+</header>
 <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true">
 <div class="content">
-<div class="allpagecontent">
-    <div class="containerAdmin">
-        <div class="sidebar">
-            <div class="text">
-                <h1>Admin Name</h1>
-                <p>admin</p>
-                <p>
-                    system date&time<br />
-                    18/4/2023 21:47:22
-                </p>
-            </div>
-            <ul class="theList">
-                <li><a asp-page="/displayPendingPosts"> <i class="fa-solid fa-bell"></i> Pending Posts </a></li>
-                <li><a asp-page="/addproduct"> <i class="fa-solid fa-user"></i> Add product</a></li>
-                <li><a asp-page="/AddShowRoom"> <i class="fa-solid fa-user"></i> Add Show Room</a></li>
-                <li><a asp-page="/DisplayShowRooms"> <i class="fa-solid fa-user"></i> Display Show Rooms</a></li>
-                <li><a asp-page="/DisplayClients"> <i class="fa-solid fa-user"></i> Users</a></li>
-                <li><a asp-page="/AddServicesCenters"> <i class="fa-solid fa-wrench"></i> Add Services Centers</a></li>
-                <li><a asp-page="/AddEmployee"> <i class="fa-sharp fa-solid fa-plus"></i> Add Employee </a></li>
-
-
-                <form method = "post">
-                        <button class ="logoutBtn" type="submit" sytle="padding: 0; margin-top: -45px; background: transparent; text-align: left;" asp-page-handler="Logout">
-                    <li style="color:#FF0000"><i class="fa-solid fa-right-from-bracket" style="color: #FF0000"></i>Log Out</li>
-                    </button>
-                 </form>
-
-            </ul>
-        </div>
-        <div class="pageconcentmiddle">
-            <div class="cards">
-                <div class="carditem">
-                    <div class="cardcontent">
-                        <h1>Visitors <i class="fa-regular fa-user" style="color: #ffffff;"></i></h1>
-                        <h3>7 days <span>--</span> </h3>
-                        <h3>30 days <span>--</span> </h3>
-                        <h3>6 months <span>--</span> </h3>
-                    </div>
-                </div>
-                <div class="carditem">
-                    <div class="cardcontent">
-                        <h1>sales <i class="fa-sharp fa-solid fa-tag" style="color: #ffffff;"></i></i></h1>
-                        <h3>7 days <span>--</span> </h3>
-                        <h3>30 days <span>--</span> </h3>
-                        <h3>6 months <span>--</span> </h3>
-                    </div>
-                </div>
-                <div class="carditem">
-                    <div class="cardcontent">
-                        <h1>cars <i class="fa-sharp fa-solid fa-car-side" style="padding-right:10px; color: #ffffff"></i></h1>
-                        <h3>7 days <span>--</span> </h3>
-                        <h3>30 days <span>--</span> </h3>
-                        <h3>6 months <span>--</span> </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="customers">
-                <h1>Pending Purchases</h1>
-                <div class="customerCard">
-                    <div class="image">
-                        <img class="customerImage" src="images/tarek.jpg" alt="">
-                    </div>
-                    <div class="customerCardContent">
-                        <div class="aboveItems">
-                            <span>Name</span>
-                            <span><i class="fa-sharp fa-solid fa-location-dot"></i>Location</span>
-                            <span><i class="fa-solid fa-phone"></i> 01100242417</span>
-                            <span><i class="fa-solid fa-envelope"></i> Email</span>
-                        </div>
-                        <div class="downItems">
-                            <p>
-                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
-                            </p>
-                            <div class="buttons">
-                                <div class="buttonItem">
-                                    <button style="background-color: #27AE60">Approve</button>
-                                </div>
-                                <div class="buttonItem">
-                                    <button style="background-color: #EB5757">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--second customer card-->
-                <div class="customerCard">
-                    <div class="image">
-                        <img class="customerImage" src="images/tarek.jpg" alt="">
-                    </div>
-                    <div class="customerCardContent">
-                        <div class="aboveItems">
-                            <span>Name</span>
-                            <span><i class="fa-sharp fa-solid fa-location-dot"></i>Location</span>
-                            <span><i class="fa-solid fa-phone"></i> 01100242417</span>
-                            <span><i class="fa-solid fa-envelope"></i> Email</span>
-                        </div>
-                        <div class="downItems">
-                            <p>
-                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
-                            </p>
-                            <div class="buttons">
-                                <div class="buttonItem">
-                                    <button style="background-color: #27AE60">Approve</button>
-                                </div>
-                                <div class="buttonItem">
-                                    <button style="background-color: #EB5757">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--third-->
-                <div class="customerCard">
-                    <div class="image">
-                        <img class="customerImage" src="images/tarek.jpg" alt="">
-                    </div>
-                    <div class="customerCardContent">
-                        <div class="aboveItems">
-                            <span>Name</span>
-                            <span><i class="fa-sharp fa-solid fa-location-dot"></i>Location</span>
-                            <span><i class="fa-solid fa-phone"></i> 01100242417</span>
-                            <span><i class="fa-solid fa-envelope"></i> Email</span>
-                        </div>
-                        <div class="downItems">
-                            <p>
-                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
-                            </p>
-                            <div class="buttons">
-                                <div class="buttonItem">
-                                    <button style="background-color: #27AE60">Approve</button>
-                                </div>
-                                <div class="buttonItem">
-                                    <button style="background-color: #EB5757">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--pending car posts-->
-            <div class="posts">
-                <h1>Pending Car Posts</h1>
-                <div class="customerCard">
-                    <div class="image">
-                        <img class="customerImage" src="images/image-car-3.jpeg" alt="">
-                    </div>
-                    <div class="customerCardContent">
-                        <div class="aboveItems">
-                            <span>Model</span>
-                            <span><i class="fa-regular fa-user" style="color: #000000"></i>Owner</span>
-                            <span><i class="fa-sharp fa-solid fa-tag" style="color: #000000"></i> price</span>
-                        </div>
-                        <div class="downItems">
-                            <p>
-                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
-                            </p>
-                            <div class="buttons">
-                                <div class="buttonItem">
-                                    <button style="background-color: #27AE60">Approve</button>
-                                </div>
-                                <div class="buttonItem">
-                                    <button style="background-color: #EB5757">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--second-->
-                <div class="customerCard">
-                    <div class="image">
-                        <img class="customerImage" src="images/image-car-3.jpeg" alt="">
-                    </div>
-                    <div class="customerCardContent">
-                        <div class="aboveItems">
-                            <span>Model</span>
-                            <span><i class="fa-regular fa-user" style="color: #000000"></i>Owner</span>
-                            <span><i class="fa-sharp fa-solid fa-tag" style="color: #000000"></i> price</span>
-                        </div>
-                        <div class="downItems">
-                            <p>
-                                I am joining this website to sell my car and buy another one. Even though I am a not creative person but that did not prevent me to but my dream car
-                            </p>
-                            <div class="buttons">
-                                <div class="buttonItem">
-                                    <button style="background-color: #27AE60">Approve</button>
-                                </div>
-                                <div class="buttonItem">
-                                    <button style="background-color: #EB5757">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_Job_Salary" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_Branch_City" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div"></div>
+    <div id="chart_div_employee_dep"></div>
+    <div id="chart_div_employee_Branch"></div>
+    <div id="chart_div_cars_branches"></div>
+    <div id="chart_div_cars_branches_average"></div>
+    <div id="chart_div_cars_supplier"></div>
+    <div id="chart_div_Brands"></div>
+    <div id="chart_div_Brands_avg"></div>
+    <div id="chart_div_Models"></div>
+    <div id="chart_div_BodyStyles"></div>
+    
 </div>
