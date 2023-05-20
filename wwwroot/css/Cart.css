@@ -360,7 +360,6 @@ nav i:last-child {
     height: 100%;
     width: 100%;
     border-radius: 15px;
-    object-position:bottom;
     object-fit:cover;
 }
 

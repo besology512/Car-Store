@@ -105,11 +105,16 @@ namespace Car_Store.models
             string q = "delete from VEHICLE where VEHICLE.Vehicle_No = " + vecId;
             excute_nonQuery(q);
         }
-        public object get_car_count()
+        public object get_car_statistics()
         {
-            string q = "select count(*) as car_count , VEHICLE.Car_Status  from VEHICLE group by VEHICLE.Car_Status";
+            string q = "select count(*) as car_count , VEHICLE.Car_Status  from VEHICLE where VEHICLE.visibality != 0 group by VEHICLE.Car_Status ";
             return Readtable(q);
             
+        }
+        public int get_all_cars_count()
+        {
+            string q = "select count(*) as car_count from VEHICLE ";
+            return Convert.ToInt32((getsinglevalue(q)));
         }
 
         public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
@@ -163,8 +168,9 @@ namespace Car_Store.models
                 "Brand, CC_Rnage, Color, Year_Model, Gearing, Body_Style, Fuel, Seats, CarDescription, C_image1, visibality" +
                 ",COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price , Kilometers, Posting_Date, " +
                 "COALESCE(NEW_VEHICLE.Class,USED_VEHICLE.Class)AS Class ," +
-                "CITY " +
-                "FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID ";
+                "CITY " + 
+                "FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = " +
+                "USED_VEHICLE.Vehicle_ID where visibality != 0 ";
             return Readtable(q);
             
         }
