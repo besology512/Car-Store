@@ -14,7 +14,7 @@
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="emp-uname">Employee user name*</label>
-                    <input class="my-input" type="text" minlength="10" required id="emp-uname" name="UserName" />
+                    <input class="my-input" type="text" minlength="10" required id="emp-uname" name="UserName" pattern="[A-Za-z0-9.]+"/>
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-password">Employee Password*</label>
@@ -23,20 +23,20 @@
             </div>
             <div>
                 <label for="emp-fname">Employee First Name*</label>
-                <input class="my-input" type="text" minlength="3" required id="emp-fname" name="Fname" />
+                <input class="my-input" type="text" minlength="3" required id="emp-fname" name="Fname" pattern="[A-Za-z]+" />
             </div>
             <div>
                 <label for="emp-mname">Employee Middle Name*</label>
-                <input class="my-input" type="text" minlength="3" required id="emp-mname" name="Mname" />
+                <input class="my-input" type="text" minlength="3" required id="emp-mname" name="Mname" pattern="[A-Za-z]+" />
             </div>
             <div>
                 <label for="emp-lname">Employee Last Name*</label>
-                <input class="my-input" type="text" minlength="3" required id="emp-lname" name="Lname" />
+                <input class="my-input" type="text" minlength="3" required id="emp-lname" name="Lname" pattern="[A-Za-z]+" />
             </div>
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="emp-ssn">Employee SSN*</label>
-                    <input class="my-input" type="number" minlength="16" required id="emp-ssn" name="SSN" />
+                    <input class="my-input" type="number" minlength="16" required id="emp-ssn" name="SSN" pattern="[0-9]+" />
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-bdate">Employee Birth date*</label>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-super">Employee Supervisor ID*</label>
-                    <select id="emp-super" class="my-select" required name="SuperID">
+                    <select id="emp-super" class="my-select" required name="SuperID" pattern="[0-9]+">
                         
                     </select>
                 </div>
@@ -61,7 +61,7 @@
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="emp-salary">Employee Salary*</label>
-                    <input class="my-input" type="text" required id="emp-salary" name="Salary" />
+                    <input class="my-input" type="text" required id="emp-salary" name="Salary" pattern="[0-9]+" />
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-utype">Employee User Type*</label>
