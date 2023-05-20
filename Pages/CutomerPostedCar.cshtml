@@ -23,21 +23,19 @@
         @for(int i = 0; i<Model.dtable.Rows.Count; i++)
         {
             <div class="Post-Card">
-
-
+                <p  class="sec-color">@Model.dtable.Rows[i][10]</p>
                 <img src="@Model.dtable.Rows[i]["C_image1"]" alt="Example Image">
                 <h2>@Model.dtable.Rows[i][0] <span>@Model.dtable.Rows[i][5]</span></h2>
                 <p class="sec-color">@Model.dtable.Rows[i][2]</p>
-                <p>@Model.dtable.Rows[i][6] <span>@Model.dtable.Rows[i][7] CC</span></p>
+                <p>@Model.dtable.Rows[i][6] <span>@Model.dtable.Rows[i][7]</span></p>
 
-                <p>@Model.dtable.Rows[i][4] <span class="main-color">@Model.dtable.Rows[i][3]</span></p>
-                <p class="main-color">@Model.dtable.Rows[i][10]Km</p>
+                <p>@Model.dtable.Rows[i][4] <span class="main-color">@Model.dtable.Rows[i][3]</span> CC</p>
+                <p class="main-color">@Model.dtable.Rows[i][8] Km</p>
                 <p class="main-color">@Model.dtable.Rows[i][9] $</p>
                 <form method="post">
                     <input type="hidden" value="@Model.dtable.Rows[i][1]" name = "vehcId"  />
                     <div>
                         <input type="submit" asp-page-handler="Delete" class="delete-button" value="delete" />
-                        <input type="submit" asp-page-handler="Edit" class="delete-button" value="edit" />
                     </div>
                 </form>
             </div>

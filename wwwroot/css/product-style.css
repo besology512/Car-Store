@@ -91,17 +91,40 @@ body {
 }
 .landing .container .product .image{
     flex-basis: 100%;
+    position:relative;
 }
+
+.landing .container .product .image span {
+    top:20px;
+    left: 20px;
+    background-color: #064fa7;
+    color:white;
+    padding: 5px 8px;
+    position:absolute;
+    border-radius: 6px;
+    font-size:17px;
+    font-weight:700;
+
+}
+
 .landing .container .product img{
     width: 100%;
     border-radius: 10px;
     height: 380px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
 }
 .landing .container .product .discription{
     flex-basis: 100%;
 }
+
+.landing .container .product .discription .description-text
+{
+    font-size:16px;
+    line-height:2;
+}
+ 
+
 .landing .container .product .discription h2{
     margin-top: 0px;
 }
@@ -115,16 +138,24 @@ body {
 }
 .landing .container .price-button p{
     margin-top: 0px;
-    font-size:20px;
+    font-size:25px;
+    font-weight:700;
     
 }
 .landing .container .price-button button{
-    background-color:var(--maincolor);
+    background-color: var(--maincolor);
     width: 240px;
-    height: 30px;
     border-radius: 6px;
     color: white;
-    border:var(--maincolor);
+    border: var(--maincolor);
+    padding: 19px 9px;
+    font-size: 26px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
 }
 /* end landing */
 
@@ -178,6 +209,8 @@ body {
     margin-right: auto;
     border-radius: 20px;
     height: auto;
+    object-fit:contain;
+
 }
 .similar-cars .crad button{
     width: 75%;

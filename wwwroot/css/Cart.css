@@ -20,6 +20,10 @@
     background-color: #f0f0f0;
 }
 
+.ShippingInfo {
+    margin-top:20px;
+}
+
 .Be-Head::after {
     content: "";
     position: absolute;
@@ -360,7 +364,6 @@ nav i:last-child {
     height: 100%;
     width: 100%;
     border-radius: 15px;
-    object-position:bottom;
     object-fit:cover;
 }
 
@@ -461,6 +464,7 @@ nav i:last-child {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .cart .bill button {

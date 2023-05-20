@@ -66,10 +66,10 @@ namespace Car_Store.Pages
                 Customer.Client_Username = UserName;
                 request = new EmailDto();
                 request.To = Email;
-                Customer.insert();
+                
 
-/*                service.SendEmail(request);
-*/
+                service.SendEmail(request);
+                Customer.insert();
                 return RedirectToPage("/Index");
             }
         }
@@ -97,7 +97,7 @@ namespace Car_Store.Pages
             {
                 dt = Customer.getRow(UserName2, "CLIENT", "Client_Username");
                 HttpContext.Session.SetInt32("User_ID", (int)dt.Rows[0][0]);
-                HttpContext.Session.SetInt32("User_Type", (int)dt.Rows[0][9]);//will be changed to 9
+                HttpContext.Session.SetInt32("User_Type", (int)dt.Rows[0]["UserType"]);//will be changed to 9
 
                 return RedirectToPage("/index");
 

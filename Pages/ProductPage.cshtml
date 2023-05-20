@@ -15,14 +15,20 @@
     }
 }
 
-
 <link rel="stylesheet" href="~/css/product-style.css" asp-append-version="true">
+
+
+
+@if (Model.DT_N.Rows.Count != 0){
+
 <div class="content">
 <div class="whole-page">
+
+
     <div class="landing">
         <div class="container">
             <div class="heading">
-                <h3>2023 Ford Bronco Outer banks</h3>
+                        <h3>@Model.DT_N.Rows[0]["Year_Model"]  @Model.DT_N.Rows[0]["brand"] @Model.DT_N.Rows[0]["name"]</h3>
                 <i class="fa-sharp fa-solid fa-star"></i>
                 <i class="fa-sharp fa-solid fa-star"></i>
                 <i class="fa-sharp fa-solid fa-star"></i>
@@ -31,21 +37,20 @@
             </div>
             <div class="product">
                 <div class="image">
-                    <img src="images/image-car-7.jpeg" alt="" />
+                            <img src="@Model.DT_N.Rows[0]["C_image1"]" alt="" />
+                    <span>new</span>
                 </div>
                 <div class="discription">
                     <h2>Description</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-                        accusantium deserunt iste esse, magni qui repellendus id doloremque
-                        voluptatem? Accusamus architecto soluta quia earum magnam sit neque
-                        tenetur consequatur fuga dolore ab nisi numquam nam illum adipisci,
-                        ad recusandae quidem suscipit veritatis doloremque rem! At molestiae
-                        minus nisi tempora officiis.
+                    <p class="description-text">
+                                @Model.DT_N.Rows[0]["CarDescription"]
                     </p>
                     <div class="price-button">
-                        <p class="number">3000000$</p>
-                        <button>Add to cart</button>
+                                <p class="number">@Model.DT_N.Rows[0]["Price"]$</p> <!--Price -->
+                        <form method="post">
+                        <input name="PID" value="@Model.id" type="hidden" />
+                        <button type ="submit" asp-page-handler="AddCarToCart" >Add to cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -71,115 +76,27 @@
             <div class="right">
                 <h4>specifications</h4>
                 <hr class="faded" />
-                <p>Engine power</p>
-                <p class="number">503 hp 600 rpm</p>
+                <p>CC Range</p>
+                        <p class="number">@Model.DT_N.Rows[0]["CC_Rnage"]</p>  <!-- CC range-->
                 <hr class="short-hr" />
-                <p>Engine configuration</p>
-                <p class="number">V8</p>
+                    <p>Color</p>                            <!-- CC range-->
+                        <p class="number">@Model.DT_N.Rows[0]["Color"]</p>
                 <hr class="short-hr" />
+
+                    <p>Gearing</p>                            <!-- Gearing-->
+                        <p class="number">@Model.DT_N.Rows[0]["Gearing"]</p>
+                <hr class="short-hr" />
+
+                    <p>Body Style</p>                            <!-- Body Style-->
+                        <p class="number">@Model.DT_N.Rows[0]["Body_Style"]</p>
+                    <hr class="short-hr" />
+
+
                 <h4>Fuel economy</h4>
                 <hr class="faded" />
-                <p>City/Hwy/Combined</p>
-                <p class="number">18 / 24 / 20 MPG</p>
+                        <p>Fuel</p>         <!-- Fuel-->
+                        <p class="number">@Model.DT_N.Rows[0]["Fuel"]</p>
             </div>
-        </div>
-    </div>
-
-    <div class="similar-cars">
-        <div class="crad">
-            <img src="images/image 9.png" alt="" />
-            <div class="caption">
-                <h4>bugatti cheron</h4>
-                <p>four wheel drive</p>
-                <p>power ful v8</p>
-                <p>Heighst quality leather</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                </div>
-                <p>
-                    <i class="fa-solid fa-check"
-                       style="color: #0d6efd; margin-top: 10px"></i>
-                    In stock
-                </p>
-                <p class="number">300000 $</p>
-            </div>
-            <button>Add to cart</button>
-        </div>
-
-        <div class="crad">
-            <img src="images/image 9.png" alt="" />
-            <div class="caption">
-                <h4>bugatti cheron</h4>
-                <p>four wheel drive</p>
-                <p>power ful v8</p>
-                <p>Heighst quality leather</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                </div>
-                <p>
-                    <i class="fa-solid fa-check"
-                       style="color: #0d6efd; margin-top: 10px"></i>
-                    In stock
-                </p>
-                <p class="number">300000 $</p>
-            </div>
-            <button>Add to cart</button>
-        </div>
-
-        <div class="crad">
-            <img src="images/image 9.png" alt="" />
-            <div class="caption">
-                <h4>bugatti cheron</h4>
-                <p>four wheel drive</p>
-                <p>power ful v8</p>
-                <p>Heighst quality leather</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                </div>
-                <p>
-                    <i class="fa-solid fa-check"
-                       style="color: #0d6efd; margin-top: 10px"></i>
-                    In stock
-                </p>
-                <p class="number">300000 $</p>
-            </div>
-            <button>Add to cart</button>
-        </div>
-
-        <div class="crad">
-            <img src="images/image 9.png" alt="" />
-            <div class="caption">
-                <h4>bugatti cheron</h4>
-                <p>four wheel drive</p>
-                <p>power ful v8</p>
-                <p>Heighst quality leather</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                    <i class="fa-solid fa-star" style="color: #fbff00"></i>
-                </div>
-                <p>
-                    <i class="fa-solid fa-check"
-                       style="color: #0d6efd; margin-top: 10px"></i>
-                    In stock
-                </p>
-                <p class="number">300000 $</p>
-            </div>
-            <button>Add to cart</button>
         </div>
     </div>
 
@@ -187,3 +104,107 @@
 
 </div>
 </div>
+}
+
+@if (Model.DT_U.Rows.Count != 0)
+{
+
+    <div class="content">
+        <div class="whole-page">
+
+
+            <div class="landing">
+                <div class="container">
+                    <div class="heading">
+                        <h3>@Model.DT_U.Rows[0]["Year_Model"]  @Model.DT_U.Rows[0]["brand"] @Model.DT_U.Rows[0]["name"]</h3>
+                        <i class="fa-sharp fa-solid fa-star"></i>
+                        <i class="fa-sharp fa-solid fa-star"></i>
+                        <i class="fa-sharp fa-solid fa-star"></i>
+                        <i class="fa-sharp fa-solid fa-star"></i>
+                        <i class="fa-sharp fa-solid fa-star"></i>
+                    </div>
+                    <div class="product">
+                        <div class="image">
+                            <img src="@Model.DT_U.Rows[0]["C_image1"]" alt="" />
+                            <span>new</span>
+                        </div>
+                        <div class="discription">
+                            <h2>Description</h2>
+                            <p class="description-text">
+                                @Model.DT_U.Rows[0]["CarDescription"]
+                            </p>
+                            <div class="price-button">
+                                <p class="number">@Model.DT_U.Rows[0]["Price"]$</p> <!--Price -->
+                                <form method="post">
+                                    <input name="PID" value="@Model.id" type="hidden" />
+                                    <button type="submit" asp-page-handler="AddCarToCart">Add to cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="car-description">
+                <div class="container">
+                    <div class="left">
+                        <h4>warranty</h4>
+                        <hr class="faded" />
+                        <p>No, of years mileage</p>
+                        <p class="number">300000 km</p>
+                        <hr class="short-hr" />
+                        <p>Coverage</p>
+                        <p>--</p>
+                        <hr class="short-hr" />
+                        <h4>Features</h4>
+                        <hr class="faded" />
+                        <p>blutooth</p>
+                        <hr class="short-hr" />
+                        <p>Heated seats</p>
+                        <h4>Status</h4>
+                        <hr class="faded" />
+                        <p>Kilometers</p>         <!-- Kilometers-->
+                        <p class="number">@Model.DT_U.Rows[0]["Kilometers"]</p>
+                        <hr class="faded" />
+
+                        <p>Kilometers</p>         <!-- Class-->
+                        <p class="number">@Model.DT_U.Rows[0]["Class"]</p>
+                        <hr class="faded" />
+
+                        <p>City</p>         <!-- Citu-->
+                        <p class="number">@Model.DT_U.Rows[0]["City"]</p>
+
+
+
+                    </div>
+                    <div class="right">
+                        <h4>specifications</h4>
+                        <hr class="faded" />
+                        <p>CC Range</p>
+                        <p class="number">@Model.DT_U.Rows[0]["CC_Rnage"]</p>  <!-- CC range-->
+                        <hr class="short-hr" />
+                        <p>Color</p>                            <!-- CC range-->
+                        <p class="number">@Model.DT_U.Rows[0]["Color"]</p>
+                        <hr class="short-hr" />
+
+                        <p>Gearing</p>                            <!-- Gearing-->
+                        <p class="number">@Model.DT_U.Rows[0]["Gearing"]</p>
+                        <hr class="short-hr" />
+
+                        <p>Body Style</p>                            <!-- Body Style-->
+                        <p class="number">@Model.DT_U.Rows[0]["Body_Style"]</p>
+                        <hr class="short-hr" />
+
+
+                        <h4>Fuel economy</h4>
+                        <hr class="faded" />
+                        <p>Fuel</p>         <!-- Fuel-->
+                        <p class="number">@Model.DT_U.Rows[0]["Fuel"]</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+}

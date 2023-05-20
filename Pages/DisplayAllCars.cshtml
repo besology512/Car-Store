@@ -1,0 +1,50 @@
+﻿@page
+@model Car_Store.Pages.DisplayAllCarsModel
+@{
+    Layout = "adminlay";
+}
+
+
+<link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
+
+<div class="content">
+<div class="all-page-content-c">
+    <div class="statistics" >
+        @for(int i = 0; i < Model.statisticsTable.Rows.Count ;i++){
+            
+        <p> Used Cars @Model.statisticsTable.Rows[i]["Car_Status"] <span class="main-color"> @Model.statisticsTable.Rows[i]["car_count"]</span></p>
+            
+        }
+    </div>
+    
+    <div class="posts">
+        @for (int i = 0; i < Model.dtable.Rows.Count; i++)
+        {
+            <div class="Post-Card">
+
+                @if (Model.dtable.Rows[i]["Posting_Date"] is DateTime postingDate && postingDate != null)
+                {
+                    string date = postingDate.ToLongDateString();
+                    <p class="sec-color">@date</p>
+                }
+                <p>Vehicle ID <span class="main-color">@Model.dtable.Rows[i]["Vehicle_No"]</span></p>
+                
+                <img src="@Model.dtable.Rows[i]["C_image1"]" alt="Example Image">
+                
+                <p><span> @Model.dtable.Rows[i]["Gearing"] </span> <span class="main-color"> @Model.dtable.Rows[i]["Car_Status"]</span> </p>
+                <p>@Model.dtable.Rows[i]["CarDescription"]</p>
+                <p><span class="main-color">@Model.dtable.Rows[i]["CC_Rnage"] CC</span></p>
+                    
+                <p>Price <span class="main-color">@Model.dtable.Rows[i]["Price"] $</span></p>
+                <form method="post">
+                    <input type="hidden" value="@Model.dtable.Rows[i]["Vehicle_No"]" name="vehcId"  />
+                    <div>
+                        <input type="submit" style="background-color:#dc3545;" asp-page-handler="Delete" class="delete-button" value="Delete" />
+                    </div>
+                </form>
+            </div>
+        }
+
+    </div>
+</div>
+</div>

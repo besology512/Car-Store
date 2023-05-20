@@ -155,7 +155,7 @@
                                         <span class="used">USED</span>
                         }
 
-                           <img class="rad-20  pt-10 pr-10 pl-10" src="@Model.PageCars[i].car_path" alt="">
+                            <a asp-page="/ProductPage" asp-route-id="@Model.PageCars[i].Id"> <img class="rad-20  pt-10 pr-10 pl-10" src="@Model.PageCars[i].car_path" alt=""> </a>
 
                         </div>
                     <h3 class="fs-14 pl-10">@Model.PageCars[i].Brand Model: @Model.PageCars[i].year_model</h3>

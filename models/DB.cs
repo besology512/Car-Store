@@ -3,6 +3,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Asn1.X509;
+using System.Data.Common;
+using Org.BouncyCastle.Asn1.Cms;
+using System.IO;
 
 namespace Car_Store.models
 {
@@ -44,7 +48,7 @@ namespace Car_Store.models
             /*            string date1 = date.ToString();
             */
 
-            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "', null , '" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "'images/facebook-default-no-profile-pic.jpg'" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -94,18 +98,13 @@ namespace Car_Store.models
 
         public void insert_to_pendingposts(int clientID, int vehcId)
         {
-            string q = "insert into PENDING_POSTS values( " + clientID + "," + vehcId + ")";
+            string q = "insert into PENDING_POSTS(CLIENT_ID,VEHCILE_ID) Values (" + clientID + "," + vehcId + ")";
             excute_nonQuery(q);
         }
         public int getTopVehicleId()
         {
-            string q = "SELECT  TOP 1 Vehicle_No FROM VEHICLE ORDER BY Vehicle_No DESC";
-            if(getsinglevalue(q) == null)
-            {
-                return 0;
-            }
-            
-            return (int)getsinglevalue(q);
+            string query = "SELECT IDENT_CURRENT('vehicle') AS CurrentIdentityValue";
+            return Convert.ToInt32(getsinglevalue(query));
         }
         public void insert_CLIENT_POSTS(int clientid, int vehicleId)
 
@@ -117,7 +116,25 @@ namespace Car_Store.models
         public void delet_CLIENT_POST(int vecId, int ClieTnID)
         {
             string q = "delete from Client_Posts where ClientId =  " + ClieTnID + " AND " + "VehcileId = " + vecId;
+            string q2 = "delete from VEHICLE where VEHICLE.Vehicle_No = " + vecId;
             excute_nonQuery(q);
+            excute_nonQuery(q2);
+        }
+        public void Delete_Car_by_admin(int vecId)
+        {
+            string q = "delete from VEHICLE where VEHICLE.Vehicle_No = " + vecId;
+            excute_nonQuery(q);
+        }
+        public object get_car_statistics()
+        {
+            string q = "select count(*) as car_count , VEHICLE.Car_Status  from VEHICLE where VEHICLE.visibality != 0 group by VEHICLE.Car_Status ";
+            return Readtable(q);
+            
+        }
+        public int get_all_cars_count()
+        {
+            string q = "select count(*) as car_count from VEHICLE ";
+            return Convert.ToInt32((getsinglevalue(q)));
         }
 
         public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
@@ -154,14 +171,28 @@ namespace Car_Store.models
             return Readtable(q);
         }
 
-        public void edit_client_info(int clientID, string Fname, string Lname, string phone, string mail, string pass)
+        public void edit_client_info(int clientID, string Fname, string Lname, string phone, string mail, string pass , string img)
         {
             string q = "update CLIENT set Client_FName = '" + Fname + "'" +
                 " , Client_LName = '" + Lname + "'" + " , Client_phone = '" + phone + "'"
-                + " , Mail = '" + mail + "'," + "pass = '" + pass + "'" + " where ClientID = " + clientID;
+                + " , Mail = '" + mail + "'," + "pass = '" + pass + "' , " + "Client_image = '" + img + "'" + " where ClientID = "
+                + clientID;
             excute_nonQuery(q);
 
 
+        }
+        public object get_all_cars()
+        {
+            string q = "SELECT VEHICLE.Vehicle_No, name,Car_Status," +
+                "COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count," +
+                "Brand, CC_Rnage, Color, Year_Model, Gearing, Body_Style, Fuel, Seats, CarDescription, C_image1, visibality" +
+                ",COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price , Kilometers, Posting_Date, " +
+                "COALESCE(NEW_VEHICLE.Class,USED_VEHICLE.Class)AS Class ," +
+                "CITY " + 
+                "FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = " +
+                "USED_VEHICLE.Vehicle_ID where visibality != 0 ";
+            return Readtable(q);
+            
         }
 
         public object get_branchid()
@@ -172,14 +203,57 @@ namespace Car_Store.models
 
         public object getUser(int ID)
         {
-            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass FROM CLIENT WHERE ClientID = " + ID;
+            string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass, Client_image FROM CLIENT WHERE ClientID = " + ID;
 
             return Readtable(q);
         }
         public object GetPostedCar(int ID)
         {
-            string q = "select VEHICLE.Brand,VEHICLE.Vehicle_No,VEHICLE.CarDescription,VEHICLE.CC_Rnage,VEHICLE.Color,VEHICLE.Year_Model,VEHICLE.Gearing,VEHICLE.Body_Style,USED_VEHICLE.Price,USED_VEHICLE.Kilometers,USED_VEHICLE.Posting_Date,USED_VEHICLE.Class, VEHICLE.C_image1 FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
+            string q = "select VEHICLE.Brand," +
+                "VEHICLE.Vehicle_No," +
+                "VEHICLE.CarDescription," +
+                "VEHICLE.CC_Rnage," +
+                "VEHICLE.Color," +
+                "VEHICLE.Year_Model," +
+                "VEHICLE.Gearing," +
+                "VEHICLE.Body_Style," +
+                "USED_VEHICLE.Price," +
+                "USED_VEHICLE.Kilometers," +
+                "USED_VEHICLE.Posting_Date," +
+                "USED_VEHICLE.Class," +
+                " VEHICLE.C_image1 FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
             return Readtable(q);
+        }
+
+        public object get_all_orders_admin()
+        {
+            string q = "SELECT ORDERS.Order_No," +
+                "ORDERS.order_date," +
+                "ORDERS.order_status," +
+                "ORDERS.City," +
+                "ORDERS.Street," +
+                "ORDERS.Building," +
+                "ORDERS.HouseNo," +
+                "ORDERS.ClientID," +
+                "orderItems.vehichle_ID," +
+                "CLIENT.Client_FName + CLIENT.Client_LName AS C_NAME" +
+                " ,VEHICLE.C_image1 " +
+                "FROM ((ORDERS join orderItems on ORDERS.ClientID = orderItems.Customer_ID) JOIN " +
+                "CLIENT ON orderItems.Customer_ID = CLIENT.ClientID) JOIN VEHICLE " +
+                "ON VEHICLE.Vehicle_No = orderItems.vehichle_ID order by Order_No";
+            return Readtable(q);
+        }
+
+        public int get_num_of_order()
+        {
+            string q = "select count(*) as count from ORDERS";
+            return Convert.ToInt32(getsinglevalue(q));
+        }
+
+        public void update_order_status(string status,int orderID)
+        {
+            string q = "update ORDERS set order_status = '" + status + "' where Order_No = " + orderID;
+            excute_nonQuery(q);
         }
         public void del_temp()
         {
@@ -652,7 +726,7 @@ namespace Car_Store.models
 
         public object getCarUsed(int CId, string tableName)
         { //to return any data type
-            string query = "select Brand, name, Color, C_image1, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId;
+            string query = "select Brand, name, Color, C_image1, Year_Model, Price, USED_VEHICLE.Vehicle_ID from (" + tableName + " join VEHICLE on VEHICLE.Vehicle_No = " + tableName + ".vehichle_ID) join USED_VEHICLE on VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID where Customer_ID = " + CId+ " and visibality = 1";
 
             DataTable dt = new DataTable();
             try
@@ -666,6 +740,41 @@ namespace Car_Store.models
             catch (SqlException) { con.Close(); return 0; }
         }
 
+        public object getNewCar(int CId)
+        { //to return any data type
+            string query = "select v.name, v.brand, v.CC_Rnage, v.Color, v.Year_Model, v.Gearing, v.Body_Style, V.Fuel, v.CarDescription, v.C_image1, n.Price, n.count from Vehicle v join NEW_Vehicle n on v.Vehicle_No = n.Vehicle_ID where n.Vehicle_ID = " + CId + ";";
+
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
+
+        public object getUsedCar(int CId)
+        { //to return any data type
+            string query = "select v.name, v.brand, v.CC_Rnage, v.Color, v.Year_Model, v.Gearing, v.Body_Style, V.Fuel, v.CarDescription, v.C_image1, u.Kilometers, u.Price, u.Class, u.City from Vehicle v join Used_vehicle u on v.Vehicle_no = u.Vehicle_ID where u.Vehicle_ID = " + CId + ";";
+
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
+
+
+
+
         public void deleteCartVehicle(string tablename, int pId, int CId, string column)
         {
             string query = "delete from " + tablename + " where Customer_ID = " + CId + " and " + column + "=" + pId;
@@ -678,7 +787,71 @@ namespace Car_Store.models
             }
             catch (SqlException) { con.Close(); }
         }
+        public void order(string city, string street, string building, string house, int Id) {
+            string currentDate = DateTime.Today.ToString();
+            string time = DateTime.Now.TimeOfDay.ToString();
+            string query = "insert into ORDERS(order_date, order_time, order_status, City, Street, Building, HouseNo, ClientId) values ('"+currentDate+"', '"+time+"', 'Processing', '"+city+"', '"+street+"', '"+building+"', '"+house+"', "+Id+")";
+            string query2 = "delete from Cart_vehicle where Cart_vehicle.Customer_ID = "+Id;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                SqlCommand sqlCommand2 = new SqlCommand(query2, con);
+                sqlCommand.ExecuteNonQuery();
+                sqlCommand2.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+        public void purchaseCar(int Vid, int Cid) {
+            string query = "insert into OrderItems values ("+Cid+", "+Vid+")";
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
 
+        public void minusNewCar(int Vid) {
+            string query = "update NEW_VEHICLE set count = count-1 where Vehicle_ID = " + Vid;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+
+        public void notVisible(int Vid) {
+            string query = "update VEHICLE set visibality = 0 where Vehicle_No = " + Vid;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                sqlCommand.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+        }
+
+        public object getOrders(int CID) {
+            string query = "select distinct VEHICLE.Brand, VEHICLE.name, VEHICLE.Color, orders.order_status, Vehicle.C_image1 from (orderItems join VEHICLE on orderItems.vehichle_ID = vehicle.Vehicle_No) join ORDERS on orderItems.Customer_ID = ORDERS.ClientID where Customer_ID = " + CID;
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                dt.Load(sqlCommand.ExecuteReader());
+                con.Close();
+                return dt;
+            }
+            catch (SqlException) { con.Close(); return 0; }
+        }
     }
 }
 
