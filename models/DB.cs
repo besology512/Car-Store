@@ -204,6 +204,37 @@ namespace Car_Store.models
                 " VEHICLE.C_image1 FROM (USED_VEHICLE JOIN VEHICLE ON USED_VEHICLE.Vehicle_ID = VEHICLE.Vehicle_No ) JOIN Client_Posts ON Client_Posts.VehcileId = VEHICLE.Vehicle_No WHERE Client_Posts.ClientId = " + ID;
             return Readtable(q);
         }
+
+        public object get_all_orders_admin()
+        {
+            string q = "SELECT ORDERS.Order_No," +
+                "ORDERS.order_date," +
+                "ORDERS.order_status," +
+                "ORDERS.City," +
+                "ORDERS.Street," +
+                "ORDERS.Building," +
+                "ORDERS.HouseNo," +
+                "ORDERS.ClientID," +
+                "orderItems.vehichle_ID," +
+                "CLIENT.Client_FName + CLIENT.Client_LName AS C_NAME" +
+                " ,VEHICLE.C_image1 " +
+                "FROM ((ORDERS join orderItems on ORDERS.ClientID = orderItems.Customer_ID) JOIN " +
+                "CLIENT ON orderItems.Customer_ID = CLIENT.ClientID) JOIN VEHICLE " +
+                "ON VEHICLE.Vehicle_No = orderItems.vehichle_ID order by Order_No";
+            return Readtable(q);
+        }
+
+        public int get_num_of_order()
+        {
+            string q = "select count(*) as count from ORDERS";
+            return Convert.ToInt32(getsinglevalue(q));
+        }
+
+        public void update_order_status(string status,int orderID)
+        {
+            string q = "update ORDERS set order_status = '" + status + "' where Order_No = " + orderID;
+            excute_nonQuery(q);
+        }
         public void del_temp()
         {
             string q = "delete from VEHICLE";
