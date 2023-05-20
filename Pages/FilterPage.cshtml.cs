@@ -245,7 +245,7 @@ namespace Car_Store.Pages
             cartWish.typepv = 1;
             cartWish.typecw = 0;
             cartWish.insert();
-            return RedirectToPage("/FilterPage");
+            return RedirectToPage("/CartPage");
         }
         public IActionResult OnPostAddCarToWishList(int PID)
         {

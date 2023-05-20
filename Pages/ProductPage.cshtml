@@ -47,7 +47,10 @@
                     </p>
                     <div class="price-button">
                                 <p class="number">@Model.DT_N.Rows[0]["Price"]$</p> <!--Price -->
-                        <button type ="submit">Add to cart</button>
+                        <form method="post">
+                        <input name="PID" value="@Model.id" type="hidden" />
+                        <button type ="submit" asp-page-handler="AddCarToCart" >Add to cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -132,7 +135,10 @@
                             </p>
                             <div class="price-button">
                                 <p class="number">@Model.DT_U.Rows[0]["Price"]$</p> <!--Price -->
-                                <button type="submit">Add to cart</button>
+                                <form method="post">
+                                    <input name="PID" value="@Model.id" type="hidden" />
+                                    <button type="submit" asp-page-handler="AddCarToCart">Add to cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>
