@@ -46,6 +46,16 @@
     display: flex;
     gap: 50px;
 }
+@media(max-width:850px){
+    .page-body .page-content{
+        flex-direction:column;
+        /*justify-content: center;
+        align-items:center*/
+    }
+    hr{
+        display:none;
+    }
+}
 
 
 .left ul {
@@ -98,6 +108,7 @@ input[type="file"] {
 
 .image label {
     color: white;
+    
 }
 
 /* start right */
