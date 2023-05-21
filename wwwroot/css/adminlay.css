@@ -116,7 +116,13 @@ img {
 .header__toggle {
     font-size: 1.2rem;
 }
-
+.header__toggle{
+    position:relative;
+}
+#header-toggle{
+    position: absolute;
+    right:0;
+}
 .header__toggle {
     color: var(--title-color);
     cursor: pointer;
