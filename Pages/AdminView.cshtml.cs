@@ -8,6 +8,11 @@ namespace Car_Store.Pages
 {
     public class AdminViewModel : PageModel
     {
+        [BindProperty] public DataTable DeliveringCount { get; set; }
+        [BindProperty] public DataTable ProcessingCount { get; set; }
+        [BindProperty] public DataTable ProductsCount { get; set; }
+        [BindProperty] public DataTable Alerts { get; set; }
+        [BindProperty] public DataTable Profit { get; set; }
         [BindProperty] public DataTable BodyStyle { get; set; }
         [BindProperty] public DataTable CarModel { get; set; }
         [BindProperty] public DataTable CarBrands { get; set; }
@@ -30,6 +35,11 @@ namespace Car_Store.Pages
         }
         public void OnGet()
         {
+            Alerts = (DataTable)dB.Select("select Count(*) count from PENDING_POSTS");
+            DeliveringCount = (DataTable)dB.Select("select Count(*) count from orders where order_status  = 'Delivering'");
+            ProcessingCount = (DataTable)dB.Select("select Count(*) count from orders where order_status  = 'Processing'");
+            ProductsCount = (DataTable)dB.Select("select Count(*) count from VEHICLE");
+            Profit = (DataTable)dB.Select("SELECT ORDERS.order_date, SUM(Vehicles_view.Price) AS profit FROM orderItems JOIN ORDERS ON ORDERS.ClientID = orderItems.Customer_ID JOIN Vehicles_view ON Vehicles_view.Vehicle_No = orderItems.vehichle_ID GROUP BY ORDERS.order_date;");
             BodyStyle = (DataTable)dB.Select("SELECT Body_Style, COUNT(*) Count ,COUNT(CASE WHEN Car_Status = 'New' THEN 1 END) AS Num_New_Cars, COUNT(CASE WHEN Car_Status = 'Used' THEN 1 END) AS Num_Used_Cars FROM VEHICLE GROUP BY Body_Style");
             CarModel = (DataTable)dB.Select("SELECT Year_Model, COUNT(*) Count ,COUNT(CASE WHEN Car_Status = 'New' THEN 1 END) AS Num_New_Cars, COUNT(CASE WHEN Car_Status = 'Used' THEN 1 END) AS Num_Used_Cars FROM VEHICLE GROUP BY Year_Model");
             CarBrands = (DataTable)dB.Select("SELECT V.Brand, COUNT(*) AS Num_Cars, AVG(COALESCE(N.Price, U.Price)) AS Avg_New_Price, COUNT(CASE WHEN V.Car_Status = 'New' THEN 1 END) AS Num_New_Cars, COUNT(CASE WHEN V.Car_Status = 'Used' THEN 1 END) AS Num_Used_Cars FROM VEHICLE V LEFT JOIN NEW_VEHICLE N ON V.Vehicle_No = N.Vehicle_ID LEFT JOIN USED_VEHICLE U ON V.Vehicle_No = U.Vehicle_ID GROUP BY V.Brand;");

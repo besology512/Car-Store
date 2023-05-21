@@ -65,7 +65,7 @@
                                     <a  class="nav__dropdown-item">Branches</a>
                                     <a  class="nav__dropdown-item">Departments</a>
                                     <a  class="nav__dropdown-item" asp-page="/AddShowRoom">Show Rooms</a>
-                                    <a class="nav__dropdown-item" a asp-page="/AddServicesCenters">Service Center</a>
+                                    <a class="nav__dropdown-item"  asp-page="/AddServicesCenters">Service Center</a>
                                 </div>
                             </div>
                         </div>
@@ -100,10 +100,9 @@
 
                             <div class="nav__dropdown-collapse">
                                 <div class="nav__dropdown-content">
-                                    <a class="nav__dropdown-item">Employees</a>
-                                    <a class="nav__dropdown-item">Orders</a>
-                                    <a class="nav__dropdown-item">Vehicles</a>
-                                    <a class="nav__dropdown-item">Clients</a>
+                                    <a class="nav__dropdown-item" asp-page="/AdminView" asp-fragment="sectionEmployees">Employees</a>
+                                    <a class="nav__dropdown-item" asp-page="/AdminView" asp-fragment="sectionVehicles">Vehicles</a>
+                                    <a class="nav__dropdown-item" asp-page="/AdminView" asp-fragment="sectionBranches">Branches</a>
                                 </div>
                             </div>
 

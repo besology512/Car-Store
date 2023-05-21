@@ -16,6 +16,10 @@
     }
 }
 <header>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/adminlay.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['bar'] });
@@ -34,7 +38,8 @@
                 chart: {
                     title: 'Departments Gender Distribution'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
 
             var chart = new google.charts.Bar(document.getElementById('barchart_material'));
@@ -59,7 +64,8 @@
                 chart: {
                     title: 'Branches in Cities'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
 
             var chart = new google.charts.Bar(document.getElementById('barchart_Branch_City'));
@@ -84,7 +90,8 @@
                 chart: {
                     title: 'Job Salary'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
 
             var chart = new google.charts.Bar(document.getElementById('barchart_Job_Salary'));
@@ -118,9 +125,8 @@
 
             // Set chart options
             var options = {
-                'title': 'How Much Pizza I Ate Last Night',
-                'width': 400,
-                'height': 300
+                'title': 'Employees Distripution',
+                height: 400
             };
 
             // Instantiate and draw our chart, passing in some options.
@@ -155,8 +161,7 @@
             // Set chart options
             var options = {
                 'title': 'How Many Employees in each department',
-                'width': 400,
-                'height': 300
+                height: 400
             };
 
             // Instantiate and draw our chart, passing in some options.
@@ -190,9 +195,8 @@
 
             // Set chart options
             var options = {
-                'title': 'How Many Employees in each Branch',
-                'width': 400,
-                'height': 300
+                'title': 'How Many Employees in each Branch'
+                ,height: 400
             };
 
             // Instantiate and draw our chart, passing in some options.
@@ -218,8 +222,7 @@
                 title: 'Number of Cars in the Branches',
                 vAxis: { title: 'Branches' },
                 hAxis: { title: 'Number of Cars' },
-                'width': 700,
-                'height': 700
+                height: 400
             };
 
             var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div_cars_branches'));
@@ -239,8 +242,7 @@
                 title: 'Average Price in the Branches',
                 vAxis: { title: 'Branches' },
                 hAxis: { title: 'Average Price' },
-                'width': 700,
-                'height': 700
+                height: 400
             };
 
             var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div_cars_branches_average'));
@@ -265,8 +267,7 @@
                 title: 'Number Suppliers to Branches',
                 vAxis: { title: 'Branches' },
                 hAxis: { title: 'Number of Suppliers' },
-                'width': 1500,
-                'height': 700
+                height: 400
             };
 
             var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div_cars_supplier'));
@@ -291,7 +292,8 @@
                 chart: {
                     title: 'Number of Cars by Brand'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
 
             var chart = new google.charts.Bar(document.getElementById('chart_div_Brands'));
@@ -316,7 +318,8 @@
                 chart: {
                     title: 'Average Price of Car Brands'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
 
             var chart = new google.charts.Bar(document.getElementById('chart_div_Brands_avg'));
@@ -341,7 +344,8 @@
                 chart: {
                     title: 'Models'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
 
             var chart = new google.charts.Bar(document.getElementById('chart_div_Models'));
@@ -361,33 +365,178 @@
             <text>['@row["Body_Style"]', @row["Count"], @row["Num_New_Cars"], @row["Num_Used_Cars"]], </text>
         }
                                         ]);
-
+            contained = document.getElementsByClassName('charts-card').offsetWidth;
             var options = {
                 chart: {
                     title: 'Body Styles'
                 },
-                bars: 'vertical'
+                bars: 'vertical',
+                height: 400
             };
+            
 
             var chart = new google.charts.Bar(document.getElementById('chart_div_BodyStyles'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
     </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Day', 'Sales'],
+        @foreach (DataRow row in Model.Profit.Rows)
+        {
+            <text>['@row["order_date"]', @row["profit"]], </text>
+        }
+            ]);
+
+            var options = {
+                title: 'Company Performance',
+                hAxis: { title: 'Days', titleTextStyle: { color: '#333' } },
+                vAxis: { minValue: 0 },
+                height: 400
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('Chart_profit'));
+            chart.draw(data, options);
+        }
+    </script>
 </header>
 <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true">
 <div class="content">
-    <div id="barchart_material" style="width: 900px; height: 500px;"></div>
-    <div id="barchart_Job_Salary" style="width: 900px; height: 500px;"></div>
-    <div id="barchart_Branch_City" style="width: 900px; height: 500px;"></div>
-    <div id="chart_div"></div>
-    <div id="chart_div_employee_dep"></div>
-    <div id="chart_div_employee_Branch"></div>
-    <div id="chart_div_cars_branches"></div>
-    <div id="chart_div_cars_branches_average"></div>
-    <div id="chart_div_cars_supplier"></div>
-    <div id="chart_div_Brands"></div>
-    <div id="chart_div_Brands_avg"></div>
-    <div id="chart_div_Models"></div>
-    <div id="chart_div_BodyStyles"></div>
+    <!-- Main -->
+    <main class="main-container">
+        <div class="main-title">
+            <p class="font-weight-bold">DASHBOARD</p>
+        </div>
+
+        <div class="main-cards">
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">Vehicles</p>
+                    <i class="fa-solid fa-car font-weight-bold text-blue"></i>
+                </div>
+                <span class="text-primary font-weight-bold">@Model.ProductsCount.Rows[0][0]</span>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">IN PROCESS ORDERS</p>
+                    <i class="fa-solid fa-cart-shopping text-orange font-weight-bold"></i>
+
+                </div>
+                <span class="text-primary font-weight-bold">@Model.ProcessingCount.Rows[0][0]</span>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">DELIVERING ORDERS</p>
+                    <i class="fa-solid fa-truck text-green font-weight-bold"></i>
+                </div>
+                <span class="text-primary font-weight-bold">@Model.DeliveringCount.Rows[0][0]</span>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">ALERTS</p>
+                    <i class="fa-solid fa-bell text-red font-weight-bold"></i>
+                </div>
+                <span class="text-primary font-weight-bold">@Model.Alerts.Rows[0][0]</span>
+            </div>
+
+        </div>
+
+        <div class="charts">
+            <div class="charts-card">
+                <p class="chart-title">Brands in The Inventory</p>
+                <div id="chart_div_Brands"></div>
+            </div>
+            <div class="charts-card">
+                <p class="chart-title">Company Performance</p>
+                <div id="Chart_profit"></div>
+            </div>
+        </div>
+        <div id="sectionEmployees">
+             <h3 class="char-title"> Employees</h3>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Gender Distripution In Departments</p>
+                    <div id="barchart_material"></div>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">Job Salaries</p>
+                    <div id="barchart_Job_Salary"></div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Employees Distripution over Branches</p>
+                    <div id="chart_div_employee_Branch"></div>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">Employees Distripution over Departments</p>
+                    <div id="chart_div_employee_dep"></div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Job Positions We Have</p>
+                    <div id="chart_div"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sectionVehicles">
+            <h3>Vehicles</h3>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Brands and Their Prices</p>
+                    <div id="chart_div_Brands_avg"></div>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">Car Models We Have</p>
+                    <div id="chart_div_Models"></div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Car Styles We Have</p>
+                    <div id="chart_div_BodyStyles"></div>
+                </div>
+            </div>
+        </div>
+        <div id="sectionBranches">
+            <h3>Branches</h3>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Our Branches</p>
+                    <div id="barchart_Branch_City"></div>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">Average Prices in our Branches</p>
+                    <div id="chart_div_cars_branches"></div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Suppliers of Branches</p>
+                    <div id="chart_div_cars_branches_average"></div>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">Suppliers of Branches</p>
+                    <div id="chart_div_cars_supplier"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+   </main>
 </div>
