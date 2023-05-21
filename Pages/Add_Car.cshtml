@@ -146,7 +146,7 @@
         <div class="car-details">
             <div class="car-title">
                 <label for="car-title">Ad. Title</label>
-                <input type="text" asp-for="@Model.ParentV.cardesc" name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic"/>
+                    <input type="text" asp-for="@Model.ParentV.cardesc" name="CarDesc" placeholder="Ex: Hyundai Accent 2009 Cairo Automatic" required minlength="3" maxlength="300" pattern="[A-Za-z0-9 ]+"/>
             </div>
             <div class="make-model">
                 <div class="make">
@@ -173,13 +173,13 @@
                 <label for="car-title">Year*</label>
                 
                 <input type="number" asp-for="@Model.ParentV.year_model" required class="my-input"
-                       min="1900" max="2022" step="1" placeholder="year" name="Year" />
+                           min="1900" max="2022" step="1" placeholder="year" name="Year" />
             </div>
             <div class="Km-city">
                 <div class="Km">
                     <label for="car-Km">Km*</label>
                     <input type="text" id="car-Km" required asp-for="@Model.u_Vehicle.Km
-                           placeholder="How many KM?" class="my-input" name="KM" />
+                           placeholder=" How many KM?" class="my-input" name="KM" pattern="[0-9]+" />
                 </div>
                 <div class="city">
                     <label for="City">City*</label>
@@ -235,7 +235,7 @@
                 <div class="Class">
                     <label for="car-Class">Class*</label>
                     <input type="text" id="car-Class" required
-                       asp-for="@Model.u_Vehicle.car_class"    placeholder="insert you are car class" class="my-input" name="CarClass" />
+                               asp-for="@Model.u_Vehicle.car_class" placeholder="insert you are car class" class="my-input" name="CarClass" pattern="[0-9]" />
                 </div>
                 <div class="style">
                     <label for="Car-style">Style*</label>
@@ -270,11 +270,11 @@
             </div>
             <div class="cc-range">
                 <label for="car-CC">CC Range*</label>
-                <input type="text" id="car-CC" class="my-input" required name="CC" asp-for="@Model.ParentV.CC_Range" />
+                    <input type="text" id="car-CC" class="my-input" required name="CC" asp-for="@Model.ParentV.CC_Range" pattern="[0-9]+" />
             </div>
             <div class="car-price">
                 <label for="car-price">Price</label>
-                <input type="text" id="car-price" required class="my-input" name="Price" asp-for="@Model.u_Vehicle.price" />
+                    <input type="text" id="car-price" required class="my-input" name="Price" asp-for="@Model.u_Vehicle.price" pattern="[0-9]+" />
             </div>
             
         </div>

@@ -2,6 +2,29 @@
 @model Car_Store.Pages.AddEmployeeModel
 @{
     Layout = "adminlay";
+    string[] jobDepartments = 
+{ 
+   "Marketing", 
+   "Sales", 
+   "Human Resources", 
+   "Accounting", 
+   "IT",
+   "Customer Service",
+   "Operations",
+   "Research and Development",
+   "Legal",
+   "Public Relations",
+   "Quality Assurance",
+   "Purchasing",
+   "Logistics",
+   "Facilities Management",
+   "Training and Development",
+   "Product Management",
+   "Supply Chain Management",
+   "Business Development",
+   "Project Management",
+   "Finance"
+};
 }
 
 <link rel="stylesheet" href="~/css/Add-Product.css" asp-append-version="true">
@@ -14,29 +37,31 @@
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="emp-uname">Employee user name*</label>
-                    <input class="my-input" type="text" minlength="10" required id="emp-uname" name="UserName" />
+                    <input class="my-input" type="text" minlength="4" maxlength="20" required id="emp-uname" name="UserName" pattern="[A-Za-z0-9.]+"/>
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-password">Employee Password*</label>
-                    <input class="my-input" type="text" minlength="8" required id="emp-password" name="Password" />
+                    <input class="my-input" type="password" minlength="8" required id="emp-password" name="Password" />
                 </div>
             </div>
             <div>
                 <label for="emp-fname">Employee First Name*</label>
-                <input class="my-input" type="text" minlength="3" required id="emp-fname" name="Fname" />
+                <input class="my-input" type="text" minlength="3" required id="emp-fname" name="Fname" pattern="[A-Za-z]+" />
             </div>
             <div>
                 <label for="emp-mname">Employee Middle Name*</label>
-                <input class="my-input" type="text" minlength="3" required id="emp-mname" name="Mname" />
+                <input class="my-input" type="text" minlength="3" required id="emp-mname" name="Mname" pattern="[A-Za-z]+" />
             </div>
             <div>
                 <label for="emp-lname">Employee Last Name*</label>
-                <input class="my-input" type="text" minlength="3" required id="emp-lname" name="Lname" />
+                <input class="my-input" type="text" minlength="3" required id="emp-lname" name="Lname" pattern="[A-Za-z]+" />
             </div>
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="emp-ssn">Employee SSN*</label>
-                    <input class="my-input" type="number" minlength="16" required id="emp-ssn" name="SSN" />
+                    <input class="my-input" type="text" minlength="16" required id="emp-ssn" name="empSSN" pattern="[0-9]+" />
+
+
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-bdate">Employee Birth date*</label>
@@ -53,15 +78,48 @@
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-super">Employee Supervisor ID*</label>
+
                     <select id="emp-super" class="my-select" required name="SuperID">
-                        
+                        <option value="1">1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-row-double">
+                <div class="flex-item-d">
+                    <label for="emp-job-type">Add Employee Job Type*</label>
+                    <select class="my-select" required name="JobType">
+                        @for (int i = 0; i < jobDepartments.Length; i++)
+                        {
+                            <option value="@jobDepartments[i]">@jobDepartments[i]</option>
+                        }
+                    </select>
+                </div>
+                <div class="flex-item-d">
+                    <label for="emp-job-type">Add Employee Branch*</label>
+                    <select class="my-select" required name="Branch">
+                        @for (int i = 0; i<Model.dt2.Rows.Count;i++)
+                        {
+                            <option value="@Model.dt2.Rows[i]["BranchID"]">@Model.dt2.Rows[i]["BranchID"]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="flex-row-double">
+                <div class="flex-item-d">
+                    <label for="emp-dep">Add Employee Department*</label>
+                    <select class="my-select" required name="DepID">
+                        @for (int i = 0; i < Model.dt1.Rows.Count; i++)
+                        {
+                            <option value="@Model.dt1.Rows[i]["DeparmentID"]">@Model.dt1.Rows[i]["DeparmentID"]</option>
+                        }
+
                     </select>
                 </div>
             </div>
             <div class="flex-row-double">
                 <div class="flex-item-d">
                     <label for="emp-salary">Employee Salary*</label>
-                    <input class="my-input" type="text" required id="emp-salary" name="Salary" />
+                    <input class="my-input" type="text" required id="emp-salary" name="Salary" pattern="[0-9]+" />
                 </div>
                 <div class="flex-item-d">
                     <label for="emp-utype">Employee User Type*</label>
@@ -70,6 +128,7 @@
                     </select>
                 </div>
             </div>
+            
         </form>
         
     </div>

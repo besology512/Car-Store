@@ -7,6 +7,19 @@
     --blue-alt-color: #0d69d5;
 }
 
+.cart-responsive {
+    display: flex;
+    justify-content:space-between;
+
+}
+@media(max-width:860px){
+    .cart-responsive{
+        flex-direction:column;
+        align-items:center
+    }
+}
+
+
 .Be-Head::before {
     content: "";
     position: absolute;
@@ -332,15 +345,13 @@ nav i:last-child {
 
 /* Start Wishlist Section */
 
-.cart {
-    display: flex;
-}
 
 .cart .items {
-    width: 72%;
+    flex-basis: 72%;
     height: 100%;
     margin-right: 20px;
     margin-bottom:20px;
+    
 }
 
 .cart .items .item-box {
@@ -370,6 +381,7 @@ nav i:last-child {
 .cart .items .item-box .item .item-description {
     width: 63%;
     position: relative;
+  
 }
 
 .cart .items .item-box .item .item-description .color, .cart .items .item-box .item .item-description h3 {
@@ -412,13 +424,14 @@ nav i:last-child {
 
 
 .cart .bill {
-    width: 28%;
-    margin-top:20px;
-    margin-bottom:20px;
+    flex-basis: 28%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: 20px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: fit-content;
 }
 
 .cart .bill *:not(hr) {

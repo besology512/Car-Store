@@ -137,6 +137,36 @@ namespace Car_Store.models
             string q = "select count(*) as car_count from VEHICLE ";
             return Convert.ToInt32((getsinglevalue(q)));
         }
+        public void insert_emp(string Username,string Fname,string Mname,string Lname, string password,string SSN,string Bdate,string Gender, int salary,int super_id , int usertype, string jobType,int branch,int deparmentID)
+        {
+            string q = "Insert into EMPLOYEE values('"+Username+ "','"+Fname+"','"+Mname+"','"+Lname+"','"+password+"','"+SSN+"','"+Bdate+"','"+Gender+"',"+salary+","+super_id+","+usertype+",'"+jobType+"')";
+            excute_nonQuery(q);
+            string query = "SELECT IDENT_CURRENT('EMPLOYEE') AS CurrentIdentityValue";
+            int counter = Convert.ToInt32(getsinglevalue(query));
+            string q2 = "insert into works_in_branchdep values("+counter+","+branch + "," +deparmentID+")";
+            excute_nonQuery(q2);
+        }
+
+        public void updateEmployee(int id, string Username, string Fname, string Mname, string Lname, string password, string SSN, string Bdate, string Gender, int salary, int super_id, int usertype, string jobType, int branch, int deparmentID)
+        {
+            string q = "UPDATE employee SET Emp_Username = '" + Username + "', pass = '" + password + "', Fname = '" + Fname + "' ,Mname = '" + Mname + "' , Lname = '" + Lname + "', SSN = '" + SSN + "', BirthDate= '" + Bdate + "', Gender = '" + Gender + "', SuperID =" + super_id + ", JOB_TYPE = '" + jobType + "', Salary = " + salary + ", UserType = " + usertype + " WHERE ID = " + id;
+            excute_nonQuery(q);
+            string query = "SELECT IDENT_CURRENT('EMPLOYEE') AS CurrentIdentityValue";
+            int counter = Convert.ToInt32(getsinglevalue(query));
+            string q2 = "Update works_in_branchdep Set Dep_ID =" + deparmentID + ", Branch_ID = " + branch+ " where Emp_ID = " + id;
+            excute_nonQuery(q2);
+        }
+
+        public object get_department_num()
+        {
+            string q = "select * from DEPARTMENT";
+            return Readtable(q);
+        }
+        public object get_all_branches_num()
+        {
+            string q = "select  BRANCH.BranchID  from BRANCH";
+            return Readtable(q);
+        }
 
         public void insert_product(string category, int branchId, int qunatity, string brand, int price, int status, string description, int pid)
         {

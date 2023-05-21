@@ -4,7 +4,7 @@
 }
 
 .all-page-content-c{
-    padding:10px;
+    padding:20px;
 }
 @media (min-width:1300px){
     .all-page-content-c{
@@ -72,6 +72,7 @@
 .double-items{
     display:flex;
     justify-content:space-between;
+    align-items:center;
 }
 
 .delete-button {
@@ -108,4 +109,16 @@ input:focus {
     gap: 20px;
     flex-wrap: wrap;
     padding-top:20px;
+}
+
+.cart-responsive {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width:860px) {
+    .cart-responsive {
+        flex-direction: column;
+        align-items: center
+    }
 }

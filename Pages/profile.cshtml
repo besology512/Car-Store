@@ -38,11 +38,14 @@
             
             <ul>
                 <li>
+                  <a asp-page="/CutomerPostedCar">
                     <div>
                         <i class="fa-solid fa-bell"></i>
-                        <a asp-page="/CutomerPostedCar"><span>My Ads</span></a>
+                        <span>My Ads</span>
                         <i class="fa-solid fa-angle-right"></i>
                     </div>
+                    </a>
+
                 </li>
 
                 <li>
@@ -62,11 +65,15 @@
                 </li>
 
                 <li>
+            <a asp-page="/ClientOrders">
+
                     <div>
                         <i class="fa-solid fa-square-check" style="color: #000000;"></i>
-                            <a asp-page="/ClientOrders"><span>My Orders</span></a>
+                            <span>My Orders</span>
                         <i class="fa-solid fa-angle-right"></i>
                     </div>
+                </a>
+
                 </li>
 
                 <li>
@@ -139,24 +146,24 @@
                     <ul>
                         <li style="gap: 30px;">
                             <p>First name: </p>
-                            <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][0]" disabled placeholder="@Model.dt.Rows[0][0]" name="Fname" />
+                                <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][0]" disabled placeholder="@Model.dt.Rows[0][0]" name="Fname" required autocomplete="name" minlength="2" maxlength="20" pattern="[A-Za-z0-9 ]+"  />
                         </li>
                         <li style="gap: 30px;">
                             <p>Last name: </p>
-                            <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][1]" disabled placeholder="@Model.dt.Rows[0][1]" name="Lname" />
+                                <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][1]" disabled placeholder="@Model.dt.Rows[0][1]" name="Lname" required minlength="2" maxlength="20" pattern="[A-Za-z0-9 ]+" />
                             
                         </li>
                         <li style="gap: 59px;">
                             <p>Phone: </p>
-                            <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][2]" disabled placeholder="@Model.dt.Rows[0][2]" name="Phone" />
+                                <input form="edit-form" class="hidden-input" value="@Model.dt.Rows[0][2]" disabled placeholder="@Model.dt.Rows[0][2]" name="Phone" required minlength="5" maxlength="20" pattern="[0-9]+" />
                         </li>
                         <li style="gap: 64px;">
                             <p>Email: </p>
-                            <input form="edit-form" class="hidden-input" style="width:250px;" value="@Model.dt.Rows[0][4]" disabled placeholder="@Model.dt.Rows[0][4]" name="Email" />
+                            <input form="edit-form" class="hidden-input" style="width:350px;" value="@Model.dt.Rows[0][4]" disabled placeholder="@Model.dt.Rows[0][4]" name="Email" />
                         </li>
                         <li style="gap:36px;">
                             <p>Password: </p>
-                            <input form="edit-form" class="hidden-input" type="password" id="pass-input" value="@Model.dt.Rows[0][5]" disabled placeholder="@Model.dt.Rows[0][5]" name="Pass" />
+                                <input form="edit-form" class="hidden-input" type="password" id="pass-input" value="@Model.dt.Rows[0][5]" disabled placeholder="@Model.dt.Rows[0][5]" name="Pass" required minlength="3" maxlength="30" />
                         </li>
                         
                         <hr>

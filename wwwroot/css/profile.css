@@ -46,6 +46,16 @@
     display: flex;
     gap: 50px;
 }
+@media(max-width:850px){
+    .page-body .page-content{
+        flex-direction:column;
+        /*justify-content: center;
+        align-items:center*/
+    }
+    hr{
+        display:none;
+    }
+}
 
 
 .left ul {
@@ -62,10 +72,19 @@
     margin-top: 35px;
 }
 
-.left ul li div {
-    padding: 16px 10px;
-    position: relative;
-}
+    .left ul li:hover {
+        background: #bababa
+    }
+
+    .left ul li a
+    {
+        color : black;
+    }
+
+    .left ul li div {
+        padding: 16px 10px;
+        position: relative;
+    }
 
 .left ul li div i:last-child {
     position: absolute;
@@ -89,6 +108,7 @@ input[type="file"] {
 
 .image label {
     color: white;
+    
 }
 
 /* start right */

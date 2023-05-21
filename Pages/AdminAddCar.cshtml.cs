@@ -1,6 +1,7 @@
 using Car_Store.models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using System.Security.Cryptography;
 
 namespace Car_Store.Pages
@@ -26,10 +27,19 @@ namespace Car_Store.Pages
         {
             DATABASE = My_DB;   
         }
-        public void OnGet()
+
+
+        public IActionResult OnGet(string name)
         {
+
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
             Alertmsg = "";
+            return Page();
         }
+
         public void OnPost(string Brand,  string Model, string Fuel, string CarDesc, int Year, int CarClass, string Cstyle, string GEAR, int CC, int Price, IFormFile carImg , int Quantity) 
         {
             if (carImg != null && carImg.Length > 0)

@@ -48,7 +48,7 @@
 
                 <span asp-validation-for="@Model.Customer.Client_Username" style="color:red; margin:-12px 0 12px;"></span>
                 <label for="UserName">Username</label>
-                <input asp-for="@Model.Customer.Client_Username" type="text" name="UserName" id="UserName" required minlength="2" maxlength="100" pattern="[A-Za-z0-9 ]+">
+                    <input asp-for="@Model.Customer.Client_Username" type="text" name="UserName" id="UserName" required minlength="2" maxlength="100" pattern="[A-Za-z0-9_.]+">
 
 
                 <span asp-validation-for="@Model.Customer.Mail" style="color:red; margin:-12px 0 12px;"></span>
