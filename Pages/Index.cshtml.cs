@@ -31,8 +31,8 @@ namespace Car_Store.Pages
         }
         public void OnGet()
         {
-            Random num = new Random();
-            Landing_random = num.Next(0,DB.get_all_cars_count());
+            
+            Landing_random =DB.get_all_cars_count();
             dt = (DataTable)DB.get_all_cars();
         }
 
