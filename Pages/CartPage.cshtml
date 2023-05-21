@@ -33,80 +33,90 @@
     }
 }
 
+<link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true">
 <div class="content">
 <!-- Start Cart Section-->
 <section class="cart page_margin">
-        <div class="items">
-            <div class="item-box">
-                @if (Model.dtCarNew != null)
-                {
-                    @for (int i = 0; i < Model.dtCarNew.Rows.Count; i++)
+        <div class="cart-responsive">
+            <div class="posts">
+                
+                    @if (Model.dtCarNew != null)
                     {
-                        <div class="item">
-                            <div class="car-img">
-                                <img src="@Model.dtCarNew.Rows[i][3]" alt="car image">
-                            </div>
-                            <div class="item-description">
-                                <h3>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
-                                <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarNew.Rows[i][2]</span></div>
-                                <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarNew.Rows[i][4]</span></div>
-                                <div class="icons">
-                                    <div class="remove">
-                                        <form method="post">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                            <input name="pId" type="hidden" style="border:none;" value="@Model.dtCarNew.Rows[i][6]" />
-                                            <input asp-page-handler="Remove" type="submit" style="border:none; cursor:pointer" value="remove"/>
-                                        </form>
-                                    </div>
+                        @for (int i = 0; i < Model.dtCarNew.Rows.Count; i++)
+                        {
+                            <div class="Post-Card" >
+                                <div class="car-img">
+                                    <img src="@Model.dtCarNew.Rows[i][3]" alt="car image">
                                 </div>
-                                <div class="price"> @Model.dtCarNew.Rows[i][5] $</div>
+                                <div class="item-description" style="padding-top:40px;" >
+                                <div class="double-items" style="align-items:center;">
+                                    <h3 style="margin:0px 0px 8px;">@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
+                                    <P style="color:#1C61E7">@Model.dtCarNew.Rows[i][5] $</P>
+                                </div>
+                                
+                                    <p class="double-items" style="align-items:center;"><span>Color:</span> <span>@Model.dtCarNew.Rows[i][2]</span></p>
+                                    <p class="double-items" style="align-items:center;"><span class="class">Year Model:</span> <span>@Model.dtCarNew.Rows[i][4]</span></p>
+                                    <div class="icons">
+                                        <div class="remove">
+                                            <form method="post">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                <input name="pId" type="hidden" style="border:none;" value="@Model.dtCarNew.Rows[i][6]" />
+                                                <input asp-page-handler="Remove" type="submit" style="border:none; cursor:pointer" value="remove" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
-                }
-                @if (Model.dtCarUsed != null)
-                {
-                    @for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+                    @if (Model.dtCarUsed != null)
                     {
-                        <div class="item">
-                            <div class="car-img">
+                        @for (int i = 0; i < Model.dtCarUsed.Rows.Count; i++)
+                        {
+                            <div class="Post-Card" >
+                                <div class="car-img">
 
-                                <img src="@Model.dtCarUsed.Rows[i][3]" alt="car image">
-                            </div>
-                            <div class="item-description">
-                                <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>
-                                <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarUsed.Rows[i][2]</span></div>
-                                <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarUsed.Rows[i][4]</span></div>
-                                <div class="icons">
-                                    <div class="remove">
-                                        <form method="post">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                            <input name="pId" type="hidden" style="border:none" value="@Model.dtCarUsed.Rows[i][6]" />
-                                            <input asp-page-handler="Remove" type="submit" style="border:none; cursor:pointer" value="remove" />
-                                        </form>
-                                    </div>
+                                    <img src="@Model.dtCarUsed.Rows[i][3]" alt="car image">
                                 </div>
-                                <div class="price"> @Model.dtCarUsed.Rows[i][5] $</div>
+                                <div class="item-description" style="padding-top:40px;">
+                                    <div class="double-items">
+                                        <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>
+                                        <P style="color:#1C61E7">@Model.dtCarUsed.Rows[i][5] $</P>
+                                    </div>
+                                    <p class="double-items" style="align-items:center;"><span >Color:</span> <span>@Model.dtCarUsed.Rows[i][2]</span></p>
+                                    <p class="double-items" style="align-items:center;"><span >Year Model:</span> <span>@Model.dtCarUsed.Rows[i][4]</span></p>
+                                    <div class="icons">
+                                        <div class="remove">
+                                            <form method="post">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                <input name="pId" type="hidden" style="border:none" value="@Model.dtCarUsed.Rows[i][6]" />
+                                                <input asp-page-handler="Remove" type="submit" style="border:none; cursor:pointer" value="remove" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
-                }
+                
             </div>
-        </div>
 
-        <div class="bill">
-            <h3>Receipt</h3>
-            <div class="total-price price"><span class="total">Total Price</span> <span class="price-value">@sum $</span> </div>
-            <div class="shipping-price price"><span class="shipping">Shipping</span> <span class="price-value">@(sum/1000) $</span> </div>
-            <div class="hr"><hr></div>
-            <div class="promocode bill-title"> <div>Apply promocode</div></div>
-            <div class="promo-input"><input type="text" placeholder="Promo code"> <a href=""><span class="apply-promo">Apply</span></a></div>
-            <div class="hr"><hr></div>
-        <div class="total-price-value bill-title"><div class="total">The total amount (including VAT) </div> <span class="price-value">@(Math.Round((sum * 1.05), 3)) $</span> </div>
-            <form method="post">
-                <div class="btn"><button style="cursor:pointer" asp-page-handler="Checkout"> Proceed to checkout </button></div>
-            </form>
+            <div class="bill">
+                <h3>Receipt</h3>
+                <div class="total-price price"><span class="total">Total Price</span> <span class="price-value">@sum $</span> </div>
+                <div class="shipping-price price"><span class="shipping">Shipping</span> <span class="price-value">@(sum / 1000) $</span> </div>
+                <div class="hr"><hr></div>
+                <div class="promocode bill-title"> <div>Apply promocode</div></div>
+                <div class="promo-input"><input type="text" placeholder="Promo code"> <a href=""><span class="apply-promo">Apply</span></a></div>
+                <div class="hr"><hr></div>
+                <div class="total-price-value bill-title"><div class="total">The total amount (including VAT) </div> <span class="price-value">@(Math.Round((sum * 1.05), 3)) $</span> </div>
+                <form method="post">
+                    <div class="btn"><button style="cursor:pointer" asp-page-handler="Checkout"> Proceed to checkout </button></div>
+                </form>
+            </div>
         </div>
 </section>
 <!-- End Cart Section-->

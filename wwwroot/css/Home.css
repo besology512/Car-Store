@@ -122,6 +122,7 @@
         gap: 10px;
         margin-left: 10px;
         margin-right: 10px;
+        justify-content:center;
     }
 }
 /* End Servieces */
@@ -142,7 +143,7 @@
     align-items: center;
 }
 
-@media (max-width:870px){
+@media (max-width:877px){
     .posts{
         flex-direction:column;
         justify-content:center;
@@ -240,42 +241,42 @@
     align-items: center;
 }
 
-    .event .big-img {
-        position: relative;
-    }
+.event .big-img {
+    position: relative;
+}
 
-    .event img {
-        object-fit: cover;
-        width: 100%;
-        height: auto;
-        border-radius: 20px;
-    }
+.event img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
 
-    .event .fa-angle-left {
-    }
+.event .fa-angle-left {
+}
 
-    .event .fa-angle-right {
-    }
+.event .fa-angle-right {
+}
 
-    .event button {
-        z-index: 111;
-        position: absolute;
-        background-color: #0077ff6e;
-        right: 120px;
-        bottom: 190px;
-        height: 41px;
-        width: 144px;
-    }
+.event button {
+    z-index: 111;
+    position: absolute;
+    background-color: #0077ff6e;
+    right: 120px;
+    bottom: 190px;
+    height: 41px;
+    width: 144px;
+}
 
-    .event .big-img .timer {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        border-radius: 20px;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
+.event .big-img .timer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 
 .timer .timer-box {
     background-color: #0077ff6e;
@@ -305,15 +306,29 @@
     justify-content: center;
     align-items: center;
     margin-bottom:20px;
+
 }
 
-    .logo .img-logo .fa-angle-left {
-        left: 12%;
-    }
+.logo .img-logo .fa-angle-left {
+    left: 12%;
+}
 
-    .logo .img-logo .fa-angle-right {
-        right: 12%;
+.logo .img-logo .fa-angle-right {
+    right: 12%;
+}
+@media(max-width:800px){
+    .logo .img-logo .fa-angle-right
+    {
+        display:none;
     }
+    .logo .img-logo .fa-angle-left{
+        display:none;
+    }
+}
+
+.img-logo{
+    flex-wrap:wrap !important;
+}
 /* End Barnds logo */
 /* Start Footer */
 footer .container .cols .box-link > h4 {
