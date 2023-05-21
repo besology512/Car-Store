@@ -34,9 +34,10 @@ namespace Car_Store.Pages
         }
         public IActionResult OnPost(string Fname , string Lname , string Email , string Phone,string Pass, IFormFile PImage) {
             string finalPath = Request.Form["PImage"];
+            ID = (int)HttpContext.Session.GetInt32("User_ID");
             if (PImage != null && PImage.Length > 0)
             {
-                ID = (int)HttpContext.Session.GetInt32("User_ID");
+                
                 Random rnum = new Random();
                 int num = rnum.Next();
                 string fileName = Fname.Replace(" ", "-") + "-" + ID.ToString()+num.ToString() + ".jpg"; // we should inject something unique here like id
@@ -51,6 +52,7 @@ namespace Car_Store.Pages
 
                 finalPath = imagePath.Replace("wwwroot", "");
             }
+
                 
             
             database.edit_client_info(ID, Fname , Lname , Phone,Email, Pass,finalPath);
