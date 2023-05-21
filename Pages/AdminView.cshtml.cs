@@ -28,8 +28,15 @@ namespace Car_Store.Pages
             this.dB = dB;
             MaleFemaleDepartment = new List<DataPoint>();
         }
-        public void OnGet()
+        public IActionResult OnGet()
+
         {
+            if (HttpContext.Session.GetInt32("User_Type") != 1)
+            {
+                return RedirectToPage("/index");
+            }
+
+
             BodyStyle = (DataTable)dB.Select("SELECT Body_Style, COUNT(*) Count ,COUNT(CASE WHEN Car_Status = 'New' THEN 1 END) AS Num_New_Cars, COUNT(CASE WHEN Car_Status = 'Used' THEN 1 END) AS Num_Used_Cars FROM VEHICLE GROUP BY Body_Style");
             CarModel = (DataTable)dB.Select("SELECT Year_Model, COUNT(*) Count ,COUNT(CASE WHEN Car_Status = 'New' THEN 1 END) AS Num_New_Cars, COUNT(CASE WHEN Car_Status = 'Used' THEN 1 END) AS Num_Used_Cars FROM VEHICLE GROUP BY Year_Model");
             CarBrands = (DataTable)dB.Select("SELECT V.Brand, COUNT(*) AS Num_Cars, AVG(COALESCE(N.Price, U.Price)) AS Avg_New_Price, COUNT(CASE WHEN V.Car_Status = 'New' THEN 1 END) AS Num_New_Cars, COUNT(CASE WHEN V.Car_Status = 'Used' THEN 1 END) AS Num_Used_Cars FROM VEHICLE V LEFT JOIN NEW_VEHICLE N ON V.Vehicle_No = N.Vehicle_ID LEFT JOIN USED_VEHICLE U ON V.Vehicle_No = U.Vehicle_ID GROUP BY V.Brand;");
@@ -41,6 +48,8 @@ namespace Car_Store.Pages
             EmployeesByJob = (DataTable)dB.Select("SELECT JOB_TYPE, COUNT(*) AS Employee_Count FROM EMPLOYEE GROUP BY JOB_TYPE;");
             JobSalary = (DataTable)dB.Select("SELECT JOB_TYPE,  MAX(Salary) AS Highest_Salary, MIN(Salary) AS Lowest_Salary, AVG(Salary) AS Average_Salary FROM EMPLOYEE GROUP BY JOB_TYPE;");
             MaleFemaleDepartment = dB.GetData("SELECT d.Department_Name as Id, SUM(CASE WHEN e.Gender = 'M' THEN 1 ELSE 0 END) AS XValue, SUM(CASE WHEN e.Gender = 'F' THEN 1 ELSE 0 END) AS YValue FROM EMPLOYEE e INNER JOIN works_in_branchdep w ON e.ID = w.Emp_ID INNER JOIN DEPARTMENT d ON w.Dep_ID = d.DeparmentID GROUP BY d.Department_Name");
+            return Page();
+        
         }
 
         public IActionResult OnPostLogout()
