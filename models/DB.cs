@@ -114,6 +114,11 @@ namespace Car_Store.models
             string q = "INSERT INTO Client_Posts VALUES(" + clientid + " , " + vehicleId + ")";
             excute_nonQuery(q);
         }
+        public int check_user_name(string uname,string mail)
+        {
+            string q = "select count(*) as user_countt from CLIENT where Client_Username = '" + uname + "' or CLIENT.Mail = '" + mail + "'";
+            return Convert.ToInt32(getsinglevalue(q));
+        }
 
         public void delet_CLIENT_POST(int vecId, int ClieTnID)
         {
