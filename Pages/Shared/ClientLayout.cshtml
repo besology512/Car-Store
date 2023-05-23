@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using MyData = System.Data
+@using MyDB = Car_Store.models
+
+@{
+    // Use the MyData namespace alias instead of System.Data
+    MyData.DataTable table = new MyData.DataTable();
+    MyDB.DB dB = new MyDB.DB();
+
+    
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,12 +39,9 @@
     <header>
         <div class="container">
             <!-- Start Research -->
+            <form method="post">
             <div class="head bn-flex mt-5 mr-20">
                 <a style="color:black; padding-right:10px" asp-page="/Index"><h2 class="m-20 fw-bold fs-18"><i class="fa-sharp fa-solid fa-car-side" style="padding-right:10px; color: #000000"></i>TRMB cars</h2></a>
-                <div class="search">
-                    <i class="fa-regular fa-magnifying-glass p-absloute c-grey"></i>
-                    <input type="text" class="border rad-6 c-grey" placeholder="Search">
-                </div>
                 <div class="soical d-flex">
                     <i class="fa-solid fa-user-group"></i>
                     <div style="padding-right:55px;" class="support m-0 d-flex fl-column">
@@ -41,6 +50,7 @@
                     </div>
                 </div>
             </div>
+            </form>
             <!-- End Research -->
             <!-- Start Navbar -->
             <nav class="w-full bn-flex">

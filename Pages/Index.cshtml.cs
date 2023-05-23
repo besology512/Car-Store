@@ -4,6 +4,7 @@ using Car_Store.models;
 using System.Data;
 using System;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
+using System.Xml.Linq;
 
 namespace Car_Store.Pages
 {
@@ -11,7 +12,8 @@ namespace Car_Store.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DB DB;
-
+        [BindProperty(Name = "search")]
+        public string search { get; set; }
         [BindProperty]
         public DataTable dt { get; set; }
         [BindProperty]
@@ -73,6 +75,10 @@ namespace Car_Store.Pages
             cartWish.typecw = 1;
             cartWish.insert();
             return RedirectToPage("/Index");
+        }
+        public IActionResult OnPostSearch()
+        {
+            return RedirectToPage("/FilterPage", new { search = this.search });
         }
     }
 }

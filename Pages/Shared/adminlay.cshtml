@@ -1,11 +1,30 @@
-﻿@using Mydata = System.Data
+@using MyData = System.Data
 @using MyDB = Car_Store.models
 @{
+    // Use the MyData namespace alias instead of System.Data
+    MyData.DataTable table = new MyData.DataTable();
+    MyDB.DB dB = new MyDB.DB();
+    string Fname = "";
+    string LName = "";
     int pendingPostsNo;
     MyDB.DB db = new MyDB.DB();
     pendingPostsNo = db.getNoPendingPosts();
+    if (ViewContext.HttpContext.Session.GetInt32("User_ID") == null)
+    {
+        Fname = "Unknown";
+    }
+    else
+    {
+        int ID = (int)ViewContext.HttpContext.Session.GetInt32("User_ID");
+        table = (MyData.DataTable)dB.getAdminName(ID: ID);
+        Console.WriteLine("Number of rows in table: " + table.Rows.Count);
+        if (table.Rows.Count > 0)
+        {
+            Fname = table.Rows[0]["Fname"].ToString();
+            LName = table.Rows[0]["Lname"].ToString();
+        }
+    }
 }
-
 
 
 <!DOCTYPE html>
@@ -42,7 +61,7 @@
     <div class="nav" id="navbar">
         <nav class="nav__container">
             <div>
-                <a href="#" class="nav__link nav__logo">
+                <a href="/Index" class="nav__link nav__logo">
                     <!-- the icon will apear in the project -->
                     <i class="fa-sharp fa-solid fa-car-side"></i>
                     <span class="nav__logo-name">TRMB Cars</span>
@@ -50,19 +69,13 @@
 
                 <div class="nav__list">
                     <div class="nav__items">
-                         <h3 class="nav__subtitle">Ahmed  Bassam</h3>
+                         <h3 class="nav__subtitle">@Fname @LName</h3>
 
                         <a asp-page="/AdminView" class="nav__link active">
                             <!-- <i class="fa-solid fa-chart-line"></i> in the bigger website -->
                             <i class='bx bx-home nav__icon'></i>
                             <span class="nav__name">Dashboard</span>
                         </a>
-
-                        <a href="#" class="nav__link">
-                            <i class='bx bx-user nav__icon'></i>
-                            <span class="nav__name">Profile</span>
-                        </a>
-
                         <div class="nav__dropdown">
                             <a href="#" class="nav__link">
                                 <i class='bx bx-user nav__icon'></i>
@@ -78,18 +91,17 @@
                                     <a class="nav__dropdown-item" asp-page="/AddEmployee">Add Employees</a>
                                     <a class="nav__dropdown-item" asp-page="/DisplayAllCars">Our Vehicles</a>
                                     <a  class="nav__dropdown-item" asp-page="/AdminAddCar" >Add Vehicle</a>
+                                    <a  class="nav__dropdown-item" asp-page="/AddShowRoom">Show Rooms</a>
+                                    <a class="nav__dropdown-item" asp-page="/ServiceCenters">Service Center</a>
+                                    <a class="nav__dropdown-item" asp-page="/UpdateServiceCenters">Update Service Center</a>
                                     <a  class="nav__dropdown-item" asp-page="/AddShowRoom">Show Room</a>
                                     <a class="nav__dropdown-item"  asp-page="/AddServicesCenters">Add Service Center</a>
-                                    <a class="nav__dropdown-item" asp-page="/ServiceCenters">Service Center</a>
-
                                     <a class="nav__dropdown-item">Departments</a>
 
 
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="nav__items">
