@@ -51,7 +51,7 @@
                                 <span class="bg-white Trs-03"></span>
                                 <span class="bg-white Trs-03"></span>
                                 <span class="bg-white Trs-03"></span>
-                                <ul class="bg-ccc Trs-03 pt-10 pb-5 pl-10 pr-10 w-110 rad-10 mt-35">
+                                <ul id="dropMenu" class="bg-ccc Trs-03 pt-10 pb-5 pl-10 pr-10 w-110 rad-10 mt-35">
                                     <li class="pt-10 Trs-03 pb-10 border-b">
                                         <a class="c-black" href="#services">services</a>
                                     </li>
@@ -65,6 +65,7 @@
                             </div>
                             <p class="c-black pl-10 m-10 ml-30 fs-14 fw-bold">All Categores</p>
                         </div>
+                        
                         <div class="center-flex c-black fw-bold fs-15">
                         <a href="/FilterPage" class="pl-10 Trs-05 c-black pr-10">Discover Cars!</a>
                             <a href="/ServiceCenters" class="pl-10 Trs-05 c-black pr-10">Service Centers</a>
@@ -86,7 +87,25 @@
        
                         </div>
                     </div>
-                    <i class="fas fa-bars  my-i toggle-menu  fs-0 c-white mr-10 "></i>
+                <i class="fas fa-bars my-i toggle-menu fs-0 c-white mr-10" onclick="toggleMenu()"></i>
+                <div id="phoneNav" class="phoneNav">
+                    <a asp-page="/SignUpIn">Sign up</a>
+                    <a asp-page="/FilterPage">Discover Cars</a>
+                    <a asp-page="/ServiceCenters">Services Center</a>
+                    
+                </div>
+                    
+                <script>
+                    function toggleMenu() {
+                        var menu = document.getElementById("phoneNav");
+                        if (menu.style.display === "block") {
+                            menu.style.display = "none";
+                        } else {
+                            menu.style.display = "block";
+                        }
+                    }
+                </script>
+
                 </nav>
                 <div class="in-mobile ">
                     <ul class="bg-ccc Trs-05 m-0 ml--20">

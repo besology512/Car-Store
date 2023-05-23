@@ -161,22 +161,33 @@ nav {
     background-color: #0077ff73;
 }
 
-    nav .all-ctg {
-        margin-right: 100px;
+nav .all-ctg {
+    margin-right: 100px;
+}
+@media(min-width:767px) and (max-width:1068px){
+    nav .all-ctg{
+        margin-right:6px !important;
     }
+}
 
-        nav .all-ctg .details {
-            background-image: linear-gradient( to right,#0075ff 50%, white 50% );
-            background-size: 200% 100%;
-            background-position: right bottom;
-            color: var(--blue-color);
-            cursor: pointer;
-        }
+
+nav .all-ctg .details {
+    background-image: linear-gradient( to right,#0075ff 50%, white 50% );
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: var(--blue-color);
+    cursor: pointer;
+}
 
 @media (max-width:767px) {
     nav .all-ctg .details {
         margin: 5px 5px 5px -15px;
         width: 160px;
+    }
+}
+@media(min-width:767px) and (max-width:1068px){
+    nav .all-ctg .details {
+        margin:4px !important;
     }
 }
 
@@ -191,20 +202,20 @@ nav .all-ctg .details .burgra {
     translate: 5px 3px;
 }
 
-    nav .all-ctg .details .burgra span {
-        width: 22px;
-        height: 2px;
-        position: absolute;
-        translate: 4px 6px;
-    }
+nav .all-ctg .details .burgra span {
+    width: 22px;
+    height: 2px;
+    position: absolute;
+    translate: 4px 6px;
+}
 
-    nav .all-ctg .details .burgra ul {
-        translate: -220px;
-        overflow: hidden;
-        transition: .3s;
-        z-index: 2;
-        position: relative;
-    }
+nav .all-ctg .details .burgra ul {
+    translate: -220px;
+    overflow: hidden;
+    transition: .3s;
+    z-index: 2;
+    position: relative;
+}
 
 nav .all-ctg .details:hover .burgra ul {
     translate: 0;
@@ -218,10 +229,10 @@ nav .all-ctg .details .burgra ul li:hover {
     color: white;
 }
 
-    nav .all-ctg .details .burgra ul li:hover a,
-    nav .all-ctg .details:hover p {
-        color: white;
-    }
+nav .all-ctg .details .burgra ul li:hover a,
+nav .all-ctg .details:hover p {
+    color: white;
+}
 
 nav .all-ctg .details .burgra span:nth-child(2) {
     top: 7px;
@@ -261,10 +272,16 @@ nav .other span:hover {
     margin-left:3px;
 }
 
-@media (max-width:767px) {
+@media (max-width:910px) {
     nav .all-ctg .center-flex,
     nav .other {
         display: none;
+    }
+}
+@media(min-width:760px) and (max-width:1068px){
+    nav .all-ctg .center-flex,
+    nav .other{
+        margin:4px;
     }
 }
 
@@ -295,9 +312,10 @@ nav i:last-child {
 .my-i{
     display:none !important;
 }
-@media(max-width:768px){
+@media(max-width:910px){
     .my-i{
         display:block !important;
+        font-size:22px !important;
     }
 }
 
@@ -336,4 +354,41 @@ footer .container .line .mobile-app i {
     opacity: 0.8;
 }
 /* End Footer */
+.phoneNav {
+    display: none;
+    position: absolute;
+    top: 129px;
+    left: 0px;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
+.phoneNav a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+.phoneNav input{
+    display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  cursor:pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .phoneNav {
+    top: 129px;
+    padding: 5px;
+  }
+  
+  .phoneNav a {
+    font-size: 14px;
+  }
+}

@@ -21,10 +21,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-        
+
     </head>
     <body>
     <!--========== NAV ==========-->
+    <div class="header__toggle">
+        <i style="padding:20px;" class="fa-solid fa-bars bx bx-menu" id="header-toggle"></i>
+        
+    </div>
     <div class="nav" id="navbar">
         <nav class="nav__container">
             <div>
@@ -70,11 +74,12 @@
 
                                     <a class="nav__dropdown-item">Departments</a>
 
+
                                 </div>
                             </div>
                         </div>
 
-                        
+
                     </div>
 
                     <div class="nav__items">
@@ -104,10 +109,9 @@
 
                             <div class="nav__dropdown-collapse">
                                 <div class="nav__dropdown-content">
-                                    <a class="nav__dropdown-item">Employees</a>
-                                    <a class="nav__dropdown-item">Orders</a>
-                                    <a class="nav__dropdown-item">Vehicles</a>
-                                    <a class="nav__dropdown-item">Clients</a>
+                                    <a class="nav__dropdown-item" asp-page="/AdminView" asp-fragment="sectionEmployees">Employees</a>
+                                    <a class="nav__dropdown-item" asp-page="/AdminView" asp-fragment="sectionVehicles">Vehicles</a>
+                                    <a class="nav__dropdown-item" asp-page="/AdminView" asp-fragment="sectionBranches">Branches</a>
                                 </div>
                             </div>
 
@@ -195,6 +199,7 @@
             </div>
         </div>
     </footer>
+    <script src="~/js/adminlay.js"></script>
     </body>
 <!-- End Footer -->
 </html>

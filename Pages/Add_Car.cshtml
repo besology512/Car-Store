@@ -16,54 +16,11 @@
     string[] carBrands = new string[] {"Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW",
                                    "Bugatti", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Citroen",
                                    "Dodge", "Ferrari", "Fiat", "Ford", "GMC", "Honda", "Hyundai",
-                                   "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover",
+                                   "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini", "LandRover",
                                    "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda", "McLaren",
-                                   "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot",
+                                   "MercedesBenz", "Mini", "Mitsubishi", "Nissan", "Pagani", "Peugeot",
                                    "Porsche", "Ram", "Rolls-Royce", "Subaru", "Suzuki", "Tesla", "Toyota",
                                    "Volkswagen", "Volvo"};
-    Dictionary<string, string[]> carModels = new Dictionary<string, string[]>();
-    carModels.Add("Acura", new string[] { "ILX", "MDX", "RDX", "TLX" });
-    carModels.Add("Alfa Romeo", new string[] { "Giulia", "Stelvio" });
-    carModels.Add("Aston Martin", new string[] { "DB11", "DBS Superleggera", "Vantage" });
-    carModels.Add("Audi", new string[] { "A3", "A4", "A5", "A6", "Q3", "Q5", "Q7", "TT" });
-    carModels.Add("Bentley", new string[] { "Bentayga", "Continental GT" });
-    carModels.Add("BMW", new string[] { "3 Series", "5 Series", "7 Series", "X3", "X5", "X7", "Z4" });
-    carModels.Add("Buick", new string[] { "Encore", "Envision", "LaCrosse", "Regal" });
-    carModels.Add("Cadillac", new string[] { "CT4", "CT5", "CT6", "Escalade", "XT4", "XT5", "XT6" });
-    carModels.Add("Chevrolet", new string[] { "Blazer", "Camaro", "Equinox", "Malibu", "Silverado", "Tahoe", "Traverse" });
-    carModels.Add("Chrysler", new string[] { "300", "Pacifica" });
-    carModels.Add("Dodge", new string[] { "Challenger", "Charger", "Durango" });
-    carModels.Add("Ferrari", new string[] { "488 GTB", "812 Superfast", "F8 Tributo", "Portofino", "SF90 Stradale" });
-    carModels.Add("Fiat", new string[] { "500", "500X" });
-    carModels.Add("Ford", new string[] { "Edge", "Escape", "Explorer", "F-150", "Mustang", "Ranger" });
-    carModels.Add("Genesis", new string[] { "G70", "G80", "G90" });
-    carModels.Add("GMC", new string[] { "Acadia", "Canyon", "Sierra", "Terrain" });
-    carModels.Add("Honda", new string[] { "Accord", "Civic", "CR-V", "Odyssey", "Pilot" });
-    carModels.Add("Hyundai", new string[] { "Elantra", "Kona", "Palisade", "Santa Fe", "Sonata", "Tucson", "Veloster" });
-    carModels.Add("Infiniti", new string[] { "Q50", "QX50", "QX60", "QX80" });
-    carModels.Add("Jaguar", new string[] { "F-PACE", "XE", "XF", "XJ" });
-    carModels.Add("Jeep", new string[] { "Cherokee", "Compass", "Grand Cherokee", "Wrangler" });
-    carModels.Add("Kia", new string[] { "Forte", "Optima", "Sorento", "Sportage", "Stinger" });
-    carModels.Add("Lamborghini", new string[] { "Aventador", "Huracan", "Urus" });
-    carModels.Add("Land Rover", new string[] { "Discovery", "Range Rover", "Range Rover Evoque", "Range Rover Sport" });
-    carModels.Add("Lexus", new string[] { "ES", "GX", "IS", "LS", "NX", "RX", "UX" });
-    carModels.Add("Lincoln", new string[] { "Aviator", "Corsair", "Nautilus", "Navigator" });
-    carModels.Add("Lotus", new string[] { "Evora", "Exige" });
-    carModels.Add("Maserati", new string[] { "Ghibli", "GranTurismo", "Levante", "Quattroporte" });
-    carModels.Add("Mazda", new string[] { "CX-3", "CX-30", "CX-5", "CX-9", "Mazda3", "Mazda6", "MX-5 Miata" });
-    carModels.Add("McLaren", new string[] { "570S", "720S", "GT" });
-    carModels.Add("Mercedes-Benz", new string[] { "C-Class", "E-Class", "G-Class", "GLC", "GLE", "S-Class" });
-    carModels.Add("Mini", new string[] { "Clubman", "Cooper", "Countryman" });
-    carModels.Add("Mitsubishi", new string[] { "Eclipse Cross", "Outlander", "Outlander Sport" });
-    carModels.Add("Nissan", new string[] { "Altima", "Kicks", "Maxima", "Murano", "Rogue", "Sentra","Tida" });
-    carModels.Add("Porsche", new string[] { "911", "Cayenne", "Macan", "Panamera" });
-    carModels.Add("Ram", new string[] { "1500", "2500", "3500" });
-    carModels.Add("Rolls-Royce", new string[] { "Dawn", "Ghost", "Phantom", "Wraith" });
-    carModels.Add("Subaru", new string[] { "Ascent", "Forester", "Impreza", "Legacy", "Outback" });
-    carModels.Add("Tesla", new string[] { "Model 3", "Model S", "Model X", "Model Y" });
-    carModels.Add("Toyota", new string[] { "4Runner", "Camry", "Corolla", "Highlander", "Rav4", "Sienna", "Tundra" });
-    carModels.Add("Volkswagen", new string[] { "Arteon", "Atlas", "Golf", "Jetta", "Passat", "Tiguan" });
-    carModels.Add("Volvo", new string[] { "S60", "S90", "V60", "V90", "XC40", "XC60", "XC90" });
     string[] egyptCities = new string[] {
     "Alexandria",
     "Aswan",
@@ -162,12 +119,66 @@
                 <div class="model">
                     <label for="Model">Model*</label>
                     <select id="Model" asp-for="@Model.ParentV.carmodel" name="Model">
-                        @foreach (string modell in carModels["Nissan"])
-                        {
-                            <option value="@modell">@modell</option>
-                        }
+                        
                     </select>
                 </div>
+                <script>
+                        const makeSelect = document.querySelector('#Make');
+                        const modelSelect = document.querySelector('#Model');
+
+                        const carModels = {
+                            Acura: ['ILX', 'RLX', 'TLX'],
+                            AlfaRomeo: ['Giulia', 'Stelvio'],
+                            Audi: ['A3', 'A4', 'A6', 'Q3', 'Q5', 'Q7'],
+                            Fiat: ['500', '500X', '500L', '500e', 'Spider', '124'],
+                            Suzuki: ['Swift', 'Jimny', 'Vitara', 'SX4 S-Cross', 'Baleno'],
+                            Pagani: ['Huayra', 'Huayra Roadster', 'Huayra BC', 'Huayra BC Roadster', 'Zonda', 'Zonda Cinque', 'Zonda F', 'Zonda R'],
+                            BMW: ['2 Series', '3 Series', '5 Series', '7 Series', 'X1', 'X3', 'X5', 'X7'],
+                            Buick: ['Enclave', 'Encore', 'Envision'],
+                            Ferrari: ['812 Superfast', '488 GTB', '488 Pista', 'F8 Tributo', 'SF90 Stradale', 'Portofino', 'Roma', 'GTC4Lusso', '812 GTS', '488 Spider', 'F8 Spider'],
+                            Cadillac: ['CT4', 'CT5', 'CT6', 'Escalade', 'XT4', 'XT5', 'XT6'],
+                            Lamborghini: ['Aventador', 'Aventador S', 'Aventador SVJ', 'Huracán', 'Huracán EVO', 'Huracán Performante', 'Urus'],
+                            Peugeot: ['208', '308', '508', '3008', '5008', 'Rifter', 'Traveller', 'Expert'],
+                            McLaren: ['570S', '720S', 'GT', '600LT', 'Senna', 'Elva', 'Artura'],
+                            Chevrolet: ['Blazer', 'Camaro', 'Equinox', 'Malibu', 'Silverado', 'Suburban', 'Tahoe', 'Traverse'],
+                            Chrysler: ['300', 'Pacifica'],
+                            Dodge: ['Challenger', 'Charger', 'Durango', 'Grand Caravan'],
+                            Ford: ['EcoSport', 'Escape', 'Explorer', 'F-150', 'Fiesta', 'Focus', 'Fusion', 'Mustang', 'Ranger'],
+                            GMC: ['Acadia', 'Sierra', 'Terrain', 'Yukon'],
+                            Honda: ['Accord', 'Civic', 'CR-V', 'HR-V', 'Odyssey', 'Passport', 'Pilot'],
+                            Hyundai: ['Accent', 'Elantra', 'Kona', 'Palisade', 'Santa Fe', 'Sonata', 'Tucson', 'Veloster'],
+                            Infiniti: ['Q50', 'QX50', 'QX60', 'QX80'],
+                            Jaguar: ['F-PACE', 'XE', 'XF', 'XJ'],
+                            Jeep: ['Cherokee', 'Compass', 'Gladiator', 'Grand Cherokee', 'Renegade', 'Wrangler'],
+                            Kia: ['Forte', 'Optima', 'Sorento', 'Soul', 'Sportage', 'Stinger'],
+                            LandRover: ['Discovery Sport', 'Range Rover Evoque', 'Range Rover Sport', 'Range Rover Velar'],
+                            Lexus: ['ES', 'GX', 'IS', 'NX', 'RX', 'UX'],
+                            Lincoln: ['Aviator', 'Corsair', 'MKZ', 'Nautilus', 'Navigator'],
+                            Mazda: ['CX-3', 'CX-5', 'CX-9', 'Mazda3', 'Mazda6', 'MX-5 Miata'],
+                            MercedesBenz: ['C-Class', 'E-Class', 'GLA', 'GLC', 'GLE', 'GLS', 'S-Class'],
+                            Mini: ['Clubman', 'Cooper', 'Countryman', 'Hardtop'],
+                            Mitsubishi: ['Eclipse Cross', 'Outlander', 'Outlander Sport'],
+                            Nissan: ['Altima', 'Armada', 'Kicks', 'Maxima', 'Murano', 'Pathfinder', 'Rogue', 'Rogue Sport', 'Sentra', 'Titan', 'Versa'],
+                            Porsche: ['911', 'Cayenne', 'Macan', 'Panamera'],
+                            Ram: ['1500', '2500', '3500', 'ProMaster'],
+                            Subaru: ['Ascent', 'Crosstrek', 'Forester', 'Impreza', 'Legacy', 'Outback'],
+                            Tesla: ['Model 3', 'Model S', 'Model X', 'Model Y'],
+                            Toyota: ['4Runner', 'Avalon', 'C-HR', 'Camry', 'Corolla', 'Highlander', 'Land Cruiser', 'Prius', 'RAV4', 'Sienna', 'Tacoma', 'Tundra', 'Yaris'],
+                            Volkswagen: ['Arteon', 'Atlas', 'Golf', 'Jetta', 'Passat', 'Tiguan'],
+                            Volvo: ['S60', 'S90', 'V60', 'V90', 'XC40', 'XC60', 'XC90']
+                        };
+
+                        makeSelect.addEventListener('change', (e) => {
+                            modelSelect.innerHTML = '';
+                            const models = carModels[e.target.value];
+                            models.forEach(model => {
+                                const option = document.createElement('option');
+                                option.value = model;
+                                option.text = model;
+                                modelSelect.appendChild(option);
+                            });
+                        });
+                </script>
             </div>
             <div class="car-year">
                 <label for="car-title">Year*</label>

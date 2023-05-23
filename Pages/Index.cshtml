@@ -15,6 +15,7 @@
     }
     int c = 0;
     string status="out of stock";
+    int num=0;
 
 }
 
@@ -23,25 +24,29 @@
 <div class="containerIndex">
     <!-- Start Lnading -->
     <div class="landing bn-flex m-20">
+            @{
+                Random rand = new Random();
+                if (Model.dt.Rows[num]["Vehicle_No"] != null)
+                {
+                    num = rand.Next(0, Model.Landing_random-2);
+                }
 
-        <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[Model.Landing_random]["Vehicle_No"]">
-            <div class="img-box mr-60 p-relative txt-c-mobile">
-            <i class=" fas fa-angle-left change-background fa-2x p-absolute"></i>
-
-
-                <img class="rad-20 mr-10 ml-20" src="@Model.dt.Rows[Model.Landing_random]["C_image1"]" alt="">
-            <i class=" fas fa-angle-right change-background fa-2x p-absolute"></i>
-            <div class="center-flex mt-10 ml-20-mobile">
-                <span class="rad-half border mr-10 "></span>
-                <span class="active bg-blue mr-10 rad-half "></span>
-                <span class="rad-half border mr-10 "></span>
-            </div>
-        </div>
-
-        </a>
+            }
+            <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[num]["Vehicle_No"]">
+                <div class="img-box mr-60 p-relative txt-c-mobile">
+                    <i class="fas fa-angle-left change-background fa-2x p-absolute"></i>
+                    <img class="rad-20 mr-10 ml-20" src="@Model.dt.Rows[num]["C_image1"]" alt="Loading">
+                    <i class="fas fa-angle-right change-background fa-2x p-absolute"></i>
+                    <div class="center-flex mt-10 ml-20-mobile">
+                        <span class="rad-half border mr-10"></span>
+                        <span class="active bg-blue mr-10 rad-half"></span>
+                        <span class="rad-half border mr-10"></span>
+                    </div>
+                </div>
+            </a>
         <div class="landing-p ml-20 txt-c-mobile">
             <h2 class="c-blue fs-15">Label goes Here</h2>
-            <span class="fs-50 d-block">3rbyat Top El top</span>
+            <span class="fs-50 d-block">Ride With The Pride</span>
             <p class="L-H">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veniam aperiam laudantium reprehenderit, minus saepe provident dignissimos corrupti dolores totam autem eligendi quia! In ratione nulla magni hic modi veritatis!
             </p>
@@ -144,7 +149,7 @@
         @while(c < 4 && c < Model.dt.Rows.Count){
             Random Rnumber = new Random();
             int Rnum = Rnumber.Next(c,Model.dt.Rows.Count);
-            <div class="Post-Card">
+            <div class="Post-Card" style="min-width:210px;">
                     <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[Rnum]["Vehicle_No"]"> <img src="@Model.dt.Rows[Rnum]["C_image1"]" alt="Car Image"> </a>
                     <p style="font-weight:bold;">@Model.dt.Rows[Rnum]["Brand"] <span>@Model.dt.Rows[Rnum]["Year_Model"]</span></p>
                 <p class="sec-color">@Model.dt.Rows[Rnum]["CarDescription"]</p>
@@ -177,43 +182,7 @@
 </div>
     <!-- End Best Offer -->
     <!-- Start Event -->
-    <div class="event-father">
-        <div class="event">
-
-            <div><i class=" fas fa-angle-left c-blue change-background fa-2x p-absolute"></i></div>
-            <div class="big-img">
-                <img class="p-relative" src="images/image-car-2.jpeg" alt="">
-                <a href="#">
-                    <button class="p-10 rad-25 c-white p-absolute">Pre-order Now</button>
-                </a>
-                <div class="timer">
-                    <span class="timer-box">
-                        <span class="timer-days">23</span>
-                        <br>
-                        Days
-                    </span>
-                    <span class="timer-box">
-                        <span class="timer-hours">23</span>
-                        <br>
-                        Hr
-                    </span>
-                    <span class="timer-box">
-                        <span class="timer-mins">23</span>
-                        <br>
-                        Min
-                    </span>
-                    <span class="timer-box">
-                        <span class="timer-seconds">23</span>
-                        <br>
-                        Sc
-                    </span>
-                </div>
-
-            </div>
-            <div><i class=" fas fa-angle-right c-blue change-background fa-2x p-absolute"></i></div>
-        </div>
-
-    </div>
+    
     <!-- End Event -->
     <!-- Start Brands logo -->
     <div class="logo">

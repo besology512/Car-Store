@@ -3,7 +3,7 @@
 @{
 }
 @{
-    
+
     if (HttpContext.Session.GetInt32("User_Type") == null)
     {
         Layout = "_Layout";
@@ -16,30 +16,44 @@
     {
         Layout = "adminlay";
     }
+    string stat_color = "";
 }
+<link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
+<link rel="stylesheet" href="./css/wishlist.css" asp-append-version="true">
 
-<link rel="stylesheet" href="./css/wishlist.css">
-<div class="content">
-<section class="full current_page d-flex page_margin">
-    <a href=""><span class="Home"> Home / </span></a> <!-- Link it to the home page-->
-    <span class="Page">&nbsp; My Orders</span>
-</section>
 <!-- End Current Page Section-->
 <!-- Start Wishlist Section-->
-    @for(int i = 0; i<Model.DataTable.Rows.Count; i++){
-    <section class="wishlist page_margin">
-        <div class="car-image">
-                <img src="@Model.DataTable.Rows[i]["C_image1"]" alt="car1">
-        </div>
-        <div class="car-description">
-                <h4>@Model.DataTable.Rows[i]["Brand"] @Model.DataTable.Rows[i]["name"]</h4>
-            <div class="car-color">
-                Color:
-                    <span>@Model.DataTable.Rows[i]["Color"]</span>
+<h2 style="text-align:center;">Your Orders</h2>
+<div class="content all-page-content-c">
+    
+    <div class="posts">
+        @for (int i = 0; i < Model.DataTable.Rows.Count; i++)
+        {
+            <div class="Post-Card">
+                <div class="car-image">
+                    <img src="@Model.DataTable.Rows[i]["C_image1"]" alt="car1">
+                </div>
+                <div class="car-description">
+                    <h4>@Model.DataTable.Rows[i]["Brand"] @Model.DataTable.Rows[i]["name"]</h4>
+                    <p class="double-items" style="align-items:center;">Color: <span>@Model.DataTable.Rows[i]["Color"]</span></p>
+                    @if ((string)Model.DataTable.Rows[i]["order_status"] == "Delivering")
+                    {
+                        stat_color = "#ffc107";
+                    }
+                    else if ((string)Model.DataTable.Rows[i]["order_status"] == "Delivered")
+                    {
+                        stat_color = "#198754";
+                    }
+                    else if ((string)Model.DataTable.Rows[i]["order_status"] == "Processing")
+                    {
+                        stat_color = "#dc3545";
+                    }
+                    <p class="double-items" style="color: @stat_color; text-align: center; font-weight: bold;">
+                        <span style="font-weight:bold; color:black">status</span> @Model.DataTable.Rows[i]["order_status"]
+                    </p>
+                </div>
             </div>
-                <div class="Status"> Status: @Model.DataTable.Rows[i]["order_status"]</div>
-        </div>
-    </section>
-    <hr class="hr-wishlist">
-    }
+
+        }
+    </div>
 </div>

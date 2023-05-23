@@ -78,12 +78,31 @@
                         <a style="color:black; padding-right:10px" asp-page="/WishList"><i class="fa-solid mr-10 p-5 fa-heart bg-white rad-half"></i></a>
                         <a style="color:black; padding-right:10px" asp-page="/CartPage"><i class="fa-solid mr-10 p-5 fa-cart-shopping bg-white rad-half"></i></a>
                         <a style="color:black; padding-right:10px; padding-top:3px;" asp-page="/Add_Car"><span>Sell car</span></a>
-                        <form method="post">
+                        <form method="post" id="logout-from">
                             <input asp-page-handler="Logout" type="submit" style="color:black;background-color:transparent; cursor:pointer;border:none; padding-right:10px; padding-top:3px;" value="logout" />
                         </form>
                     </div>
                 </div>
-                <i class="fas fa-bars toggle-menu my-i fs-0 c-white mr-10 "></i>
+                <i class="fas fa-bars my-i toggle-menu fs-0 c-white mr-10" onclick="toggleMenu()"></i>
+                <div id="phoneNav" class="phoneNav">
+                    <a asp-page="/Add_Car">Sell Car</a>
+                    <a asp-page="/FilterPage">Discover Cars</a>
+                    <a asp-page="/ServiceCenters">Services Center</a>
+                    <a asp-page="/profile">Profile</a>
+                    <a asp-page="/CartPage">Cart</a>
+                    <a asp-page="/WishList">WishList</a>
+                    <input type="submit" form="logout-from" asp-page-handler="Logout" style="border:none; background-color:transparent;" value="Logout" />
+                </div>
+                <script>
+                    function toggleMenu() {
+                        var menu = document.getElementById("phoneNav");
+                        if (menu.style.display === "block") {
+                            menu.style.display = "none";
+                        } else {
+                            menu.style.display = "block";
+                        }
+                    }
+                </script>
             </nav>
             <div class="in-mobile ">
                 <ul class="bg-ccc Trs-05 m-0 ml--20">
