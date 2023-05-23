@@ -23,11 +23,15 @@
 <div class = "content">
 <!-- end  -->
 <!-- Start Best Offer -->
+        <div class="filter_button" onclick="toggleWrapper()">
+            <img src="~/images/filter.png" style="width:30px" />
+            <h3>Filter Results</h3>
+        </div>
 <div class="main-container d-flex ">
     <div class="filter">
         <!-- Start Filter -->
             <form method="post" id="filter">
-        <div class="wrapper">
+                    <div class="wrapper hidden">
             <div class="wd-wpb">
                 <div class="widget widget sidebar-widget woocommerce widget_price_filter">
                     <h5 class="widget-title">Filter by price</h5>
@@ -183,7 +187,7 @@
                         {
                             <div class="d-flex">
                                 <i class="fa-solid fa-check fa-fw yes fs-20  c-blue mr-5"></i>
-                                <span class="fw-bold">Out of Stock</span>
+                                <span class="fw-bold">In Stock</span>
                             </div>                   
                         }
                         

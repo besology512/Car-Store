@@ -23,7 +23,6 @@ namespace Car_Store.Pages
            
         }
         public void OnPostDelete() {
-            Console.WriteLine("Ahmed");
         }
 
         public IActionResult OnPostLogout()

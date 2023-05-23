@@ -103,7 +103,6 @@ namespace Car_Store.Pages
             Customer.pass = Password2;
             string passcl = Customer.getPasswordCl();
             string passEmp = Customer.getPasswordEmp();
-            Console.WriteLine(passEmp);
             if (passcl == passEmp && passEmp == "notFound")
             {
                 return Page();

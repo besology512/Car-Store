@@ -14,7 +14,6 @@ namespace Car_Store.models
     public class DB
     {
         SqlConnection con;
-
         public DB()
         {
 
@@ -236,7 +235,12 @@ namespace Car_Store.models
             string q = "select BRANCH.BranchID from BRANCH";
             return Readtable(q);
         }
+        public object getAdminName(int ID)
+        {
+            string q = "SELECT Fname, Lname FROM Employee WHERE ID = " + ID;
 
+            return Readtable(q);
+        }
         public object getUser(int ID)
         {
             string q = "SELECT Client_FName, Client_LName ,Client_phone ,bdate,Mail,pass, Client_image FROM CLIENT WHERE ClientID = " + ID;
@@ -317,6 +321,7 @@ namespace Car_Store.models
 
         public List<vehicle> GetVehicles(
             List<string> Seats,
+            string Search = "",
             string car_status = "",
             string showroom = "",
             string Brand = "",
@@ -328,7 +333,7 @@ namespace Car_Store.models
             )
         {
             string Q = "SELECT VEHICLE.Vehicle_No,name,rating,Car_Status,COALESCE(NEW_VEHICLE.count, USED_VEHICLE.count) as count,SHOWROOM,Brand,CC_Rnage, Color, Year_Model, Gearing, Body_Style, Engine_Capacity, hourse_power, maximum_speed, Warranty_years, Warranty_Kilometers, acceleration, speeds, Fuel, Liter_per_100KM, width, height, Trunk_Size, Seats, Traction_Type, Cylinders, CarDescription, Tank_Capacity, C_image1, C_image2, C_image3, visibality,COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) AS Price, Kilometers, Posting_Date, COALESCE(NEW_VEHICLE.Class,USED_VEHICLE.Class)AS Class ,CITY FROM VEHICLE LEFT JOIN NEW_VEHICLE ON VEHICLE.Vehicle_No = NEW_VEHICLE.Vehicle_ID LEFT JOIN USED_VEHICLE  ON VEHICLE.Vehicle_No = USED_VEHICLE.Vehicle_ID ";
-
+            
             if (Brand != "" && color != "" && gearing != "" && status != "")
             {
                 Q +=
@@ -404,6 +409,18 @@ namespace Car_Store.models
             else if (status != "")
             {
                 Q += "where Car_Status = '" + status + "' " + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
+            }else if (Search != "")
+            {
+                Console.WriteLine("HEREEEEEEEEEEEEEEEEEEEEEEEEE");
+                Q += "where brand like '" +
+                    Search +
+                    "' or name like '" +
+                    Search +
+                    "' or Car_Status like '" +
+                    Search +
+                    "' or Color like '" +
+                    Search +
+                    "'" + " and COALESCE(NEW_VEHICLE.Price, USED_VEHICLE.Price) BETWEEN " + minPrice + " AND " + maxPrice;
             }
             else
             {
@@ -423,7 +440,6 @@ namespace Car_Store.models
 
             Q += " AND visibality <> 0";
             Console.WriteLine(Q);
-
             DataTable table = (DataTable)Readtable(Q);
             List<vehicle> returned = new List<vehicle>();
             foreach (DataRow row in table.Rows)

@@ -13,6 +13,8 @@ namespace Car_Store.Pages
 {
     public class FilterPageModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public string search { get; set; }
         [BindProperty]
         public List<string> Seats { get; set; }
         [BindProperty] public DataTable NumberOfSeatsAvailable { get; set; }
@@ -73,12 +75,15 @@ namespace Car_Store.Pages
 
         public void OnGet()
         {
+            bool searchedBefore = false;
+            Console.WriteLine("here with" + search); //it worked
             NumberOfSeatsAvailable = db.GetAvailableFilters("Seats");
             Brands = db.GetAvailableFilters("Brands");
             gearing = db.GetAvailableFilters("gearing");
             Colors = db.GetAvailableFilters("Colors");
             warranty_years = db.GetAvailableFilters("warranty years");
             warranty_kilometers = db.GetAvailableFilters("warranty kilometers");
+            
             if (CheckedBrands.Count != 0 && CheckedColors.Count != 0 && Auto!=Manual)
             {
                 PageCars = new List<vehicle>();
@@ -172,6 +177,10 @@ namespace Car_Store.Pages
                 {
                     PageCars = db.GetVehicles(Seats, minPrice: MinPrice, maxPrice: MaxPrice, gearing: "Manual", status: status);
                 }
+            }else if (!(search == null) &&(selectedMAX != MaxPrice || selectedMIN != MinPrice))
+            {                
+                Console.WriteLine("here" + search + "here");
+                PageCars = db.GetVehicles(Seats, Search: search, minPrice: MinPrice, maxPrice: MaxPrice, status: status);
             }
             else if(selectedMAX != MaxPrice || selectedMIN != MinPrice)
             {
@@ -219,13 +228,11 @@ namespace Car_Store.Pages
                 status = "Used";
             }
             else { status  = ""; }
-            Console.WriteLine(NumberOfSeatsAvailable.Rows.Count);
 
             for (int i = 0; i < NumberOfSeatsAvailable.Rows.Count; i++)
             {
                 if (Request.Form["seat_" + NumberOfSeatsAvailable.Rows[i][0].ToString()] == "on")
                 {
-                    Console.WriteLine(NumberOfSeatsAvailable.Rows[i][0]);
                     Seats.Add(NumberOfSeatsAvailable.Rows[i][0].ToString());
                 }
             }
