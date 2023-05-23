@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Mydata = System.Data
+@using MyDB = Car_Store.models
+@{
+    int pendingPostsNo;
+    MyDB.DB db = new MyDB.DB();
+    pendingPostsNo = db.getNoPendingPosts();
+}
+
+
+
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -88,7 +98,7 @@
                         <div class="nav__dropdown">
                             <a href="#" class="nav__link">
                                 <i class='bx bx-bell nav__icon'></i>
-                                <span class="nav__name">Notifications</span>
+                                <span class="nav__name">Notifications</span> @if(pendingPostsNo > 0){<span class="circle"></span>}
                                 <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                             </a>
 

@@ -359,3 +359,11 @@ img {
     padding: 20px;
     box-sizing: border-box;
 }
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fa3e3e;
+    margin-left: 8px;
+}
