@@ -105,8 +105,7 @@ namespace Car_Store.models
         public int getTopVehicleId()
         {
             string query = "SELECT IDENT_CURRENT('vehicle') AS CurrentIdentityValue";
-            int t = (int)getsinglevalue(query);
-            return t;
+            return Convert.ToInt32(getsinglevalue(query));
         }
         public void insert_CLIENT_POSTS(int clientid, int vehicleId)
 
@@ -136,8 +135,7 @@ namespace Car_Store.models
         public int get_all_cars_count()
         {
             string q = "select count(*) as car_count from VEHICLE ";
-            int t = (int)getsinglevalue(q);
-            return t;
+            return Convert.ToInt32(getsinglevalue(q));
         }
         public void insert_emp(string Username,string Fname,string Mname,string Lname, string password,string SSN,string Bdate,string Gender, int salary,int super_id , int usertype, string jobType,int branch,int deparmentID)
         {
@@ -562,6 +560,22 @@ namespace Car_Store.models
                 con.Close();
             }
             catch (SqlException) { con.Close(); }
+        }
+
+        public int getNoPendingPosts()
+        { //to return any data type
+            string query = "select count(*) from PENDING_POSTS";
+            int t = 0;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                t = (int)sqlCommand.ExecuteScalar();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+
+            return t;
         }
 
 

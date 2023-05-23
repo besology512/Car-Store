@@ -28,5 +28,12 @@ namespace Car_Store.Pages
             My_DB.update_order_status(OrderStatus, OrderId);
             return RedirectToPage("/DisplayOrderAdmin");
         }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
     }
 }
