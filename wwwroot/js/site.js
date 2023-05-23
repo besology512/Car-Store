@@ -98,3 +98,12 @@ function toggleCheckboxes(elem, otherCheckboxId) {
     }
     elem.checked != elem.checked;
 }
+
+function toggleWrapper() {
+    var wrapper = document.querySelector('.wrapper');
+    if (wrapper.classList.contains('hidden')) {
+        wrapper.classList.remove('hidden');
+    } else {
+        wrapper.classList.add('hidden');
+    }
+}

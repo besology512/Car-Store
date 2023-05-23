@@ -14,12 +14,20 @@
         Layout = "adminlay";
     }
     int c = 0;
-    string status="out of stock";
-    int num=0;
+    string status = "out of stock";
+    int num = 0;
 
 }
 
 <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true">
+<form method="post">
+    <div class="head bn-flex mt-5 mr-20" style="justify-content:center">
+        <div class="search">
+            <button asp-page-handler="Search"><i class="fa-regular fa-magnifying-glass p-absloute c-grey"></i> <span>Search</span></button>
+            <input  name = "search" type="text" class="border rad-6 c-grey" placeholder="Search">
+        </div>
+    </div>
+</form>
 <div class="content">
 <div class="containerIndex">
     <!-- Start Lnading -->
