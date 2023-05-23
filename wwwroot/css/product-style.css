@@ -134,10 +134,11 @@ body {
 }
 .landing .container .product .discription .price-button{
     display: flex;
+    align-items:center;
     justify-content: space-between;
 }
 .landing .container .price-button p{
-    margin-top: 0px;
+/*    margin-top: 0px;*/
     font-size:25px;
     font-weight:700;
     
@@ -148,7 +149,7 @@ body {
     border-radius: 6px;
     color: white;
     border: var(--maincolor);
-    padding: 19px 9px;
+    padding: 5px 9px;
     font-size: 26px;
     text-align: center;
     cursor: pointer;
