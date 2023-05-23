@@ -30,6 +30,13 @@ namespace Car_Store.Pages
             DATABASE.Delete_Car_by_admin(vehcId);
             return RedirectToPage("/DisplayAllCars");
         }
-        
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Remove("User_Type");
+            HttpContext.Session.Remove("User_ID");
+            return RedirectToPage("/Index");
+        }
+
     }
 }
