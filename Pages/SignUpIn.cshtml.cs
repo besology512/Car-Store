@@ -18,13 +18,19 @@ namespace Car_Store.Pages
 
         public EmailDto request { get; set; }
         public IEmailService service { get; set; }
+        public int check { get; set; }
 
         public DataTable dt { get; set; }
 
-        public SignUpIn(Client Customer, IEmailService service)
+        [BindProperty]
+        public string alertmessage { get; set; }
+        private readonly DB my_DB;
+
+        public SignUpIn(Client Customer, IEmailService service,DB db)
         {
             this.Customer = Customer;
             this.service = service;
+            my_DB = db;
         }
 
 
@@ -78,7 +84,13 @@ namespace Car_Store.Pages
                     Console.WriteLine(e.ToString());
                 }
 
-
+                
+                check = my_DB.check_user_name(Customer.Client_Username,Customer.Mail);
+                if(check > 0)
+                {
+                    alertmessage = "your username or Email is alredy registered! ";
+                    return Page();
+                }
 
                 Customer.insert();
                 return RedirectToPage("/Index");
