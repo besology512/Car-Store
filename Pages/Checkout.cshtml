@@ -37,7 +37,7 @@
         }
     }
 }
-
+<link rel="stylesheet" href="~/css/CustomerPostedCar.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true">
 <div class="content">
@@ -60,14 +60,18 @@
                                 <img src="@Model.dtCarNew.Rows[i][3]" alt="car image">
                             </div>
                             <div class="item-description">
-                                <h3>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
+                                <div class="double-items">
+                                    <h3>@Model.dtCarNew.Rows[i][0] @Model.dtCarNew.Rows[i][1]</h3>
+                                    <p class="main-color"> @Model.dtCarNew.Rows[i][5] $</p>
+                                </div>
+                                
                                 <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarNew.Rows[i][2]</span></div>
                                 <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarNew.Rows[i][4]</span></div>
                                 <div class="icons">
                                     <div class="remove">
                                     </div>
                                 </div>
-                                <div class="price"> @Model.dtCarNew.Rows[i][5] $</div>
+                                
                             </div>
                         </div>
                     }
@@ -82,12 +86,15 @@
                                 <img src="@Model.dtCarUsed.Rows[i][3]" alt="car image">
                             </div>
                             <div class="item-description">
-                                <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>
+                                <div class="double-items">
+                                    <h3>@Model.dtCarUsed.Rows[i][0] @Model.dtCarUsed.Rows[i][1]</h3>
+                                    <p class="main-color"> @Model.dtCarUsed.Rows[i][5] $</p>
+                                </div>
                                 <div class="color-info"><span class="color">Color:</span> <span>@Model.dtCarUsed.Rows[i][2]</span></div>
                                 <div class="class-info"><span class="class">Year Model:</span> <span>@Model.dtCarUsed.Rows[i][4]</span></div>
                                 <div class="icons">
                                 </div>
-                                <div class="price"> @Model.dtCarUsed.Rows[i][5] $</div>
+                                
                             </div>
                         </div>
                     }

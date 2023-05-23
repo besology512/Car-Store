@@ -44,27 +44,71 @@
                 </div>
                 <!-- End Research -->
                 <!-- Start Navbar -->
-                <nav class="w-full bn-flex">
-                    <div class="all-ctg ml-20 d-flex">
-                        <div class="details Trs-05 rad-20 bg-white p-relative mt-10 mb-10 ml-40">
+            <nav  class="w-full bn-flex">
+                <div  class="all-ctg  d-flex">
+                        <div   class="details Trs-05 rad-20 bg-white p-relative mt-10 mb-10 ml-40" onclick="toggleeMenu()">
                             <div class="burgra bg-blue rad-half p-absolute">
-                                <span class="bg-white Trs-03"></span>
-                                <span class="bg-white Trs-03"></span>
-                                <span class="bg-white Trs-03"></span>
-                                <ul id="dropMenu" class="bg-ccc Trs-03 pt-10 pb-5 pl-10 pr-10 w-110 rad-10 mt-35">
-                                    <li class="pt-10 Trs-03 pb-10 border-b">
-                                        <a class="c-black" href="#services">services</a>
+                                <span id="child1" class="bg-white Trs-03"></span>
+                                <span id="child2" class="bg-white Trs-03"></span>
+                                <span id="child3" class="bg-white Trs-03"></span>
+                                <ul id="dropMenu" class="bg-ccc Trs-03 pt-10 pb-5 pl-10 pr-10 w-110 rad-10 mt-35" style="width:158px;">
+                                    <li id="p-li" class="pt-10 Trs-03 pb-10 border-b">
+                                        <a style="color:black;" asp-page="/SignUpIn">Sign up</a>
                                     </li>
-                                    <li class="pt-10 Trs-03 pb-10 border-b">
-                                        <a class="c-black" href="#best-offer">best-offer</a>
+                                    <li id="p-li" class="pt-10 Trs-03 pb-10 border-b">
+                                        <a style="color:black;" asp-page="/FilterPage">Discover Cars</a>
                                     </li>
-                                    <li class="pt-10 Trs-03 pb-10">
-                                        <a class="c-black" href="#footer">footer</a>
+                                    <li id="p-li" class="pt-10 Trs-03 pb-10">
+                                        <a style="color:black;" asp-page="/ServiceCenters">Services Center</a>
                                     </li>
                                 </ul>
                             </div>
                             <p class="c-black pl-10 m-10 ml-30 fs-14 fw-bold">All Categores</p>
                         </div>
+                    <script>
+                        function toggleeMenu() {
+                            var menu = document.getElementById("dropMenu");
+                            var child1 = document.getElementById("child1");
+                            var child2 = document.getElementById("child2");
+                            var child3 = document.getElementById("child3");
+                            var Lip = document.getElementById("p-li")
+
+                            if (menu.style.transform === "translate(-220px)") {
+                                menu.style.transform = "translate(0)";
+                                menu.style.overflow = "visible";
+                                child1.style.transform = 'rotate(80deg)';
+                                child1.style.top = '12px';
+                                child1.style.width = '25px';
+                                child1.style.left = '-2px';
+                                child2.style.top = '15px';
+                                child2.style.left = '8px';
+                                child2.style.width = '20px';
+                                child2.style.transform = 'rotate(-60deg)';
+                                child3.style.transform = 'rotate(45deg)';
+                                child3.style.left = '-5px';
+                                child3.style.top = '16px';
+                                child3.style.width = '20px';
+                                menu.style.zIndex = '2';
+                                Lip.style.zIndex = '2';
+                                
+                            } else {
+                                menu.style.transform = "translate(-220px)";
+                                menu.style.overflow = "hidden";
+                                child1.style.transform = '';
+                                child1.style.top = '';
+                                child1.style.left = '';
+                                child1.style.width = '';
+                                child2.style.transform = '';
+                                child2.style.top = '7px';
+                                child2.style.left = '';
+                                child2.style.width = '';
+                                child3.style.transform = '';
+                                child3.style.top = '14px';
+                                child3.style.left = '';
+                                child3.style.width = '';
+                            }
+                        }
+                    </script>
                         
                         <div class="center-flex c-black fw-bold fs-15">
                         <a href="/FilterPage" class="pl-10 Trs-05 c-black pr-10">Discover Cars!</a>
@@ -87,24 +131,9 @@
        
                         </div>
                     </div>
-                <i class="fas fa-bars my-i toggle-menu fs-0 c-white mr-10" onclick="toggleMenu()"></i>
-                <div id="phoneNav" class="phoneNav">
-                    <a asp-page="/SignUpIn">Sign up</a>
-                    <a asp-page="/FilterPage">Discover Cars</a>
-                    <a asp-page="/ServiceCenters">Services Center</a>
+               
                     
-                </div>
-                    
-                <script>
-                    function toggleMenu() {
-                        var menu = document.getElementById("phoneNav");
-                        if (menu.style.display === "block") {
-                            menu.style.display = "none";
-                        } else {
-                            menu.style.display = "block";
-                        }
-                    }
-                </script>
+                
 
                 </nav>
                 <div class="in-mobile ">

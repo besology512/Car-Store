@@ -34,9 +34,9 @@
             }
             <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[num]["Vehicle_No"]">
                 <div class="img-box mr-60 p-relative txt-c-mobile">
-                    <i class="fas fa-angle-left change-background fa-2x p-absolute"></i>
+                    <i style="z-index:-1" class="fas fa-angle-left change-background fa-2x p-absolute"></i>
                     <img class="rad-20 mr-10 ml-20" src="@Model.dt.Rows[num]["C_image1"]" alt="Loading">
-                    <i class="fas fa-angle-right change-background fa-2x p-absolute"></i>
+                    <i style="z-index:-1" class="fas fa-angle-right change-background fa-2x p-absolute"></i>
                     <div class="center-flex mt-10 ml-20-mobile">
                         <span class="rad-half border mr-10"></span>
                         <span class="active bg-blue mr-10 rad-half"></span>
