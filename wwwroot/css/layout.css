@@ -152,37 +152,42 @@ a {
 /* Start Navbar */
 nav {
     background-color: #0077ff73;
+    height:45px;
 }
 
 nav .all-ctg {
     margin-right: 100px;
 }
-@media(min-width:767px) and (max-width:1068px){
+/*@media(min-width:767px) and (max-width:1068px){
     nav .all-ctg{
         margin-right:6px !important;
     }
+}*/
+@media(min-width:910px){
+    .all-ctg{
+        margin-left:47px;
+    }
 }
 
-
+/*start nav phone*/
 nav .all-ctg .details {
     background-image: linear-gradient( to right,#0075ff 50%, white 50% );
     background-size: 200% 100%;
     background-position: right bottom;
     color: var(--blue-color);
     cursor: pointer;
+    display:none;
 }
 
-@media (max-width:767px) {
+@media (max-width:910px) {
     nav .all-ctg .details {
         margin: 5px 5px 5px -15px;
         width: 160px;
+        display: block;
+        margin: 4px !important
     }
 }
-@media(min-width:767px) and (max-width:1068px){
-    nav .all-ctg .details {
-        margin:4px !important;
-    }
-}
+
 
 nav .all-ctg .details:hover {
     background-position: left bottom;
@@ -203,17 +208,14 @@ nav .all-ctg .details .burgra span {
 }
 
 nav .all-ctg .details .burgra ul {
-    translate: -220px;
+    transform:translate(-220px);
     overflow: hidden;
     transition: .3s;
     z-index: 2;
     position: relative;
 }
 
-nav .all-ctg .details:hover .burgra ul {
-    translate: 0;
-    overflow: visible;
-}
+
 
 nav .all-ctg .details .burgra ul li:hover {
     padding-left: 8px;
@@ -235,7 +237,7 @@ nav .all-ctg .details .burgra span:nth-child(3) {
     top: 14px;
 }
 
-nav .all-ctg .details:hover .burgra span:nth-child(1) {
+/*nav .all-ctg .details:hover .burgra span:nth-child(1) {
     rotate: 80deg;
     top: 12px;
     width: 25px;
@@ -255,7 +257,8 @@ nav .all-ctg .details:hover .burgra span:nth-child(3) {
     top: 16px;
     width: 20px;
 }
-
+*/
+/*end nav phone*/
 
 nav .all-ctg .center-flex a:hover,
 nav .other span:hover {

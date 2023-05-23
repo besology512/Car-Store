@@ -36,7 +36,7 @@
                 <i class="fa-sharp fa-solid fa-star"></i>
             </div>
             <div class="product">
-                <div class="image">
+                <div class="image" style="z-index:-1;">
                             <img src="@Model.DT_N.Rows[0]["C_image1"]" alt="" />
                     <span>new</span>
                 </div>
@@ -48,8 +48,8 @@
                     <div class="price-button">
                                 <p class="number">@Model.DT_N.Rows[0]["Price"]$</p> <!--Price -->
                         <form method="post">
-                        <input name="PID" value="@Model.id" type="hidden" />
-                        <button type ="submit" asp-page-handler="AddCarToCart" >Add to cart</button>
+                            <input name="PID" value="@Model.id" type="hidden" />
+                            <button type ="submit" asp-page-handler="AddCarToCart" >Add to cart</button>
                         </form>
                     </div>
                 </div>
