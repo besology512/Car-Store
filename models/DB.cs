@@ -48,7 +48,7 @@ namespace Car_Store.models
             /*            string date1 = date.ToString();
             */
 
-            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "'images/facebook-default-no-profile-pic.jpg'" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "','images/facebook-default-no-profile-pic.jpg','" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -112,6 +112,11 @@ namespace Car_Store.models
             string q = "INSERT INTO Client_Posts VALUES(" + clientid + " , " + vehicleId + ")";
             excute_nonQuery(q);
         }
+        public int check_user_name(string uname,string mail)
+        {
+            string q = "select count(*) as user_countt from CLIENT where Client_Username = '" + uname + "' or CLIENT.Mail = '" + mail + "'";
+            return Convert.ToInt32(getsinglevalue(q));
+        }
 
         public void delet_CLIENT_POST(int vecId, int ClieTnID)
         {
@@ -134,7 +139,7 @@ namespace Car_Store.models
         public int get_all_cars_count()
         {
             string q = "select count(*) as car_count from VEHICLE ";
-            return Convert.ToInt32((getsinglevalue(q)));
+            return Convert.ToInt32(getsinglevalue(q));
         }
         public void insert_emp(string Username,string Fname,string Mname,string Lname, string password,string SSN,string Bdate,string Gender, int salary,int super_id , int usertype, string jobType,int branch,int deparmentID)
         {
@@ -576,6 +581,22 @@ namespace Car_Store.models
                 con.Close();
             }
             catch (SqlException) { con.Close(); }
+        }
+
+        public int getNoPendingPosts()
+        { //to return any data type
+            string query = "select count(*) from PENDING_POSTS";
+            int t = 0;
+            try
+            {
+                con.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, con);
+                t = (int)sqlCommand.ExecuteScalar();
+                con.Close();
+            }
+            catch (SqlException) { con.Close(); }
+
+            return t;
         }
 
 

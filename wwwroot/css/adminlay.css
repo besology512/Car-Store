@@ -269,6 +269,13 @@ img {
     }
 }
 
+
+@media (max-width:710px) {
+    .footer-box-2, .footer-box-3 {
+        display: none;
+    }
+}
+
 @media screen and (min-width: 768px) {
     body {
         padding: 1rem 3rem 0 6rem;
@@ -352,4 +359,12 @@ img {
     min-height: calc(100vh - (20vh));
     padding: 20px;
     box-sizing: border-box;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fa3e3e;
+    margin-left: 8px;
 }

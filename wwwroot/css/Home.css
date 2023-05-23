@@ -180,6 +180,12 @@
   height: 144px !important;
   object-fit: cover !important;
   border-radius:10px !important;
+  transition: transform 0.5s, filter 0.5s;
+}
+
+.posts .Post-Card img:hover{
+    transform: scale(1.2);
+    filter: brightness(70%);
 }
 
 .Post-Card h2 {

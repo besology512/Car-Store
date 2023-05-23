@@ -361,10 +361,11 @@ nav i:last-child {
 }
 
 .cart .items .item-box .item .car-img img {
-    height: 100%;
+    height: 144px;
     width: 100%;
     border-radius: 15px;
     object-fit:cover;
+
 }
 
 .cart .items .item-box .item .item-description {

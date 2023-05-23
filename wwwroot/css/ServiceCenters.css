@@ -88,13 +88,13 @@ padding:20px 10px;
 margin-bottom: 10px;
 }
 
-.relevent .service-center-box
-{
-    display:flex;
-    background-color: #fff;
-    border-radius: 25px ;
-    margin-bottom: 20px;
-}
+.relevent .service-center-box {
+display: flex;
+background-color: #fff;
+border-radius: 25px;
+margin-bottom: 20px;
+padding-bottom: 20px;
+ }
 
 
 .relevent .service-center-box .center-map

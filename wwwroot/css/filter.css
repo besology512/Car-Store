@@ -824,6 +824,7 @@ input[type="range"]:active::-webkit-slider-thumb {
         height: 90%;
         width:90%;
         overflow: hidden;
+        z-index:-1;
     }
     .card_image img:hover {
         transform: scale(1.2);
