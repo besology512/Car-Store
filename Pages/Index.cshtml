@@ -35,14 +35,14 @@
 <div class="containerIndex">
     <!-- Start Lnading -->
     <div class="landing bn-flex m-20">
-            @{
+@*            @{
                 Random rand = new Random();
                 if (Model.dt.Rows[num]["Vehicle_No"] != null)
                 {
                     num = rand.Next(0, Model.Landing_random-2);
                 }
 
-            }
+            }*@
             <a asp-page="/ProductPage" asp-route-id="@Model.dt.Rows[num]["Vehicle_No"]">
                 <div class="img-box mr-60 p-relative txt-c-mobile">
                     <i style="z-index:-1" class="fas fa-angle-left change-background fa-2x p-absolute"></i>

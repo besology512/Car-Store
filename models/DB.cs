@@ -139,7 +139,7 @@ namespace Car_Store.models
         public int get_all_cars_count()
         {
             string q = "select count(*) as car_count from VEHICLE ";
-            return Convert.ToInt32(getsinglevalue(q));
+            return getsinglevalueInt(q);
         }
         public void insert_emp(string Username,string Fname,string Mname,string Lname, string password,string SSN,string Bdate,string Gender, int salary,int super_id , int usertype, string jobType,int branch,int deparmentID)
         {
@@ -544,6 +544,26 @@ namespace Car_Store.models
                 con.Close();
                 return ex;
             }
+        }
+
+        private int getsinglevalueInt(string Q)
+        {
+            DataTable dt = new DataTable();
+            int t = 0;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(Q, con);
+                t = Convert.ToInt32(cmd.ExecuteScalar());
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+            }
+
+            return t;
+
         }
 
         private object excute_nonQuery(string Q)
