@@ -7,6 +7,7 @@ using System.Data;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Car_Store.Services.EmailService;
+using System.Data.SqlClient;
 
 namespace Car_Store.Pages
 {
@@ -66,9 +67,19 @@ namespace Car_Store.Pages
                 Customer.Client_Username = UserName;
                 request = new EmailDto();
                 request.To = Email;
-                
 
-                service.SendEmail(request);
+
+                try
+                {
+                    service.SendEmail(request);
+                }
+                catch (Exception e) {
+
+                    Console.WriteLine(e.ToString());
+                }
+
+
+
                 Customer.insert();
                 return RedirectToPage("/Index");
             }

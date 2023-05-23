@@ -49,7 +49,7 @@ namespace Car_Store.models
             /*            string date1 = date.ToString();
             */
 
-            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "'images/facebook-default-no-profile-pic.jpg'" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
+            string query = "insert into CLIENT (Client_Username,Client_FName,Client_LName,Client_image,Client_phone,pass,bdate,Mail,UserType) values ('" + UserName + "','" + Fname + "', '" + Lname + "','images/facebook-default-no-profile-pic.jpg','" + phoneNumber + "', '" + pass + "', '" + date + "', '" + email + "', 0)";
             object type;
             try
             {
@@ -105,7 +105,8 @@ namespace Car_Store.models
         public int getTopVehicleId()
         {
             string query = "SELECT IDENT_CURRENT('vehicle') AS CurrentIdentityValue";
-            return Convert.ToInt32(getsinglevalue(query));
+            int t = (int)getsinglevalue(query);
+            return t;
         }
         public void insert_CLIENT_POSTS(int clientid, int vehicleId)
 
@@ -135,7 +136,8 @@ namespace Car_Store.models
         public int get_all_cars_count()
         {
             string q = "select count(*) as car_count from VEHICLE ";
-            return Convert.ToInt32((getsinglevalue(q)));
+            int t = (int)getsinglevalue(q);
+            return t;
         }
         public void insert_emp(string Username,string Fname,string Mname,string Lname, string password,string SSN,string Bdate,string Gender, int salary,int super_id , int usertype, string jobType,int branch,int deparmentID)
         {

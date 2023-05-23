@@ -127,6 +127,13 @@ a {
     margin-top: -4px;
 }
 
+@media (max-width:710px) {
+    .footer-box-2, .footer-box-3 {
+        display: none;
+    }
+}
+
+
 @media (max-width:1029px) {
     .head .search input[type="text"] {
         width: 200px;
