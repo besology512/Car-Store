@@ -23,7 +23,7 @@
 <form method="post">
     <div class="head bn-flex mt-5" style="justify-content:center; position:relative; top:-98px;">
         <div style="position: relative;">
-            <input name="search" type="search" class="border rad-6 c-grey" placeholder="Search" style="padding: 5px 10px; width: 100%; box-sizing: border-box;">
+            <input name="search" type="search" class="border rad-6 c-grey search" placeholder="Search" >
             <button asp-page-handler="Search" style="position: absolute; top: 0; right: 0; height: 100%; width: 40px; background: none; border: none;">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span class="sr-only">Search</span>
@@ -62,7 +62,7 @@
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veniam aperiam laudantium reprehenderit, minus saepe provident dignissimos corrupti dolores totam autem eligendi quia! In ratione nulla magni hic modi veritatis!
             </p>
             <div class="button d-flex center-flex-mobile center-flex-table">
-                <a href="#" class="p-15 bg-blue w-fit mr-20 rad-25 c-white mt-20">Order Now</a>
+                    <a href="/FilterPage" class="p-15 bg-blue w-fit mr-20 rad-25 c-white mt-20">Order Now</a>
                 @if (HttpContext.Session.GetInt32("User_Type") == null)
                     {
                         <a href="/SignUpIn" class="p-15 border w-fit rad-25 c-blue mt-20">Sign In</a>

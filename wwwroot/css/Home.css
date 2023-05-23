@@ -348,3 +348,18 @@ footer .container .line .mobile-app i {
 /* End Footer */
 
 
+
+.search:focus
+{
+    padding-left:100px;
+    padding-right:100px;
+    text-align:left;
+}
+
+.search {
+    transition: 0.33s ease-in;
+    padding: 5px 10px;
+    width: 100%;
+    box-sizing: border-box;
+
+}
