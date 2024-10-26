@@ -92,7 +92,7 @@ Once the setup is complete, navigate to `http://localhost:3000` in your browser 
 
 ## Demo
 
-<iframe width="560" height="500" src="https://www.youtube.com/embed/c2rLxld9cf4?rel=0" frameborder="0" allowfullscreen></iframe>
+[Watch the demo video](https://www.youtube.com/watch?v=c2rLxld9cf4)
 
 
 
